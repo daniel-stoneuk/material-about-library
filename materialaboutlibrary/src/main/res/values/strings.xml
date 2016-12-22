@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Material About Library</string>
+
+    <string name="mal_title_about">About</string>
+</resources>
