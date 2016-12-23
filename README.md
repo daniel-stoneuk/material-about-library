@@ -9,7 +9,7 @@
 
 Makes it easy to create a beautiful about screen for your app.
 
-Idea from here: [6](https://github.com/HeinrichReimer/open-source-library-request-manager/issues/3 "Heinrich Reimer's open-source-library-request-manager")
+Idea from here: [Heinrich Reimer's open-source-library-request-manager][6]
 
 Design inspired by Phonograph.
 
@@ -51,7 +51,7 @@ dependencies {
 Setup
 -----
 
-**Step 1:** Your `Activity` must extend `MaterialAboutActivity` and be in your *AndroidManifest.java*:
+**Step 1:** Your `Activity` must extend [`MaterialAboutActivity`][7] and be in your *AndroidManifest.java*:
 ```java
 public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
 
@@ -202,6 +202,9 @@ License
 [3]: https://github.com/daniel-stoneuk/material-about-library/blob/master/app/src/main/java/com/danielstone/materialaboutlibrarydemo/ExampleMaterialAboutActivity.java
 [4]: http://i.imgur.com/1k4rcN7.png
 [5]: https://play.google.com/store/apps/details?id=com.danielstone.energyhive
+[6]: https://github.com/HeinrichReimer/open-source-library-request-manager/issues/3
+[7]: https://github.com/daniel-stoneuk/material-about-library/blob/master/library/src/main/java/com/danielstone/materialaboutlibrary/MaterialAboutActivity.java
+
 [101]: https://jitpack.io/v/daniel-stoneuk/material-about-library.svg
 [102]: https://jitpack.io/#daniel-stoneuk/material-about-library
 [103]: https://img.shields.io/github/license/HeinrichReimer/material-intro.svg
