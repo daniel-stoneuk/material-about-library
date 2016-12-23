@@ -1,5 +1,7 @@
 package com.danielstone.materialaboutlibrarydemo;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -14,18 +16,15 @@ public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
     @Override
     protected MaterialAboutList getMaterialAboutList() {
 
-        MaterialAboutCard.Builder builder = new MaterialAboutCard.Builder();
-        builder.title("Author");
-
-        builder.addItem(new MaterialAboutTitleItem.Builder()
+        MaterialAboutCard.Builder appCardBuilder = new MaterialAboutCard.Builder();
+        appCardBuilder.addItem(new MaterialAboutTitleItem.Builder()
                 .text("Material About Library")
                 .icon(R.mipmap.ic_launcher)
                 .build());
-
-        builder.addItem(new MaterialAboutActionItem.Builder()
+        appCardBuilder.addItem(new MaterialAboutActionItem.Builder()
                 .text("Version")
                 .subText("1.0.0")
-                .icon(android.R.drawable.ic_dialog_email)
+                .icon(R.drawable.ic_about_info)
                 .setOnClickListener(new MaterialAboutActionItem.OnClickListener() {
                     @Override
                     public void onClick() {
@@ -34,25 +33,67 @@ public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
                     }
                 })
                 .build());
-        builder.addItem(new MaterialAboutActionItem.Builder()
+        appCardBuilder.addItem(new MaterialAboutActionItem.Builder()
                 .text("Changelog")
-                .icon(android.R.drawable.ic_dialog_email)
+                .icon(R.drawable.ic_about_changelog)
+                .setOnClickListener(new MaterialAboutActionItem.OnClickListener() {
+                    @Override
+                    public void onClick() {
+                        Toast.makeText(ExampleMaterialAboutActivity.this, "Changelog Tapped", Toast.LENGTH_SHORT).show();
+                    }
+                })
                 .build());
-        builder.addItem(new MaterialAboutActionItem.Builder()
-                .text("Introduction")
-                .icon(android.R.drawable.ic_dialog_email)
-                .build());
-        builder.addItem(new MaterialAboutActionItem.Builder()
+        appCardBuilder.addItem(new MaterialAboutActionItem.Builder()
                 .text("Licenses")
-                .icon(android.R.drawable.ic_dialog_email)
+                .icon(R.drawable.ic_about_licenses)
+                .setOnClickListener(new MaterialAboutActionItem.OnClickListener() {
+                    @Override
+                    public void onClick() {
+                        Toast.makeText(ExampleMaterialAboutActivity.this, "Licenses Tapped", Toast.LENGTH_SHORT).show();
+                    }
+                })
                 .build());
+
+        MaterialAboutCard.Builder authorCardBuilder = new MaterialAboutCard.Builder();
+        authorCardBuilder.title("Author");
+
+        authorCardBuilder.addItem(new MaterialAboutActionItem.Builder()
+                .text("Daniel Stone")
+                .subText("United Kingdom")
+                .icon(R.drawable.ic_about_person)
+                .build());
+
+        authorCardBuilder.addItem(new MaterialAboutActionItem.Builder()
+                .text("Fork on GitHub")
+                .icon(R.drawable.ic_about_github)
+                .setOnClickListener(new MaterialAboutActionItem.OnClickListener() {
+                    @Override
+                    public void onClick() {
+                        Intent i = new Intent(Intent.ACTION_VIEW);
+                        i.setData(Uri.parse("https://github.com/daniel-stoneuk"));
+                        startActivity(i);
+                    }
+                })
+                .build());
+
+        MaterialAboutCard.Builder supportCardBuilder = new MaterialAboutCard.Builder();
+        supportCardBuilder.title("Support Development");
+        supportCardBuilder.addItem(new MaterialAboutActionItem.Builder()
+                .text("Report Bugs")
+                .subText("Report bugs or request new features.")
+                .icon(R.drawable.ic_about_bug)
+                .setOnClickListener(new MaterialAboutActionItem.OnClickListener() {
+                    @Override
+                    public void onClick() {
+                        Toast.makeText(ExampleMaterialAboutActivity.this, "Bug report tapped", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .build());
+
         return new MaterialAboutList.Builder()
-                .addCard(builder.build())
-                .addCard(builder.build())
-                .addCard(builder.build())
-                .addCard(builder.build())
-                .addCard(builder.build())
-                .addCard(builder.build())
+                .addCard(appCardBuilder.build())
+                .addCard(authorCardBuilder.build())
+                .addCard(supportCardBuilder.build())
                 .build();
     }
 

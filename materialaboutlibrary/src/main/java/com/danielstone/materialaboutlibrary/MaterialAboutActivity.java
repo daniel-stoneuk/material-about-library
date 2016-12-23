@@ -20,8 +20,7 @@ public abstract class MaterialAboutActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private MaterialAboutListAdapter adapter;
 
-    MaterialAboutList list
-            = null;
+    MaterialAboutList list = null;
 
     protected abstract MaterialAboutList getMaterialAboutList();
 
