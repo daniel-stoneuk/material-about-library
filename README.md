@@ -1,5 +1,8 @@
 #material-about-library
 
+[![Release](https://jitpack.io/v/daniel-stoneuk/material-about-library.svg)]
+(https://jitpack.io/#daniel-stoneuk/material-about-library)
+
 **Currently in Alpha & not currently looking for contributions (just need to clean a few things up)**
 
 Makes it easy to create a beautiful about screen for your app.
@@ -8,6 +11,13 @@ Idea from here: https://github.com/HeinrichReimer/open-source-library-request-ma
 
 Design inspired by Phonograph.
 
+Screenshots
+--------
+
+| Demo App | Example |
+|:-:|:-:|:-:|:-:|
+| ![Demo App][2] | ![Monitor][4] |
+| [_ExampleMaterialAboutActivity.java_][3] | [_Monitor_][5] | 
 
 Features
 --------
@@ -186,3 +196,7 @@ License
     limitations under the License.
 
 [1]: https://jitpack.io
+[2]: http://i.imgur.com/d90lWh5.png
+[3]: https://github.com/daniel-stoneuk/material-about-library/blob/master/app/src/main/java/com/danielstone/materialaboutlibrarydemo/ExampleMaterialAboutActivity.java
+[4]: http://i.imgur.com/1k4rcN7.png
+[5]: https://play.google.com/store/apps/details?id=com.danielstone.energyhive
