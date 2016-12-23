@@ -13,6 +13,10 @@ Idea from here: [Heinrich Reimer's open-source-library-request-manager][6]
 
 Design inspired by Phonograph.
 
+Demo
+--------
+<a href='https://play.google.com/store/apps/details?id=com.danielstone.materialaboutlibrarydemo&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_gb/badges/images/generic/en_badge_web_generic.png'/></a>
+
 Screenshots
 --------
 
@@ -162,7 +166,7 @@ License
     limitations under the License.
 
 [1]: https://jitpack.io
-[2]: http://i.imgur.com/d90lWh5.png
+[2]: http://i.imgur.com/2d63NFS.png
 [3]: https://github.com/daniel-stoneuk/material-about-library/blob/master/app/src/main/java/com/danielstone/materialaboutlibrarydemo/ExampleMaterialAboutActivity.java
 [4]: http://i.imgur.com/1k4rcN7.png
 [5]: https://play.google.com/store/apps/details?id=com.danielstone.energyhive
