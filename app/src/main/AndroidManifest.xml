@@ -21,7 +21,13 @@
         </activity>
 
         <activity android:name=".ExampleMaterialAboutActivity"
-            android:theme="@style/AppTheme.MaterialAboutActivity"></activity>
+            android:theme="@style/AppTheme.MaterialAboutActivity"
+            android:parentActivityName=".MainActivity">
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity"/>
+        </activity>
     </application>
 
 </manifest>
