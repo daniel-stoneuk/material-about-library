@@ -6,8 +6,8 @@ import android.widget.Toast;
 import com.danielstone.materialaboutlibrary.MaterialAboutActivity;
 import com.danielstone.materialaboutlibrary.model.MaterialAboutActionItem;
 import com.danielstone.materialaboutlibrary.model.MaterialAboutCard;
-import com.danielstone.materialaboutlibrary.model.MaterialAboutItem;
 import com.danielstone.materialaboutlibrary.model.MaterialAboutList;
+import com.danielstone.materialaboutlibrary.model.MaterialAboutTitleItem;
 
 public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
 
@@ -15,13 +15,18 @@ public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
     protected MaterialAboutList getMaterialAboutList() {
 
         MaterialAboutCard.Builder builder = new MaterialAboutCard.Builder();
-        builder.title("Title");
+        builder.title("Author");
+
+        builder.addItem(new MaterialAboutTitleItem.Builder()
+                .text("Material About Library")
+                .icon(R.mipmap.ic_launcher)
+                .build());
 
         builder.addItem(new MaterialAboutActionItem.Builder()
                 .text("Version")
                 .subText("1.0.0")
                 .icon(android.R.drawable.ic_dialog_email)
-                .setOnClickListener(new MaterialAboutItem.OnClickListener() {
+                .setOnClickListener(new MaterialAboutActionItem.OnClickListener() {
                     @Override
                     public void onClick() {
                         Log.i("test", "onClick: Version Tapped");

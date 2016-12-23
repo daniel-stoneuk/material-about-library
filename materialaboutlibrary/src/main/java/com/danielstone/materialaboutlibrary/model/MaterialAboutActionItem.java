@@ -6,6 +6,10 @@ import android.support.annotation.StringRes;
 
 public class MaterialAboutActionItem extends MaterialAboutItem {
 
+    public interface OnClickListener {
+        void onClick();
+    }
+
     private CharSequence mText;
     private int mTextRes;
 
@@ -15,7 +19,7 @@ public class MaterialAboutActionItem extends MaterialAboutItem {
     private Drawable mIcon;
     private int mIconRes;
 
-    private MaterialAboutItem.OnClickListener mClickListener;
+    private MaterialAboutActionItem.OnClickListener mClickListener;
 
     public MaterialAboutActionItem(Builder builder) {
         this.mText = builder.text;
@@ -54,7 +58,7 @@ public class MaterialAboutActionItem extends MaterialAboutItem {
         return mIconRes;
     }
 
-    public MaterialAboutItem.OnClickListener getOnClickListener() {
+    public MaterialAboutActionItem.OnClickListener getOnClickListener() {
         return mClickListener;
     }
 
@@ -73,7 +77,7 @@ public class MaterialAboutActionItem extends MaterialAboutItem {
         @DrawableRes
         private int iconRes = 0;
 
-        OnClickListener onClickListener;
+        MaterialAboutActionItem.OnClickListener onClickListener;
 
         public Builder text(CharSequence text) {
             this.text = text;
@@ -114,7 +118,7 @@ public class MaterialAboutActionItem extends MaterialAboutItem {
             return this;
         }
 
-        public Builder setOnClickListener(OnClickListener onClickListener) {
+        public Builder setOnClickListener(MaterialAboutActionItem.OnClickListener onClickListener) {
             this.onClickListener = onClickListener;
             return this;
         }

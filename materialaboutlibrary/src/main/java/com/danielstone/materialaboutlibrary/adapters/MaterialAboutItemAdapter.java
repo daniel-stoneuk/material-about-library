@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.danielstone.materialaboutlibrary.R;
 import com.danielstone.materialaboutlibrary.model.MaterialAboutActionItem;
 import com.danielstone.materialaboutlibrary.model.MaterialAboutItem;
+import com.danielstone.materialaboutlibrary.model.MaterialAboutTitleItem;
 
 import java.util.ArrayList;
 
@@ -41,7 +42,7 @@ public class MaterialAboutItemAdapter extends RecyclerView.Adapter<MaterialAbout
         private final TextView mText;
         private final TextView mSubText;
         private int viewType;
-        public MaterialAboutItem.OnClickListener mOnClickListener;
+        public MaterialAboutActionItem.OnClickListener mOnClickListener;
 
         public MaterialAboutItemViewHolder(View view, int viewType) {
             super(view);
@@ -71,6 +72,10 @@ public class MaterialAboutItemAdapter extends RecyclerView.Adapter<MaterialAbout
             switch (viewType) {
                 case VIEW_TYPE_ACTION_ITEM: {
                     layoutId = R.layout.mal_material_about_action_item;
+                    break;
+                }
+                case VIEW_TYPE_TITLE_ITEM: {
+                    layoutId = R.layout.mal_material_about_title_item;
                     break;
                 }
             }
@@ -138,6 +143,31 @@ public class MaterialAboutItemAdapter extends RecyclerView.Adapter<MaterialAbout
                 }
                 break;
             }
+            case VIEW_TYPE_TITLE_ITEM: {
+                MaterialAboutTitleItem item = (MaterialAboutTitleItem) mData.get(position);
+
+                CharSequence text = item.getText();
+                int textRes = item.getTextRes();
+
+                holder.mText.setVisibility(View.VISIBLE);
+                if (text != null) {
+                    holder.mText.setText(text);
+                } else if (textRes != 0) {
+                    holder.mText.setText(textRes);
+                } else {
+                    holder.mText.setVisibility(View.GONE);
+                }
+
+                Drawable drawable = item.getIcon();
+                int drawableRes = item.getIconRes();
+                if (drawable != null) {
+                    holder.mIcon.setImageDrawable(drawable);
+                } else if (drawableRes != 0) {
+                    holder.mIcon.setImageResource(drawableRes);
+                }
+
+                break;
+            }
         }
     }
 
@@ -151,6 +181,8 @@ public class MaterialAboutItemAdapter extends RecyclerView.Adapter<MaterialAbout
 
         if (mData.get(position) instanceof MaterialAboutActionItem) {
             return VIEW_TYPE_ACTION_ITEM;
+        } else if (mData.get(position) instanceof MaterialAboutTitleItem) {
+            return VIEW_TYPE_TITLE_ITEM;
         }
         Log.i(TAG, "getItemViewType: That didn't work oops");
         return VIEW_TYPE_ACTION_ITEM;
