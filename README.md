@@ -1,6 +1,7 @@
 #material-about-library
-=======================
-Makes it easy to create a beautiful about screen for your ap.
+--------
+
+Makes it easy to create a beautiful about screen for your app.
 
 Idea from here: https://github.com/HeinrichReimer/open-source-library-request-manager/issues/3
 
