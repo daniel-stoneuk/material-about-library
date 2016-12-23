@@ -1,5 +1,6 @@
 #material-about-library
---------
+
+**Currently in Alpha & not currently looking for contributions (just need to clean a few things up)**
 
 Makes it easy to create a beautiful about screen for your app.
 
@@ -15,6 +16,25 @@ Features
 * Modular backend
 * Easy to implement
 * Fluent API
+
+Dependency
+----------
+
+*material-about-library* is available on [**jitpack.io**][1]
+
+**Gradle dependency:**
+```gradle
+allprojects {
+    repositories {
+        maven { url 'https://jitpack.io' }
+    }
+}
+```
+```gradle
+dependencies {
+    compile 'com.github.daniel-stoneuk:material-about-library:1.0-alpha'
+}
+```
 
 Setup
 -----
@@ -164,3 +184,5 @@ License
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
     limitations under the License.
+
+[1]: https://jitpack.io
