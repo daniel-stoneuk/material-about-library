@@ -1,1 +1,1 @@
-include ':app', ':materialaboutlibrary'
+include ':app', ':library'
