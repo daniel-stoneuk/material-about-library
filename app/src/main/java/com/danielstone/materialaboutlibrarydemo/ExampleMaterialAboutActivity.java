@@ -100,4 +100,9 @@ public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
                 .build();
     }
 
+    @Override
+    protected CharSequence getActivityTitle() {
+        return getString(R.string.mal_title_about);
+    }
+
 }

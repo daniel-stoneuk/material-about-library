@@ -19,7 +19,7 @@ import com.danielstone.materialaboutlibrary.model.MaterialAboutTitleItem;
 import java.util.ArrayList;
 
 
-class MaterialAboutItemAdapter extends RecyclerView.Adapter<MaterialAboutItemAdapter.MaterialAboutItemViewHolder> {
+public class MaterialAboutItemAdapter extends RecyclerView.Adapter<MaterialAboutItemAdapter.MaterialAboutItemViewHolder> {
 
     private static final String TAG = MaterialAboutItemAdapter.class.getSimpleName();
 
@@ -35,7 +35,7 @@ class MaterialAboutItemAdapter extends RecyclerView.Adapter<MaterialAboutItemAda
         this.data = data;
     }
 
-    class MaterialAboutItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class MaterialAboutItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private final View view;
         private final ImageView icon;
@@ -188,7 +188,7 @@ class MaterialAboutItemAdapter extends RecyclerView.Adapter<MaterialAboutItemAda
         return VIEW_TYPE_ACTION_ITEM;
     }
 
-    void swapData(ArrayList<MaterialAboutItem> newData) {
+    public void swapData(ArrayList<MaterialAboutItem> newData) {
         data = newData;
         notifyDataSetChanged();
     }

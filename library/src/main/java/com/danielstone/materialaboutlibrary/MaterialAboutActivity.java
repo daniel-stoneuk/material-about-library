@@ -9,7 +9,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.text.TextUtils;
 
 import com.danielstone.materialaboutlibrary.adapters.MaterialAboutListAdapter;
 import com.danielstone.materialaboutlibrary.model.MaterialAboutList;
@@ -24,14 +23,20 @@ public abstract class MaterialAboutActivity extends AppCompatActivity {
 
     protected abstract MaterialAboutList getMaterialAboutList();
 
+    protected abstract CharSequence getActivityTitle();
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.mal_material_about_activity);
 
-        if (TextUtils.isEmpty(getTitle()))
+        CharSequence title = getActivityTitle();
+        if (title == null)
             setTitle(R.string.mal_title_about);
+        else
+            setTitle(title);
+
 
         assignViews();
         initViews();
