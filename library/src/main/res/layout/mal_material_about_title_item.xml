@@ -4,32 +4,32 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:paddingBottom="16dp"
-    android:paddingEnd="8dp"
-    android:paddingLeft="8dp"
-    android:paddingRight="8dp"
-    android:paddingStart="8dp"
-    android:paddingTop="16dp">
+    android:paddingBottom="@dimen/mal_baseline"
+    android:paddingEnd="@dimen/mal_baseline_half"
+    android:paddingLeft="@dimen/mal_baseline_half"
+    android:paddingRight="@dimen/mal_baseline_half"
+    android:paddingStart="@dimen/mal_baseline_half"
+    android:paddingTop="@dimen/mal_baseline">
 
     <ImageView
-        android:id="@+id/mal_action_item_image"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:id="@+id/mal_item_image"
+        android:layout_width="@dimen/mal_title_item_image_size"
+        android:layout_height="@dimen/mal_title_item_image_size"
         android:layout_gravity="center"
-        android:layout_marginLeft="4dp"
-        android:layout_marginStart="4dp"
+        android:layout_marginLeft="@dimen/mal_baseline_quarter"
+        android:layout_marginStart="@dimen/mal_baseline_quarter"
         android:adjustViewBounds="false"
         android:cropToPadding="false" />
 
     <TextView
-        android:id="@+id/mal_action_item_text"
+        android:id="@+id/mal_item_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:layout_marginEnd="12dp"
-        android:layout_marginLeft="12dp"
-        android:layout_marginRight="12dp"
-        android:layout_marginStart="12dp"
+        android:layout_marginEnd="@dimen/mal_baseline"
+        android:layout_marginLeft="@dimen/mal_title_item_text_marginleft"
+        android:layout_marginRight="@dimen/mal_baseline"
+        android:layout_marginStart="@dimen/mal_title_item_text_marginleft"
         android:layout_weight="1"
         android:text="Text"
         android:textAppearance="@style/TextAppearance.AppCompat.Headline" />

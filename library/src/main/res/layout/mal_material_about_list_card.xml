@@ -30,7 +30,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:clipToPadding="false"
-            android:paddingBottom="8dp"
+            android:paddingBottom="@dimen/mal_baseline_half"
             />
     </LinearLayout>
 </android.support.v7.widget.CardView>

@@ -4,17 +4,17 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:padding="8dp">
+    android:padding="@dimen/mal_baseline_half">
 
     <ImageView
-        android:id="@+id/mal_action_item_image"
-        android:layout_width="24dp"
-        android:layout_height="32dp"
+        android:id="@+id/mal_item_image"
+        android:layout_width="@dimen/mal_action_item_image_width"
+        android:layout_height="@dimen/mal_action_action_item_image_height"
         android:layout_gravity="center"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginEnd="@dimen/mal_baseline_half"
+        android:layout_marginLeft="@dimen/mal_baseline_half"
+        android:layout_marginRight="@dimen/mal_baseline_half"
+        android:layout_marginStart="@dimen/mal_baseline_half"
         android:adjustViewBounds="false"
         android:cropToPadding="false" />
 
@@ -22,15 +22,15 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="@dimen/mal_baseline_half"
         android:layout_marginLeft="@dimen/mal_baseline"
-        android:layout_marginRight="8dp"
+        android:layout_marginRight="@dimen/mal_baseline_half"
         android:layout_marginStart="@dimen/mal_baseline"
         android:layout_weight="1"
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/mal_action_item_text"
+            android:id="@+id/mal_item_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Text"
