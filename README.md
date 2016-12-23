@@ -27,7 +27,7 @@ Features
 * Material design
 * Modular backend
 * Easy to implement
-* Fluent API
+* Simple but intuitive API
 
 Dependency
 ----------
