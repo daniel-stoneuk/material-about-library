@@ -10,56 +10,56 @@ public class MaterialAboutActionItem extends MaterialAboutItem {
         void onClick();
     }
 
-    private CharSequence mText;
-    private int mTextRes;
+    private CharSequence text;
+    private int textRes;
 
-    private CharSequence mSubText;
-    private int mSubTextRes;
+    private CharSequence subText;
+    private int subTextRes;
 
-    private Drawable mIcon;
-    private int mIconRes;
+    private Drawable icon;
+    private int iconRes;
 
-    private MaterialAboutActionItem.OnClickListener mClickListener;
+    private MaterialAboutActionItem.OnClickListener onClickListener;
 
     public MaterialAboutActionItem(Builder builder) {
-        this.mText = builder.text;
-        this.mTextRes = builder.textRes;
+        this.text = builder.text;
+        this.textRes = builder.textRes;
 
-        this.mSubText = builder.subText;
-        this.mSubTextRes = builder.subTextRes;
+        this.subText = builder.subText;
+        this.subTextRes = builder.subTextRes;
 
-        this.mIcon = builder.icon;
-        this.mIconRes = builder.iconRes;
+        this.icon = builder.icon;
+        this.iconRes = builder.iconRes;
 
-        this.mClickListener = builder.onClickListener;
+        this.onClickListener = builder.onClickListener;
     }
 
     public CharSequence getText() {
-        return mText;
+        return text;
     }
 
     public int getTextRes() {
-        return mTextRes;
+        return textRes;
     }
 
     public CharSequence getSubText() {
-        return mSubText;
+        return subText;
     }
 
     public int getSubTextRes() {
-        return mSubTextRes;
+        return subTextRes;
     }
 
     public Drawable getIcon() {
-        return mIcon;
+        return icon;
     }
 
     public int getIconRes() {
-        return mIconRes;
+        return iconRes;
     }
 
     public MaterialAboutActionItem.OnClickListener getOnClickListener() {
-        return mClickListener;
+        return onClickListener;
     }
 
 

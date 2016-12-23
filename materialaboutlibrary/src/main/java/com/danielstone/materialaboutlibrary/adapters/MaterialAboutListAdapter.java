@@ -18,28 +18,28 @@ import java.util.ArrayList;
 
 public class MaterialAboutListAdapter extends RecyclerView.Adapter<MaterialAboutListAdapter.MaterialAboutListViewHolder> {
 
-    private ArrayList<MaterialAboutCard> mData;
+    private ArrayList<MaterialAboutCard> data;
 
-        Context context;
+    Context context;
 
     public MaterialAboutListAdapter(MaterialAboutList list) {
-            this.mData = list.getCards();
+            this.data = list.getCards();
         }
 
         public class MaterialAboutListViewHolder extends RecyclerView.ViewHolder {
 
-            public final TextView mTitle;
-            public final RecyclerView mRecyclerView;
-            public MaterialAboutItemAdapter mAdapter;
+            public final TextView title;
+            public final RecyclerView recyclerView;
+            public MaterialAboutItemAdapter adapter;
 
             public MaterialAboutListViewHolder(View view) {
                 super(view);
-                mTitle = (TextView) view.findViewById(R.id.mal_list_card_title);
-                mRecyclerView = (RecyclerView) view.findViewById(R.id.mal_card_recyclerview);
-                mAdapter = new MaterialAboutItemAdapter(new ArrayList<MaterialAboutItem>());
-                mRecyclerView.setLayoutManager(new LinearLayoutManager(context));
-                mRecyclerView.setAdapter(mAdapter);
-                mRecyclerView.setNestedScrollingEnabled(false);
+                title = (TextView) view.findViewById(R.id.mal_list_card_title);
+                recyclerView = (RecyclerView) view.findViewById(R.id.mal_card_recyclerview);
+                adapter = new MaterialAboutItemAdapter(new ArrayList<MaterialAboutItem>());
+                recyclerView.setLayoutManager(new LinearLayoutManager(context));
+                recyclerView.setAdapter(adapter);
+                recyclerView.setNestedScrollingEnabled(false);
 
             }
 
@@ -61,33 +61,33 @@ public class MaterialAboutListAdapter extends RecyclerView.Adapter<MaterialAbout
         @Override
         public void onBindViewHolder(MaterialAboutListViewHolder holder, int position) {
 
-            CharSequence title = mData.get(position).getTitle();
-            int titleRes = mData.get(position).getTitleRes();
+            CharSequence title = data.get(position).getTitle();
+            int titleRes = data.get(position).getTitleRes();
 
-            holder.mTitle.setVisibility(View.VISIBLE);
+            holder.title.setVisibility(View.VISIBLE);
             if (title != null) {
-                holder.mTitle.setText(title);
+                holder.title.setText(title);
             } else if (titleRes != 0) {
-                holder.mTitle.setText(titleRes);
+                holder.title.setText(titleRes);
             } else {
-                holder.mTitle.setVisibility(View.GONE);
+                holder.title.setVisibility(View.GONE);
             }
 
-            holder.mAdapter.swapData(mData.get(position).getItems());
+            holder.adapter.swapData(data.get(position).getItems());
 
         }
 
         @Override
         public int getItemCount() {
-            return mData.size();
+            return data.size();
         }
 
     public void swapData(MaterialAboutList list) {
-        mData = list.getCards();
+        data = list.getCards();
         notifyDataSetChanged();
     }
 
     public ArrayList<MaterialAboutCard> getData() {
-        return mData;
+        return data;
     }
 }

@@ -16,11 +16,12 @@ import com.danielstone.materialaboutlibrary.model.MaterialAboutList;
 
 public abstract class MaterialAboutActivity extends AppCompatActivity {
 
-    private Toolbar mToolbar;
-    private RecyclerView mRecyclerView;
-    private MaterialAboutListAdapter mAdapter;
+    private Toolbar toolbar;
+    private RecyclerView recyclerView;
+    private MaterialAboutListAdapter adapter;
 
-    MaterialAboutList mList = null;
+    MaterialAboutList list
+            = null;
 
     protected abstract MaterialAboutList getMaterialAboutList();
 
@@ -36,17 +37,17 @@ public abstract class MaterialAboutActivity extends AppCompatActivity {
         assignViews();
         initViews();
 
-        mList = getMaterialAboutList();
-        mAdapter.swapData(mList);
+        list = getMaterialAboutList();
+        adapter.swapData(list);
     }
 
     private void assignViews() {
-        mToolbar = (Toolbar) findViewById(R.id.mal_toolbar);
-        mRecyclerView = (RecyclerView) findViewById(R.id.mal_recyclerview);
+        toolbar = (Toolbar) findViewById(R.id.mal_toolbar);
+        recyclerView = (RecyclerView) findViewById(R.id.mal_recyclerview);
     }
 
     private void initViews() {
-        setSupportActionBar(mToolbar);
+        setSupportActionBar(toolbar);
         if (NavUtils.getParentActivityName(this) != null) {
             ActionBar actionBar = getSupportActionBar();
             if (actionBar != null) {
@@ -54,8 +55,8 @@ public abstract class MaterialAboutActivity extends AppCompatActivity {
             }
         }
 
-        mAdapter = new MaterialAboutListAdapter(new MaterialAboutList.Builder().build());
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mRecyclerView.setAdapter(mAdapter);
+        adapter = new MaterialAboutListAdapter(new MaterialAboutList.Builder().build());
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(adapter);
     }
 }

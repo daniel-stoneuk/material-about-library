@@ -27,39 +27,39 @@ public class MaterialAboutItemAdapter extends RecyclerView.Adapter<MaterialAbout
     public static final int VIEW_TYPE_TITLE_ITEM = 1;
     public static final int VIEW_TYPE_PERSON_ITEM = 2;
 
-    private ArrayList<MaterialAboutItem> mData;
+    private ArrayList<MaterialAboutItem> data;
 
     Context context;
 
     public MaterialAboutItemAdapter(ArrayList<MaterialAboutItem> data) {
-        this.mData = data;
+        this.data = data;
     }
 
     public class MaterialAboutItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        private final View mView;
-        private final ImageView mIcon;
-        private final TextView mText;
-        private final TextView mSubText;
+        private final View view;
+        private final ImageView icon;
+        private final TextView text;
+        private final TextView subText;
         private int viewType;
-        public MaterialAboutActionItem.OnClickListener mOnClickListener;
+        public MaterialAboutActionItem.OnClickListener onClickListener;
 
         public MaterialAboutItemViewHolder(View view, int viewType) {
             super(view);
-            mView = view;
-            mIcon = (ImageView) view.findViewById(R.id.mal_action_item_image);
-            mText = (TextView) view.findViewById(R.id.mal_action_item_text);
-            mSubText = (TextView) view.findViewById(R.id.mal_action_item_subtext);
+            this.view = view;
+            icon = (ImageView) view.findViewById(R.id.mal_action_item_image);
+            text = (TextView) view.findViewById(R.id.mal_action_item_text);
+            subText = (TextView) view.findViewById(R.id.mal_action_item_subtext);
             this.viewType = viewType;
 
             view.setOnClickListener(this);
-            mOnClickListener = null;
+            onClickListener = null;
         }
 
         @Override
         public void onClick(View v) {
-            if (mOnClickListener != null) {
-                mOnClickListener.onClick();
+            if (onClickListener != null) {
+                onClickListener.onClick();
             }
         }
     }
@@ -91,79 +91,79 @@ public class MaterialAboutItemAdapter extends RecyclerView.Adapter<MaterialAbout
     public void onBindViewHolder(MaterialAboutItemViewHolder holder, int position) {
         switch (holder.viewType) {
             case VIEW_TYPE_ACTION_ITEM: {
-                if (mData.get(position) instanceof MaterialAboutActionItem) {
+                if (data.get(position) instanceof MaterialAboutActionItem) {
 
-                    MaterialAboutActionItem item = (MaterialAboutActionItem) mData.get(position);
+                    MaterialAboutActionItem item = (MaterialAboutActionItem) data.get(position);
 
                     CharSequence text = item.getText();
                     int textRes = item.getTextRes();
 
-                    holder.mText.setVisibility(View.VISIBLE);
+                    holder.text.setVisibility(View.VISIBLE);
                     if (text != null) {
-                        holder.mText.setText(text);
+                        holder.text.setText(text);
                     } else if (textRes != 0) {
-                        holder.mText.setText(textRes);
+                        holder.text.setText(textRes);
                     } else {
-                        holder.mText.setVisibility(View.GONE);
+                        holder.text.setVisibility(View.GONE);
                     }
 
                     CharSequence subText = item.getSubText();
                     int subTextRes = item.getSubTextRes();
 
-                    holder.mSubText.setVisibility(View.VISIBLE);
+                    holder.subText.setVisibility(View.VISIBLE);
                     if (subText != null) {
-                        holder.mSubText.setText(subText);
+                        holder.subText.setText(subText);
                     } else if (subTextRes != 0) {
-                        holder.mSubText.setText(subTextRes);
+                        holder.subText.setText(subTextRes);
                     } else {
-                        holder.mSubText.setVisibility(View.GONE);
+                        holder.subText.setVisibility(View.GONE);
                     }
 
                     Drawable drawable = item.getIcon();
                     int drawableRes = item.getIconRes();
                     if (drawable != null) {
-                        holder.mIcon.setImageDrawable(drawable);
+                        holder.icon.setImageDrawable(drawable);
                     } else if (drawableRes != 0) {
-                        holder.mIcon.setImageResource(drawableRes);
+                        holder.icon.setImageResource(drawableRes);
                     }
 
                     if (item.getOnClickListener() != null) {
                             TypedValue outValue = new TypedValue();
                             context.getTheme().resolveAttribute(R.attr.selectableItemBackground, outValue, true);
-                            holder.mView.setBackgroundResource(outValue.resourceId);
-                            holder.mOnClickListener = item.getOnClickListener();
+                            holder.view.setBackgroundResource(outValue.resourceId);
+                            holder.onClickListener = item.getOnClickListener();
                     } else {
                         TypedValue outValue = new TypedValue();
                         context.getTheme().resolveAttribute(R.attr.selectableItemBackground, outValue, false);
-                        holder.mView.setBackgroundResource(outValue.resourceId);
-                        holder.mOnClickListener = item.getOnClickListener();
-                        holder.mOnClickListener = null;
+                        holder.view.setBackgroundResource(outValue.resourceId);
+                        holder.onClickListener = item.getOnClickListener();
+                        holder.onClickListener = null;
                     }
 
                 }
                 break;
             }
             case VIEW_TYPE_TITLE_ITEM: {
-                MaterialAboutTitleItem item = (MaterialAboutTitleItem) mData.get(position);
+                MaterialAboutTitleItem item = (MaterialAboutTitleItem) data.get(position);
 
                 CharSequence text = item.getText();
                 int textRes = item.getTextRes();
 
-                holder.mText.setVisibility(View.VISIBLE);
+                holder.text.setVisibility(View.VISIBLE);
                 if (text != null) {
-                    holder.mText.setText(text);
+                    holder.text.setText(text);
                 } else if (textRes != 0) {
-                    holder.mText.setText(textRes);
+                    holder.text.setText(textRes);
                 } else {
-                    holder.mText.setVisibility(View.GONE);
+                    holder.text.setVisibility(View.GONE);
                 }
 
                 Drawable drawable = item.getIcon();
                 int drawableRes = item.getIconRes();
                 if (drawable != null) {
-                    holder.mIcon.setImageDrawable(drawable);
+                    holder.icon.setImageDrawable(drawable);
                 } else if (drawableRes != 0) {
-                    holder.mIcon.setImageResource(drawableRes);
+                    holder.icon.setImageResource(drawableRes);
                 }
 
                 break;
@@ -173,15 +173,15 @@ public class MaterialAboutItemAdapter extends RecyclerView.Adapter<MaterialAbout
 
     @Override
     public int getItemCount() {
-        return mData.size();
+        return data.size();
     }
 
     @Override
     public int getItemViewType(int position) {
 
-        if (mData.get(position) instanceof MaterialAboutActionItem) {
+        if (data.get(position) instanceof MaterialAboutActionItem) {
             return VIEW_TYPE_ACTION_ITEM;
-        } else if (mData.get(position) instanceof MaterialAboutTitleItem) {
+        } else if (data.get(position) instanceof MaterialAboutTitleItem) {
             return VIEW_TYPE_TITLE_ITEM;
         }
         Log.i(TAG, "getItemViewType: That didn't work oops");
@@ -189,11 +189,11 @@ public class MaterialAboutItemAdapter extends RecyclerView.Adapter<MaterialAbout
     }
 
     public void swapData(ArrayList<MaterialAboutItem> newData) {
-        mData = newData;
+        data = newData;
         notifyDataSetChanged();
     }
 
     public ArrayList<MaterialAboutItem> getData() {
-        return mData;
+        return data;
     }
 }

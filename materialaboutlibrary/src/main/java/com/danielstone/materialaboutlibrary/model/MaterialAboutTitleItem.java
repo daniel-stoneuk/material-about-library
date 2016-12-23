@@ -7,35 +7,35 @@ import android.support.annotation.StringRes;
 
 public class MaterialAboutTitleItem extends MaterialAboutItem {
 
-    private CharSequence mText;
-    private int mTextRes;
+    private CharSequence text;
+    private int textRes;
 
-    private Drawable mIcon;
-    private int mIconRes;
+    private Drawable icon;
+    private int iconRes;
 
     public MaterialAboutTitleItem(MaterialAboutTitleItem.Builder builder) {
-        this.mText = builder.text;
-        this.mTextRes = builder.textRes;
+        this.text = builder.text;
+        this.textRes = builder.textRes;
 
-        this.mIcon = builder.icon;
-        this.mIconRes = builder.iconRes;
+        this.icon = builder.icon;
+        this.iconRes = builder.iconRes;
 
     }
 
     public CharSequence getText() {
-        return mText;
+        return text;
     }
 
     public int getTextRes() {
-        return mTextRes;
+        return textRes;
     }
 
     public Drawable getIcon() {
-        return mIcon;
+        return icon;
     }
 
     public int getIconRes() {
-        return mIconRes;
+        return iconRes;
     }
 
 

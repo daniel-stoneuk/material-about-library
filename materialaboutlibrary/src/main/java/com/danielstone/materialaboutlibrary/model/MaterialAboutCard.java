@@ -7,23 +7,23 @@ import java.util.ArrayList;
 
 public class MaterialAboutCard {
 
-    private CharSequence mTitle;
-    private int mTitleRes;
+    private CharSequence title;
+    private int titleRes;
 
     private ArrayList<MaterialAboutItem> mItems;
 
     public MaterialAboutCard(Builder builder) {
-        this.mTitle = builder.title;
-        this.mTitleRes = builder.titleRes;
+        this.title = builder.title;
+        this.titleRes = builder.titleRes;
         this.mItems = builder.items;
     }
 
     public CharSequence getTitle() {
-        return mTitle;
+        return title;
     }
 
     public int getTitleRes() {
-        return mTitleRes;
+        return titleRes;
     }
 
     public ArrayList<MaterialAboutItem> getItems() {

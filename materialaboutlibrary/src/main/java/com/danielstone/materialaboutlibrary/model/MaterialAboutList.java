@@ -5,10 +5,10 @@ import java.util.ArrayList;
 
 public class MaterialAboutList {
 
-    private ArrayList<MaterialAboutCard> mCards;
+    private ArrayList<MaterialAboutCard> cards;
 
     public MaterialAboutList(Builder builder) {
-        this.mCards = builder.cards;
+        this.cards = builder.cards;
     }
 
     public static class Builder {
@@ -25,6 +25,6 @@ public class MaterialAboutList {
     }
 
     public ArrayList<MaterialAboutCard> getCards() {
-        return mCards;
+        return cards;
     }
 }
