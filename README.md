@@ -1,13 +1,15 @@
 #material-about-library
 
-[![Release](https://jitpack.io/v/daniel-stoneuk/material-about-library.svg)]
-(https://jitpack.io/#daniel-stoneuk/material-about-library)
+[![Release][101]][102]
+[![Apache License 2.0][103]][104]
 
 **Currently in Alpha & not currently looking for contributions (just need to clean a few things up)**
 
+**If there are any icon designers out there that are willing to design a free icon for this libraries' demo app, please contact me!**
+
 Makes it easy to create a beautiful about screen for your app.
 
-Idea from here: https://github.com/HeinrichReimer/open-source-library-request-manager/issues/3
+Idea from here: [6](https://github.com/HeinrichReimer/open-source-library-request-manager/issues/3 "Heinrich Reimer's open-source-library-request-manager")
 
 Design inspired by Phonograph.
 
@@ -200,3 +202,7 @@ License
 [3]: https://github.com/daniel-stoneuk/material-about-library/blob/master/app/src/main/java/com/danielstone/materialaboutlibrarydemo/ExampleMaterialAboutActivity.java
 [4]: http://i.imgur.com/1k4rcN7.png
 [5]: https://play.google.com/store/apps/details?id=com.danielstone.energyhive
+[101]: https://jitpack.io/v/daniel-stoneuk/material-about-library.svg
+[102]: https://jitpack.io/#daniel-stoneuk/material-about-library
+[103]: https://img.shields.io/github/license/HeinrichReimer/material-intro.svg
+[104]: https://www.apache.org/licenses/LICENSE-2.0.html
