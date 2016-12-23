@@ -12,7 +12,7 @@ public class MaterialAboutCard {
 
     private ArrayList<MaterialAboutItem> mItems;
 
-    public MaterialAboutCard(Builder builder) {
+    private MaterialAboutCard(Builder builder) {
         this.title = builder.title;
         this.titleRes = builder.titleRes;
         this.mItems = builder.items;

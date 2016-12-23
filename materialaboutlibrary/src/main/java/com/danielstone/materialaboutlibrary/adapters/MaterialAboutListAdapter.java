@@ -20,19 +20,19 @@ public class MaterialAboutListAdapter extends RecyclerView.Adapter<MaterialAbout
 
     private ArrayList<MaterialAboutCard> data;
 
-    Context context;
+    private Context context;
 
     public MaterialAboutListAdapter(MaterialAboutList list) {
             this.data = list.getCards();
         }
 
-        public class MaterialAboutListViewHolder extends RecyclerView.ViewHolder {
+        class MaterialAboutListViewHolder extends RecyclerView.ViewHolder {
 
-            public final TextView title;
-            public final RecyclerView recyclerView;
-            public MaterialAboutItemAdapter adapter;
+            final TextView title;
+            final RecyclerView recyclerView;
+            MaterialAboutItemAdapter adapter;
 
-            public MaterialAboutListViewHolder(View view) {
+            MaterialAboutListViewHolder(View view) {
                 super(view);
                 title = (TextView) view.findViewById(R.id.mal_list_card_title);
                 recyclerView = (RecyclerView) view.findViewById(R.id.mal_card_recyclerview);
@@ -87,7 +87,7 @@ public class MaterialAboutListAdapter extends RecyclerView.Adapter<MaterialAbout
         notifyDataSetChanged();
     }
 
-    public ArrayList<MaterialAboutCard> getData() {
+    ArrayList<MaterialAboutCard> getData() {
         return data;
     }
 }

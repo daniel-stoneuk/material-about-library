@@ -17,6 +17,9 @@ public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
     protected MaterialAboutList getMaterialAboutList() {
 
         MaterialAboutCard.Builder appCardBuilder = new MaterialAboutCard.Builder();
+
+        // Add items to card
+
         appCardBuilder.addItem(new MaterialAboutTitleItem.Builder()
                 .text("Material About Library")
                 .icon(R.mipmap.ic_launcher)

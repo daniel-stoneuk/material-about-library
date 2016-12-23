@@ -21,7 +21,7 @@ public class MaterialAboutActionItem extends MaterialAboutItem {
 
     private MaterialAboutActionItem.OnClickListener onClickListener;
 
-    public MaterialAboutActionItem(Builder builder) {
+    private MaterialAboutActionItem(Builder builder) {
         this.text = builder.text;
         this.textRes = builder.textRes;
 

@@ -7,7 +7,7 @@ public class MaterialAboutList {
 
     private ArrayList<MaterialAboutCard> cards;
 
-    public MaterialAboutList(Builder builder) {
+    private MaterialAboutList(Builder builder) {
         this.cards = builder.cards;
     }
 

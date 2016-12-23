@@ -19,32 +19,32 @@ import com.danielstone.materialaboutlibrary.model.MaterialAboutTitleItem;
 import java.util.ArrayList;
 
 
-public class MaterialAboutItemAdapter extends RecyclerView.Adapter<MaterialAboutItemAdapter.MaterialAboutItemViewHolder> {
+class MaterialAboutItemAdapter extends RecyclerView.Adapter<MaterialAboutItemAdapter.MaterialAboutItemViewHolder> {
 
-    public static final String TAG = MaterialAboutItemAdapter.class.getSimpleName();
+    private static final String TAG = MaterialAboutItemAdapter.class.getSimpleName();
 
-    public static final int VIEW_TYPE_ACTION_ITEM = 0;
-    public static final int VIEW_TYPE_TITLE_ITEM = 1;
+    private static final int VIEW_TYPE_ACTION_ITEM = 0;
+    private static final int VIEW_TYPE_TITLE_ITEM = 1;
     public static final int VIEW_TYPE_PERSON_ITEM = 2;
 
     private ArrayList<MaterialAboutItem> data;
 
-    Context context;
+    private Context context;
 
-    public MaterialAboutItemAdapter(ArrayList<MaterialAboutItem> data) {
+    MaterialAboutItemAdapter(ArrayList<MaterialAboutItem> data) {
         this.data = data;
     }
 
-    public class MaterialAboutItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    class MaterialAboutItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private final View view;
         private final ImageView icon;
         private final TextView text;
         private final TextView subText;
         private int viewType;
-        public MaterialAboutActionItem.OnClickListener onClickListener;
+        MaterialAboutActionItem.OnClickListener onClickListener;
 
-        public MaterialAboutItemViewHolder(View view, int viewType) {
+        MaterialAboutItemViewHolder(View view, int viewType) {
             super(view);
             this.view = view;
             icon = (ImageView) view.findViewById(R.id.mal_action_item_image);
@@ -188,7 +188,7 @@ public class MaterialAboutItemAdapter extends RecyclerView.Adapter<MaterialAbout
         return VIEW_TYPE_ACTION_ITEM;
     }
 
-    public void swapData(ArrayList<MaterialAboutItem> newData) {
+    void swapData(ArrayList<MaterialAboutItem> newData) {
         data = newData;
         notifyDataSetChanged();
     }

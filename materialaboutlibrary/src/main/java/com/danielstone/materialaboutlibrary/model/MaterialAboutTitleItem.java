@@ -13,7 +13,7 @@ public class MaterialAboutTitleItem extends MaterialAboutItem {
     private Drawable icon;
     private int iconRes;
 
-    public MaterialAboutTitleItem(MaterialAboutTitleItem.Builder builder) {
+    private MaterialAboutTitleItem(MaterialAboutTitleItem.Builder builder) {
         this.text = builder.text;
         this.textRes = builder.textRes;
 
