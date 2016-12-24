@@ -1,5 +1,11 @@
 apply plugin: 'com.android.application'
 
+def versionMajor = 1
+def versionMinor = 1
+def versionPatch = 1
+def versionBuild = 0 // bump for dogfood builds, public betas, etc.
+
+
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.1"
@@ -7,8 +13,8 @@ android {
         applicationId "com.danielstone.materialaboutlibrarydemo"
         minSdkVersion 15
         targetSdkVersion 25
-        versionCode 1
-        versionName "1.0"
+        versionCode versionMajor * 10000 + versionMinor * 1000 + versionPatch * 100 + versionBuild
+        versionName "${versionMajor}.${versionMinor}" + (versionPatch == 0 ? "" : ".${versionPatch}")
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
