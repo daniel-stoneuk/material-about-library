@@ -3,8 +3,6 @@
 [![Release][101]][102]
 [![Apache License 2.0][103]][104]
 
-**Currently in Alpha & not currently looking for contributions (just need to clean a few things up)**
-
 **If there are any icon designers out there that are willing to design a free icon for this libraries' demo app, please contact me!**
 
 Makes it easy to create a beautiful about screen for your app.
@@ -15,7 +13,7 @@ Design inspired by Phonograph.
 
 Demo
 --------
-<a href='https://play.google.com/store/apps/details?id=com.danielstone.materialaboutlibrarydemo&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_gb/badges/images/generic/en_badge_web_generic.png'/></a>
+<a href='https://play.google.com/store/apps/details?id=com.danielstone.materialaboutlibrarydemo&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_gb/badges/images/generic/en_badge_web_generic.png' height="60" /></a>
 
 Screenshots
 --------
@@ -48,7 +46,7 @@ allprojects {
 ```
 ```gradle
 dependencies {
-    compile 'com.github.daniel-stoneuk:material-about-library:1.0.4-alpha'
+    compile 'com.github.daniel-stoneuk:material-about-library:1.1.1'
 }
 ```
 
