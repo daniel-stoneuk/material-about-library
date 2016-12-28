@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="mal_title_about">Über</string>
+    <string name="mal_version_title">Version</string>
+</resources>
