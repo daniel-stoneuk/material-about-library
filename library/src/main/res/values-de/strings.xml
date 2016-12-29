@@ -2,4 +2,9 @@
 <resources>
     <string name="mal_title_about">Über</string>
     <string name="mal_version_title">Version</string>
+    <string name="mal_license_title">Lizenzen</string>
+    <string name="mal_close">Schließen</string>
+    <string name="mal_visit_website">Webseite besuchen</string>
+    <string name="mal_author">Autor</string>
+    <string name="mal_facebook">Besuchen Sie uns auf Facebook</string>
 </resources>

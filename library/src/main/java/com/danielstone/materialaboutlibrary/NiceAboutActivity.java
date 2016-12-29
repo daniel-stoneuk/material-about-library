@@ -3,6 +3,7 @@ package com.danielstone.materialaboutlibrary;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NavUtils;
@@ -12,6 +13,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 
 import com.danielstone.materialaboutlibrary.adapters.MaterialAboutListAdapter;
 import com.danielstone.materialaboutlibrary.model.MaterialAboutCard;
@@ -22,6 +24,12 @@ public class NiceAboutActivity extends AppCompatActivity {
     // Intent Keys
     private static final String MAKE_APP_HEADER = "appHeader";
     private static final String MAKE_VERSION_ITEM = "versionItem";
+    private static final String AUTHOR = "author";
+    private static final String AUTHOR_SUBTEXT = "authorsubtext";
+    private static final String FACEBOOK = "facebook";
+    private static final String WEBSITE = "website";
+    private static final String THEME_ID = "themeid";
+    private static final String LICENSES = "license";
 
     // Activity Specific Stuff
     private Toolbar toolbar;
@@ -33,6 +41,11 @@ public class NiceAboutActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        int themeResId = getIntent().getIntExtra(THEME_ID, -1);
+        if (themeResId != -1){
+            setTheme(themeResId);
+        }
 
         setContentView(R.layout.mal_material_about_activity);
         setTitle(R.string.mal_title_about);
@@ -56,6 +69,11 @@ public class NiceAboutActivity extends AppCompatActivity {
             if (actionBar != null) {
                 actionBar.setDisplayHomeAsUpEnabled(true);
             }
+        } else {
+            ActionBar actionBar = getSupportActionBar();
+            if (actionBar != null) {
+                actionBar.setDisplayHomeAsUpEnabled(true);
+            }
         }
 
         adapter = new MaterialAboutListAdapter(new MaterialAboutList.Builder().build());
@@ -75,10 +93,36 @@ public class NiceAboutActivity extends AppCompatActivity {
                 Log.e(this.getClass().getSimpleName(), e.getLocalizedMessage());
             }
         }
+        if (!i.getStringExtra(LICENSES).isEmpty()) {
+            appCardBuilder.addItem(ConvenienceBuilder.createLicenseItem(this, i.getStringExtra(LICENSES)));
+        }
 
-        return new MaterialAboutList.Builder()
-                .addCard(appCardBuilder.build())
-                .build();
+        MaterialAboutCard authorCard = null;
+        if(!i.getStringExtra(AUTHOR).isEmpty()){
+            authorCard = ConvenienceBuilder.createAuthorCard(this,
+                    i.getStringExtra(AUTHOR),
+                    i.getStringExtra(AUTHOR_SUBTEXT),
+                    Uri.parse(i.getStringExtra(WEBSITE)),
+                    i.getStringExtra(FACEBOOK));
+        }
+
+        MaterialAboutList.Builder listBuilder = new MaterialAboutList.Builder()
+                .addCard(appCardBuilder.build());
+
+        if (authorCard != null) {
+            listBuilder.addCard(authorCard);
+        }
+        return listBuilder.build();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     public static class AboutActivityIntentBuilder {
@@ -98,6 +142,24 @@ public class NiceAboutActivity extends AppCompatActivity {
 
         public AboutActivityIntentBuilder makeVersionItem (boolean makeVersionItem) {
             aboutIntent.putExtra(MAKE_VERSION_ITEM, makeVersionItem);
+            return this;
+        }
+
+        public AboutActivityIntentBuilder makeAuthorCard(String author, String authorSubText, String facebookId, Uri websiteUrl) {
+            aboutIntent.putExtra(AUTHOR, author);
+            aboutIntent.putExtra(AUTHOR_SUBTEXT, authorSubText);
+            aboutIntent.putExtra(FACEBOOK, facebookId);
+            aboutIntent.putExtra(WEBSITE, websiteUrl.toString());
+            return this;
+        }
+
+        public AboutActivityIntentBuilder setTheme(int themeResId){
+            aboutIntent.putExtra(THEME_ID, themeResId);
+            return this;
+        }
+
+        public AboutActivityIntentBuilder setLicenses (String htmlString) {
+            aboutIntent.putExtra(LICENSES, htmlString);
             return this;
         }
 
