@@ -7,4 +7,6 @@
     <string name="mal_visit_website">Webseite besuchen</string>
     <string name="mal_author">Autor</string>
     <string name="mal_facebook">Besuchen Sie uns auf Facebook</string>
+    <string name="mal_rate_this_app">Diese App bewerten</string>
+    <string name="mal_rate_subtext">Wir freuen uns über ihr Feedback</string>
 </resources>

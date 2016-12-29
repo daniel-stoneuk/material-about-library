@@ -1,13 +1,14 @@
 package com.danielstone.materialaboutlibrary;
 
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.support.v7.app.AlertDialog;
-import android.util.TypedValue;
 import android.webkit.WebView;
 
 import com.danielstone.materialaboutlibrary.model.MaterialAboutActionItem;
@@ -31,10 +32,6 @@ public class ConvenienceBuilder {
      * @return A title with the app name and the app icon
      */
     public static MaterialAboutTitleItem createAppTitle (Context ctx) {
-        TypedValue typedValue = new TypedValue();
-        ctx.getTheme().resolveAttribute(R.attr.colorAccent, typedValue, true);
-        int color = typedValue.data;
-
         String appName = getStringResourceByName(ctx, "app_name");
         int icLauncher = getMipMapByName(ctx, "ic_launcher");
         return createAppTitle(appName, icLauncher);
@@ -58,12 +55,23 @@ public class ConvenienceBuilder {
                 .build();
     }
 
-    public static MaterialAboutActionItem createLicenseItem (Context ctx, String htmlString) {
+    /**
+     *
+     * @param ctx Context
+     * @param htmlString contains HTML or an internet address
+     * @param isStringUrl if true htmlString contains an internet address, if false htmlString contains HTML
+     * @return MaterialAboutActionItem
+     */
+    public static MaterialAboutActionItem createLicenseItem (Context ctx, String htmlString, boolean isStringUrl) {
         AlertDialog.Builder alertBuilder = new AlertDialog.Builder(ctx);
         alertBuilder.setTitle(R.string.mal_license_title);
 
         WebView wv = new WebView(ctx);
-        wv.loadData(htmlString, "text/html; charset=utf-8", "UTF-8");
+        if (isStringUrl) {
+            wv.loadUrl(htmlString);
+        } else {
+            wv.loadData(htmlString, "text/html; charset=utf-8", "UTF-8");
+        }
         alertBuilder.setView(wv);
         alertBuilder.setNegativeButton(R.string.mal_close, new DialogInterface.OnClickListener() {
             @Override
@@ -125,6 +133,36 @@ public class ConvenienceBuilder {
                         String uri = "https://facebook.com/" + facebookId;
                         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
                         ctx.startActivity(intent);
+                    }
+                })
+                .build();
+    }
+
+    public static MaterialAboutActionItem createRateButtonItem (final Context ctx) {
+        Uri uri = Uri.parse("market://details?id=" + ctx.getPackageName());
+        final Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            goToMarket.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY |
+                    Intent.FLAG_ACTIVITY_NEW_DOCUMENT |
+                    Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+        } else {
+            goToMarket.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY |
+                    Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+        }
+
+        return new MaterialAboutActionItem.Builder()
+                .text(R.string.mal_rate_this_app)
+                .subText(R.string.mal_rate_subtext)
+                .icon(R.drawable.ic_about_star)
+                .setOnClickListener(new MaterialAboutActionItem.OnClickListener() {
+                    @Override
+                    public void onClick() {
+                        try {
+                            ctx.startActivity(goToMarket);
+                        } catch (ActivityNotFoundException e) {
+                            ctx.startActivity(new Intent(Intent.ACTION_VIEW,
+                                    Uri.parse("http://play.google.com/store/apps/details?id=" + ctx.getPackageName())));
+                        }
                     }
                 })
                 .build();

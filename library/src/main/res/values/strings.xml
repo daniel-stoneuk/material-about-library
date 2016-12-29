@@ -8,4 +8,6 @@
     <string name="mal_visit_website">Visit website</string>
     <string name="mal_author">Author</string>
     <string name="mal_facebook">Visit us on Facebook</string>
+    <string name="mal_rate_this_app">Rate this app</string>
+    <string name="mal_rate_subtext">We appreciate your feedback</string>
 </resources>

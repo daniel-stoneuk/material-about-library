@@ -29,13 +29,14 @@ public class MainActivity extends AppCompatActivity {
                         .AboutActivityIntentBuilder(MainActivity.this)
                         .makeAppHeader(true)
                         .makeVersionItem(true)
-                        .setLicenses(licenses)
+                        .makeRateButton(true)
+                        .setLicensesString(licenses)
                         .makeAuthorCard(
                                 "Lazy Hero Productions",
-                                "Germany",
+                                "Made in Germany",
                                 "lazyheroproductions",
                                 Uri.parse("http://lazyheroproductions.de/"))
-                        .setTheme(R.style.AppTheme_MaterialAboutActivity)
+                        .setTheme(R.style.AppTheme_NiceAboutActivity)
                         .start();
             }
         });

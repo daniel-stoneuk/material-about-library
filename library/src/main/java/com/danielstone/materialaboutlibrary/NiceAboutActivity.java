@@ -29,7 +29,9 @@ public class NiceAboutActivity extends AppCompatActivity {
     private static final String FACEBOOK = "facebook";
     private static final String WEBSITE = "website";
     private static final String THEME_ID = "themeid";
-    private static final String LICENSES = "license";
+    private static final String LICENSES_STRING = "licensestring";
+    private static final String LICENSES_URL = "licensesurl";
+    private static final String RATE = "ratethisapp";
 
     // Activity Specific Stuff
     private Toolbar toolbar;
@@ -93,12 +95,19 @@ public class NiceAboutActivity extends AppCompatActivity {
                 Log.e(this.getClass().getSimpleName(), e.getLocalizedMessage());
             }
         }
-        if (!i.getStringExtra(LICENSES).isEmpty()) {
-            appCardBuilder.addItem(ConvenienceBuilder.createLicenseItem(this, i.getStringExtra(LICENSES)));
+
+        if(i.getStringExtra(LICENSES_URL) != null) {
+            appCardBuilder.addItem(ConvenienceBuilder.createLicenseItem(this, i.getStringExtra(LICENSES_URL), true));
+        } else if (i.getStringExtra(LICENSES_STRING) != null) {
+            appCardBuilder.addItem(ConvenienceBuilder.createLicenseItem(this, i.getStringExtra(LICENSES_STRING), false));
+        }
+
+        if (i.getBooleanExtra(RATE, false)) {
+            appCardBuilder.addItem(ConvenienceBuilder.createRateButtonItem(this));
         }
 
         MaterialAboutCard authorCard = null;
-        if(!i.getStringExtra(AUTHOR).isEmpty()){
+        if(i.getStringExtra(AUTHOR) != null){
             authorCard = ConvenienceBuilder.createAuthorCard(this,
                     i.getStringExtra(AUTHOR),
                     i.getStringExtra(AUTHOR_SUBTEXT),
@@ -158,8 +167,21 @@ public class NiceAboutActivity extends AppCompatActivity {
             return this;
         }
 
-        public AboutActivityIntentBuilder setLicenses (String htmlString) {
-            aboutIntent.putExtra(LICENSES, htmlString);
+        public AboutActivityIntentBuilder setLicensesString (String htmlString) {
+            aboutIntent.putExtra(LICENSES_STRING, htmlString);
+            return this;
+        }
+
+        /**
+         * This method overrides setLicensesUrl()
+         */
+        public AboutActivityIntentBuilder setLicensesUrl (String url) {
+            aboutIntent.putExtra(LICENSES_URL, url);
+            return this;
+        }
+
+        public AboutActivityIntentBuilder makeRateButton (boolean rateButton) {
+            aboutIntent.putExtra(RATE, rateButton);
             return this;
         }
 
