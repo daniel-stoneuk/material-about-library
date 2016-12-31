@@ -9,4 +9,9 @@
     <string name="mal_facebook">Besuchen Sie uns auf Facebook</string>
     <string name="mal_rate_this_app">Diese App bewerten</string>
     <string name="mal_rate_subtext">Wir freuen uns über ihr Feedback</string>
+    <string name="mal_dataprivacy">Datenschutz</string>
+    <string name="mal_contact_title">Kontakt</string>
+    <string name="mal_contact_send_email">E-Mail</string>
+    <string name="mal_contact_phone">Telefon</string>
+    <string name="mal_contact_phone_error">Sie können uns mit diesem Gerät nicht anrufen</string>
 </resources>

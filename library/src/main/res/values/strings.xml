@@ -10,4 +10,9 @@
     <string name="mal_facebook">Visit us on Facebook</string>
     <string name="mal_rate_this_app">Rate this app</string>
     <string name="mal_rate_subtext">We appreciate your feedback</string>
+    <string name="mal_dataprivacy">Data privacy</string>
+    <string name="mal_contact_title">Contact</string>
+    <string name="mal_contact_send_email">Email</string>
+    <string name="mal_contact_phone">Phonenumber</string>
+    <string name="mal_contact_phone_error">You can\'t call us on this device</string>
 </resources>

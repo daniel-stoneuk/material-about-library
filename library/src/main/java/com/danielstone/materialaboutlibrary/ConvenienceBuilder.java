@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.support.v7.app.AlertDialog;
 import android.webkit.WebView;
+import android.widget.Toast;
 
 import com.danielstone.materialaboutlibrary.model.MaterialAboutActionItem;
 import com.danielstone.materialaboutlibrary.model.MaterialAboutCard;
@@ -28,10 +29,11 @@ public class ConvenienceBuilder {
     /**
      * This method tries to find the app name in R.string.app_name
      * and the launcher icon in R.mipmap.ic_launcher
+     *
      * @param ctx Context
      * @return A title with the app name and the app icon
      */
-    public static MaterialAboutTitleItem createAppTitle (Context ctx) {
+    public static MaterialAboutTitleItem createAppTitle(Context ctx) {
         String appName = getStringResourceByName(ctx, "app_name");
         int icLauncher = getMipMapByName(ctx, "ic_launcher");
         return createAppTitle(appName, icLauncher);
@@ -39,11 +41,12 @@ public class ConvenienceBuilder {
 
     /**
      * This methods reads the version infos from the PackageManager and displays them
+     *
      * @param ctx Context
      * @return A MaterialAboutItem with the version infos
      * @throws PackageManager.NameNotFoundException
      */
-    public static MaterialAboutItem createVersionItem (Context ctx) throws PackageManager.NameNotFoundException{
+    public static MaterialAboutItem createVersionItem(Context ctx) throws PackageManager.NameNotFoundException {
         PackageInfo pInfo = ctx.getPackageManager().getPackageInfo(ctx.getPackageName(), 0);
         String versionName = pInfo.versionName;
         int versionCode = pInfo.versionCode;
@@ -56,15 +59,22 @@ public class ConvenienceBuilder {
     }
 
     /**
-     *
-     * @param ctx Context
-     * @param htmlString contains HTML or an internet address
+     * @param ctx         Context
+     * @param htmlString  contains HTML or an internet address
      * @param isStringUrl if true htmlString contains an internet address, if false htmlString contains HTML
      * @return MaterialAboutActionItem
      */
-    public static MaterialAboutActionItem createLicenseItem (Context ctx, String htmlString, boolean isStringUrl) {
+    public static MaterialAboutActionItem createLicenseItem(Context ctx, String htmlString, boolean isStringUrl) {
+        return createWebviewDialogItem(ctx, R.string.mal_license_title, R.drawable.ic_about_licenses, htmlString, isStringUrl);
+    }
+
+    public static MaterialAboutActionItem createDataprivacyItem(Context ctx, String htmlString, boolean isStringUrl) {
+        return createWebviewDialogItem(ctx, R.string.mal_dataprivacy, R.drawable.ic_about_dataprivacy, htmlString, isStringUrl);
+    }
+
+    public static MaterialAboutActionItem createWebviewDialogItem(Context ctx, int stringResIDTitle, int iconResID, String htmlString, boolean isStringUrl) {
         AlertDialog.Builder alertBuilder = new AlertDialog.Builder(ctx);
-        alertBuilder.setTitle(R.string.mal_license_title);
+        alertBuilder.setTitle(stringResIDTitle);
 
         WebView wv = new WebView(ctx);
         if (isStringUrl) {
@@ -82,8 +92,8 @@ public class ConvenienceBuilder {
         final AlertDialog dialog = alertBuilder.create();
 
         return new MaterialAboutActionItem.Builder()
-                .text(R.string.mal_license_title)
-                .icon(R.drawable.ic_about_licenses)
+                .text(stringResIDTitle)
+                .icon(iconResID)
                 .setOnClickListener(new MaterialAboutActionItem.OnClickListener() {
                     @Override
                     public void onClick() {
@@ -94,12 +104,11 @@ public class ConvenienceBuilder {
     }
 
     /**
-     *
-     * @param ctx Context
+     * @param ctx        Context
      * @param websiteUrl Uri, the url needs to be in the form "http://example.com/"
      * @return MaterialAboutActionItem
      */
-    public static MaterialAboutActionItem createWebsiteItem (final Context ctx, final Uri websiteUrl) {
+    public static MaterialAboutActionItem createWebsiteItem(final Context ctx, final Uri websiteUrl) {
         return new MaterialAboutActionItem.Builder()
                 .text(R.string.mal_visit_website)
                 .subText(websiteUrl.toString())
@@ -115,7 +124,7 @@ public class ConvenienceBuilder {
                 .build();
     }
 
-    public static MaterialAboutActionItem createAuthorItem (String author, String subHeader) {
+    public static MaterialAboutActionItem createAuthorItem(String author, String subHeader) {
         return new MaterialAboutActionItem.Builder()
                 .text(author)
                 .subText(subHeader)
@@ -123,7 +132,7 @@ public class ConvenienceBuilder {
                 .build();
     }
 
-    public static MaterialAboutActionItem createFacebookItem (final Context ctx, final String facebookId) {
+    public static MaterialAboutActionItem createFacebookItem(final Context ctx, final String facebookId) {
         return new MaterialAboutActionItem.Builder()
                 .text(R.string.mal_facebook)
                 .icon(R.drawable.ic_about_facebook)
@@ -138,7 +147,7 @@ public class ConvenienceBuilder {
                 .build();
     }
 
-    public static MaterialAboutActionItem createRateButtonItem (final Context ctx) {
+    public static MaterialAboutActionItem createRateButtonItem(final Context ctx) {
         Uri uri = Uri.parse("market://details?id=" + ctx.getPackageName());
         final Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -168,13 +177,55 @@ public class ConvenienceBuilder {
                 .build();
     }
 
-    public static MaterialAboutCard createAuthorCard (final Context ctx, String author, String subHeader, Uri websiteUrl, String facebookId) {
-        return new MaterialAboutCard.Builder()
-                .title(R.string.mal_author)
-                .addItem(createAuthorItem(author, subHeader))
-                .addItem(createWebsiteItem(ctx, websiteUrl))
-                .addItem(createFacebookItem(ctx, facebookId))
+    public static MaterialAboutActionItem createPhoneItem(final Context ctx, String phoneNumber){
+        final Intent phoneIntent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + phoneNumber));
+        return new MaterialAboutActionItem.Builder()
+                .text(R.string.mal_contact_phone)
+                .subText(phoneNumber)
+                .icon(R.drawable.ic_about_phone)
+                .setOnClickListener(new MaterialAboutActionItem.OnClickListener() {
+                    @Override
+                    public void onClick() {
+                        try {
+                            ctx.startActivity(phoneIntent);
+                        } catch (ActivityNotFoundException e) {
+                            Toast.makeText(ctx, R.string.mal_contact_phone_error, Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                })
                 .build();
+    }
+
+    public static MaterialAboutActionItem createEmailItem(final Context ctx, String email){
+        final Intent mailIntent = new Intent(Intent.ACTION_SEND);
+        mailIntent.setType("text/plain");
+        mailIntent.putExtra(Intent.EXTRA_EMAIL, email);
+        return new MaterialAboutActionItem.Builder()
+                .text(R.string.mal_contact_send_email)
+                .subText(email)
+                .icon(R.drawable.ic_about_email)
+                .setOnClickListener(new MaterialAboutActionItem.OnClickListener() {
+                    @Override
+                    public void onClick() {
+                        ctx.startActivity(mailIntent);
+                    }
+                })
+                .build();
+    }
+
+    public static MaterialAboutCard createAuthorCard(final Context ctx, String author, String subHeader, Uri websiteUrl, String facebookId) {
+        MaterialAboutCard.Builder authorBuilder = new MaterialAboutCard.Builder().title(R.string.mal_author);
+
+        if (author != null) {
+            authorBuilder.addItem(createAuthorItem(author, subHeader));
+        }
+        if (websiteUrl != null) {
+            authorBuilder.addItem(createWebsiteItem(ctx, websiteUrl));
+        }
+        if (facebookId != null) {
+            authorBuilder.addItem(createWebsiteItem(ctx, websiteUrl));
+        }
+        return authorBuilder.build();
     }
 
     private static String getStringResourceByName(Context ctx, String stringName) {
