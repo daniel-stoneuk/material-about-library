@@ -171,7 +171,7 @@ public class ConvenienceBuilder {
                 .build();
     }
 
-    public static MaterialAboutActionItem createPhoneItem(final Context ctx, String phoneNumber){
+    public static MaterialAboutActionItem createPhoneItem(final Context ctx, String phoneNumber) {
         final Intent phoneIntent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + phoneNumber));
         return new MaterialAboutActionItem.Builder()
                 .text(R.string.mal_contact_phone)
@@ -190,7 +190,7 @@ public class ConvenienceBuilder {
                 .build();
     }
 
-    public static MaterialAboutActionItem createEmailItem(final Context ctx, String email){
+    public static MaterialAboutActionItem createEmailItem(final Context ctx, String email) {
         final Intent mailIntent = new Intent(Intent.ACTION_SEND);
         mailIntent.setType("text/plain");
         mailIntent.putExtra(Intent.EXTRA_EMAIL, email);

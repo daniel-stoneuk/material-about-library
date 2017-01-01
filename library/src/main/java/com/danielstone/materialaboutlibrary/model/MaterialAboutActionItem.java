@@ -90,7 +90,6 @@ public class MaterialAboutActionItem extends MaterialAboutItem {
             return this;
         }
 
-
         public Builder text(@StringRes int text) {
             this.textRes = text;
             this.text = null;
@@ -103,7 +102,6 @@ public class MaterialAboutActionItem extends MaterialAboutItem {
             return this;
         }
 
-
         public Builder subText(@StringRes int subTextRes) {
             this.subText = null;
             this.subTextRes = subTextRes;
@@ -115,7 +113,6 @@ public class MaterialAboutActionItem extends MaterialAboutItem {
             this.iconRes = 0;
             return this;
         }
-
 
         public Builder icon(@DrawableRes int iconRes) {
             this.icon = null;

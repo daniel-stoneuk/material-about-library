@@ -17,11 +17,9 @@ import com.danielstone.materialaboutlibrary.model.MaterialAboutTitleItem;
 
 import java.util.ArrayList;
 
-
 public class MaterialAboutItemAdapter extends RecyclerView.Adapter<MaterialAboutItemAdapter.MaterialAboutItemViewHolder> {
 
     private ArrayList<MaterialAboutItem> data;
-
     private Context context;
 
     MaterialAboutItemAdapter(ArrayList<MaterialAboutItem> data) {
@@ -60,24 +58,24 @@ public class MaterialAboutItemAdapter extends RecyclerView.Adapter<MaterialAbout
     @Override
     public MaterialAboutItemViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         context = viewGroup.getContext();
-        if (viewGroup instanceof RecyclerView) {
-            int layoutId = -1;
-            switch (viewType) {
-                case MaterialAboutItem.ItemType.ACTION_ITEM: {
-                    layoutId = R.layout.mal_material_about_action_item;
-                    break;
-                }
-                case MaterialAboutItem.ItemType.TITLE_ITEM: {
-                    layoutId = R.layout.mal_material_about_title_item;
-                    break;
-                }
-            }
-            View view = LayoutInflater.from(viewGroup.getContext()).inflate(layoutId, viewGroup, false);
-            view.setFocusable(true);
-            return new MaterialAboutItemViewHolder(view, viewType);
-        } else {
+        if (!(viewGroup instanceof RecyclerView)) {
             throw new RuntimeException("Not bound to RecyclerView");
         }
+
+        int layoutId = -1;
+        switch (viewType) {
+            case MaterialAboutItem.ItemType.ACTION_ITEM: {
+                layoutId = R.layout.mal_material_about_action_item;
+                break;
+            }
+            case MaterialAboutItem.ItemType.TITLE_ITEM: {
+                layoutId = R.layout.mal_material_about_title_item;
+                break;
+            }
+        }
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(layoutId, viewGroup, false);
+        view.setFocusable(true);
+        return new MaterialAboutItemViewHolder(view, viewType);
     }
 
     @Override
@@ -118,7 +116,7 @@ public class MaterialAboutItemAdapter extends RecyclerView.Adapter<MaterialAbout
         }
     }
 
-    private void setupActionItem(MaterialAboutItemViewHolder holder, int position){
+    private void setupActionItem(MaterialAboutItemViewHolder holder, int position) {
         MaterialAboutActionItem item = (MaterialAboutActionItem) data.get(position);
 
         CharSequence text = item.getText();
