@@ -27,17 +27,10 @@ public class ConvenienceBuilder {
                 .build();
     }
 
-    /**
-     * This method tries to find the app name in R.string.app_name
-     * and the launcher icon in R.mipmap.ic_launcher
-     *
-     * @param ctx Context
-     * @return A title with the app name and the app icon
-     */
     public static MaterialAboutTitleItem createAppTitle(Context ctx) {
-        String appName = getStringResourceByName(ctx, "app_name");
+        CharSequence appName = ctx.getPackageManager().getApplicationLabel(ctx.getApplicationInfo());
         Drawable applicationIcon = ctx.getPackageManager().getApplicationIcon(ctx.getApplicationInfo());
-        return createAppTitle(appName, applicationIcon);
+        return createAppTitle(appName == null ? "" : appName.toString(), applicationIcon);
     }
 
     /**
@@ -113,7 +106,7 @@ public class ConvenienceBuilder {
         return new MaterialAboutActionItem.Builder()
                 .text(R.string.mal_visit_website)
                 .subText(websiteUrl.toString())
-                .icon(com.danielstone.materialaboutlibrary.R.drawable.ic_about_info)
+                .icon(R.drawable.ic_about_earth)
                 .setOnClickListener(new MaterialAboutActionItem.OnClickListener() {
                     @Override
                     public void onClick() {
@@ -227,16 +220,5 @@ public class ConvenienceBuilder {
             authorBuilder.addItem(createFacebookItem(ctx, facebookId));
         }
         return authorBuilder.build();
-    }
-
-    private static String getStringResourceByName(Context ctx, String stringName) {
-        String packageName = ctx.getPackageName();
-        int resId = ctx.getResources().getIdentifier(stringName, "string", packageName);
-        return ctx.getString(resId);
-    }
-
-    private static int getMipMapByName(Context ctx, String stringName) {
-        String packageName = ctx.getPackageName();
-        return ctx.getResources().getIdentifier(stringName, "mipmap", packageName);
     }
 }
