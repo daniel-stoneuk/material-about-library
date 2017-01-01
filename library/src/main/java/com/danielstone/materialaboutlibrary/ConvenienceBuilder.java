@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.support.v7.app.AlertDialog;
@@ -19,10 +20,10 @@ import com.danielstone.materialaboutlibrary.model.MaterialAboutTitleItem;
 
 public class ConvenienceBuilder {
 
-    public static MaterialAboutTitleItem createAppTitle(String appName, int icLauncher) {
+    public static MaterialAboutTitleItem createAppTitle(String appName, Drawable applicationIcon) {
         return new MaterialAboutTitleItem.Builder()
                 .text(appName)
-                .icon(icLauncher)
+                .icon(applicationIcon)
                 .build();
     }
 
@@ -35,8 +36,8 @@ public class ConvenienceBuilder {
      */
     public static MaterialAboutTitleItem createAppTitle(Context ctx) {
         String appName = getStringResourceByName(ctx, "app_name");
-        int icLauncher = getMipMapByName(ctx, "ic_launcher");
-        return createAppTitle(appName, icLauncher);
+        Drawable applicationIcon = ctx.getPackageManager().getApplicationIcon(ctx.getApplicationInfo());
+        return createAppTitle(appName, applicationIcon);
     }
 
     /**
@@ -223,7 +224,7 @@ public class ConvenienceBuilder {
             authorBuilder.addItem(createWebsiteItem(ctx, websiteUrl));
         }
         if (facebookId != null) {
-            authorBuilder.addItem(createWebsiteItem(ctx, websiteUrl));
+            authorBuilder.addItem(createFacebookItem(ctx, facebookId));
         }
         return authorBuilder.build();
     }

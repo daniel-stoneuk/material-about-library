@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="mal_title_about">Über</string>
-    <string name="mal_version_title">Version</string>
+    <string name="mal_version_title">Versions Info</string>
     <string name="mal_license_title">Lizenzen</string>
     <string name="mal_close">Schließen</string>
     <string name="mal_visit_website">Webseite besuchen</string>
@@ -9,9 +9,9 @@
     <string name="mal_facebook">Besuchen Sie uns auf Facebook</string>
     <string name="mal_rate_this_app">Diese App bewerten</string>
     <string name="mal_rate_subtext">Wir freuen uns über ihr Feedback</string>
-    <string name="mal_dataprivacy">Datenschutz</string>
+    <string name="mal_dataprivacy">Datenschutzerklärung</string>
     <string name="mal_contact_title">Kontakt</string>
     <string name="mal_contact_send_email">E-Mail</string>
     <string name="mal_contact_phone">Telefon</string>
-    <string name="mal_contact_phone_error">Sie können uns mit diesem Gerät nicht anrufen</string>
+    <string name="mal_contact_phone_error">Sie können auf diesem Gerät keine Anrufe tätigen</string>
 </resources>
