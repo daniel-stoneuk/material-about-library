@@ -6,6 +6,11 @@ import android.support.annotation.StringRes;
 
 public class MaterialAboutActionItem extends MaterialAboutItem {
 
+    @Override
+    public int getType() {
+        return ItemType.ACTION_ITEM;
+    }
+
     public interface OnClickListener {
         void onClick();
     }

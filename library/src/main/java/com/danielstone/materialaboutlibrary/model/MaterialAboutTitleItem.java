@@ -38,6 +38,11 @@ public class MaterialAboutTitleItem extends MaterialAboutItem {
         return iconRes;
     }
 
+    @Override
+    public int getType() {
+        return ItemType.TITLE_ITEM;
+    }
+
 
     public static class Builder {
 
