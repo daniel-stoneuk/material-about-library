@@ -8,6 +8,7 @@
             android:id="@+id/mal_recyclerview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:clipToPadding="false" />
+            android:clipToPadding="false"
+            android:paddingBottom="@dimen/mal_baseline_half"/>
 
 </FrameLayout>
