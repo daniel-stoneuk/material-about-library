@@ -4,18 +4,29 @@ package com.danielstone.materialaboutlibrary.model;
 import android.support.annotation.StringRes;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class MaterialAboutCard {
 
-    private CharSequence title;
-    private int titleRes;
+    private CharSequence title = null;
+    private int titleRes = 0;
 
-    private ArrayList<MaterialAboutItem> mItems;
+    private ArrayList<MaterialAboutItem> mItems = new ArrayList<>();;
 
     private MaterialAboutCard(Builder builder) {
         this.title = builder.title;
         this.titleRes = builder.titleRes;
         this.mItems = builder.items;
+    }
+
+    public MaterialAboutCard(CharSequence title, MaterialAboutItem... materialAboutItems) {
+        this.title = title;
+        Collections.addAll(mItems, materialAboutItems);
+    }
+
+    public MaterialAboutCard(int titleRes, MaterialAboutItem... materialAboutItems) {
+        this.titleRes = titleRes;
+        Collections.addAll(mItems, materialAboutItems);
     }
 
     public CharSequence getTitle() {

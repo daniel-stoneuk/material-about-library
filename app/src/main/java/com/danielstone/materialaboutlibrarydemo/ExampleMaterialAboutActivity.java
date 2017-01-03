@@ -93,11 +93,7 @@ public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
                 })
                 .build());
 
-        return new MaterialAboutList.Builder()
-                .addCard(appCardBuilder.build())
-                .addCard(authorCardBuilder.build())
-                .addCard(supportCardBuilder.build())
-                .build();
+        return new MaterialAboutList(appCardBuilder.build(), authorCardBuilder.build(), supportCardBuilder.build());
     }
 
     @Override

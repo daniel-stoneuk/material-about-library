@@ -10,16 +10,16 @@ public class MaterialAboutActionItem extends MaterialAboutItem {
         void onClick();
     }
 
-    private CharSequence text;
-    private int textRes;
+    private CharSequence text = null;
+    private int textRes = 0;
 
-    private CharSequence subText;
-    private int subTextRes;
+    private CharSequence subText = null;
+    private int subTextRes = 0;
 
-    private Drawable icon;
-    private int iconRes;
+    private Drawable icon = null;
+    private int iconRes = 0;
 
-    private MaterialAboutActionItem.OnClickListener onClickListener;
+    private MaterialAboutActionItem.OnClickListener onClickListener = null;
 
     private MaterialAboutActionItem(Builder builder) {
         this.text = builder.text;
@@ -32,6 +32,32 @@ public class MaterialAboutActionItem extends MaterialAboutItem {
         this.iconRes = builder.iconRes;
 
         this.onClickListener = builder.onClickListener;
+    }
+
+    public MaterialAboutActionItem(CharSequence text, CharSequence subText, Drawable icon, OnClickListener onClickListener) {
+        this.text = text;
+        this.subText = subText;
+        this.icon = icon;
+        this.onClickListener = onClickListener;
+    }
+
+    public MaterialAboutActionItem(CharSequence text, CharSequence subText, Drawable icon) {
+        this.text = text;
+        this.subText = subText;
+        this.icon = icon;
+    }
+
+    public MaterialAboutActionItem(int textRes, int subTextRes, int iconRes, OnClickListener onClickListener) {
+        this.textRes = textRes;
+        this.subTextRes = subTextRes;
+        this.iconRes = iconRes;
+        this.onClickListener = onClickListener;
+    }
+
+    public MaterialAboutActionItem(int textRes, int subTextRes, int iconRes) {
+        this.textRes = textRes;
+        this.subTextRes = subTextRes;
+        this.iconRes = iconRes;
     }
 
     public CharSequence getText() {
