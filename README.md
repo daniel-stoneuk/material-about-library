@@ -3,8 +3,6 @@
 [![Release][101]][102]
 [![Apache License 2.0][103]][104]
 
-**If there are any icon designers out there that are willing to design a free icon for this libraries' demo app, please contact me!**
-
 Makes it easy to create a beautiful about screen for your app.
 
 Idea from here: [Heinrich Reimer's open-source-library-request-manager][6]
@@ -46,7 +44,7 @@ allprojects {
 ```
 ```gradle
 dependencies {
-    compile 'com.github.daniel-stoneuk:material-about-library:1.1.1'
+    compile 'com.github.daniel-stoneuk:material-about-library:1.2'
 }
 ```
 
