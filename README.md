@@ -53,7 +53,7 @@ dependencies {
 Setup
 -----
 
-**Step 1:** Your `Activity` must extend [`MaterialAboutActivity`][7] and be in your *AndroidManifest.java*:
+**Step 1:** Your `Activity` must extend [`MaterialAboutActivity`][7] and be in your *AndroidManifest.xml*:
 ```java
 public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
 
