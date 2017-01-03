@@ -11,7 +11,7 @@ android {
     buildToolsVersion "25.0.1"
     defaultConfig {
         applicationId "com.danielstone.materialaboutlibrarydemo"
-        minSdkVersion 15
+        minSdkVersion 14
         targetSdkVersion 25
         versionCode versionMajor * 10000 + versionMinor * 1000 + versionPatch * 100 + versionBuild
         versionName "${versionMajor}.${versionMinor}" + (versionPatch == 0 ? "" : ".${versionPatch}")
