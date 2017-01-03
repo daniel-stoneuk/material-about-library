@@ -10,11 +10,26 @@
     tools:showIn="@layout/activity_main">
 
     <Button
-        android:id="@+id/example_button"
+        android:id="@+id/fragment_button"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Launch About Activity"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:text="@string/mal_launch_about_fragment"
+        android:layout_below="@+id/activity_button"
+        android:layout_alignLeft="@+id/activity_button"
+        android:layout_alignStart="@+id/activity_button"
+        android:layout_marginTop="@dimen/mal_baseline" />
+
+    <Button
+        android:id="@+id/activity_button"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/mal_launch_about_activity"
+        android:layout_marginTop="@dimen/mal_baseline"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="@dimen/mal_baseline"
+        android:layout_marginStart="@dimen/mal_baseline" />
 </RelativeLayout>

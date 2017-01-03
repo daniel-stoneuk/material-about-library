@@ -5,13 +5,16 @@ import android.net.Uri;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.danielstone.materialaboutlibrary.MaterialAboutActivity;
+import com.danielstone.materialaboutlibrary.MaterialAboutFragment;
 import com.danielstone.materialaboutlibrary.model.MaterialAboutActionItem;
 import com.danielstone.materialaboutlibrary.model.MaterialAboutCard;
 import com.danielstone.materialaboutlibrary.model.MaterialAboutList;
 import com.danielstone.materialaboutlibrary.model.MaterialAboutTitleItem;
 
-public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
+/**
+ * A placeholder fragment containing a simple view.
+ */
+public class ExampleMaterialAboutFragment extends MaterialAboutFragment {
 
     @Override
     protected MaterialAboutList getMaterialAboutList() {
@@ -21,7 +24,7 @@ public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
         // Add items to card
 
         appCardBuilder.addItem(new MaterialAboutTitleItem.Builder()
-                .text("Material About Activity")
+                .text("Material About Fragment")
                 .icon(R.mipmap.ic_launcher)
                 .build());
         appCardBuilder.addItem(new MaterialAboutActionItem.Builder()
@@ -32,7 +35,7 @@ public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
                     @Override
                     public void onClick() {
                         Log.i("test", "onClick: Version Tapped");
-                        Toast.makeText(ExampleMaterialAboutActivity.this, "Version Tapped", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Version Tapped", Toast.LENGTH_SHORT).show();
                     }
                 })
                 .build());
@@ -42,7 +45,7 @@ public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
                 .setOnClickListener(new MaterialAboutActionItem.OnClickListener() {
                     @Override
                     public void onClick() {
-                        Toast.makeText(ExampleMaterialAboutActivity.this, "Changelog Tapped", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Changelog Tapped", Toast.LENGTH_SHORT).show();
                     }
                 })
                 .build());
@@ -52,7 +55,7 @@ public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
                 .setOnClickListener(new MaterialAboutActionItem.OnClickListener() {
                     @Override
                     public void onClick() {
-                        Toast.makeText(ExampleMaterialAboutActivity.this, "Licenses Tapped", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Licenses Tapped", Toast.LENGTH_SHORT).show();
                     }
                 })
                 .build());
@@ -88,17 +91,12 @@ public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
                 .setOnClickListener(new MaterialAboutActionItem.OnClickListener() {
                     @Override
                     public void onClick() {
-                        Toast.makeText(ExampleMaterialAboutActivity.this, "Bug report tapped", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Bug report tapped", Toast.LENGTH_SHORT).show();
                     }
                 })
                 .build());
 
         return new MaterialAboutList(appCardBuilder.build(), authorCardBuilder.build(), supportCardBuilder.build());
-    }
-
-    @Override
-    protected CharSequence getActivityTitle() {
-        return getString(R.string.mal_title_about);
     }
 
 }
