@@ -21,8 +21,8 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        Button button = (Button) findViewById(R.id.example_button);
-        button.setOnClickListener(new View.OnClickListener() {
+        Button activityButton = (Button) findViewById(R.id.activity_button);
+        activityButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 new NiceAboutActivity
@@ -38,6 +38,15 @@ public class MainActivity extends AppCompatActivity {
                                 Uri.parse("http://lazyheroproductions.de/"))
                         .setTheme(R.style.AppTheme_NiceAboutActivity)
                         .start();
+            }
+        });
+
+        Button fragmentButton = (Button) findViewById(R.id.fragment_button);
+        fragmentButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, ExampleMaterialAboutFragmentActivity.class);
+                startActivity(i);
             }
         });
 

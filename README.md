@@ -3,9 +3,7 @@
 [![Release][101]][102]
 [![Apache License 2.0][103]][104]
 
-**If there are any icon designers out there that are willing to design a free icon for this libraries' demo app, please contact me!**
-
-Makes it easy to create a beautiful about screen for your app.
+Makes it easy to create a beautiful about screen for your app. Generates an activity or fragment.
 
 Idea from here: [Heinrich Reimer's open-source-library-request-manager][6]
 
@@ -46,14 +44,16 @@ allprojects {
 ```
 ```gradle
 dependencies {
-    compile 'com.github.daniel-stoneuk:material-about-library:1.1.1'
+    compile 'com.github.daniel-stoneuk:material-about-library:1.3.0'
 }
 ```
 
 Setup
 -----
 
-**Step 1:** Your `Activity` must extend [`MaterialAboutActivity`][7] and be in your *AndroidManifest.java*:
+**Fragment tutorial coming soon, check out the demo app in the meantime**
+
+**Step 1:** Your `Activity` must extend [`MaterialAboutActivity`][7] and be in your *AndroidManifest.xml*:
 ```java
 public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
 

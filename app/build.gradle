@@ -1,8 +1,8 @@
 apply plugin: 'com.android.application'
 
 def versionMajor = 1
-def versionMinor = 1
-def versionPatch = 1
+def versionMinor = 2
+def versionPatch = 0
 def versionBuild = 0 // bump for dogfood builds, public betas, etc.
 
 
@@ -11,7 +11,7 @@ android {
     buildToolsVersion "25.0.1"
     defaultConfig {
         applicationId "com.danielstone.materialaboutlibrarydemo"
-        minSdkVersion 15
+        minSdkVersion 14
         targetSdkVersion 25
         versionCode versionMajor * 10000 + versionMinor * 1000 + versionPatch * 100 + versionBuild
         versionName "${versionMajor}.${versionMinor}" + (versionPatch == 0 ? "" : ".${versionPatch}")
@@ -30,8 +30,9 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+    compile project(':library')
     compile 'com.android.support:appcompat-v7:25.1.0'
     compile 'com.android.support:design:25.1.0'
+    compile 'com.android.support.constraint:constraint-layout:1.0.0-beta4'
     testCompile 'junit:junit:4.12'
-    compile project(':library')
 }

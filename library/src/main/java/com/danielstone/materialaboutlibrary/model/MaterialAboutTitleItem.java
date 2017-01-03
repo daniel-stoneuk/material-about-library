@@ -7,11 +7,11 @@ import android.support.annotation.StringRes;
 
 public class MaterialAboutTitleItem extends MaterialAboutItem {
 
-    private CharSequence text;
-    private int textRes;
+    private CharSequence text = null;
+    private int textRes = 0;
 
-    private Drawable icon;
-    private int iconRes;
+    private Drawable icon = null;
+    private int iconRes = 0;
 
     private MaterialAboutTitleItem(MaterialAboutTitleItem.Builder builder) {
         this.text = builder.text;
@@ -19,7 +19,16 @@ public class MaterialAboutTitleItem extends MaterialAboutItem {
 
         this.icon = builder.icon;
         this.iconRes = builder.iconRes;
+    }
 
+    public MaterialAboutTitleItem(CharSequence text, Drawable icon) {
+        this.text = text;
+        this.icon = icon;
+    }
+
+    public MaterialAboutTitleItem(int textRes, int iconRes) {
+        this.textRes = textRes;
+        this.iconRes = iconRes;
     }
 
     public CharSequence getText() {

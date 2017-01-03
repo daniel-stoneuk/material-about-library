@@ -19,14 +19,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".ExampleMaterialAboutActivity"
-            android:theme="@style/AppTheme.MaterialAboutActivity"
-            android:parentActivityName=".MainActivity">
-
+        <activity
+            android:name=".ExampleMaterialAboutActivity"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.MaterialAboutActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity"/>
+                android:value=".MainActivity" />
+        </activity>
+        <activity
+            android:name=".ExampleMaterialAboutFragmentActivity"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
         </activity>
     </application>
 

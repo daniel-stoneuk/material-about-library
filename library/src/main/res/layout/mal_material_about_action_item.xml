@@ -1,31 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:padding="@dimen/mal_baseline_half">
+    android:paddingTop="@dimen/mal_baseline_half"
+    android:paddingBottom="@dimen/mal_baseline_half"
+    android:orientation="horizontal">
 
     <ImageView
         android:id="@+id/mal_item_image"
         android:layout_width="@dimen/mal_action_item_image_width"
         android:layout_height="@dimen/mal_action_action_item_image_height"
         android:layout_gravity="center"
-        android:layout_marginEnd="@dimen/mal_baseline_half"
-        android:layout_marginLeft="@dimen/mal_baseline_half"
-        android:layout_marginRight="@dimen/mal_baseline_half"
-        android:layout_marginStart="@dimen/mal_baseline_half"
+        android:layout_marginEnd="@dimen/mal_baseline"
+        android:layout_marginLeft="@dimen/mal_baseline"
+        android:layout_marginRight="@dimen/mal_baseline"
+        android:layout_marginStart="@dimen/mal_baseline"
         android:adjustViewBounds="false"
-        android:cropToPadding="false" />
+        android:cropToPadding="false"
+        android:contentDescription="@string/mal_content_desc_action_icon"/>
 
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:layout_marginEnd="@dimen/mal_baseline_half"
-        android:layout_marginLeft="@dimen/mal_baseline"
-        android:layout_marginRight="@dimen/mal_baseline_half"
-        android:layout_marginStart="@dimen/mal_baseline"
+        android:layout_marginEnd="@dimen/mal_baseline"
+        android:layout_marginLeft="@dimen/mal_baseline_half"
+        android:layout_marginRight="@dimen/mal_baseline"
+        android:layout_marginStart="@dimen/mal_baseline_half"
         android:layout_weight="1"
         android:orientation="vertical">
 
@@ -33,15 +34,14 @@
             android:id="@+id/mal_item_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Text"
             android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
 
         <TextView
             android:id="@+id/mal_action_item_subtext"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Subtext"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
             android:visibility="gone" />
     </LinearLayout>
+
 </LinearLayout>

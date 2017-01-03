@@ -2,13 +2,18 @@ package com.danielstone.materialaboutlibrary.model;
 
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class MaterialAboutList {
 
-    private ArrayList<MaterialAboutCard> cards;
+    private ArrayList<MaterialAboutCard> cards = new ArrayList<>();
 
     private MaterialAboutList(Builder builder) {
         this.cards = builder.cards;
+    }
+
+    public MaterialAboutList(MaterialAboutCard... materialAboutCards) {
+        Collections.addAll(cards, materialAboutCards);
     }
 
     public static class Builder {

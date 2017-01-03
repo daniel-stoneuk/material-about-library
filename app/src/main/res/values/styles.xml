@@ -13,7 +13,7 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="AppTheme.MaterialAboutActivity" parent="Theme.Mal" >
+    <style name="AppTheme.MaterialAboutActivity" parent="Theme.Mal">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>

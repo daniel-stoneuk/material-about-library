@@ -4,11 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="@dimen/mal_baseline"
-    android:layout_marginRight="@dimen/mal_baseline"
-    android:layout_marginEnd="@dimen/mal_baseline"
-    android:layout_marginLeft="@dimen/mal_baseline"
-    android:layout_marginStart="@dimen/mal_baseline"
+    android:layout_margin="@dimen/mal_baseline_half"
+    android:paddingLeft="@dimen/mal_baseline_half"
+    android:paddingStart="@dimen/mal_baseline_half"
+    android:paddingRight="@dimen/mal_baseline_half"
+    android:paddingEnd="@dimen/mal_baseline_half"
+    android:paddingTop="@dimen/mal_baseline"
+    android:paddingBottom="@dimen/mal_baseline"
     >
 
     <LinearLayout
@@ -20,7 +22,12 @@
             android:id="@+id/mal_list_card_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/mal_baseline"
+            android:layout_marginLeft="@dimen/mal_baseline"
+            android:layout_marginStart="@dimen/mal_baseline"
+            android:layout_marginRight="@dimen/mal_baseline"
+            android:layout_marginEnd="@dimen/mal_baseline"
+            android:layout_marginTop="@dimen/mal_baseline"
+            android:layout_marginBottom="@dimen/mal_baseline_half"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
             android:textColor="?android:attr/textColorSecondary"
             tools:text="Author" />
@@ -30,7 +37,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:clipToPadding="false"
+            android:paddingTop="@dimen/mal_baseline_half"
             android:paddingBottom="@dimen/mal_baseline_half"
             />
+
     </LinearLayout>
+
 </android.support.v7.widget.CardView>

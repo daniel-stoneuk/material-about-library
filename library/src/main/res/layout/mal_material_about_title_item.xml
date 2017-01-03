@@ -4,34 +4,36 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:paddingBottom="@dimen/mal_baseline"
-    android:paddingEnd="@dimen/mal_baseline_half"
+    android:paddingBottom="@dimen/mal_baseline_half"
+    android:paddingTop="@dimen/mal_baseline_half"
     android:paddingLeft="@dimen/mal_baseline_half"
-    android:paddingRight="@dimen/mal_baseline_half"
     android:paddingStart="@dimen/mal_baseline_half"
-    android:paddingTop="@dimen/mal_baseline">
+    android:paddingEnd="@dimen/mal_baseline"
+    android:paddingRight="@dimen/mal_baseline">
 
     <ImageView
         android:id="@+id/mal_item_image"
         android:layout_width="@dimen/mal_title_item_image_size"
         android:layout_height="@dimen/mal_title_item_image_size"
         android:layout_gravity="center"
-        android:layout_marginLeft="@dimen/mal_baseline_quarter"
-        android:layout_marginStart="@dimen/mal_baseline_quarter"
+        android:layout_marginLeft="@dimen/mal_baseline_half"
+        android:layout_marginStart="@dimen/mal_baseline_half"
+        android:layout_marginEnd="@dimen/mal_baseline_half"
+        android:layout_marginRight="@dimen/mal_baseline_half"
         android:adjustViewBounds="false"
-        android:cropToPadding="false" />
+        android:contentDescription="@string/mal_content_desc_application_icon"
+        android:cropToPadding="false"
+        android:scaleType="fitCenter"
+        app:srcCompat="@android:drawable/sym_def_app_icon" />
 
     <TextView
         android:id="@+id/mal_item_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:layout_marginEnd="@dimen/mal_baseline"
-        android:layout_marginLeft="@dimen/mal_title_item_text_marginleft"
-        android:layout_marginRight="@dimen/mal_baseline"
-        android:layout_marginStart="@dimen/mal_title_item_text_marginleft"
+        android:layout_marginLeft="@dimen/mal_baseline_half"
+        android:layout_marginStart="@dimen/mal_baseline_half"
         android:layout_weight="1"
-        android:text="Text"
         android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
 
 </LinearLayout>
