@@ -2,6 +2,7 @@ package com.danielstone.materialaboutlibrary.adapters;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.util.TypedValue;
@@ -127,6 +128,14 @@ public class MaterialAboutItemAdapter extends RecyclerView.Adapter<MaterialAbout
                         holder.icon.setImageResource(drawableRes);
                     }
 
+                    int pL = 0, pT = 0, pR = 0, pB = 0;
+                    if (Build.VERSION.SDK_INT < 21) {
+                        pL = holder.view.getPaddingLeft();
+                        pT = holder.view.getPaddingTop();
+                        pR = holder.view.getPaddingRight();
+                        pB = holder.view.getPaddingBottom();
+                    }
+
                     if (item.getOnClickListener() != null) {
                             TypedValue outValue = new TypedValue();
                             context.getTheme().resolveAttribute(R.attr.selectableItemBackground, outValue, true);
@@ -138,6 +147,10 @@ public class MaterialAboutItemAdapter extends RecyclerView.Adapter<MaterialAbout
                         holder.view.setBackgroundResource(outValue.resourceId);
                         holder.onClickListener = item.getOnClickListener();
                         holder.onClickListener = null;
+                    }
+
+                    if (Build.VERSION.SDK_INT < 21) {
+                        holder.view.setPadding(pL, pT, pR, pB);
                     }
 
                 }
