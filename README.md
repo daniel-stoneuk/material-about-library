@@ -164,9 +164,9 @@ License
     limitations under the License.
 
 [1]: https://jitpack.io
-[2]: http://i.imgur.com/2d63NFS.png
+[2]: http://i.imgur.com/xXWDmLb.png
 [3]: https://github.com/daniel-stoneuk/material-about-library/blob/master/app/src/main/java/com/danielstone/materialaboutlibrarydemo/ExampleMaterialAboutActivity.java
-[4]: http://i.imgur.com/1k4rcN7.png
+[4]: http://i.imgur.com/HEm08Ax.png
 [5]: https://play.google.com/store/apps/details?id=com.danielstone.energyhive
 [6]: https://github.com/HeinrichReimer/open-source-library-request-manager/issues/3
 [7]: https://github.com/daniel-stoneuk/material-about-library/blob/master/library/src/main/java/com/danielstone/materialaboutlibrary/MaterialAboutActivity.java
