@@ -1,12 +1,4 @@
 language: android
-jdk: oraclejdk8
-sudo: false
-
-addons:
-  apt:
-    packages:
-      - lynx
-
 android:
   components:
   - tools
@@ -16,12 +8,5 @@ android:
   - extra-google-google_play_services
   - extra-google-m2repository
   - extra-android-m2repository
-
-script:
-  - if [ -f /home/travis/build/leandroBorgesFerreira/MoreCLoseButton/app/build/outputs/lint-results-debug.html ]; then lynx -dump /home/travis/build/leandroBorgesFerreira/MoreCLoseButton/app/build/outputs/lint-results-debug.html; fi
-  - ./gradlew -PbintrayUser="${bintrayUser}" -PbintrayKey="${bintrayKey}" build
-  bintrayUpload --stacktrace --info
-env:
-  global:
-  - secure: [...]
-  - secure: [...]
+jdk:
+- oraclejdk8
