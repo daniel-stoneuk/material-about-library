@@ -1,6 +1,5 @@
 package com.danielstone.materialaboutlibrary.model;
 
-
 import android.graphics.drawable.Drawable;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.StringRes;
@@ -47,6 +46,10 @@ public class MaterialAboutTitleItem extends MaterialAboutItem {
         return iconRes;
     }
 
+    @Override
+    public int getType() {
+        return ItemType.TITLE_ITEM;
+    }
 
     public static class Builder {
 
@@ -64,7 +67,6 @@ public class MaterialAboutTitleItem extends MaterialAboutItem {
             return this;
         }
 
-
         public MaterialAboutTitleItem.Builder text(@StringRes int text) {
             this.textRes = text;
             this.text = null;
@@ -77,13 +79,11 @@ public class MaterialAboutTitleItem extends MaterialAboutItem {
             return this;
         }
 
-
         public MaterialAboutTitleItem.Builder icon(@DrawableRes int iconRes) {
             this.icon = null;
             this.iconRes = iconRes;
             return this;
         }
-
 
         public MaterialAboutTitleItem build() {
             return new MaterialAboutTitleItem(this);
