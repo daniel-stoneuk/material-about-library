@@ -93,13 +93,13 @@ public class NiceAboutActivity extends AppCompatActivity {
     private MaterialAboutList getMaterialAboutList(Intent i) {
         MaterialAboutList.Builder listBuilder = new MaterialAboutList.Builder();
 
-        if(i.getBooleanExtra(MAKE_APP_CARD, false)){
+        if (i.getBooleanExtra(MAKE_APP_CARD, false)) {
             listBuilder.addCard(getAppCard(i));
         }
-        if(i.getBooleanExtra(MAKE_AUTHOR_CARD, false)){
+        if (i.getBooleanExtra(MAKE_AUTHOR_CARD, false)) {
             listBuilder.addCard(getAuthorCard(i));
         }
-        if(i.getBooleanExtra(MAKE_CONTACT_CARD, false)){
+        if (i.getBooleanExtra(MAKE_CONTACT_CARD, false)) {
             listBuilder.addCard(getContactCard(i));
         }
 
@@ -185,12 +185,12 @@ public class NiceAboutActivity extends AppCompatActivity {
             return this;
         }
 
-        private AboutActivityIntentBuilder makeAuthorCard(boolean makeAuthorCard){
+        private AboutActivityIntentBuilder makeAuthorCard(boolean makeAuthorCard) {
             aboutIntent.putExtra(MAKE_AUTHOR_CARD, makeAuthorCard);
             return this;
         }
 
-        private AboutActivityIntentBuilder makeContactCard(boolean makeContactCard){
+        private AboutActivityIntentBuilder makeContactCard(boolean makeContactCard) {
             aboutIntent.putExtra(MAKE_CONTACT_CARD, makeContactCard);
             return this;
         }

@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.support.v7.app.AlertDialog;
@@ -19,24 +20,17 @@ import com.danielstone.materialaboutlibrary.model.MaterialAboutTitleItem;
 
 public class ConvenienceBuilder {
 
-    public static MaterialAboutTitleItem createAppTitle(String appName, int icLauncher) {
+    public static MaterialAboutTitleItem createAppTitle(String appName, Drawable applicationIcon) {
         return new MaterialAboutTitleItem.Builder()
                 .text(appName)
-                .icon(icLauncher)
+                .icon(applicationIcon)
                 .build();
     }
 
-    /**
-     * This method tries to find the app name in R.string.app_name
-     * and the launcher icon in R.mipmap.ic_launcher
-     *
-     * @param ctx Context
-     * @return A title with the app name and the app icon
-     */
     public static MaterialAboutTitleItem createAppTitle(Context ctx) {
-        String appName = getStringResourceByName(ctx, "app_name");
-        int icLauncher = getMipMapByName(ctx, "ic_launcher");
-        return createAppTitle(appName, icLauncher);
+        CharSequence appName = ctx.getPackageManager().getApplicationLabel(ctx.getApplicationInfo());
+        Drawable applicationIcon = ctx.getPackageManager().getApplicationIcon(ctx.getApplicationInfo());
+        return createAppTitle(appName == null ? "" : appName.toString(), applicationIcon);
     }
 
     /**
@@ -112,7 +106,7 @@ public class ConvenienceBuilder {
         return new MaterialAboutActionItem.Builder()
                 .text(R.string.mal_visit_website)
                 .subText(websiteUrl.toString())
-                .icon(com.danielstone.materialaboutlibrary.R.drawable.ic_about_info)
+                .icon(R.drawable.ic_about_earth)
                 .setOnClickListener(new MaterialAboutActionItem.OnClickListener() {
                     @Override
                     public void onClick() {
@@ -177,7 +171,7 @@ public class ConvenienceBuilder {
                 .build();
     }
 
-    public static MaterialAboutActionItem createPhoneItem(final Context ctx, String phoneNumber){
+    public static MaterialAboutActionItem createPhoneItem(final Context ctx, String phoneNumber) {
         final Intent phoneIntent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + phoneNumber));
         return new MaterialAboutActionItem.Builder()
                 .text(R.string.mal_contact_phone)
@@ -196,7 +190,7 @@ public class ConvenienceBuilder {
                 .build();
     }
 
-    public static MaterialAboutActionItem createEmailItem(final Context ctx, String email){
+    public static MaterialAboutActionItem createEmailItem(final Context ctx, String email) {
         final Intent mailIntent = new Intent(Intent.ACTION_SEND);
         mailIntent.setType("text/plain");
         mailIntent.putExtra(Intent.EXTRA_EMAIL, email);
@@ -223,19 +217,8 @@ public class ConvenienceBuilder {
             authorBuilder.addItem(createWebsiteItem(ctx, websiteUrl));
         }
         if (facebookId != null) {
-            authorBuilder.addItem(createWebsiteItem(ctx, websiteUrl));
+            authorBuilder.addItem(createFacebookItem(ctx, facebookId));
         }
         return authorBuilder.build();
-    }
-
-    private static String getStringResourceByName(Context ctx, String stringName) {
-        String packageName = ctx.getPackageName();
-        int resId = ctx.getResources().getIdentifier(stringName, "string", packageName);
-        return ctx.getString(resId);
-    }
-
-    private static int getMipMapByName(Context ctx, String stringName) {
-        String packageName = ctx.getPackageName();
-        return ctx.getResources().getIdentifier(stringName, "mipmap", packageName);
     }
 }
