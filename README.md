@@ -51,8 +51,6 @@ dependencies {
 Setup
 -----
 
-**Fragment tutorial coming soon, check out the demo app in the meantime**
-
 ### Activity
 
 Your `Activity` must extend [`MaterialAboutActivity`][materialaboutactivityjava] and be in your *AndroidManifest.xml*:
