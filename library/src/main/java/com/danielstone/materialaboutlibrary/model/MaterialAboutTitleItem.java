@@ -7,6 +7,7 @@ import android.support.annotation.StringRes;
 
 public class MaterialAboutTitleItem extends MaterialAboutItem {
 
+
     private CharSequence text = null;
     private int textRes = 0;
 
@@ -47,6 +48,10 @@ public class MaterialAboutTitleItem extends MaterialAboutItem {
         return iconRes;
     }
 
+    @Override
+    public int getType() {
+        return ItemType.TITLE_ITEM;
+    }
 
     public static class Builder {
 
