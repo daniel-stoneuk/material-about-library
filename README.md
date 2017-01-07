@@ -44,7 +44,7 @@ allprojects {
 ```
 ```gradle
 dependencies {
-    compile 'com.github.daniel-stoneuk:material-about-library:1.3.0'
+    compile 'com.github.daniel-stoneuk:material-about-library:1.4.0'
 }
 ```
 
@@ -53,12 +53,14 @@ Setup
 
 **Fragment tutorial coming soon, check out the demo app in the meantime**
 
-**Step 1:** Your `Activity` must extend [`MaterialAboutActivity`][7] and be in your *AndroidManifest.xml*:
+### Activity
+
+Your `Activity` must extend [`MaterialAboutActivity`][materialaboutactivityjava] and be in your *AndroidManifest.xml*:
 ```java
 public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
 
     @Override
-    protected MaterialAboutList getMaterialAboutList() {
+    protected MaterialAboutList getMaterialAboutList(Context context) {
         return new MaterialAboutList.Builder()
                 .build();
     }
@@ -70,6 +72,7 @@ public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
 
 }
 ```
+
 Ensure that the theme extends 'Theme.Mal', and apply primary & accent colours.
 ```xml
 <manifest ...>
@@ -88,7 +91,19 @@ Ensure that the theme extends 'Theme.Mal', and apply primary & accent colours.
     </style>
 ```
 
-**Step 2:** Add Cards:
+### Fragment
+
+Your `fragment` must extend [`MaterialAboutFragment`][materialaboutfragmentjava].
+```java
+public class ExampleMaterialAboutFragment extends MaterialAboutFragment {
+
+    @Override
+    protected MaterialAboutList getMaterialAboutList(final Context activityContext) {
+    }
+}
+```
+
+### Add Cards:
 
 Start building a "card" using [`MaterialAboutCard.Builder()`][8]
 ```java
@@ -103,7 +118,7 @@ Give the card a title by calling `.title` on the `Builder`
         authorCardBuilder.title("Author");
 ```
 
-**Step 3:** Add Items:
+### Add Items:
 
 There are currently two types of item you can add to a card - [`MaterialAboutTitleItem`][9] and [`MaterialAboutActionItem`][10]. Planned items include "person" items which feature buttons to showcase a single person. Feel free to submit a PR or Issue for more item ideas.
 
@@ -132,7 +147,7 @@ There are currently two types of item you can add to a card - [`MaterialAboutTit
                 })
                 .build());
 ```
-**Step 4:** Return the list:
+### Return the list:
 Create a [`MaterialAboutList`][11] using [`MaterialAboutList.Builder()`][11], passing in the cards you would like to display.
 ```java
         return new MaterialAboutList.Builder()
@@ -145,6 +160,11 @@ Create a [`MaterialAboutList`][11] using [`MaterialAboutList.Builder()`][11], pa
 Check out a working example in [`ExampleMaterialAboutActivity.java`][3].
 
 **Tip:** You can either use *Strings* / *Drawables* or *Resources* when creating `MaterialAboutItem`'s
+
+**Tip:** Use [Android-Iconics][https://github.com/mikepenz/Android-Iconics] with 18dp icons.
+
+**Tip:** Use [ConvenienceBuilder] to easily create items or OnClickListeners.
+
 
 License
 -------
@@ -169,11 +189,16 @@ License
 [4]: http://i.imgur.com/HEm08Ax.png
 [5]: https://play.google.com/store/apps/details?id=com.danielstone.energyhive
 [6]: https://github.com/HeinrichReimer/open-source-library-request-manager/issues/3
-[7]: https://github.com/daniel-stoneuk/material-about-library/blob/master/library/src/main/java/com/danielstone/materialaboutlibrary/MaterialAboutActivity.java
-[8]: https://github.com/daniel-stoneuk/material-about-library/blob/ce35cdc99d33af1faf40c7a1cddf2889898be4e7/library/src/main/java/com/danielstone/materialaboutlibrary/model/MaterialAboutCard.java
-[9]: https://github.com/daniel-stoneuk/material-about-library/blob/ce35cdc99d33af1faf40c7a1cddf2889898be4e7/library/src/main/java/com/danielstone/materialaboutlibrary/model/MaterialAboutTitleItem.java
-[10]: https://github.com/daniel-stoneuk/material-about-library/blob/ce35cdc99d33af1faf40c7a1cddf2889898be4e7/library/src/main/java/com/danielstone/materialaboutlibrary/model/MaterialAboutActionItem.java
-[11]: https://github.com/daniel-stoneuk/material-about-library/blob/ce35cdc99d33af1faf40c7a1cddf2889898be4e7/library/src/main/java/com/danielstone/materialaboutlibrary/model/MaterialAboutList.java
+
+
+[materialaboutactivityjava]: https://github.com/daniel-stoneuk/material-about-library/blob/master/library/src/main/java/com/danielstone/materialaboutlibrary/MaterialAboutActivity.java
+[materialaboutfragmentjava]: https://github.com/daniel-stoneuk/material-about-library/blob/master/app/src/main/java/com/danielstone/materialaboutlibrarydemo/ExampleMaterialAboutFragment.java
+[conveniencebuilderjava]: https://github.com/daniel-stoneuk/material-about-library/blob/master/library/src/main/java/com/danielstone/materialaboutlibrary/ConvenienceBuilder.java
+
+[8]: https://github.com/daniel-stoneuk/material-about-library/blob/master/library/src/main/java/com/danielstone/materialaboutlibrary/model/MaterialAboutCard.java
+[9]: https://github.com/daniel-stoneuk/material-about-library/blob/master/library/src/main/java/com/danielstone/materialaboutlibrary/model/MaterialAboutTitleItem.java
+[10]: https://github.com/daniel-stoneuk/material-about-library/blob/master/library/src/main/java/com/danielstone/materialaboutlibrary/model/MaterialAboutActionItem.java
+[11]: https://github.com/daniel-stoneuk/material-about-library/blob/master/library/src/main/java/com/danielstone/materialaboutlibrary/model/MaterialAboutList.java
 
 [101]: https://jitpack.io/v/daniel-stoneuk/material-about-library.svg
 [102]: https://jitpack.io/#daniel-stoneuk/material-about-library
