@@ -23,10 +23,6 @@ public class MaterialAboutItemAdapter extends RecyclerView.Adapter<MaterialAbout
 
     private static final String TAG = MaterialAboutItemAdapter.class.getSimpleName();
 
-    private static final int VIEW_TYPE_ACTION_ITEM = 0;
-    private static final int VIEW_TYPE_TITLE_ITEM = 1;
-    public static final int VIEW_TYPE_PERSON_ITEM = 2;
-
     private ArrayList<MaterialAboutItem> data;
 
     private Context context;
@@ -90,11 +86,11 @@ public class MaterialAboutItemAdapter extends RecyclerView.Adapter<MaterialAbout
     @Override
     public void onBindViewHolder(MaterialAboutItemViewHolder holder, int position) {
         switch (holder.viewType) {
-            case VIEW_TYPE_ACTION_ITEM: {
+            case MaterialAboutItem.ItemType.ACTION_ITEM: {
                 setupActionItem(holder, position);
                 break;
             }
-            case VIEW_TYPE_TITLE_ITEM: {
+            case MaterialAboutItem.ItemType.TITLE_ITEM: {
                 setupTitleItem(holder, position);
                 break;
             }
