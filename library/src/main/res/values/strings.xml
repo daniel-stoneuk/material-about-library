@@ -5,4 +5,6 @@
 
     <string name="mal_content_desc_application_icon">Application icon</string>
     <string name="mal_content_desc_action_icon">Action icon</string>
+
+    <string name="mal_close">Close</string>
 </resources>

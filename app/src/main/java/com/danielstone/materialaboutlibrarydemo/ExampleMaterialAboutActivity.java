@@ -1,20 +1,25 @@
 package com.danielstone.materialaboutlibrarydemo;
 
-import android.content.Intent;
+import android.content.Context;
+import android.content.pm.PackageManager;
 import android.net.Uri;
-import android.util.Log;
+import android.support.v4.content.ContextCompat;
 import android.widget.Toast;
 
+import com.danielstone.materialaboutlibrary.ConvenienceBuilder;
 import com.danielstone.materialaboutlibrary.MaterialAboutActivity;
 import com.danielstone.materialaboutlibrary.model.MaterialAboutActionItem;
 import com.danielstone.materialaboutlibrary.model.MaterialAboutCard;
 import com.danielstone.materialaboutlibrary.model.MaterialAboutList;
 import com.danielstone.materialaboutlibrary.model.MaterialAboutTitleItem;
+import com.mikepenz.community_material_typeface_library.CommunityMaterial;
+import com.mikepenz.google_material_typeface_library.GoogleMaterial;
+import com.mikepenz.iconics.IconicsDrawable;
 
 public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
 
     @Override
-    protected MaterialAboutList getMaterialAboutList() {
+    protected MaterialAboutList getMaterialAboutList(final Context c) {
 
         MaterialAboutCard.Builder appCardBuilder = new MaterialAboutCard.Builder();
 
@@ -24,35 +29,40 @@ public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
                 .text("Material About Activity")
                 .icon(R.mipmap.ic_launcher)
                 .build());
-        appCardBuilder.addItem(new MaterialAboutActionItem.Builder()
-                .text("Version")
-                .subText(BuildConfig.VERSION_NAME)
-                .icon(R.drawable.ic_about_info)
-                .setOnClickListener(new MaterialAboutActionItem.OnClickListener() {
-                    @Override
-                    public void onClick() {
-                        Log.i("test", "onClick: Version Tapped");
-                        Toast.makeText(ExampleMaterialAboutActivity.this, "Version Tapped", Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .build());
+
+        try {
+
+            appCardBuilder.addItem(ConvenienceBuilder.createVersionActionItem(c,
+                    "Version",
+                    new IconicsDrawable(c)
+                            .icon(GoogleMaterial.Icon.gmd_info_outline)
+                            .color(ContextCompat.getColor(c, R.color.colorIcon))
+                            .sizeDp(18)));
+
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+
         appCardBuilder.addItem(new MaterialAboutActionItem.Builder()
                 .text("Changelog")
-                .icon(R.drawable.ic_about_changelog)
-                .setOnClickListener(new MaterialAboutActionItem.OnClickListener() {
-                    @Override
-                    public void onClick() {
-                        Toast.makeText(ExampleMaterialAboutActivity.this, "Changelog Tapped", Toast.LENGTH_SHORT).show();
-                    }
-                })
+                .icon(new IconicsDrawable(c)
+                        .icon(CommunityMaterial.Icon.cmd_history)
+                        .color(ContextCompat.getColor(c, R.color.colorIcon))
+                        .sizeDp(18))
+                .setOnClickListener(ConvenienceBuilder.createWebViewDialogOnClickAction(c, "Releases", "https://github.com/daniel-stoneuk/material-about-library/releases", true))
                 .build());
+
         appCardBuilder.addItem(new MaterialAboutActionItem.Builder()
                 .text("Licenses")
-                .icon(R.drawable.ic_about_licenses)
+                .icon(new IconicsDrawable(c)
+                        .icon(GoogleMaterial.Icon.gmd_book)
+                        .color(ContextCompat.getColor(c, R.color.colorIcon))
+                        .sizeDp(18))
                 .setOnClickListener(new MaterialAboutActionItem.OnClickListener() {
                     @Override
                     public void onClick() {
-                        Toast.makeText(ExampleMaterialAboutActivity.this, "Licenses Tapped", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(
+                                c, "Material Design About Library with Mike Penz Android Iconics", Toast.LENGTH_SHORT).show();
                     }
                 })
                 .build());
@@ -63,32 +73,35 @@ public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
         authorCardBuilder.addItem(new MaterialAboutActionItem.Builder()
                 .text("Daniel Stone")
                 .subText("United Kingdom")
-                .icon(R.drawable.ic_about_person)
+                .icon(new IconicsDrawable(c)
+                        .icon(GoogleMaterial.Icon.gmd_person)
+                        .color(ContextCompat.getColor(c, R.color.colorIcon))
+                        .sizeDp(18))
                 .build());
 
         authorCardBuilder.addItem(new MaterialAboutActionItem.Builder()
                 .text("Fork on GitHub")
-                .icon(R.drawable.ic_about_github)
-                .setOnClickListener(new MaterialAboutActionItem.OnClickListener() {
-                    @Override
-                    public void onClick() {
-                        Intent i = new Intent(Intent.ACTION_VIEW);
-                        i.setData(Uri.parse("https://github.com/daniel-stoneuk"));
-                        startActivity(i);
-                    }
-                })
+                .icon(new IconicsDrawable(c)
+                        .icon(CommunityMaterial.Icon.cmd_github_circle)
+                        .color(ContextCompat.getColor(c, R.color.colorIcon))
+                        .sizeDp(18))
+                .setOnClickListener(ConvenienceBuilder.createWebsiteOnClickAction(c, Uri.parse("https://github.com/daniel-stoneuk")))
                 .build());
 
         MaterialAboutCard.Builder supportCardBuilder = new MaterialAboutCard.Builder();
+
         supportCardBuilder.title("Support Development");
         supportCardBuilder.addItem(new MaterialAboutActionItem.Builder()
                 .text("Report Bugs")
                 .subText("Report bugs or request new features.")
-                .icon(R.drawable.ic_about_bug)
+                .icon(new IconicsDrawable(c)
+                        .icon(GoogleMaterial.Icon.gmd_bug_report)
+                        .color(ContextCompat.getColor(c, R.color.colorIcon))
+                        .sizeDp(18))
                 .setOnClickListener(new MaterialAboutActionItem.OnClickListener() {
                     @Override
                     public void onClick() {
-                        Toast.makeText(ExampleMaterialAboutActivity.this, "Bug report tapped", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(c, "Bug report tapped", Toast.LENGTH_SHORT).show();
                     }
                 })
                 .build());

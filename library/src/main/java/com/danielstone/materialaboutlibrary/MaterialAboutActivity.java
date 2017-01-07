@@ -1,6 +1,8 @@
 package com.danielstone.materialaboutlibrary;
 
 
+import android.content.Context;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NavUtils;
@@ -21,7 +23,7 @@ public abstract class MaterialAboutActivity extends AppCompatActivity {
 
     MaterialAboutList list = null;
 
-    protected abstract MaterialAboutList getMaterialAboutList();
+    protected abstract MaterialAboutList getMaterialAboutList(Context c);
 
     protected abstract CharSequence getActivityTitle();
 
@@ -41,13 +43,16 @@ public abstract class MaterialAboutActivity extends AppCompatActivity {
         assignViews();
         initViews();
 
-        list = getMaterialAboutList();
-        adapter.swapData(list);
+        ListTask task = new ListTask(this);
+        task.execute();
+
     }
 
     private void assignViews() {
         toolbar = (Toolbar) findViewById(R.id.mal_toolbar);
         recyclerView = (RecyclerView) findViewById(R.id.mal_recyclerview);
+        recyclerView.setAlpha(0f);
+        recyclerView.setTranslationY(20);
     }
 
     private void initViews() {
@@ -62,5 +67,29 @@ public abstract class MaterialAboutActivity extends AppCompatActivity {
         adapter = new MaterialAboutListAdapter(new MaterialAboutList.Builder().build());
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
+    }
+
+    private class ListTask extends AsyncTask<String, String, String> {
+
+        Context context;
+
+        public ListTask(Context context) {
+            this.context = context;
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+            list = getMaterialAboutList(context);
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+
+            adapter.swapData(list);
+            recyclerView.animate().alpha(1f).translationY(0f).setDuration(200).start();
+            super.onPostExecute(s);
+            context = null;
+        }
     }
 }

@@ -1,5 +1,7 @@
 package com.danielstone.materialaboutlibrary;
 
+import android.content.Context;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -16,9 +18,9 @@ public abstract class MaterialAboutFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private MaterialAboutListAdapter adapter;
-    MaterialAboutList list = null;
+    MaterialAboutList list = new MaterialAboutList.Builder().build();
 
-    protected abstract MaterialAboutList getMaterialAboutList();
+    protected abstract MaterialAboutList getMaterialAboutList(Context activityContext);
 
     public static final String TAG = "MaterialAboutFragment";
 
@@ -30,7 +32,6 @@ public abstract class MaterialAboutFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        list = getMaterialAboutList();
     }
 
     @Nullable
@@ -43,6 +44,36 @@ public abstract class MaterialAboutFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
 
+        recyclerView.setAlpha(0f);
+        recyclerView.setTranslationY(20);
+
+        ListTask task = new ListTask(getActivity());
+        task.execute();
+
         return rootView;
+    }
+
+    private class ListTask extends AsyncTask<String, String, String> {
+
+        Context fragmentContext;
+
+        public ListTask(Context activityContext) {
+            this.fragmentContext = activityContext;
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+            list = getMaterialAboutList(fragmentContext);
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+
+            adapter.swapData(list);
+            recyclerView.animate().alpha(1f).translationY(0f).setDuration(200).start();
+            super.onPostExecute(s);
+            fragmentContext = null;
+        }
     }
 }
