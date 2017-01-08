@@ -51,8 +51,6 @@ dependencies {
 Setup
 -----
 
-**Fragment tutorial coming soon, check out the demo app in the meantime**
-
 ### Activity
 
 Your `Activity` must extend [`MaterialAboutActivity`][materialaboutactivityjava] and be in your *AndroidManifest.xml*:
@@ -161,9 +159,9 @@ Check out a working example in [`ExampleMaterialAboutActivity.java`][3].
 
 **Tip:** You can either use *Strings* / *Drawables* or *Resources* when creating `MaterialAboutItem`'s
 
-**Tip:** Use [Android-Iconics][https://github.com/mikepenz/Android-Iconics] with 18dp icons.
+**Tip:** Use [Android-Iconics][iconics] with 18dp icons.
 
-**Tip:** Use [ConvenienceBuilder] to easily create items or OnClickListeners.
+**Tip:** Use [ConvenienceBuilder][conveniencebuilderjava] to easily create items or OnClickListeners.
 
 
 License
@@ -194,6 +192,8 @@ License
 [materialaboutactivityjava]: https://github.com/daniel-stoneuk/material-about-library/blob/master/library/src/main/java/com/danielstone/materialaboutlibrary/MaterialAboutActivity.java
 [materialaboutfragmentjava]: https://github.com/daniel-stoneuk/material-about-library/blob/master/app/src/main/java/com/danielstone/materialaboutlibrarydemo/ExampleMaterialAboutFragment.java
 [conveniencebuilderjava]: https://github.com/daniel-stoneuk/material-about-library/blob/master/library/src/main/java/com/danielstone/materialaboutlibrary/ConvenienceBuilder.java
+
+[iconics]: https://github.com/mikepenz/Android-Iconics
 
 [8]: https://github.com/daniel-stoneuk/material-about-library/blob/master/library/src/main/java/com/danielstone/materialaboutlibrary/model/MaterialAboutCard.java
 [9]: https://github.com/daniel-stoneuk/material-about-library/blob/master/library/src/main/java/com/danielstone/materialaboutlibrary/model/MaterialAboutTitleItem.java
