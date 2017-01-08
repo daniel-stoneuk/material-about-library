@@ -18,6 +18,8 @@ import com.danielstone.materialaboutlibrary.model.MaterialAboutTitleItem;
 
 import java.util.ArrayList;
 
+import static android.view.View.GONE;
+
 
 public class MaterialAboutItemAdapter extends RecyclerView.Adapter<MaterialAboutItemAdapter.MaterialAboutItemViewHolder> {
 
@@ -109,7 +111,7 @@ public class MaterialAboutItemAdapter extends RecyclerView.Adapter<MaterialAbout
         } else if (textRes != 0) {
             holder.text.setText(textRes);
         } else {
-            holder.text.setVisibility(View.GONE);
+            holder.text.setVisibility(GONE);
         }
 
         CharSequence subText = item.getSubText();
@@ -121,16 +123,21 @@ public class MaterialAboutItemAdapter extends RecyclerView.Adapter<MaterialAbout
         } else if (subTextRes != 0) {
             holder.subText.setText(subTextRes);
         } else {
-            holder.subText.setVisibility(View.GONE);
+            holder.subText.setVisibility(GONE);
         }
 
-        Drawable drawable = item.getIcon();
-        int drawableRes = item.getIconRes();
-        if (drawable != null) {
-            holder.icon.setImageDrawable(drawable);
-        } else if (drawableRes != 0) {
-            holder.icon.setImageResource(drawableRes);
+        if (item.shouldShowIcon()) {
+            Drawable drawable = item.getIcon();
+            int drawableRes = item.getIconRes();
+            if (drawable != null) {
+                holder.icon.setImageDrawable(drawable);
+            } else if (drawableRes != 0) {
+                holder.icon.setImageResource(drawableRes);
+            }
+        } else {
+            holder.icon.setVisibility(GONE);
         }
+
 
         int pL = 0, pT = 0, pR = 0, pB = 0;
         if (Build.VERSION.SDK_INT < 21) {
@@ -170,7 +177,7 @@ public class MaterialAboutItemAdapter extends RecyclerView.Adapter<MaterialAbout
         } else if (textRes != 0) {
             holder.text.setText(textRes);
         } else {
-            holder.text.setVisibility(View.GONE);
+            holder.text.setVisibility(GONE);
         }
 
         Drawable drawable = item.getIcon();

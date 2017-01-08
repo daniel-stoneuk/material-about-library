@@ -18,6 +18,7 @@ public class MaterialAboutActionItem extends MaterialAboutItem {
 
     private Drawable icon = null;
     private int iconRes = 0;
+    private boolean showIcon = true;
 
     private MaterialAboutActionItem.OnClickListener onClickListener = null;
 
@@ -35,6 +36,8 @@ public class MaterialAboutActionItem extends MaterialAboutItem {
 
         this.icon = builder.icon;
         this.iconRes = builder.iconRes;
+
+        this.showIcon = builder.showIcon;
 
         this.onClickListener = builder.onClickListener;
     }
@@ -89,6 +92,10 @@ public class MaterialAboutActionItem extends MaterialAboutItem {
         return iconRes;
     }
 
+    public boolean shouldShowIcon() {
+        return showIcon;
+    }
+
     public MaterialAboutActionItem.OnClickListener getOnClickListener() {
         return onClickListener;
     }
@@ -108,6 +115,8 @@ public class MaterialAboutActionItem extends MaterialAboutItem {
         @DrawableRes
         private int iconRes = 0;
 
+        private boolean showIcon = true;
+
         MaterialAboutActionItem.OnClickListener onClickListener;
 
         public Builder text(CharSequence text) {
@@ -115,7 +124,6 @@ public class MaterialAboutActionItem extends MaterialAboutItem {
             this.textRes = 0;
             return this;
         }
-
 
         public Builder text(@StringRes int text) {
             this.textRes = text;
@@ -129,7 +137,6 @@ public class MaterialAboutActionItem extends MaterialAboutItem {
             return this;
         }
 
-
         public Builder subText(@StringRes int subTextRes) {
             this.subText = null;
             this.subTextRes = subTextRes;
@@ -142,10 +149,14 @@ public class MaterialAboutActionItem extends MaterialAboutItem {
             return this;
         }
 
-
         public Builder icon(@DrawableRes int iconRes) {
             this.icon = null;
             this.iconRes = iconRes;
+            return this;
+        }
+
+        public Builder showIcon(boolean showIcon) {
+            this.showIcon = showIcon;
             return this;
         }
 
