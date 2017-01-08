@@ -127,6 +127,7 @@ public class MaterialAboutItemAdapter extends RecyclerView.Adapter<MaterialAbout
         }
 
         if (item.shouldShowIcon()) {
+            holder.icon.setVisibility(View.VISIBLE);
             Drawable drawable = item.getIcon();
             int drawableRes = item.getIconRes();
             if (drawable != null) {
