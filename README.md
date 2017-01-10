@@ -155,7 +155,7 @@ Create a [`MaterialAboutList`][11] using [`MaterialAboutList.Builder()`][11], pa
 }
 ```
 
-Check out a working example in [`ExampleMaterialAboutActivity.java`][3].
+Check out a working example in [`Demo.java`][3].
 
 **Tip:** You can either use *Strings* / *Drawables* or *Resources* when creating `MaterialAboutItem`'s
 
@@ -183,7 +183,7 @@ License
 
 [1]: https://jitpack.io
 [2]: http://i.imgur.com/xXWDmLb.png
-[3]: https://github.com/daniel-stoneuk/material-about-library/blob/master/app/src/main/java/com/danielstone/materialaboutlibrarydemo/ExampleMaterialAboutActivity.java
+[3]: https://github.com/daniel-stoneuk/material-about-library/blob/master/app/src/main/java/com/danielstone/materialaboutlibrarydemo/Demo.java
 [4]: http://i.imgur.com/HEm08Ax.png
 [5]: https://play.google.com/store/apps/details?id=com.danielstone.energyhive
 [6]: https://github.com/HeinrichReimer/open-source-library-request-manager/issues/3
