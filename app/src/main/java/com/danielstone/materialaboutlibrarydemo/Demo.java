@@ -137,7 +137,7 @@ public class Demo {
                         .color(ContextCompat.getColor(c, R.color.colorIcon))
                         .sizeDp(18))
                 .text("HTML Formatted Sub Text")
-                .subTextHtml("This is <b>HTML</b> formatted <i>text</i> <br /> It is very cool!")
+                .subTextHtml("This is <b>HTML</b> formatted <i>text</i> <br /> This is very cool because it allows lines to get very long which can lead to all kinds of possibilities.")
                 .build()
         );
 
