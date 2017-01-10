@@ -37,14 +37,14 @@ public class ConvenienceBuilder {
      * @return A MaterialAboutItem with the version infos
      * @throws PackageManager.NameNotFoundException
      */
-    public static MaterialAboutItem createVersionActionItem(Context c, CharSequence text, Drawable icon) throws PackageManager.NameNotFoundException {
+    public static MaterialAboutItem createVersionActionItem(Context c, CharSequence text, Drawable icon, boolean includeVersionCode) throws PackageManager.NameNotFoundException {
         PackageInfo pInfo = c.getPackageManager().getPackageInfo(c.getPackageName(), 0);
         String versionName = pInfo.versionName;
         int versionCode = pInfo.versionCode;
 
         return new MaterialAboutActionItem.Builder()
                 .text(text)
-                .subText(versionName + " (" + versionCode + ")")
+                .subText(versionName + (includeVersionCode ? " (" + versionCode + ")" : ""))
                 .icon(icon)
                 .build();
     }

@@ -37,7 +37,8 @@ public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
                     new IconicsDrawable(c)
                             .icon(GoogleMaterial.Icon.gmd_info_outline)
                             .color(ContextCompat.getColor(c, R.color.colorIcon))
-                            .sizeDp(18)));
+                            .sizeDp(18),
+                    false));
 
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();

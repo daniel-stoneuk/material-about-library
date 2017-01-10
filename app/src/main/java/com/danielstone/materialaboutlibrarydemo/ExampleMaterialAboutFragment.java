@@ -40,7 +40,8 @@ public class ExampleMaterialAboutFragment extends MaterialAboutFragment {
                     new IconicsDrawable(activityContext)
                             .icon(GoogleMaterial.Icon.gmd_info_outline)
                             .color(ContextCompat.getColor(activityContext, R.color.colorIcon))
-                            .sizeDp(18)));
+                            .sizeDp(18),
+                    true));
 
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
