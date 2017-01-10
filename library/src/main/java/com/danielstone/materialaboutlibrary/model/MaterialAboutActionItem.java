@@ -1,8 +1,10 @@
 package com.danielstone.materialaboutlibrary.model;
 
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.StringRes;
+import android.text.Html;
 
 public class MaterialAboutActionItem extends MaterialAboutItem {
 
@@ -140,6 +142,17 @@ public class MaterialAboutActionItem extends MaterialAboutItem {
         public Builder subText(@StringRes int subTextRes) {
             this.subText = null;
             this.subTextRes = subTextRes;
+            return this;
+        }
+
+        public Builder subTextHtml(String subTextHtml) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                this.subText = Html.fromHtml(subTextHtml, Html.FROM_HTML_MODE_LEGACY);
+            } else {
+                //noinspection deprecation
+                this.subText = Html.fromHtml(subTextHtml);
+            }
+            this.subTextRes = 0;
             return this;
         }
 

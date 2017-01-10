@@ -128,7 +128,20 @@ public class Demo {
                 "Question concerning MaterialAboutLibrary"));
 
 
-        return new MaterialAboutList(appCardBuilder.build(), authorCardBuilder.build(), convenienceCardBuilder.build());
+        MaterialAboutCard.Builder otherCardBuilder = new MaterialAboutCard.Builder();
+        otherCardBuilder.title("Other");
+
+        otherCardBuilder.addItem(new MaterialAboutActionItem.Builder()
+                .icon(new IconicsDrawable(c)
+                        .icon(CommunityMaterial.Icon.cmd_language_html5)
+                        .color(ContextCompat.getColor(c, R.color.colorIcon))
+                        .sizeDp(18))
+                .text("HTML Formatted Sub Text")
+                .subTextHtml("This is <b>HTML</b> formatted <i>text</i> <br /> It is very cool!")
+                .build()
+        );
+
+        return new MaterialAboutList(appCardBuilder.build(), authorCardBuilder.build(), convenienceCardBuilder.build(), otherCardBuilder.build());
     }
 
 }
