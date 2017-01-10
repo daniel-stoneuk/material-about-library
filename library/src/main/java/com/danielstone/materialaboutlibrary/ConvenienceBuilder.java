@@ -49,7 +49,7 @@ public class ConvenienceBuilder {
                 .build();
     }
 
-    public static MaterialAboutActionItem.OnClickListener createWebViewDialogOnClickAction(final Context c, final CharSequence dialogTitle, final String htmlString, final boolean isStringUrl) {
+    public static MaterialAboutActionItem.OnClickListener createWebViewDialogOnClickAction(final Context c, final CharSequence dialogTitle, final String htmlString, final boolean isStringUrl, final boolean supportZoom) {
 
         return new MaterialAboutActionItem.OnClickListener() {
             @Override
@@ -57,7 +57,12 @@ public class ConvenienceBuilder {
                 AlertDialog.Builder alertBuilder = new AlertDialog.Builder(c);
                 alertBuilder.setTitle(dialogTitle);
 
-                WebView wv = new WebView(c);
+                final WebView wv = new WebView(c);
+                wv.getSettings().setSupportZoom(supportZoom);
+                if (!supportZoom) {
+                    wv.getSettings().setLoadWithOverviewMode(true);
+                    wv.getSettings().setUseWideViewPort(true);
+                }
                 if (isStringUrl) {
                     wv.loadUrl(htmlString);
                 } else {
@@ -68,6 +73,7 @@ public class ConvenienceBuilder {
                 alertBuilder.setNegativeButton(R.string.mal_close, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
+                        wv.destroy();
                         dialog.dismiss();
                     }
                 });
@@ -79,12 +85,12 @@ public class ConvenienceBuilder {
     }
 
 
-    public static MaterialAboutActionItem createWebViewDialogItem(Context c, Drawable icon, CharSequence text, @Nullable CharSequence subText, CharSequence dialogTitle, String htmlString, boolean isStringUrl) {
+    public static MaterialAboutActionItem createWebViewDialogItem(Context c, Drawable icon, CharSequence text, @Nullable CharSequence subText, CharSequence dialogTitle, String htmlString, boolean isStringUrl, boolean supportZoom) {
         return new MaterialAboutActionItem.Builder()
                 .text(text)
                 .subText(subText)
                 .icon(icon)
-                .setOnClickListener(createWebViewDialogOnClickAction(c, dialogTitle, htmlString, isStringUrl))
+                .setOnClickListener(createWebViewDialogOnClickAction(c, dialogTitle, htmlString, isStringUrl , supportZoom))
                 .build();
     }
 

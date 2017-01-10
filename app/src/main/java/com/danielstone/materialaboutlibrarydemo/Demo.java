@@ -47,7 +47,7 @@ public class Demo {
                         .icon(CommunityMaterial.Icon.cmd_history)
                         .color(ContextCompat.getColor(c, R.color.colorIcon))
                         .sizeDp(18))
-                .setOnClickListener(ConvenienceBuilder.createWebViewDialogOnClickAction(c, "Releases", "https://github.com/daniel-stoneuk/material-about-library/releases", true))
+                .setOnClickListener(ConvenienceBuilder.createWebViewDialogOnClickAction(c, "Releases", "https://github.com/daniel-stoneuk/material-about-library/releases", true, false))
                 .build());
 
         appCardBuilder.addItem(new MaterialAboutActionItem.Builder()
