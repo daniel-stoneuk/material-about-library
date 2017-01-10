@@ -37,7 +37,7 @@ public class ConvenienceBuilder {
      * @return A MaterialAboutItem with the version infos
      * @throws PackageManager.NameNotFoundException
      */
-    public static MaterialAboutItem createVersionActionItem(Context c, CharSequence text, Drawable icon, boolean includeVersionCode) throws PackageManager.NameNotFoundException {
+    public static MaterialAboutItem createVersionActionItem(Context c, Drawable icon, CharSequence text, boolean includeVersionCode) throws PackageManager.NameNotFoundException {
         PackageInfo pInfo = c.getPackageManager().getPackageInfo(c.getPackageName(), 0);
         String versionName = pInfo.versionName;
         int versionCode = pInfo.versionCode;
@@ -79,7 +79,7 @@ public class ConvenienceBuilder {
     }
 
 
-    public static MaterialAboutActionItem createWebViewDialogItem(Context c, CharSequence text, @Nullable CharSequence subText, Drawable icon, CharSequence dialogTitle, String htmlString, boolean isStringUrl) {
+    public static MaterialAboutActionItem createWebViewDialogItem(Context c, Drawable icon, CharSequence text, @Nullable CharSequence subText, CharSequence dialogTitle, String htmlString, boolean isStringUrl) {
         return new MaterialAboutActionItem.Builder()
                 .text(text)
                 .subText(subText)
@@ -109,10 +109,10 @@ public class ConvenienceBuilder {
      * @param websiteUrl (subText)
      * @return Item to add to card.
      */
-    public static MaterialAboutActionItem createWebsiteActionItem(Context c, CharSequence text, Drawable icon, final Uri websiteUrl) {
+    public static MaterialAboutActionItem createWebsiteActionItem(Context c, Drawable icon, CharSequence text, boolean showAddress,  final Uri websiteUrl) {
         return new MaterialAboutActionItem.Builder()
                 .text(text)
-                .subText(websiteUrl.toString())
+                .subText((showAddress ? websiteUrl.toString() : null))
                 .icon(icon)
                 .setOnClickListener(createWebsiteOnClickAction(c, websiteUrl))
                 .build();
@@ -159,7 +159,7 @@ public class ConvenienceBuilder {
      * @param icon
      * @return Item to add to card.
      */
-    public static MaterialAboutActionItem createRateActionItem(Context c, CharSequence text, @Nullable CharSequence subText, Drawable icon) {
+    public static MaterialAboutActionItem createRateActionItem(Context c, Drawable icon, CharSequence text, @Nullable CharSequence subText) {
 
         return new MaterialAboutActionItem.Builder()
                 .text(text)
@@ -199,10 +199,10 @@ public class ConvenienceBuilder {
      * @param email email address (also used as subText)
      * @return Item to add to card.
      */
-    public static MaterialAboutActionItem createEmailItem(Context c, CharSequence text, Drawable icon, String email, String emailSubject) {
+    public static MaterialAboutActionItem createEmailItem(Context c, Drawable icon, CharSequence text, boolean showEmail,  String email, String emailSubject) {
         return new MaterialAboutActionItem.Builder()
                 .text(text)
-                .subText(email)
+                .subText((showEmail ? email : null))
                 .icon(icon)
                 .setOnClickListener(createEmailOnClickAction(c, email, emailSubject))
                 .build();
