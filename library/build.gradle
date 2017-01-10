@@ -5,7 +5,7 @@ group='com.github.daniel-stoneuk'
 
 def versionMajor = 1
 def versionMinor = 4
-def versionPatch = 1
+def versionPatch = 2
 def versionBuild = 0 // bump for dogfood builds, public betas, etc.
 
 android {
