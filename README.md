@@ -44,7 +44,7 @@ allprojects {
 ```
 ```gradle
 dependencies {
-    compile 'com.github.daniel-stoneuk:material-about-library:1.4.0'
+    compile 'com.github.daniel-stoneuk:material-about-library:1.4.1'
 }
 ```
 
@@ -159,7 +159,7 @@ Check out a working example in [`ExampleMaterialAboutActivity.java`][3].
 
 **Tip:** You can either use *Strings* / *Drawables* or *Resources* when creating `MaterialAboutItem`'s
 
-**Tip:** Use [Android-Iconics][iconics] with 18dp icons.
+**Tip:** Use [Android-Iconics][iconics] for icons. "Android-Iconics - Use any icon font, or vector (.svg) as drawable in your application."
 
 **Tip:** Use [ConvenienceBuilder][conveniencebuilderjava] to easily create items or OnClickListeners.
 
