@@ -89,25 +89,40 @@ public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
                 .setOnClickListener(ConvenienceBuilder.createWebsiteOnClickAction(c, Uri.parse("https://github.com/daniel-stoneuk")))
                 .build());
 
-        MaterialAboutCard.Builder supportCardBuilder = new MaterialAboutCard.Builder();
+        MaterialAboutCard.Builder convenienceCardBuilder = new MaterialAboutCard.Builder();
 
-        supportCardBuilder.title("Support Development");
-        supportCardBuilder.addItem(new MaterialAboutActionItem.Builder()
-                .text("Report Bugs")
-                .subText("Report bugs or request new features.")
-                .icon(new IconicsDrawable(c)
-                        .icon(GoogleMaterial.Icon.gmd_bug_report)
+        convenienceCardBuilder.title("Convenience Builder");
+        try {
+            convenienceCardBuilder.addItem(ConvenienceBuilder.createVersionActionItem(c, "Version",
+                    new IconicsDrawable(c)
+                            .icon(CommunityMaterial.Icon.cmd_information_outline)
+                            .color(ContextCompat.getColor(c, R.color.colorIcon))
+                            .sizeDp(18),
+                    false));
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        convenienceCardBuilder.addItem(ConvenienceBuilder.createWebsiteActionItem(c, "Visit Website",
+                new IconicsDrawable(c)
+                        .icon(CommunityMaterial.Icon.cmd_earth)
                         .color(ContextCompat.getColor(c, R.color.colorIcon))
-                        .sizeDp(18))
-                .setOnClickListener(new MaterialAboutActionItem.OnClickListener() {
-                    @Override
-                    public void onClick() {
-                        Toast.makeText(c, "Bug report tapped", Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .build());
+                        .sizeDp(18),
+                Uri.parse("http://daniel-stone.uk")));
 
-        return new MaterialAboutList(appCardBuilder.build(), authorCardBuilder.build(), supportCardBuilder.build());
+        convenienceCardBuilder.addItem(ConvenienceBuilder.createRateActionItem(c, "Rate this app", null,
+                new IconicsDrawable(c)
+                .icon(CommunityMaterial.Icon.cmd_star)
+                .color(ContextCompat.getColor(c, R.color.colorIcon))
+                .sizeDp(18)));
+        convenienceCardBuilder.addItem(ConvenienceBuilder.createEmailItem(c, "Send an email",
+                new IconicsDrawable(c)
+                        .icon(CommunityMaterial.Icon.cmd_email)
+                        .color(ContextCompat.getColor(c, R.color.colorIcon))
+                        .sizeDp(18),
+                "apps@daniel-stone.uk", "Question concerning MaterialAboutLibrary"));
+
+
+        return new MaterialAboutList(appCardBuilder.build(), authorCardBuilder.build(), convenienceCardBuilder.build());
     }
 
     @Override

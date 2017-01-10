@@ -177,15 +177,15 @@ public class ConvenienceBuilder {
      * @param email email address
      * @return onClickListener
      */
-    public static MaterialAboutActionItem.OnClickListener createEmailOnClickAction(final Context c, String email) {
-        final Intent mailIntent = new Intent(Intent.ACTION_SEND);
-        mailIntent.setType("text/plain");
-        mailIntent.putExtra(Intent.EXTRA_EMAIL, email);
+    public static MaterialAboutActionItem.OnClickListener createEmailOnClickAction(final Context c, String email, String emailSubject) {
+
+        final Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:" + email));
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, emailSubject);
 
         return new MaterialAboutActionItem.OnClickListener() {
             @Override
             public void onClick() {
-                c.startActivity(mailIntent);
+                c.startActivity(Intent.createChooser(emailIntent, c.getString(R.string.mal_send_email)));
             }
         };
     }
@@ -199,12 +199,12 @@ public class ConvenienceBuilder {
      * @param email email address (also used as subText)
      * @return Item to add to card.
      */
-    public static MaterialAboutActionItem createEmailItem(Context c, CharSequence text, Drawable icon, String email) {
+    public static MaterialAboutActionItem createEmailItem(Context c, CharSequence text, Drawable icon, String email, String emailSubject) {
         return new MaterialAboutActionItem.Builder()
                 .text(text)
                 .subText(email)
                 .icon(icon)
-                .setOnClickListener(createEmailOnClickAction(c, email))
+                .setOnClickListener(createEmailOnClickAction(c, email, emailSubject))
                 .build();
     }
 

@@ -7,4 +7,5 @@
     <string name="mal_content_desc_action_icon">Action icon</string>
 
     <string name="mal_close">Close</string>
+    <string name="mal_send_email">Send email</string>
 </resources>
