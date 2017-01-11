@@ -166,7 +166,7 @@ Check out a working example in [`Demo.java`][3].
 Contributors
 -------
 * Daniel Stone ([@daniel-stoneuk](https://github.com/daniel-stoneuk))
-* Jonas Uekötter([@ueman](https://github.com/ueman))
+* Jonas Uekötter ([@ueman](https://github.com/ueman))
 * Rainer Lang ([@Rainer-Lang](https://github.com/rainer-lang))
 
 License
