@@ -163,6 +163,11 @@ Check out a working example in [`Demo.java`][3].
 
 **Tip:** Use [ConvenienceBuilder][conveniencebuilderjava] to easily create items or OnClickListeners.
 
+Contributors
+-------
+* Daniel Stone ([@daniel-stoneuk](https://github.com/daniel-stoneuk))
+* Jonas Uekötter([@ueman](https://github.com/ueman))
+* Rainer Lang ([@Rainer-Lang](https://github.com/rainer-lang))
 
 License
 -------
