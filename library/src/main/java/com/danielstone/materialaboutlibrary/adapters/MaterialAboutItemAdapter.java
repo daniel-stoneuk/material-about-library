@@ -5,10 +5,12 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.v7.widget.RecyclerView;
 import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.danielstone.materialaboutlibrary.R;
@@ -139,6 +141,19 @@ public class MaterialAboutItemAdapter extends RecyclerView.Adapter<MaterialAbout
             holder.icon.setVisibility(GONE);
         }
 
+        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) holder.icon.getLayoutParams();
+        switch (item.getIconGravity()) {
+            case MaterialAboutActionItem.GRAVITY_TOP:
+                params.gravity = Gravity.TOP;
+                break;
+            case MaterialAboutActionItem.GRAVITY_MIDDLE:
+                params.gravity = Gravity.CENTER_VERTICAL;
+                break;
+            case MaterialAboutActionItem.GRAVITY_BOTTOM:
+                params.gravity = Gravity.BOTTOM;
+                break;
+        }
+        holder.icon.setLayoutParams(params);
 
         int pL = 0, pT = 0, pR = 0, pB = 0;
         if (Build.VERSION.SDK_INT < 21) {

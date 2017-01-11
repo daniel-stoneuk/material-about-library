@@ -3,14 +3,26 @@ package com.danielstone.materialaboutlibrary.model;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.annotation.DrawableRes;
+import android.support.annotation.IntDef;
 import android.support.annotation.StringRes;
 import android.text.Html;
+
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 
 public class MaterialAboutActionItem extends MaterialAboutItem {
 
     public interface OnClickListener {
         void onClick();
     }
+
+    @Retention(RetentionPolicy.SOURCE)
+    @IntDef({GRAVITY_TOP, GRAVITY_MIDDLE, GRAVITY_BOTTOM})
+    public @interface IconGravity {}
+    public static final int GRAVITY_TOP = 0;
+    public static final int GRAVITY_MIDDLE = 1;
+    public static final int GRAVITY_BOTTOM = 2;
+
 
     private CharSequence text = null;
     private int textRes = 0;
@@ -21,6 +33,7 @@ public class MaterialAboutActionItem extends MaterialAboutItem {
     private Drawable icon = null;
     private int iconRes = 0;
     private boolean showIcon = true;
+    private int iconGravity = GRAVITY_MIDDLE;
 
     private MaterialAboutActionItem.OnClickListener onClickListener = null;
 
@@ -40,6 +53,8 @@ public class MaterialAboutActionItem extends MaterialAboutItem {
         this.iconRes = builder.iconRes;
 
         this.showIcon = builder.showIcon;
+
+        this.iconGravity = builder.iconGravity;
 
         this.onClickListener = builder.onClickListener;
     }
@@ -98,6 +113,11 @@ public class MaterialAboutActionItem extends MaterialAboutItem {
         return showIcon;
     }
 
+    @IconGravity
+    public int getIconGravity() {
+        return iconGravity;
+    }
+
     public MaterialAboutActionItem.OnClickListener getOnClickListener() {
         return onClickListener;
     }
@@ -118,6 +138,9 @@ public class MaterialAboutActionItem extends MaterialAboutItem {
         private int iconRes = 0;
 
         private boolean showIcon = true;
+
+        @IconGravity
+        private int iconGravity = GRAVITY_MIDDLE;
 
         MaterialAboutActionItem.OnClickListener onClickListener;
 
@@ -170,6 +193,11 @@ public class MaterialAboutActionItem extends MaterialAboutItem {
 
         public Builder showIcon(boolean showIcon) {
             this.showIcon = showIcon;
+            return this;
+        }
+
+        public Builder setIconGravity(@IconGravity int iconGravity) {
+            this.iconGravity = iconGravity;
             return this;
         }
 
