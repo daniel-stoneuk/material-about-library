@@ -42,7 +42,7 @@ public class MaterialAboutItemAdapter extends RecyclerView.Adapter<MaterialAbout
         private final TextView text;
         private final TextView subText;
         private int viewType;
-        MaterialAboutActionItem.OnClickListener onClickListener;
+        private MaterialAboutActionItem.OnClickListener onClickListener;
 
         MaterialAboutItemViewHolder(View view, int viewType) {
             super(view);
@@ -168,12 +168,13 @@ public class MaterialAboutItemAdapter extends RecyclerView.Adapter<MaterialAbout
             context.getTheme().resolveAttribute(R.attr.selectableItemBackground, outValue, true);
             holder.view.setBackgroundResource(outValue.resourceId);
             holder.onClickListener = item.getOnClickListener();
+            holder.view.setSoundEffectsEnabled(true);
         } else {
             TypedValue outValue = new TypedValue();
             context.getTheme().resolveAttribute(R.attr.selectableItemBackground, outValue, false);
             holder.view.setBackgroundResource(outValue.resourceId);
-            holder.onClickListener = item.getOnClickListener();
             holder.onClickListener = null;
+            holder.view.setSoundEffectsEnabled(false);
         }
 
         if (Build.VERSION.SDK_INT < 21) {
@@ -203,6 +204,8 @@ public class MaterialAboutItemAdapter extends RecyclerView.Adapter<MaterialAbout
         } else if (drawableRes != 0) {
             holder.icon.setImageResource(drawableRes);
         }
+
+        holder.view.setSoundEffectsEnabled(false);
     }
 
     @Override
