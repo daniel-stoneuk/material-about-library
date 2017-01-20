@@ -46,7 +46,7 @@ allprojects {
 ```
 ```gradle
 dependencies {
-    compile 'com.github.daniel-stoneuk:material-about-library:1.4.2'
+    compile 'com.github.daniel-stoneuk:material-about-library:1.5.0'
 }
 ```
 
