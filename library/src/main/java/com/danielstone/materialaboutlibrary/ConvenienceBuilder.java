@@ -51,6 +51,10 @@ public class ConvenienceBuilder {
     }
 
     public static MaterialAboutActionItem.OnClickListener createWebViewDialogOnClickAction(final Context c, final CharSequence dialogTitle, final String htmlString, final boolean isStringUrl, final boolean supportZoom) {
+        return createWebViewDialogOnClickAction(c, dialogTitle, c.getString(R.string.mal_close), htmlString, isStringUrl, supportZoom);
+    }
+
+    public static MaterialAboutActionItem.OnClickListener createWebViewDialogOnClickAction(final Context c, final CharSequence dialogTitle, final CharSequence dialogNegativeButton, final String htmlString, final boolean isStringUrl, final boolean supportZoom) {
 
         return new MaterialAboutActionItem.OnClickListener() {
             @Override
@@ -71,7 +75,7 @@ public class ConvenienceBuilder {
                 }
 
                 alertBuilder.setView(wv);
-                alertBuilder.setNegativeButton(R.string.mal_close, new DialogInterface.OnClickListener() {
+                alertBuilder.setNegativeButton(dialogNegativeButton, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
                         wv.destroy();
@@ -87,11 +91,15 @@ public class ConvenienceBuilder {
 
 
     public static MaterialAboutActionItem createWebViewDialogItem(Context c, Drawable icon, CharSequence text, @Nullable CharSequence subText, CharSequence dialogTitle, String htmlString, boolean isStringUrl, boolean supportZoom) {
+        return createWebViewDialogItem(c, icon, text, subText, dialogTitle, c.getString(R.string.mal_close), htmlString, isStringUrl, supportZoom);
+    }
+
+    public static MaterialAboutActionItem createWebViewDialogItem(Context c, Drawable icon, CharSequence text, @Nullable CharSequence subText, CharSequence dialogTitle, CharSequence dialogNegativeButton, String htmlString, boolean isStringUrl, boolean supportZoom) {
         return new MaterialAboutActionItem.Builder()
                 .text(text)
                 .subText(subText)
                 .icon(icon)
-                .setOnClickListener(createWebViewDialogOnClickAction(c, dialogTitle, htmlString, isStringUrl, supportZoom))
+                .setOnClickListener(createWebViewDialogOnClickAction(c, dialogTitle, dialogNegativeButton, htmlString, isStringUrl, supportZoom))
                 .build();
     }
 
@@ -181,6 +189,10 @@ public class ConvenienceBuilder {
                 .build();
     }
 
+    public static MaterialAboutActionItem.OnClickListener createEmailOnClickAction(final Context c, String email, String emailSubject) {
+        return createEmailOnClickAction(c, email, emailSubject, c.getString(R.string.mal_send_email));
+    }
+
     /**
      * Creates a MaterialAboutActionItem.OnClickListener that will open
      * an email intent with specified address.
@@ -189,7 +201,7 @@ public class ConvenienceBuilder {
      * @param email email address
      * @return onClickListener
      */
-    public static MaterialAboutActionItem.OnClickListener createEmailOnClickAction(final Context c, String email, String emailSubject) {
+    public static MaterialAboutActionItem.OnClickListener createEmailOnClickAction(final Context c, String email, String emailSubject, final CharSequence chooserTitle) {
 
         final Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:" + email));
         emailIntent.putExtra(Intent.EXTRA_SUBJECT, emailSubject);
@@ -198,7 +210,7 @@ public class ConvenienceBuilder {
             @Override
             public void onClick() {
                 try {
-                    c.startActivity(Intent.createChooser(emailIntent, c.getString(R.string.mal_send_email)));
+                    c.startActivity(Intent.createChooser(emailIntent, chooserTitle));
                 } catch (Exception e) {
                     // No activity to handle intent
                     Toast.makeText(c, R.string.mal_activity_exception, Toast.LENGTH_SHORT).show();
@@ -216,13 +228,17 @@ public class ConvenienceBuilder {
      * @param email email address (also used as subText)
      * @return Item to add to card.
      */
-    public static MaterialAboutActionItem createEmailItem(Context c, Drawable icon, CharSequence text, boolean showEmail, String email, String emailSubject) {
+    public static MaterialAboutActionItem createEmailItem(Context c, Drawable icon, CharSequence text, boolean showEmail, String email, String emailSubject, CharSequence chooserTitle) {
         return new MaterialAboutActionItem.Builder()
                 .text(text)
                 .subText((showEmail ? email : null))
                 .icon(icon)
-                .setOnClickListener(createEmailOnClickAction(c, email, emailSubject))
+                .setOnClickListener(createEmailOnClickAction(c, email, emailSubject, chooserTitle))
                 .build();
+    }
+
+    public static MaterialAboutActionItem createEmailItem(Context c, Drawable icon, CharSequence text, boolean showEmail, String email, String emailSubject) {
+        return createEmailItem(c, icon, text, showEmail, email, emailSubject, c.getString(R.string.mal_send_email));
     }
 
     /**
