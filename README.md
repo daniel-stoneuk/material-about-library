@@ -9,6 +9,8 @@ Idea from here: [Heinrich Reimer's open-source-library-request-manager][6]
 
 Design inspired by Phonograph.
 
+If you use this library in your app, please let me know and I'll add it to the list.
+
 Demo
 --------
 <a href='https://play.google.com/store/apps/details?id=com.danielstone.materialaboutlibrarydemo&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_gb/badges/images/generic/en_badge_web_generic.png' height="60" /></a>
@@ -163,6 +165,15 @@ Check out a working example in [`Demo.java`][3].
 
 **Tip:** Use [ConvenienceBuilder][conveniencebuilderjava] to easily create items or OnClickListeners.
 
+Contributors
+-------
+* Daniel Stone ([@daniel-stoneuk](https://github.com/daniel-stoneuk))
+* Jonas Uekötter ([@ueman](https://github.com/ueman))
+* Rainer Lang ([@Rainer-Lang](https://github.com/rainer-lang))
+
+Apps using this library
+-------
+* [Monitor for EnergyHive & Engage][5]
 
 License
 -------
