@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="mal_text_primary">#de000000</color>
+    <color name="mal_text_secondary">#8a000000</color>
+
+    <color name="mal_card_title">@color/mal_text_secondary</color>
+
+    <color name="mal_title_item_text">@color/mal_text_primary</color>
+
+    <color name="mal_action_item_text">@color/mal_text_primary</color>
+    <color name="mal_action_item_subtext">@color/mal_text_secondary</color>
+
+</resources>

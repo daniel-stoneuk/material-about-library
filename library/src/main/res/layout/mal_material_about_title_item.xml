@@ -34,6 +34,7 @@
         android:layout_marginLeft="@dimen/mal_baseline_half"
         android:layout_marginStart="@dimen/mal_baseline_half"
         android:layout_weight="1"
-        android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+        android:textColor="@color/mal_title_item_text" />
 
 </LinearLayout>

@@ -37,13 +37,15 @@
             android:id="@+id/mal_item_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+            android:textColor="@color/mal_action_item_text" />
 
         <TextView
             android:id="@+id/mal_action_item_subtext"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="@color/mal_action_item_subtext"
             android:visibility="gone" />
     </LinearLayout>
 
