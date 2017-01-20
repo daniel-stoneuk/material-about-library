@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView
- xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginLeft="@dimen/mal_baseline_half"
     android:layout_marginStart="@dimen/mal_baseline_half"
     android:layout_marginRight="@dimen/mal_baseline_half"
@@ -15,6 +15,10 @@
     android:paddingEnd="@dimen/mal_baseline_half"
     android:paddingTop="@dimen/mal_baseline"
     android:paddingBottom="@dimen/mal_baseline"
+    app:cardCornerRadius="@dimen/mal_card_radius"
+    app:cardElevation="@dimen/mal_card_elevation"
+    app:cardPreventCornerOverlap="false"
+    app:cardUseCompatPadding="true"
     >
 
     <LinearLayout

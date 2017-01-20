@@ -10,5 +10,8 @@
     <dimen name="mal_action_action_item_image_height">32dp</dimen>
     <dimen name="mal_title_item_image_size">40dp</dimen>
 
+    <dimen name="mal_card_radius">2dp</dimen>
+    <dimen name="mal_card_elevation">2dp</dimen>
+
 
 </resources>
