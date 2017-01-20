@@ -10,5 +10,4 @@
 
     <color name="mal_action_item_text">@color/mal_text_primary</color>
     <color name="mal_action_item_subtext">@color/mal_text_secondary</color>
-
 </resources>

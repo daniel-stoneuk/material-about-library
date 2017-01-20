@@ -8,4 +8,6 @@
 
     <string name="mal_close">Close</string>
     <string name="mal_send_email">Send email</string>
+
+    <string name="mal_activity_exception">No apps to handle action</string>
 </resources>

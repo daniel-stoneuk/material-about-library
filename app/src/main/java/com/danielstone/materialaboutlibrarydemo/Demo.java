@@ -100,6 +100,7 @@ public class Demo {
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
+
         convenienceCardBuilder.addItem(ConvenienceBuilder.createWebsiteActionItem(c,
                 new IconicsDrawable(c)
                         .icon(CommunityMaterial.Icon.cmd_earth)
@@ -117,6 +118,7 @@ public class Demo {
                 "Rate this app",
                 null
         ));
+
         convenienceCardBuilder.addItem(ConvenienceBuilder.createEmailItem(c,
                 new IconicsDrawable(c)
                         .icon(CommunityMaterial.Icon.cmd_email)
@@ -127,6 +129,14 @@ public class Demo {
                 "apps@daniel-stone.uk",
                 "Question concerning MaterialAboutLibrary"));
 
+        convenienceCardBuilder.addItem(ConvenienceBuilder.createPhoneItem(c,
+                new IconicsDrawable(c)
+                        .icon(CommunityMaterial.Icon.cmd_phone)
+                        .color(ContextCompat.getColor(c, R.color.colorIcon))
+                        .sizeDp(18),
+                "Call me",
+                true,
+                "+44 12 3456 7890"));
 
         MaterialAboutCard.Builder otherCardBuilder = new MaterialAboutCard.Builder();
         otherCardBuilder.title("Other");

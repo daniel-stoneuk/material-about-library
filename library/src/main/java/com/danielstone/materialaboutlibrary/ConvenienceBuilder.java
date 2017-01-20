@@ -12,6 +12,7 @@ import android.os.Build;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.webkit.WebView;
+import android.widget.Toast;
 
 import com.danielstone.materialaboutlibrary.model.MaterialAboutActionItem;
 import com.danielstone.materialaboutlibrary.model.MaterialAboutItem;
@@ -90,7 +91,7 @@ public class ConvenienceBuilder {
                 .text(text)
                 .subText(subText)
                 .icon(icon)
-                .setOnClickListener(createWebViewDialogOnClickAction(c, dialogTitle, htmlString, isStringUrl , supportZoom))
+                .setOnClickListener(createWebViewDialogOnClickAction(c, dialogTitle, htmlString, isStringUrl, supportZoom))
                 .build();
     }
 
@@ -101,7 +102,12 @@ public class ConvenienceBuilder {
             public void onClick() {
                 Intent i = new Intent(Intent.ACTION_VIEW);
                 i.setData(websiteUrl);
-                c.startActivity(i);
+                try {
+                    c.startActivity(i);
+                } catch (Exception e) {
+                    // No activity to handle intent
+                    Toast.makeText(c, R.string.mal_activity_exception, Toast.LENGTH_SHORT).show();
+                }
             }
         };
     }
@@ -115,7 +121,7 @@ public class ConvenienceBuilder {
      * @param websiteUrl (subText)
      * @return Item to add to card.
      */
-    public static MaterialAboutActionItem createWebsiteActionItem(Context c, Drawable icon, CharSequence text, boolean showAddress,  final Uri websiteUrl) {
+    public static MaterialAboutActionItem createWebsiteActionItem(Context c, Drawable icon, CharSequence text, boolean showAddress, final Uri websiteUrl) {
         return new MaterialAboutActionItem.Builder()
                 .text(text)
                 .subText((showAddress ? websiteUrl.toString() : null))
@@ -191,7 +197,12 @@ public class ConvenienceBuilder {
         return new MaterialAboutActionItem.OnClickListener() {
             @Override
             public void onClick() {
-                c.startActivity(Intent.createChooser(emailIntent, c.getString(R.string.mal_send_email)));
+                try {
+                    c.startActivity(Intent.createChooser(emailIntent, c.getString(R.string.mal_send_email)));
+                } catch (Exception e) {
+                    // No activity to handle intent
+                    Toast.makeText(c, R.string.mal_activity_exception, Toast.LENGTH_SHORT).show();
+                }
             }
         };
     }
@@ -205,12 +216,55 @@ public class ConvenienceBuilder {
      * @param email email address (also used as subText)
      * @return Item to add to card.
      */
-    public static MaterialAboutActionItem createEmailItem(Context c, Drawable icon, CharSequence text, boolean showEmail,  String email, String emailSubject) {
+    public static MaterialAboutActionItem createEmailItem(Context c, Drawable icon, CharSequence text, boolean showEmail, String email, String emailSubject) {
         return new MaterialAboutActionItem.Builder()
                 .text(text)
                 .subText((showEmail ? email : null))
                 .icon(icon)
                 .setOnClickListener(createEmailOnClickAction(c, email, emailSubject))
+                .build();
+    }
+
+    /**
+     * Creates a MaterialAboutActionItem.OnClickListener that will open
+     * the dialer with specified number.
+     *
+     * @param c      context
+     * @param number phone number
+     * @return onClickListener
+     */
+    public static MaterialAboutActionItem.OnClickListener createPhoneOnClickAction(final Context c, String number) {
+        final Intent phoneIntent = new Intent(Intent.ACTION_DIAL);
+        phoneIntent.setData(Uri.parse("tel:" + number));
+
+        return new MaterialAboutActionItem.OnClickListener() {
+            @Override
+            public void onClick() {
+                try {
+                    c.startActivity(phoneIntent);
+                } catch (Exception e) {
+                    // No activity to handle intent
+                    Toast.makeText(c, R.string.mal_activity_exception, Toast.LENGTH_SHORT).show();
+                }
+            }
+        };
+    }
+
+    /**
+     * Creates an ActionItem which will open the dialer when tapped
+     *
+     * @param c      context
+     * @param text
+     * @param icon
+     * @param number phone number (also used as subText)
+     * @return Item to add to card.
+     */
+    public static MaterialAboutActionItem createPhoneItem(Context c, Drawable icon, CharSequence text, boolean showNumber, String number) {
+        return new MaterialAboutActionItem.Builder()
+                .text(text)
+                .subText((showNumber ? number : null))
+                .icon(icon)
+                .setOnClickListener(createPhoneOnClickAction(c, number))
                 .build();
     }
 
