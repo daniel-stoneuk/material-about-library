@@ -25,8 +25,6 @@ public class MaterialAboutTitleItem extends MaterialAboutItem {
     private Drawable icon = null;
     private int iconRes = 0;
 
-    private int layoutRes = 0;
-
     @Override
     public int getType() {
         return ViewTypeManager.ItemType.TITLE_ITEM;
@@ -57,7 +55,6 @@ public class MaterialAboutTitleItem extends MaterialAboutItem {
         this.icon = builder.icon;
         this.iconRes = builder.iconRes;
 
-        this.layoutRes = builder.layoutRes;
     }
 
     public MaterialAboutTitleItem(CharSequence text, Drawable icon) {
@@ -84,13 +81,6 @@ public class MaterialAboutTitleItem extends MaterialAboutItem {
 
     public int getIconRes() {
         return iconRes;
-    }
-
-    public int getLayoutRes() {
-        if (layoutRes != 0)
-            return layoutRes;
-        else
-            return R.layout.mal_material_about_title_item;
     }
 
     public static void setupItem(MaterialAboutTitleItemViewHolder holder, MaterialAboutTitleItem item, Context c) {
@@ -156,12 +146,6 @@ public class MaterialAboutTitleItem extends MaterialAboutItem {
             this.iconRes = iconRes;
             return this;
         }
-
-        public MaterialAboutTitleItem.Builder layout(@LayoutRes int layout) {
-            this.layoutRes = layout;
-            return this;
-        }
-
 
         public MaterialAboutTitleItem build() {
             return new MaterialAboutTitleItem(this);

@@ -104,8 +104,6 @@ public class MaterialAboutActionItem extends MaterialAboutItem {
 
         this.iconGravity = builder.iconGravity;
 
-        this.layoutRes = builder.layoutRes;
-
         this.onClickListener = builder.onClickListener;
     }
 
@@ -166,13 +164,6 @@ public class MaterialAboutActionItem extends MaterialAboutItem {
     @IconGravity
     public int getIconGravity() {
         return iconGravity;
-    }
-
-    public int getLayoutRes() {
-        if (layoutRes != 0)
-            return layoutRes;
-        else
-            return R.layout.mal_material_about_action_item;
     }
 
     public MaterialAboutActionItem.OnClickListener getOnClickListener() {
@@ -336,11 +327,6 @@ public class MaterialAboutActionItem extends MaterialAboutItem {
 
         public Builder setIconGravity(@IconGravity int iconGravity) {
             this.iconGravity = iconGravity;
-            return this;
-        }
-
-        public Builder layout(@LayoutRes int layout) {
-            this.layoutRes = layout;
             return this;
         }
 
