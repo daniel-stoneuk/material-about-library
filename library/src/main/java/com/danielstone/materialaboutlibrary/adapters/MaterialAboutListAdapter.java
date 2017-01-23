@@ -12,6 +12,8 @@ import com.danielstone.materialaboutlibrary.R;
 import com.danielstone.materialaboutlibrary.model.MaterialAboutCard;
 import com.danielstone.materialaboutlibrary.model.MaterialAboutItem;
 import com.danielstone.materialaboutlibrary.model.MaterialAboutList;
+import com.danielstone.materialaboutlibrary.util.DefaultViewTypeManager;
+import com.danielstone.materialaboutlibrary.util.ViewTypeManager;
 
 import java.util.ArrayList;
 
@@ -22,8 +24,16 @@ public class MaterialAboutListAdapter extends RecyclerView.Adapter<MaterialAbout
 
     private Context context;
 
+    private ViewTypeManager viewTypeManager;
+
     public MaterialAboutListAdapter(MaterialAboutList list) {
         this.data = list.getCards();
+        this.viewTypeManager = new DefaultViewTypeManager();
+    }
+
+    public MaterialAboutListAdapter(MaterialAboutList list, ViewTypeManager customViewTypeManager) {
+        this.data = list.getCards();
+        this.viewTypeManager = customViewTypeManager;
     }
 
     class MaterialAboutListViewHolder extends RecyclerView.ViewHolder {
@@ -36,14 +46,12 @@ public class MaterialAboutListAdapter extends RecyclerView.Adapter<MaterialAbout
             super(view);
             title = (TextView) view.findViewById(R.id.mal_list_card_title);
             recyclerView = (RecyclerView) view.findViewById(R.id.mal_card_recyclerview);
-            adapter = new MaterialAboutItemAdapter(new ArrayList<MaterialAboutItem>());
+            adapter = new MaterialAboutItemAdapter(new ArrayList<MaterialAboutItem>(), viewTypeManager);
             recyclerView.setLayoutManager(new LinearLayoutManager(context));
             recyclerView.setAdapter(adapter);
             recyclerView.setNestedScrollingEnabled(false);
 
         }
-
-
     }
 
     @Override

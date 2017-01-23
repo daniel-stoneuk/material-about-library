@@ -1,11 +1,10 @@
-package com.danielstone.materialaboutlibrary.model;
+package com.danielstone.materialaboutlibrarydemo.custom;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.IntDef;
-import android.support.annotation.LayoutRes;
 import android.support.annotation.StringRes;
 import android.text.Html;
 import android.util.TypedValue;
@@ -17,14 +16,14 @@ import android.widget.TextView;
 
 import com.danielstone.materialaboutlibrary.R;
 import com.danielstone.materialaboutlibrary.holders.MaterialAboutItemViewHolder;
-import com.danielstone.materialaboutlibrary.util.ViewTypeManager;
+import com.danielstone.materialaboutlibrary.model.MaterialAboutItem;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 import static android.view.View.GONE;
 
-public class MaterialAboutActionItem extends MaterialAboutItem {
+public class MyCustomItem extends MaterialAboutItem {
 
     public interface OnClickListener {
         void onClick();
@@ -51,25 +50,25 @@ public class MaterialAboutActionItem extends MaterialAboutItem {
     private boolean showIcon = true;
     private int iconGravity = GRAVITY_MIDDLE;
 
-    private MaterialAboutActionItem.OnClickListener onClickListener = null;
+    private MyCustomItem.OnClickListener onClickListener = null;
 
     @Override
     public int getType() {
-        return ViewTypeManager.ItemType.ACTION_ITEM;
+        return MyViewTypeManager.ItemType.CUSTOM_ITEM;
     }
 
     public static MaterialAboutItemViewHolder getViewHolder(View view) {
-        return new MaterialAboutActionItemViewHolder(view);
+        return new MyCustomItemViewHolder(view);
     }
 
-    public static class MaterialAboutActionItemViewHolder extends MaterialAboutItemViewHolder implements View.OnClickListener {
+    public static class MyCustomItemViewHolder extends MaterialAboutItemViewHolder implements View.OnClickListener {
         public final View view;
         public final ImageView icon;
         public final TextView text;
         public final TextView subText;
-        public MaterialAboutActionItem.OnClickListener onClickListener;
+        public MyCustomItem.OnClickListener onClickListener;
 
-        MaterialAboutActionItemViewHolder(View view) {
+        MyCustomItemViewHolder(View view) {
             super(view);
             this.view = view;
             icon = (ImageView) view.findViewById(R.id.mal_item_image);
@@ -88,7 +87,7 @@ public class MaterialAboutActionItem extends MaterialAboutItem {
         }
     }
 
-    private MaterialAboutActionItem(Builder builder) {
+    private MyCustomItem(Builder builder) {
         this.text = builder.text;
         this.textRes = builder.textRes;
 
@@ -105,27 +104,27 @@ public class MaterialAboutActionItem extends MaterialAboutItem {
         this.onClickListener = builder.onClickListener;
     }
 
-    public MaterialAboutActionItem(CharSequence text, CharSequence subText, Drawable icon, OnClickListener onClickListener) {
+    public MyCustomItem(CharSequence text, CharSequence subText, Drawable icon, OnClickListener onClickListener) {
         this.text = text;
         this.subText = subText;
         this.icon = icon;
         this.onClickListener = onClickListener;
     }
 
-    public MaterialAboutActionItem(CharSequence text, CharSequence subText, Drawable icon) {
+    public MyCustomItem(CharSequence text, CharSequence subText, Drawable icon) {
         this.text = text;
         this.subText = subText;
         this.icon = icon;
     }
 
-    public MaterialAboutActionItem(int textRes, int subTextRes, int iconRes, OnClickListener onClickListener) {
+    public MyCustomItem(int textRes, int subTextRes, int iconRes, OnClickListener onClickListener) {
         this.textRes = textRes;
         this.subTextRes = subTextRes;
         this.iconRes = iconRes;
         this.onClickListener = onClickListener;
     }
 
-    public MaterialAboutActionItem(int textRes, int subTextRes, int iconRes) {
+    public MyCustomItem(int textRes, int subTextRes, int iconRes) {
         this.textRes = textRes;
         this.subTextRes = subTextRes;
         this.iconRes = iconRes;
@@ -164,11 +163,11 @@ public class MaterialAboutActionItem extends MaterialAboutItem {
         return iconGravity;
     }
 
-    public MaterialAboutActionItem.OnClickListener getOnClickListener() {
+    public MyCustomItem.OnClickListener getOnClickListener() {
         return onClickListener;
     }
 
-    public static void setupItem(MaterialAboutActionItemViewHolder holder, MaterialAboutActionItem item, Context context) {
+    public static void setupItem(MyCustomItemViewHolder holder, MyCustomItem item, Context context) {
         CharSequence text = item.getText();
         int textRes = item.getTextRes();
 
@@ -208,13 +207,13 @@ public class MaterialAboutActionItem extends MaterialAboutItem {
 
         LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) holder.icon.getLayoutParams();
         switch (item.getIconGravity()) {
-            case MaterialAboutActionItem.GRAVITY_TOP:
+            case MyCustomItem.GRAVITY_TOP:
                 params.gravity = Gravity.TOP;
                 break;
-            case MaterialAboutActionItem.GRAVITY_MIDDLE:
+            case MyCustomItem.GRAVITY_MIDDLE:
                 params.gravity = Gravity.CENTER_VERTICAL;
                 break;
-            case MaterialAboutActionItem.GRAVITY_BOTTOM:
+            case MyCustomItem.GRAVITY_BOTTOM:
                 params.gravity = Gravity.BOTTOM;
                 break;
         }
@@ -266,10 +265,7 @@ public class MaterialAboutActionItem extends MaterialAboutItem {
         @IconGravity
         private int iconGravity = GRAVITY_MIDDLE;
 
-        @LayoutRes
-        private int layoutRes = 0;
-
-        MaterialAboutActionItem.OnClickListener onClickListener;
+        MyCustomItem.OnClickListener onClickListener;
 
         public Builder text(CharSequence text) {
             this.text = text;
@@ -328,13 +324,13 @@ public class MaterialAboutActionItem extends MaterialAboutItem {
             return this;
         }
 
-        public Builder setOnClickListener(MaterialAboutActionItem.OnClickListener onClickListener) {
+        public Builder setOnClickListener(MyCustomItem.OnClickListener onClickListener) {
             this.onClickListener = onClickListener;
             return this;
         }
 
-        public MaterialAboutActionItem build() {
-            return new MaterialAboutActionItem(this);
+        public MyCustomItem build() {
+            return new MyCustomItem(this);
         }
     }
 }

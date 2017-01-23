@@ -14,6 +14,8 @@ import android.support.v7.widget.Toolbar;
 
 import com.danielstone.materialaboutlibrary.adapters.MaterialAboutListAdapter;
 import com.danielstone.materialaboutlibrary.model.MaterialAboutList;
+import com.danielstone.materialaboutlibrary.util.DefaultViewTypeManager;
+import com.danielstone.materialaboutlibrary.util.ViewTypeManager;
 
 public abstract class MaterialAboutActivity extends AppCompatActivity {
 
@@ -64,7 +66,7 @@ public abstract class MaterialAboutActivity extends AppCompatActivity {
             }
         }
 
-        adapter = new MaterialAboutListAdapter(new MaterialAboutList.Builder().build());
+        adapter = new MaterialAboutListAdapter(new MaterialAboutList.Builder().build(), getViewTypeManager());
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
     }
@@ -91,5 +93,9 @@ public abstract class MaterialAboutActivity extends AppCompatActivity {
             super.onPostExecute(s);
             context = null;
         }
+    }
+
+    protected ViewTypeManager getViewTypeManager() {
+        return new DefaultViewTypeManager();
     }
 }

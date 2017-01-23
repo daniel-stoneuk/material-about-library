@@ -15,7 +15,7 @@ public class ExampleMaterialAboutFragmentActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportFragmentManager().beginTransaction()
-                .add(R.id.container, ExampleMaterialAboutFragment.newInstance(new ExampleMaterialAboutFragment()))
+                .replace(R.id.container, ExampleMaterialAboutFragment.newInstance(new ExampleMaterialAboutFragment()))
                 .commit();
 
         setTitle("About Fragment Activity");

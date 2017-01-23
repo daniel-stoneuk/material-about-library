@@ -13,6 +13,8 @@ import android.view.ViewGroup;
 
 import com.danielstone.materialaboutlibrary.adapters.MaterialAboutListAdapter;
 import com.danielstone.materialaboutlibrary.model.MaterialAboutList;
+import com.danielstone.materialaboutlibrary.util.DefaultViewTypeManager;
+import com.danielstone.materialaboutlibrary.util.ViewTypeManager;
 
 public abstract class MaterialAboutFragment extends Fragment {
 
@@ -75,5 +77,9 @@ public abstract class MaterialAboutFragment extends Fragment {
             super.onPostExecute(s);
             fragmentContext = null;
         }
+    }
+
+    protected ViewTypeManager getViewTypeManager() {
+        return new DefaultViewTypeManager();
     }
 }

@@ -16,6 +16,16 @@ public class MaterialAboutList {
         Collections.addAll(cards, materialAboutCards);
     }
 
+    public MaterialAboutList addCard(MaterialAboutCard card) {
+        cards.add(card);
+        return this;
+    }
+
+    public MaterialAboutList clearCards(MaterialAboutCard card) {
+        cards.clear();
+        return this;
+    }
+
     public static class Builder {
         private ArrayList<MaterialAboutCard> cards = new ArrayList<>();
 
