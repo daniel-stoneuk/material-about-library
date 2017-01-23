@@ -3,6 +3,7 @@ package com.danielstone.materialaboutlibrarydemo;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.widget.Toast;
 
@@ -151,6 +152,20 @@ public class Demo {
                 .setIconGravity(MaterialAboutActionItem.GRAVITY_TOP)
                 .build()
         );
+
+        otherCardBuilder.addItem(new MaterialAboutActionItem.Builder()
+                .text("Snackbar demo")
+                .icon(new IconicsDrawable(c)
+                        .icon(CommunityMaterial.Icon.cmd_code_tags)
+                        .color(ContextCompat.getColor(c, R.color.colorIcon))
+                        .sizeDp(18))
+                .setOnClickListener(new MaterialAboutActionItem.OnClickListener() {
+                    @Override
+                    public void onClick() {
+                        Snackbar.make(((ExampleMaterialAboutActivity) c).findViewById(android.R.id.content), "Test", Snackbar.LENGTH_SHORT).show();
+                    }
+                })
+                .build());
 
         return new MaterialAboutList(appCardBuilder.build(), authorCardBuilder.build(), convenienceCardBuilder.build(), otherCardBuilder.build());
     }
