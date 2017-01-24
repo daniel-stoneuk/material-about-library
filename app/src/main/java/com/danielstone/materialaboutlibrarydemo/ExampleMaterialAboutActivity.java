@@ -31,7 +31,7 @@ public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
                 .text("Dynamic UI")
                 .subText("Tap for a random number.")
                 .icon(new IconicsDrawable(c)
-                        .icon(CommunityMaterial.Icon.cmd_material_ui)
+                        .icon(CommunityMaterial.Icon.cmd_refresh)
                         .color(ContextCompat.getColor(c, R.color.colorIcon)
                         ).sizeDp(18))
                 .setOnClickListener(new MaterialAboutActionItem.OnClickListener() {
