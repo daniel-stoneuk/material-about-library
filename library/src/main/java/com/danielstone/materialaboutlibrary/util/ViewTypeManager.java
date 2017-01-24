@@ -5,7 +5,7 @@ import android.view.View;
 
 import com.danielstone.materialaboutlibrary.R;
 import com.danielstone.materialaboutlibrary.holders.MaterialAboutItemViewHolder;
-import com.danielstone.materialaboutlibrary.model.MaterialAboutItem;
+import com.danielstone.materialaboutlibrary.items.MaterialAboutItem;
 
 public abstract class ViewTypeManager {
 

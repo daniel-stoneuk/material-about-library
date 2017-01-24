@@ -4,9 +4,9 @@ import android.content.Context;
 import android.view.View;
 
 import com.danielstone.materialaboutlibrary.holders.MaterialAboutItemViewHolder;
-import com.danielstone.materialaboutlibrary.model.MaterialAboutActionItem;
-import com.danielstone.materialaboutlibrary.model.MaterialAboutItem;
-import com.danielstone.materialaboutlibrary.model.MaterialAboutTitleItem;
+import com.danielstone.materialaboutlibrary.items.MaterialAboutActionItem;
+import com.danielstone.materialaboutlibrary.items.MaterialAboutItem;
+import com.danielstone.materialaboutlibrary.items.MaterialAboutTitleItem;
 import com.danielstone.materialaboutlibrary.util.ViewTypeManager;
 import com.danielstone.materialaboutlibrarydemo.R;
 

@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.danielstone.materialaboutlibrary.holders.MaterialAboutItemViewHolder;
-import com.danielstone.materialaboutlibrary.model.MaterialAboutItem;
+import com.danielstone.materialaboutlibrary.items.MaterialAboutItem;
 import com.danielstone.materialaboutlibrary.util.DefaultViewTypeManager;
 import com.danielstone.materialaboutlibrary.util.ViewTypeManager;
 

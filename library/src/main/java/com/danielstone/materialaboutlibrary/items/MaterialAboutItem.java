@@ -1,4 +1,4 @@
-package com.danielstone.materialaboutlibrary.model;
+package com.danielstone.materialaboutlibrary.items;
 
 
 public abstract class MaterialAboutItem {

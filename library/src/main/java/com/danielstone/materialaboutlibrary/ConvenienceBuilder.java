@@ -14,9 +14,9 @@ import android.support.v7.app.AlertDialog;
 import android.webkit.WebView;
 import android.widget.Toast;
 
-import com.danielstone.materialaboutlibrary.model.MaterialAboutActionItem;
-import com.danielstone.materialaboutlibrary.model.MaterialAboutItem;
-import com.danielstone.materialaboutlibrary.model.MaterialAboutTitleItem;
+import com.danielstone.materialaboutlibrary.items.MaterialAboutActionItem;
+import com.danielstone.materialaboutlibrary.items.MaterialAboutItem;
+import com.danielstone.materialaboutlibrary.items.MaterialAboutTitleItem;
 
 @SuppressWarnings("JavaDoc")
 public class ConvenienceBuilder {
