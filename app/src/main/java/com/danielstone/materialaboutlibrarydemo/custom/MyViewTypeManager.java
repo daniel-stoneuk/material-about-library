@@ -27,6 +27,7 @@ public class MyViewTypeManager extends ViewTypeManager {
         public static final int CUSTOM_LAYOUT = R.layout.custom_item;
     }
 
+
     public int getLayout(int itemType) {
         switch (itemType) {
             case ACTION_ITEM:
