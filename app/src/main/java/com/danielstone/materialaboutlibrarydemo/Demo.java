@@ -138,6 +138,15 @@ public class Demo {
                 true,
                 "+44 12 3456 7890"));
 
+        convenienceCardBuilder.addItem(ConvenienceBuilder.createMapItem(c,
+                new IconicsDrawable(c)
+                        .icon(CommunityMaterial.Icon.cmd_map)
+                        .color(ContextCompat.getColor(c, R.color.colorIcon))
+                        .sizeDp(18),
+                "Visit London",
+                null,
+                "London Eye"));
+
         MaterialAboutCard.Builder otherCardBuilder = new MaterialAboutCard.Builder();
         otherCardBuilder.title("Other");
 

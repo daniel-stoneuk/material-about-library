@@ -284,4 +284,49 @@ public class ConvenienceBuilder {
                 .build();
     }
 
+    /**
+     * Creates a MaterialAboutActionItem.OnClickListener that will open
+     * maps with a query.
+     * Query can be either lat,lng(label) or written address
+     *
+     * @param c      context
+     * @param addressQuery address query
+     * @return onClickListener
+     */
+    public static MaterialAboutActionItem.OnClickListener createMapOnClickAction(final Context c, String addressQuery) {
+        final Intent mapIntent = new Intent(Intent.ACTION_VIEW);
+        mapIntent.setData(Uri.parse("geo:0,0").buildUpon().appendQueryParameter("q", addressQuery).build());
+        return new MaterialAboutActionItem.OnClickListener() {
+            @Override
+            public void onClick() {
+                try {
+                    c.startActivity(mapIntent);
+                } catch (Exception e) {
+                    // No activity to handle intent
+                    Toast.makeText(c, R.string.mal_activity_exception, Toast.LENGTH_SHORT).show();
+                }
+            }
+        };
+    }
+
+    /**
+     * Creates an ActionItem which will open maps when tapped
+     * Query can be either lat,lng(label) or written address
+     *
+     * @param c      context
+     * @param text
+     * @param subText can be set to null
+     * @param icon
+     * @param addressQuery addressQuery
+     * @return Item to add to card.
+     */
+    public static MaterialAboutActionItem createMapItem(Context c, Drawable icon, CharSequence text, CharSequence subText, String addressQuery) {
+        return new MaterialAboutActionItem.Builder()
+                .text(text)
+                .subText(subText)
+                .icon(icon)
+                .setOnClickListener(createMapOnClickAction(c, addressQuery))
+                .build();
+    }
+
 }
