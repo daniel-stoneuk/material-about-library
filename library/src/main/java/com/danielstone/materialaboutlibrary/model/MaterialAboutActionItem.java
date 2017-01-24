@@ -135,28 +135,69 @@ public class MaterialAboutActionItem extends MaterialAboutItem {
         return text;
     }
 
+    public MaterialAboutActionItem setText(CharSequence text) {
+        this.textRes = 0;
+        this.text = text;
+        return this;
+    }
+
     public int getTextRes() {
         return textRes;
+    }
+
+    public MaterialAboutActionItem setTextRes(int textRes) {
+        this.text = null;
+        this.textRes = textRes;
+        return this;
     }
 
     public CharSequence getSubText() {
         return subText;
     }
 
+    public MaterialAboutActionItem setSubText(CharSequence subText) {
+        this.subTextRes = 0;
+        this.subText = subText;
+        return this;
+    }
+
     public int getSubTextRes() {
         return subTextRes;
+    }
+
+    public MaterialAboutActionItem setSubTextRes(int subTextRes) {
+        this.subText = null;
+        this.subTextRes = subTextRes;
+        return this;
     }
 
     public Drawable getIcon() {
         return icon;
     }
 
+    public MaterialAboutActionItem setIcon(Drawable icon) {
+        this.iconRes = 0;
+        this.icon = icon;
+        return this;
+    }
+
     public int getIconRes() {
         return iconRes;
     }
 
+    public MaterialAboutActionItem setIconRes(int iconRes) {
+        this.icon = null;
+        this.iconRes = iconRes;
+        return this;
+    }
+
     public boolean shouldShowIcon() {
         return showIcon;
+    }
+
+    public MaterialAboutActionItem setShouldShowIcon(boolean showIcon) {
+        this.showIcon = showIcon;
+        return this;
     }
 
     @IconGravity
@@ -164,8 +205,18 @@ public class MaterialAboutActionItem extends MaterialAboutItem {
         return iconGravity;
     }
 
+    public MaterialAboutActionItem setIconGravity(int iconGravity) {
+        this.iconGravity = iconGravity;
+        return this;
+    }
+
     public MaterialAboutActionItem.OnClickListener getOnClickListener() {
         return onClickListener;
+    }
+
+    public MaterialAboutActionItem setOnClickListener(OnClickListener onClickListener) {
+        this.onClickListener = onClickListener;
+        return this;
     }
 
     public static void setupItem(MaterialAboutActionItemViewHolder holder, MaterialAboutActionItem item, Context context) {

@@ -23,7 +23,7 @@ public abstract class MaterialAboutActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private MaterialAboutListAdapter adapter;
 
-    MaterialAboutList list = null;
+    MaterialAboutList list = new MaterialAboutList.Builder().build();
 
     protected abstract MaterialAboutList getMaterialAboutList(Context c);
 
@@ -66,7 +66,7 @@ public abstract class MaterialAboutActivity extends AppCompatActivity {
             }
         }
 
-        adapter = new MaterialAboutListAdapter(new MaterialAboutList.Builder().build(), getViewTypeManager());
+        adapter = new MaterialAboutListAdapter(list, getViewTypeManager());
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
     }
@@ -97,5 +97,14 @@ public abstract class MaterialAboutActivity extends AppCompatActivity {
 
     protected ViewTypeManager getViewTypeManager() {
         return new DefaultViewTypeManager();
+    }
+
+    protected void setMaterialAboutList(MaterialAboutList materialAboutList) {
+        list = materialAboutList;
+        adapter.swapData(materialAboutList);
+    }
+
+    protected MaterialAboutList getMaterialAboutList() {
+        return list;
     }
 }

@@ -71,18 +71,40 @@ public class MaterialAboutTitleItem extends MaterialAboutItem {
         return text;
     }
 
+    public MaterialAboutTitleItem setText(CharSequence text) {
+        this.textRes = 0;
+        this.text = text;
+        return this;
+    }
+
     public int getTextRes() {
         return textRes;
     }
 
+    public MaterialAboutTitleItem setTextRes(int textRes) {
+        this.text = null;
+        this.textRes = textRes;
+        return this;
+    }
     public Drawable getIcon() {
         return icon;
+    }
+
+    public MaterialAboutTitleItem setIcon(Drawable icon) {
+        this.iconRes = 0;
+        this.icon = icon;
+        return this;
     }
 
     public int getIconRes() {
         return iconRes;
     }
 
+    public MaterialAboutTitleItem setIconRes(int iconRes) {
+        this.icon = null;
+        this.iconRes = iconRes;
+        return this;
+    }
     public static void setupItem(MaterialAboutTitleItemViewHolder holder, MaterialAboutTitleItem item, Context c) {
 
         CharSequence text = item.getText();

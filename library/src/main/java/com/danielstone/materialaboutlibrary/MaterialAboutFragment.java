@@ -42,7 +42,7 @@ public abstract class MaterialAboutFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.mal_material_about_fragment, container, false);
 
         recyclerView = (RecyclerView) rootView.findViewById(R.id.mal_recyclerview);
-        adapter = new MaterialAboutListAdapter(list);
+        adapter = new MaterialAboutListAdapter(list, getViewTypeManager());
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
 
@@ -81,5 +81,14 @@ public abstract class MaterialAboutFragment extends Fragment {
 
     protected ViewTypeManager getViewTypeManager() {
         return new DefaultViewTypeManager();
+    }
+
+    protected void setMaterialAboutList(MaterialAboutList materialAboutList) {
+        list = materialAboutList;
+        adapter.swapData(materialAboutList);
+    }
+
+    protected MaterialAboutList getMaterialAboutList() {
+        return list;
     }
 }
