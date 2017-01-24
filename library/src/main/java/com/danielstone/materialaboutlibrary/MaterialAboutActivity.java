@@ -5,7 +5,9 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.AppBarLayout;
 import android.support.v4.app.NavUtils;
+import android.support.v4.view.animation.FastOutSlowInInterpolator;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -89,7 +91,7 @@ public abstract class MaterialAboutActivity extends AppCompatActivity {
         protected void onPostExecute(String s) {
 
             adapter.swapData(list);
-            recyclerView.animate().alpha(1f).translationY(0f).setDuration(200).start();
+            recyclerView.animate().alpha(1f).translationY(0f).setDuration(400).setInterpolator(new FastOutSlowInInterpolator()).start();
             super.onPostExecute(s);
             context = null;
         }
@@ -106,5 +108,18 @@ public abstract class MaterialAboutActivity extends AppCompatActivity {
 
     protected MaterialAboutList getMaterialAboutList() {
         return list;
+    }
+
+    protected void setScrollToolbar(boolean scrollToolbar) {
+        if (toolbar != null) {
+            AppBarLayout.LayoutParams params =
+                    (AppBarLayout.LayoutParams) toolbar.getLayoutParams();
+            if (scrollToolbar) {
+                params.setScrollFlags(AppBarLayout.LayoutParams.SCROLL_FLAG_SCROLL
+                        | AppBarLayout.LayoutParams.SCROLL_FLAG_ENTER_ALWAYS);
+            } else {
+                params.setScrollFlags(0);
+            }
+        }
     }
 }

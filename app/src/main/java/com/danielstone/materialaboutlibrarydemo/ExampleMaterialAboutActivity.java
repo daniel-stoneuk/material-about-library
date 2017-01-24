@@ -1,6 +1,9 @@
 package com.danielstone.materialaboutlibrarydemo;
 
 import android.content.Context;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 
 import com.danielstone.materialaboutlibrary.MaterialAboutActivity;
@@ -17,17 +20,32 @@ public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
 
     @Override
     protected MaterialAboutList getMaterialAboutList(final Context c) {
-        MaterialAboutCard.Builder customItemCardBuilder = new MaterialAboutCard.Builder();
-        customItemCardBuilder.title("Advanced");
+        MaterialAboutCard.Builder advancedCardBuilder = new MaterialAboutCard.Builder();
+        advancedCardBuilder.title("Advanced");
 
-        customItemCardBuilder.addItem(new MyCustomItem.Builder()
+        advancedCardBuilder.addItem(new MaterialAboutActionItem.Builder()
+                .text("Snackbar demo")
+                .icon(new IconicsDrawable(c)
+                        .icon(CommunityMaterial.Icon.cmd_code_tags)
+                        .color(ContextCompat.getColor(c, R.color.colorIcon))
+                        .sizeDp(18))
+                .setOnClickListener(new MaterialAboutActionItem.OnClickListener() {
+                    @Override
+                    public void onClick() {
+                        Snackbar.make(((ExampleMaterialAboutActivity) c).findViewById(R.id.mal_material_about_activity_coordinator_layout), "Test", Snackbar.LENGTH_SHORT).show();
+                    }
+                })
+                .build());
+
+        advancedCardBuilder.addItem(new MyCustomItem.Builder()
                 .text("Custom Item")
                 .icon(new IconicsDrawable(c)
                         .icon(CommunityMaterial.Icon.cmd_code_braces)
                         .color(ContextCompat.getColor(c, R.color.colorIcon))
                         .sizeDp(18))
                 .build());
-        customItemCardBuilder.addItem(new MaterialAboutActionItem.Builder()
+
+        advancedCardBuilder.addItem(new MaterialAboutActionItem.Builder()
                 .text("Dynamic UI")
                 .subText("Tap for a random number.")
                 .icon(new IconicsDrawable(c)
@@ -41,13 +59,21 @@ public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
                         ((MaterialAboutActionItem) newList.getCards()
                                 .get(4)
                                 .getItems()
-                                .get(1)).setSubText("Random number: " + ((int) (Math.random() * 10)));
+                                .get(2)).setSubText("Random number: " + ((int) (Math.random() * 10)));
                         setMaterialAboutList(newList);
                     }
                 })
                 .build());
 
-        return Demo.createMaterialAboutList(c).addCard(customItemCardBuilder.build());
+        return Demo.createMaterialAboutList(c).addCard(advancedCardBuilder.build());
+    }
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+//        Call this method to let the scrollbar scroll off screen
+//        setScrollToolbar(true);
     }
 
     @Override

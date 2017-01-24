@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.animation.FastOutSlowInInterpolator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -73,7 +74,7 @@ public abstract class MaterialAboutFragment extends Fragment {
         protected void onPostExecute(String s) {
 
             adapter.swapData(list);
-            recyclerView.animate().alpha(1f).translationY(0f).setDuration(200).start();
+            recyclerView.animate().alpha(1f).translationY(0f).setDuration(400).setInterpolator(new FastOutSlowInInterpolator()).start();
             super.onPostExecute(s);
             fragmentContext = null;
         }
