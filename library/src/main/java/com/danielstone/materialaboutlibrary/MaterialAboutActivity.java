@@ -21,11 +21,10 @@ import com.danielstone.materialaboutlibrary.util.ViewTypeManager;
 
 public abstract class MaterialAboutActivity extends AppCompatActivity {
 
+    private MaterialAboutList list = new MaterialAboutList.Builder().build();
     private Toolbar toolbar;
     private RecyclerView recyclerView;
     private MaterialAboutListAdapter adapter;
-
-    MaterialAboutList list = new MaterialAboutList.Builder().build();
 
     protected abstract MaterialAboutList getMaterialAboutList(Context c);
 
@@ -73,6 +72,32 @@ public abstract class MaterialAboutActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
     }
 
+    protected ViewTypeManager getViewTypeManager() {
+        return new DefaultViewTypeManager();
+    }
+
+    protected MaterialAboutList getMaterialAboutList() {
+        return list;
+    }
+
+    protected void setMaterialAboutList(MaterialAboutList materialAboutList) {
+        list = materialAboutList;
+        adapter.swapData(materialAboutList);
+    }
+
+    protected void setScrollToolbar(boolean scrollToolbar) {
+        if (toolbar != null) {
+            AppBarLayout.LayoutParams params =
+                    (AppBarLayout.LayoutParams) toolbar.getLayoutParams();
+            if (scrollToolbar) {
+                params.setScrollFlags(AppBarLayout.LayoutParams.SCROLL_FLAG_SCROLL
+                        | AppBarLayout.LayoutParams.SCROLL_FLAG_ENTER_ALWAYS);
+            } else {
+                params.setScrollFlags(0);
+            }
+        }
+    }
+
     private class ListTask extends AsyncTask<String, String, String> {
 
         Context context;
@@ -94,32 +119,6 @@ public abstract class MaterialAboutActivity extends AppCompatActivity {
             recyclerView.animate().alpha(1f).translationY(0f).setDuration(400).setInterpolator(new FastOutSlowInInterpolator()).start();
             super.onPostExecute(s);
             context = null;
-        }
-    }
-
-    protected ViewTypeManager getViewTypeManager() {
-        return new DefaultViewTypeManager();
-    }
-
-    protected void setMaterialAboutList(MaterialAboutList materialAboutList) {
-        list = materialAboutList;
-        adapter.swapData(materialAboutList);
-    }
-
-    protected MaterialAboutList getMaterialAboutList() {
-        return list;
-    }
-
-    protected void setScrollToolbar(boolean scrollToolbar) {
-        if (toolbar != null) {
-            AppBarLayout.LayoutParams params =
-                    (AppBarLayout.LayoutParams) toolbar.getLayoutParams();
-            if (scrollToolbar) {
-                params.setScrollFlags(AppBarLayout.LayoutParams.SCROLL_FLAG_SCROLL
-                        | AppBarLayout.LayoutParams.SCROLL_FLAG_ENTER_ALWAYS);
-            } else {
-                params.setScrollFlags(0);
-            }
         }
     }
 }

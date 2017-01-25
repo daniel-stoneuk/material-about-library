@@ -19,49 +19,11 @@ import static android.view.View.GONE;
 
 public class MaterialAboutTitleItem extends MaterialAboutItem {
 
-    public interface OnClickListener {
-        void onClick();
-    }
-
     private CharSequence text = null;
     private int textRes = 0;
-
     private Drawable icon = null;
     private int iconRes = 0;
-
     private MaterialAboutTitleItem.OnClickListener onClickListener = null;
-
-    @Override
-    public int getType() {
-        return ViewTypeManager.ItemType.TITLE_ITEM;
-    }
-
-    public static MaterialAboutItemViewHolder getViewHolder(View view) {
-        return new MaterialAboutTitleItem.MaterialAboutTitleItemViewHolder(view);
-    }
-
-    public static class MaterialAboutTitleItemViewHolder extends MaterialAboutItemViewHolder implements View.OnClickListener {
-        public final View view;
-        public final ImageView icon;
-        public final TextView text;
-        public MaterialAboutTitleItem.OnClickListener onClickListener;
-
-        MaterialAboutTitleItemViewHolder(View view) {
-            super(view);
-            this.view = view;
-            icon = (ImageView) view.findViewById(R.id.mal_item_image);
-            text = (TextView) view.findViewById(R.id.mal_item_text);
-
-            view.setOnClickListener(this);
-            onClickListener = null;
-        }
-
-        @Override
-        public void onClick(View v) {
-
-        }
-    }
-
 
     private MaterialAboutTitleItem(MaterialAboutTitleItem.Builder builder) {
         this.text = builder.text;
@@ -83,52 +45,8 @@ public class MaterialAboutTitleItem extends MaterialAboutItem {
         this.iconRes = iconRes;
     }
 
-    public CharSequence getText() {
-        return text;
-    }
-
-    public MaterialAboutTitleItem setText(CharSequence text) {
-        this.textRes = 0;
-        this.text = text;
-        return this;
-    }
-
-    public int getTextRes() {
-        return textRes;
-    }
-
-    public MaterialAboutTitleItem setTextRes(int textRes) {
-        this.text = null;
-        this.textRes = textRes;
-        return this;
-    }
-    public Drawable getIcon() {
-        return icon;
-    }
-
-    public MaterialAboutTitleItem setIcon(Drawable icon) {
-        this.iconRes = 0;
-        this.icon = icon;
-        return this;
-    }
-
-    public int getIconRes() {
-        return iconRes;
-    }
-
-    public MaterialAboutTitleItem setIconRes(int iconRes) {
-        this.icon = null;
-        this.iconRes = iconRes;
-        return this;
-    }
-
-    public OnClickListener getOnClickListener() {
-        return onClickListener;
-    }
-
-    public MaterialAboutTitleItem setOnClickListener(OnClickListener onClickListener) {
-        this.onClickListener = onClickListener;
-        return this;
+    public static MaterialAboutItemViewHolder getViewHolder(View view) {
+        return new MaterialAboutTitleItem.MaterialAboutTitleItemViewHolder(view);
     }
 
     public static void setupItem(MaterialAboutTitleItemViewHolder holder, MaterialAboutTitleItem item, Context context) {
@@ -180,17 +98,95 @@ public class MaterialAboutTitleItem extends MaterialAboutItem {
         }
     }
 
+    @Override
+    public int getType() {
+        return ViewTypeManager.ItemType.TITLE_ITEM;
+    }
+
+    public CharSequence getText() {
+        return text;
+    }
+
+    public MaterialAboutTitleItem setText(CharSequence text) {
+        this.textRes = 0;
+        this.text = text;
+        return this;
+    }
+
+    public int getTextRes() {
+        return textRes;
+    }
+
+    public MaterialAboutTitleItem setTextRes(int textRes) {
+        this.text = null;
+        this.textRes = textRes;
+        return this;
+    }
+
+    public Drawable getIcon() {
+        return icon;
+    }
+
+    public MaterialAboutTitleItem setIcon(Drawable icon) {
+        this.iconRes = 0;
+        this.icon = icon;
+        return this;
+    }
+
+    public int getIconRes() {
+        return iconRes;
+    }
+
+    public MaterialAboutTitleItem setIconRes(int iconRes) {
+        this.icon = null;
+        this.iconRes = iconRes;
+        return this;
+    }
+
+    public OnClickListener getOnClickListener() {
+        return onClickListener;
+    }
+
+    public MaterialAboutTitleItem setOnClickListener(OnClickListener onClickListener) {
+        this.onClickListener = onClickListener;
+        return this;
+    }
+
+    public interface OnClickListener {
+        void onClick();
+    }
+
+    public static class MaterialAboutTitleItemViewHolder extends MaterialAboutItemViewHolder implements View.OnClickListener {
+        public final View view;
+        public final ImageView icon;
+        public final TextView text;
+        public MaterialAboutTitleItem.OnClickListener onClickListener;
+
+        MaterialAboutTitleItemViewHolder(View view) {
+            super(view);
+            this.view = view;
+            icon = (ImageView) view.findViewById(R.id.mal_item_image);
+            text = (TextView) view.findViewById(R.id.mal_item_text);
+
+            view.setOnClickListener(this);
+            onClickListener = null;
+        }
+
+        @Override
+        public void onClick(View v) {
+
+        }
+    }
+
     public static class Builder {
 
+        MaterialAboutTitleItem.OnClickListener onClickListener = null;
         private CharSequence text = null;
         @StringRes
         private int textRes = 0;
-
         private Drawable icon = null;
         @DrawableRes
         private int iconRes = 0;
-
-        MaterialAboutTitleItem.OnClickListener onClickListener = null;
 
         public MaterialAboutTitleItem.Builder text(CharSequence text) {
             this.text = text;

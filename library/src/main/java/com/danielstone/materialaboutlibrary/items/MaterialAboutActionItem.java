@@ -25,68 +25,18 @@ import static android.view.View.GONE;
 
 public class MaterialAboutActionItem extends MaterialAboutItem {
 
-    public interface OnClickListener {
-        void onClick();
-    }
-
-    @Retention(RetentionPolicy.SOURCE)
-    @IntDef({GRAVITY_TOP, GRAVITY_MIDDLE, GRAVITY_BOTTOM})
-    public @interface IconGravity {
-    }
-
     public static final int GRAVITY_TOP = 0;
     public static final int GRAVITY_MIDDLE = 1;
     public static final int GRAVITY_BOTTOM = 2;
-
-
     private CharSequence text = null;
     private int textRes = 0;
-
     private CharSequence subText = null;
     private int subTextRes = 0;
-
     private Drawable icon = null;
     private int iconRes = 0;
     private boolean showIcon = true;
     private int iconGravity = GRAVITY_MIDDLE;
-
     private MaterialAboutActionItem.OnClickListener onClickListener = null;
-
-    @Override
-    public int getType() {
-        return ViewTypeManager.ItemType.ACTION_ITEM;
-    }
-
-    public static MaterialAboutItemViewHolder getViewHolder(View view) {
-        return new MaterialAboutActionItemViewHolder(view);
-    }
-
-    public static class MaterialAboutActionItemViewHolder extends MaterialAboutItemViewHolder implements View.OnClickListener {
-        public final View view;
-        public final ImageView icon;
-        public final TextView text;
-        public final TextView subText;
-        public MaterialAboutActionItem.OnClickListener onClickListener;
-
-        MaterialAboutActionItemViewHolder(View view) {
-            super(view);
-            this.view = view;
-            icon = (ImageView) view.findViewById(R.id.mal_item_image);
-            text = (TextView) view.findViewById(R.id.mal_item_text);
-            subText = (TextView) view.findViewById(R.id.mal_action_item_subtext);
-
-            view.setOnClickListener(this);
-            onClickListener = null;
-        }
-
-        @Override
-        public void onClick(View v) {
-            if (onClickListener != null) {
-                onClickListener.onClick();
-            }
-        }
-    }
-
     private MaterialAboutActionItem(Builder builder) {
         this.text = builder.text;
         this.textRes = builder.textRes;
@@ -128,6 +78,94 @@ public class MaterialAboutActionItem extends MaterialAboutItem {
         this.textRes = textRes;
         this.subTextRes = subTextRes;
         this.iconRes = iconRes;
+    }
+
+    public static MaterialAboutItemViewHolder getViewHolder(View view) {
+        return new MaterialAboutActionItemViewHolder(view);
+    }
+
+    public static void setupItem(MaterialAboutActionItemViewHolder holder, MaterialAboutActionItem item, Context context) {
+        CharSequence text = item.getText();
+        int textRes = item.getTextRes();
+
+        holder.text.setVisibility(View.VISIBLE);
+        if (text != null) {
+            holder.text.setText(text);
+        } else if (textRes != 0) {
+            holder.text.setText(textRes);
+        } else {
+            holder.text.setVisibility(GONE);
+        }
+
+        CharSequence subText = item.getSubText();
+        int subTextRes = item.getSubTextRes();
+
+        holder.subText.setVisibility(View.VISIBLE);
+        if (subText != null) {
+            holder.subText.setText(subText);
+        } else if (subTextRes != 0) {
+            holder.subText.setText(subTextRes);
+        } else {
+            holder.subText.setVisibility(GONE);
+        }
+
+        if (item.shouldShowIcon()) {
+            holder.icon.setVisibility(View.VISIBLE);
+            Drawable drawable = item.getIcon();
+            int drawableRes = item.getIconRes();
+            if (drawable != null) {
+                holder.icon.setImageDrawable(drawable);
+            } else if (drawableRes != 0) {
+                holder.icon.setImageResource(drawableRes);
+            }
+        } else {
+            holder.icon.setVisibility(GONE);
+        }
+
+        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) holder.icon.getLayoutParams();
+        switch (item.getIconGravity()) {
+            case MaterialAboutActionItem.GRAVITY_TOP:
+                params.gravity = Gravity.TOP;
+                break;
+            case MaterialAboutActionItem.GRAVITY_MIDDLE:
+                params.gravity = Gravity.CENTER_VERTICAL;
+                break;
+            case MaterialAboutActionItem.GRAVITY_BOTTOM:
+                params.gravity = Gravity.BOTTOM;
+                break;
+        }
+        holder.icon.setLayoutParams(params);
+
+        int pL = 0, pT = 0, pR = 0, pB = 0;
+        if (Build.VERSION.SDK_INT < 21) {
+            pL = holder.view.getPaddingLeft();
+            pT = holder.view.getPaddingTop();
+            pR = holder.view.getPaddingRight();
+            pB = holder.view.getPaddingBottom();
+        }
+
+        if (item.getOnClickListener() != null) {
+            TypedValue outValue = new TypedValue();
+            context.getTheme().resolveAttribute(R.attr.selectableItemBackground, outValue, true);
+            holder.view.setBackgroundResource(outValue.resourceId);
+            holder.onClickListener = item.getOnClickListener();
+            holder.view.setSoundEffectsEnabled(true);
+        } else {
+            TypedValue outValue = new TypedValue();
+            context.getTheme().resolveAttribute(R.attr.selectableItemBackground, outValue, false);
+            holder.view.setBackgroundResource(outValue.resourceId);
+            holder.onClickListener = null;
+            holder.view.setSoundEffectsEnabled(false);
+        }
+
+        if (Build.VERSION.SDK_INT < 21) {
+            holder.view.setPadding(pL, pT, pR, pB);
+        }
+    }
+
+    @Override
+    public int getType() {
+        return ViewTypeManager.ItemType.ACTION_ITEM;
     }
 
     public CharSequence getText() {
@@ -218,105 +256,56 @@ public class MaterialAboutActionItem extends MaterialAboutItem {
         return this;
     }
 
-    public static void setupItem(MaterialAboutActionItemViewHolder holder, MaterialAboutActionItem item, Context context) {
-        CharSequence text = item.getText();
-        int textRes = item.getTextRes();
+    public interface OnClickListener {
+        void onClick();
+    }
 
-        holder.text.setVisibility(View.VISIBLE);
-        if (text != null) {
-            holder.text.setText(text);
-        } else if (textRes != 0) {
-            holder.text.setText(textRes);
-        } else {
-            holder.text.setVisibility(GONE);
+    @Retention(RetentionPolicy.SOURCE)
+    @IntDef({GRAVITY_TOP, GRAVITY_MIDDLE, GRAVITY_BOTTOM})
+    public @interface IconGravity {
+    }
+
+    public static class MaterialAboutActionItemViewHolder extends MaterialAboutItemViewHolder implements View.OnClickListener {
+        public final View view;
+        public final ImageView icon;
+        public final TextView text;
+        public final TextView subText;
+        public MaterialAboutActionItem.OnClickListener onClickListener;
+
+        MaterialAboutActionItemViewHolder(View view) {
+            super(view);
+            this.view = view;
+            icon = (ImageView) view.findViewById(R.id.mal_item_image);
+            text = (TextView) view.findViewById(R.id.mal_item_text);
+            subText = (TextView) view.findViewById(R.id.mal_action_item_subtext);
+
+            view.setOnClickListener(this);
+            onClickListener = null;
         }
 
-        CharSequence subText = item.getSubText();
-        int subTextRes = item.getSubTextRes();
-
-        holder.subText.setVisibility(View.VISIBLE);
-        if (subText != null) {
-            holder.subText.setText(subText);
-        } else if (subTextRes != 0) {
-            holder.subText.setText(subTextRes);
-        } else {
-            holder.subText.setVisibility(GONE);
-        }
-
-        if (item.shouldShowIcon()) {
-            holder.icon.setVisibility(View.VISIBLE);
-            Drawable drawable = item.getIcon();
-            int drawableRes = item.getIconRes();
-            if (drawable != null) {
-                holder.icon.setImageDrawable(drawable);
-            } else if (drawableRes != 0) {
-                holder.icon.setImageResource(drawableRes);
+        @Override
+        public void onClick(View v) {
+            if (onClickListener != null) {
+                onClickListener.onClick();
             }
-        } else {
-            holder.icon.setVisibility(GONE);
-        }
-
-        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) holder.icon.getLayoutParams();
-        switch (item.getIconGravity()) {
-            case MaterialAboutActionItem.GRAVITY_TOP:
-                params.gravity = Gravity.TOP;
-                break;
-            case MaterialAboutActionItem.GRAVITY_MIDDLE:
-                params.gravity = Gravity.CENTER_VERTICAL;
-                break;
-            case MaterialAboutActionItem.GRAVITY_BOTTOM:
-                params.gravity = Gravity.BOTTOM;
-                break;
-        }
-        holder.icon.setLayoutParams(params);
-
-        int pL = 0, pT = 0, pR = 0, pB = 0;
-        if (Build.VERSION.SDK_INT < 21) {
-            pL = holder.view.getPaddingLeft();
-            pT = holder.view.getPaddingTop();
-            pR = holder.view.getPaddingRight();
-            pB = holder.view.getPaddingBottom();
-        }
-
-        if (item.getOnClickListener() != null) {
-            TypedValue outValue = new TypedValue();
-            context.getTheme().resolveAttribute(R.attr.selectableItemBackground, outValue, true);
-            holder.view.setBackgroundResource(outValue.resourceId);
-            holder.onClickListener = item.getOnClickListener();
-            holder.view.setSoundEffectsEnabled(true);
-        } else {
-            TypedValue outValue = new TypedValue();
-            context.getTheme().resolveAttribute(R.attr.selectableItemBackground, outValue, false);
-            holder.view.setBackgroundResource(outValue.resourceId);
-            holder.onClickListener = null;
-            holder.view.setSoundEffectsEnabled(false);
-        }
-
-        if (Build.VERSION.SDK_INT < 21) {
-            holder.view.setPadding(pL, pT, pR, pB);
         }
     }
 
     public static class Builder {
 
+        MaterialAboutActionItem.OnClickListener onClickListener = null;
         private CharSequence text = null;
         @StringRes
         private int textRes = 0;
-
         private CharSequence subText = null;
         @StringRes
         private int subTextRes = 0;
-
         private Drawable icon = null;
         @DrawableRes
         private int iconRes = 0;
-
         private boolean showIcon = true;
-
         @IconGravity
         private int iconGravity = GRAVITY_MIDDLE;
-
-        MaterialAboutActionItem.OnClickListener onClickListener = null;
 
         public Builder text(CharSequence text) {
             this.text = text;

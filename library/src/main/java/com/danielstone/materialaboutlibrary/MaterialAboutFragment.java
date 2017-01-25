@@ -19,17 +19,15 @@ import com.danielstone.materialaboutlibrary.util.ViewTypeManager;
 
 public abstract class MaterialAboutFragment extends Fragment {
 
+    private MaterialAboutList list = new MaterialAboutList.Builder().build();
     private RecyclerView recyclerView;
     private MaterialAboutListAdapter adapter;
-    MaterialAboutList list = new MaterialAboutList.Builder().build();
-
-    protected abstract MaterialAboutList getMaterialAboutList(Context activityContext);
-
-    public static final String TAG = "MaterialAboutFragment";
 
     public static MaterialAboutFragment newInstance(MaterialAboutFragment fragment) {
         return fragment;
     }
+
+    protected abstract MaterialAboutList getMaterialAboutList(Context activityContext);
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -56,6 +54,19 @@ public abstract class MaterialAboutFragment extends Fragment {
         return rootView;
     }
 
+    protected ViewTypeManager getViewTypeManager() {
+        return new DefaultViewTypeManager();
+    }
+
+    protected MaterialAboutList getMaterialAboutList() {
+        return list;
+    }
+
+    protected void setMaterialAboutList(MaterialAboutList materialAboutList) {
+        list = materialAboutList;
+        adapter.swapData(materialAboutList);
+    }
+
     private class ListTask extends AsyncTask<String, String, String> {
 
         Context fragmentContext;
@@ -78,18 +89,5 @@ public abstract class MaterialAboutFragment extends Fragment {
             super.onPostExecute(s);
             fragmentContext = null;
         }
-    }
-
-    protected ViewTypeManager getViewTypeManager() {
-        return new DefaultViewTypeManager();
-    }
-
-    protected void setMaterialAboutList(MaterialAboutList materialAboutList) {
-        list = materialAboutList;
-        adapter.swapData(materialAboutList);
-    }
-
-    protected MaterialAboutList getMaterialAboutList() {
-        return list;
     }
 }

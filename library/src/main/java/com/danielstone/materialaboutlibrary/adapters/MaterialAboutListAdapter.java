@@ -36,24 +36,6 @@ public class MaterialAboutListAdapter extends RecyclerView.Adapter<MaterialAbout
         this.viewTypeManager = customViewTypeManager;
     }
 
-    class MaterialAboutListViewHolder extends RecyclerView.ViewHolder {
-
-        final TextView title;
-        final RecyclerView recyclerView;
-        MaterialAboutItemAdapter adapter;
-
-        MaterialAboutListViewHolder(View view) {
-            super(view);
-            title = (TextView) view.findViewById(R.id.mal_list_card_title);
-            recyclerView = (RecyclerView) view.findViewById(R.id.mal_card_recyclerview);
-            adapter = new MaterialAboutItemAdapter(new ArrayList<MaterialAboutItem>(), viewTypeManager);
-            recyclerView.setLayoutManager(new LinearLayoutManager(context));
-            recyclerView.setAdapter(adapter);
-            recyclerView.setNestedScrollingEnabled(false);
-
-        }
-    }
-
     @Override
     public MaterialAboutListViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         context = viewGroup.getContext();
@@ -97,5 +79,23 @@ public class MaterialAboutListAdapter extends RecyclerView.Adapter<MaterialAbout
 
     ArrayList<MaterialAboutCard> getData() {
         return data;
+    }
+
+    class MaterialAboutListViewHolder extends RecyclerView.ViewHolder {
+
+        final TextView title;
+        final RecyclerView recyclerView;
+        MaterialAboutItemAdapter adapter;
+
+        MaterialAboutListViewHolder(View view) {
+            super(view);
+            title = (TextView) view.findViewById(R.id.mal_list_card_title);
+            recyclerView = (RecyclerView) view.findViewById(R.id.mal_card_recyclerview);
+            adapter = new MaterialAboutItemAdapter(new ArrayList<MaterialAboutItem>(), viewTypeManager);
+            recyclerView.setLayoutManager(new LinearLayoutManager(context));
+            recyclerView.setAdapter(adapter);
+            recyclerView.setNestedScrollingEnabled(false);
+
+        }
     }
 }

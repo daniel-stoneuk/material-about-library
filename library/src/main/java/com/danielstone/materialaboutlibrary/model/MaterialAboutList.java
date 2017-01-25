@@ -26,6 +26,10 @@ public class MaterialAboutList {
         return this;
     }
 
+    public ArrayList<MaterialAboutCard> getCards() {
+        return cards;
+    }
+
     public static class Builder {
         private ArrayList<MaterialAboutCard> cards = new ArrayList<>();
 
@@ -37,9 +41,5 @@ public class MaterialAboutList {
         public MaterialAboutList build() {
             return new MaterialAboutList(this);
         }
-    }
-
-    public ArrayList<MaterialAboutCard> getCards() {
-        return cards;
     }
 }
