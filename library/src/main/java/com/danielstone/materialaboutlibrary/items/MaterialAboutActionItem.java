@@ -5,7 +5,6 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.IntDef;
-import android.support.annotation.LayoutRes;
 import android.support.annotation.StringRes;
 import android.text.Html;
 import android.util.TypedValue;
@@ -317,10 +316,7 @@ public class MaterialAboutActionItem extends MaterialAboutItem {
         @IconGravity
         private int iconGravity = GRAVITY_MIDDLE;
 
-        @LayoutRes
-        private int layoutRes = 0;
-
-        MaterialAboutActionItem.OnClickListener onClickListener;
+        MaterialAboutActionItem.OnClickListener onClickListener = null;
 
         public Builder text(CharSequence text) {
             this.text = text;
