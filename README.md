@@ -174,6 +174,7 @@ Contributors
 Apps using this library
 -------
 * [Monitor for EnergyHive & Engage][5]
+* [Crafting Assistant NMS](https://play.google.com/store/apps/details?id=biemann.android.craftingnms)
 
 License
 -------
