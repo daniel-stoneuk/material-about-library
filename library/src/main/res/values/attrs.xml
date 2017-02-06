@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="mal_lightActionBar" format="boolean"/>
+    <attr name="mal_popupOverlay" format="reference"/>
+    
+    <attr name="mal_color_primary" format="reference|color" />
+    <attr name="mal_color_secondary" format="reference|color" />
+</resources>

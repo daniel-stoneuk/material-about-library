@@ -38,14 +38,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-            android:textColor="@color/mal_action_item_text" />
+            android:textColor="?mal_color_primary" />
 
         <TextView
             android:id="@+id/mal_action_item_subtext"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:textColor="@color/mal_action_item_subtext"
+            android:textColor="?mal_color_secondary"
             android:visibility="gone" />
     </LinearLayout>
 

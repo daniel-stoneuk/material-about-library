@@ -17,7 +17,7 @@ import com.mikepenz.iconics.IconicsDrawable;
 
 public class Demo {
 
-    public static MaterialAboutList createMaterialAboutList(final Context c) {
+    public static MaterialAboutList createMaterialAboutList(final Context c, int colorIcon) {
         MaterialAboutCard.Builder appCardBuilder = new MaterialAboutCard.Builder();
 
         // Add items to card
@@ -32,7 +32,7 @@ public class Demo {
             appCardBuilder.addItem(ConvenienceBuilder.createVersionActionItem(c,
                     new IconicsDrawable(c)
                             .icon(GoogleMaterial.Icon.gmd_info_outline)
-                            .color(ContextCompat.getColor(c, R.color.colorIcon))
+                            .color(ContextCompat.getColor(c, colorIcon))
                             .sizeDp(18),
                     "Version",
                     false));
@@ -45,7 +45,7 @@ public class Demo {
                 .text("Changelog")
                 .icon(new IconicsDrawable(c)
                         .icon(CommunityMaterial.Icon.cmd_history)
-                        .color(ContextCompat.getColor(c, R.color.colorIcon))
+                        .color(ContextCompat.getColor(c, colorIcon))
                         .sizeDp(18))
                 .setOnClickListener(ConvenienceBuilder.createWebViewDialogOnClickAction(c, "Releases", "https://github.com/daniel-stoneuk/material-about-library/releases", true, false))
                 .build());
@@ -54,7 +54,7 @@ public class Demo {
                 .text("Licenses")
                 .icon(new IconicsDrawable(c)
                         .icon(GoogleMaterial.Icon.gmd_book)
-                        .color(ContextCompat.getColor(c, R.color.colorIcon))
+                        .color(ContextCompat.getColor(c, colorIcon))
                         .sizeDp(18))
                 .setOnClickListener(new MaterialAboutActionItem.OnClickListener() {
                     @Override
@@ -73,7 +73,7 @@ public class Demo {
                 .subText("United Kingdom")
                 .icon(new IconicsDrawable(c)
                         .icon(GoogleMaterial.Icon.gmd_person)
-                        .color(ContextCompat.getColor(c, R.color.colorIcon))
+                        .color(ContextCompat.getColor(c, colorIcon))
                         .sizeDp(18))
                 .build());
 
@@ -81,7 +81,7 @@ public class Demo {
                 .text("Fork on GitHub")
                 .icon(new IconicsDrawable(c)
                         .icon(CommunityMaterial.Icon.cmd_github_circle)
-                        .color(ContextCompat.getColor(c, R.color.colorIcon))
+                        .color(ContextCompat.getColor(c, colorIcon))
                         .sizeDp(18))
                 .setOnClickListener(ConvenienceBuilder.createWebsiteOnClickAction(c, Uri.parse("https://github.com/daniel-stoneuk")))
                 .build());
@@ -93,7 +93,7 @@ public class Demo {
             convenienceCardBuilder.addItem(ConvenienceBuilder.createVersionActionItem(c,
                     new IconicsDrawable(c)
                             .icon(CommunityMaterial.Icon.cmd_information_outline)
-                            .color(ContextCompat.getColor(c, R.color.colorIcon))
+                            .color(ContextCompat.getColor(c, colorIcon))
                             .sizeDp(18),
                     "Version",
                     false));
@@ -104,7 +104,7 @@ public class Demo {
         convenienceCardBuilder.addItem(ConvenienceBuilder.createWebsiteActionItem(c,
                 new IconicsDrawable(c)
                         .icon(CommunityMaterial.Icon.cmd_earth)
-                        .color(ContextCompat.getColor(c, R.color.colorIcon))
+                        .color(ContextCompat.getColor(c, colorIcon))
                         .sizeDp(18),
                 "Visit Website",
                 true,
@@ -113,7 +113,7 @@ public class Demo {
         convenienceCardBuilder.addItem(ConvenienceBuilder.createRateActionItem(c,
                 new IconicsDrawable(c)
                         .icon(CommunityMaterial.Icon.cmd_star)
-                        .color(ContextCompat.getColor(c, R.color.colorIcon))
+                        .color(ContextCompat.getColor(c, colorIcon))
                         .sizeDp(18),
                 "Rate this app",
                 null
@@ -122,7 +122,7 @@ public class Demo {
         convenienceCardBuilder.addItem(ConvenienceBuilder.createEmailItem(c,
                 new IconicsDrawable(c)
                         .icon(CommunityMaterial.Icon.cmd_email)
-                        .color(ContextCompat.getColor(c, R.color.colorIcon))
+                        .color(ContextCompat.getColor(c, colorIcon))
                         .sizeDp(18),
                 "Send an email",
                 true,
@@ -132,7 +132,7 @@ public class Demo {
         convenienceCardBuilder.addItem(ConvenienceBuilder.createPhoneItem(c,
                 new IconicsDrawable(c)
                         .icon(CommunityMaterial.Icon.cmd_phone)
-                        .color(ContextCompat.getColor(c, R.color.colorIcon))
+                        .color(ContextCompat.getColor(c, colorIcon))
                         .sizeDp(18),
                 "Call me",
                 true,
@@ -141,7 +141,7 @@ public class Demo {
         convenienceCardBuilder.addItem(ConvenienceBuilder.createMapItem(c,
                 new IconicsDrawable(c)
                         .icon(CommunityMaterial.Icon.cmd_map)
-                        .color(ContextCompat.getColor(c, R.color.colorIcon))
+                        .color(ContextCompat.getColor(c, colorIcon))
                         .sizeDp(18),
                 "Visit London",
                 null,
@@ -153,7 +153,7 @@ public class Demo {
         otherCardBuilder.addItem(new MaterialAboutActionItem.Builder()
                 .icon(new IconicsDrawable(c)
                         .icon(CommunityMaterial.Icon.cmd_language_html5)
-                        .color(ContextCompat.getColor(c, R.color.colorIcon))
+                        .color(ContextCompat.getColor(c, colorIcon))
                         .sizeDp(18))
                 .text("HTML Formatted Sub Text")
                 .subTextHtml("This is <b>HTML</b> formatted <i>text</i> <br /> This is very cool because it allows lines to get very long which can lead to all kinds of possibilities. <br /> And line breaks.")

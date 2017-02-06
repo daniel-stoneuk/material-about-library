@@ -10,7 +10,7 @@ public class ExampleMaterialAboutFragment extends MaterialAboutFragment {
 
     @Override
     protected MaterialAboutList getMaterialAboutList(final Context c) {
-        return Demo.createMaterialAboutList(c);
+        return Demo.createMaterialAboutList(c, R.color.colorIconDark);
     }
 
 }

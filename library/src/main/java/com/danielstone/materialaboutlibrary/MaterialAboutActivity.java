@@ -2,6 +2,9 @@ package com.danielstone.materialaboutlibrary;
 
 
 import android.content.Context;
+import android.content.res.Resources;
+import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -13,6 +16,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.TypedValue;
 
 import com.danielstone.materialaboutlibrary.adapters.MaterialAboutListAdapter;
 import com.danielstone.materialaboutlibrary.model.MaterialAboutList;
@@ -22,6 +26,7 @@ import com.danielstone.materialaboutlibrary.util.ViewTypeManager;
 public abstract class MaterialAboutActivity extends AppCompatActivity {
 
     private MaterialAboutList list = new MaterialAboutList.Builder().build();
+    private AppBarLayout appBarLayout;
     private Toolbar toolbar;
     private RecyclerView recyclerView;
     private MaterialAboutListAdapter adapter;
@@ -53,6 +58,7 @@ public abstract class MaterialAboutActivity extends AppCompatActivity {
 
     private void assignViews() {
         toolbar = (Toolbar) findViewById(R.id.mal_toolbar);
+        appBarLayout = (AppBarLayout) findViewById(R.id.mal_appbarlayout);
         recyclerView = (RecyclerView) findViewById(R.id.mal_recyclerview);
         recyclerView.setAlpha(0f);
         recyclerView.setTranslationY(20);
@@ -65,6 +71,21 @@ public abstract class MaterialAboutActivity extends AppCompatActivity {
             if (actionBar != null) {
                 actionBar.setDisplayHomeAsUpEnabled(true);
             }
+        }
+
+        Resources.Theme theme = getTheme();
+        TypedArray lightTheme = theme.obtainStyledAttributes(new int[]{R.attr.mal_lightActionBar});
+
+        TypedValue popupOverlay = new TypedValue();
+        theme.resolveAttribute(R.attr.mal_popupOverlay, popupOverlay, true);
+        toolbar.setPopupTheme(popupOverlay.data);
+
+        if (lightTheme.getBoolean(0, true)) {
+            toolbar.setTitleTextColor(Color.BLACK);
+            toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black);
+        } else {
+            toolbar.setTitleTextColor(Color.WHITE);
+            toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white);
         }
 
         adapter = new MaterialAboutListAdapter(list, getViewTypeManager());

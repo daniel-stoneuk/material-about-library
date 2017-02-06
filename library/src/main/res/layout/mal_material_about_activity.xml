@@ -9,16 +9,15 @@
     tools:context=".MaterialAboutActivity">
 
     <android.support.design.widget.AppBarLayout
+        android:id="@+id/mal_appbarlayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/Theme.Mal.AppBarOverlay">
+        android:layout_height="wrap_content">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/mal_toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            app:popupTheme="@style/Theme.Mal.PopupOverlay"
             />
 
     </android.support.design.widget.AppBarLayout>

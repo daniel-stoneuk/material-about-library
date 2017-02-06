@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 
 import com.danielstone.materialaboutlibrary.MaterialAboutActivity;
 import com.danielstone.materialaboutlibrary.items.MaterialAboutActionItem;
@@ -18,6 +19,14 @@ import com.mikepenz.iconics.IconicsDrawable;
 
 public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
 
+    public static final String THEME_EXTRA = "";
+    public static final int THEME_LIGHT_LIGHTBAR = 0;
+    public static final int THEME_LIGHT_DARKBAR = 1;
+    public static final int THEME_DARK_LIGHTBAR = 2;
+    public static final int THEME_DARK_DARKBAR = 3;
+
+    private int colorIcon = R.color.colorIconLight;
+
     @Override
     protected MaterialAboutList getMaterialAboutList(final Context c) {
         MaterialAboutCard.Builder advancedCardBuilder = new MaterialAboutCard.Builder();
@@ -27,7 +36,7 @@ public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
                 .text("Snackbar demo")
                 .icon(new IconicsDrawable(c)
                         .icon(CommunityMaterial.Icon.cmd_code_tags)
-                        .color(ContextCompat.getColor(c, R.color.colorIcon))
+                        .color(ContextCompat.getColor(c, colorIcon))
                         .sizeDp(18))
                 .setOnClickListener(new MaterialAboutActionItem.OnClickListener() {
                     @Override
@@ -41,7 +50,7 @@ public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
                 .text("Custom Item")
                 .icon(new IconicsDrawable(c)
                         .icon(CommunityMaterial.Icon.cmd_code_braces)
-                        .color(ContextCompat.getColor(c, R.color.colorIcon))
+                        .color(ContextCompat.getColor(c, colorIcon))
                         .sizeDp(18))
                 .build());
 
@@ -50,7 +59,7 @@ public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
                 .subText("Tap for a random number.")
                 .icon(new IconicsDrawable(c)
                         .icon(CommunityMaterial.Icon.cmd_refresh)
-                        .color(ContextCompat.getColor(c, R.color.colorIcon)
+                        .color(ContextCompat.getColor(c, colorIcon)
                         ).sizeDp(18))
                 .setOnClickListener(new MaterialAboutActionItem.OnClickListener() {
                     @Override
@@ -65,11 +74,31 @@ public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
                 })
                 .build());
 
-        return Demo.createMaterialAboutList(c).addCard(advancedCardBuilder.build());
+        return Demo.createMaterialAboutList(c, colorIcon).addCard(advancedCardBuilder.build());
     }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        Log.i("test", "onCreate: " + getIntent().getIntExtra(THEME_EXTRA, THEME_LIGHT_DARKBAR));
+        switch (getIntent().getIntExtra(THEME_EXTRA, THEME_LIGHT_DARKBAR)) {
+            case THEME_LIGHT_LIGHTBAR:
+                setTheme(R.style.AppTheme_MaterialAboutActivity_Light_LightActionBar);
+                colorIcon = R.color.colorIconLight;
+                break;
+            case THEME_DARK_LIGHTBAR:
+                setTheme(R.style.AppTheme_MaterialAboutActivity_Dark_LightActionBar);
+                colorIcon = R.color.colorIconDark;
+                break;
+            case THEME_LIGHT_DARKBAR:
+                setTheme(R.style.AppTheme_MaterialAboutActivity_Light_DarkActionBar);
+                colorIcon = R.color.colorIconLight;
+                break;
+            case THEME_DARK_DARKBAR:
+                setTheme(R.style.AppTheme_MaterialAboutActivity_Dark_DarkActionBar);
+                colorIcon = R.color.colorIconDark;
+                break;
+        }
+
         super.onCreate(savedInstanceState);
 
 //        Call this method to let the scrollbar scroll off screen

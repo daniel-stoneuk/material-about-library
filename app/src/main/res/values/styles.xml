@@ -13,10 +13,31 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="AppTheme.MaterialAboutActivity" parent="Theme.Mal">
+    <style name="AppTheme.MaterialAboutActivity.Dark.DarkActionBar" parent="Theme.Mal.Dark.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="AppTheme.MaterialAboutActivity.Dark.LightActionBar" parent="Theme.Mal.Dark.LightActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorLightBar</item>
+        <item name="colorPrimaryDark">@color/colorLightStatus</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="AppTheme.MaterialAboutActivity.Light.DarkActionBar" parent="Theme.Mal.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="AppTheme.MaterialAboutActivity.Light.LightActionBar" parent="Theme.Mal.Light.LightActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorLightBar</item>
+        <item name="colorPrimaryDark">@color/colorLightStatus</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 

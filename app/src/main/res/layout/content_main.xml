@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/content_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.danielstone.materialaboutlibrarydemo.MainActivity"
+    android:padding="@dimen/mal_baseline_half"
     tools:showIn="@layout/activity_main">
 
     <Button
@@ -14,22 +16,44 @@
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/mal_launch_about_fragment"
-        android:layout_below="@+id/activity_button"
-        android:layout_alignLeft="@+id/activity_button"
-        android:layout_alignStart="@+id/activity_button"
-        android:layout_marginTop="@dimen/mal_baseline" />
+        android:layout_marginTop="@dimen/mal_baseline"
+        android:text="@string/mal_launch_about_fragment" />
 
     <Button
-        android:id="@+id/activity_button"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/mal_launch_about_activity"
         android:layout_marginTop="@dimen/mal_baseline"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="@dimen/mal_baseline"
-        android:layout_marginStart="@dimen/mal_baseline" />
-</RelativeLayout>
+        android:onClick="onActivityButtonPressed"
+        android:tag="0"
+        android:text="Launch Activity - Light with Light Action Bar" />
+
+    <Button
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/mal_baseline"
+        android:onClick="onActivityButtonPressed"
+        android:tag="1"
+        android:text="Launch Activity - Light with Dark Action Bar" />
+
+    <Button
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/mal_baseline"
+        android:onClick="onActivityButtonPressed"
+        android:tag="2"
+        android:text="Launch Activity - Dark with Light Action Bar" />
+
+    <Button
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/mal_baseline"
+        android:onClick="onActivityButtonPressed"
+        android:tag="3"
+        android:text="Launch Activity - Dark with Dark Action Bar" />
+
+
+</LinearLayout>

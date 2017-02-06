@@ -4,5 +4,9 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
-    <color name="colorIcon">#616161</color>
+    <color name="colorLightBar">#FFFFFF</color>
+    <color name="colorLightStatus">#9E9E9E</color>
+
+    <color name="colorIconLight">#616161</color>
+    <color name="colorIconDark">#E0E0E0</color>
 </resources>

@@ -26,7 +26,7 @@
         <activity
             android:name=".ExampleMaterialAboutActivity"
             android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme.MaterialAboutActivity"
+            android:theme="@style/AppTheme.MaterialAboutActivity.Light.DarkActionBar"
             tools:ignore="UnusedAttribute">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

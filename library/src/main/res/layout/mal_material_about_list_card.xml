@@ -37,7 +37,7 @@
             android:layout_marginTop="@dimen/mal_baseline"
             android:layout_marginBottom="@dimen/mal_baseline_half"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-            android:textColor="@color/mal_card_title"
+            android:textColor="?mal_color_primary"
             tools:text="Author" />
 
         <android.support.v7.widget.RecyclerView
