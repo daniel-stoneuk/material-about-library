@@ -9,8 +9,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.danielstone.materialaboutlibrary.R;
-import com.danielstone.materialaboutlibrary.model.MaterialAboutCard;
 import com.danielstone.materialaboutlibrary.items.MaterialAboutItem;
+import com.danielstone.materialaboutlibrary.model.MaterialAboutCard;
 import com.danielstone.materialaboutlibrary.model.MaterialAboutList;
 import com.danielstone.materialaboutlibrary.util.DefaultViewTypeManager;
 import com.danielstone.materialaboutlibrary.util.ViewTypeManager;
@@ -61,6 +61,16 @@ public class MaterialAboutListAdapter extends RecyclerView.Adapter<MaterialAbout
             holder.title.setText(titleRes);
         } else {
             holder.title.setVisibility(View.GONE);
+        }
+
+        int color = data.get(position).getTitleColor();
+
+        if (holder.title.getVisibility() == View.VISIBLE) {
+            if (color != 0) {
+                holder.title.setTextColor(color);
+            } else {
+                holder.title.setTextColor(holder.title.getTextColors().getDefaultColor());
+            }
         }
 
         holder.adapter.swapData(data.get(position).getItems());

@@ -1,6 +1,7 @@
 package com.danielstone.materialaboutlibrary.model;
 
 
+import android.support.annotation.ColorInt;
 import android.support.annotation.StringRes;
 
 import com.danielstone.materialaboutlibrary.items.MaterialAboutItem;
@@ -13,11 +14,14 @@ public class MaterialAboutCard {
     private CharSequence title = null;
     private int titleRes = 0;
 
+    private int titleColor = 0;
+
     private ArrayList<MaterialAboutItem> mItems = new ArrayList<>();;
 
     private MaterialAboutCard(Builder builder) {
         this.title = builder.title;
         this.titleRes = builder.titleRes;
+        this.titleColor = builder.titleColor;
         this.mItems = builder.items;
     }
 
@@ -39,6 +43,10 @@ public class MaterialAboutCard {
         return titleRes;
     }
 
+    public int getTitleColor() {
+        return titleColor;
+    }
+
     public ArrayList<MaterialAboutItem> getItems() {
         return mItems;
     }
@@ -47,6 +55,10 @@ public class MaterialAboutCard {
         private CharSequence title = null;
         @StringRes
         private int titleRes = 0;
+
+        @ColorInt
+        private int titleColor = 0;
+
         private ArrayList<MaterialAboutItem> items = new ArrayList<>();
 
         public Builder title(CharSequence title) {
@@ -58,6 +70,11 @@ public class MaterialAboutCard {
         public Builder title(@StringRes int titleRes) {
             this.titleRes = titleRes;
             this.title = null;
+            return this;
+        }
+
+        public Builder titleColor(@ColorInt int color) {
+            this.titleColor = color;
             return this;
         }
 
