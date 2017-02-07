@@ -3,6 +3,7 @@ package com.danielstone.materialaboutlibrary;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.IntDef;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.animation.FastOutSlowInInterpolator;
@@ -17,17 +18,31 @@ import com.danielstone.materialaboutlibrary.model.MaterialAboutList;
 import com.danielstone.materialaboutlibrary.util.DefaultViewTypeManager;
 import com.danielstone.materialaboutlibrary.util.ViewTypeManager;
 
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+
 public abstract class MaterialAboutFragment extends Fragment {
 
     private MaterialAboutList list = new MaterialAboutList.Builder().build();
     private RecyclerView recyclerView;
     private MaterialAboutListAdapter adapter;
 
+    @Retention(RetentionPolicy.SOURCE)
+    @IntDef({THEME_LIGHT, THEME_DARK})
+    public @interface FragmentTheme {}
+    public static final int THEME_LIGHT = 0;
+    public static final int THEME_DARK = 1;
+
     public static MaterialAboutFragment newInstance(MaterialAboutFragment fragment) {
         return fragment;
     }
 
     protected abstract MaterialAboutList getMaterialAboutList(Context activityContext);
+
+    @FragmentTheme
+    protected int getTheme() {
+        return THEME_LIGHT;
+    };
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -38,7 +53,19 @@ public abstract class MaterialAboutFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.mal_material_about_fragment, container, false);
+        int style = -1;
+        switch (getTheme()) {
+            case THEME_LIGHT:
+                style = R.style.Theme_Mal_Light_DarkActionBar;
+                break;
+            case THEME_DARK:
+                style = R.style.Theme_Mal_Dark_DarkActionBar;
+                break;
+        }
+        // create ContextThemeWrapper from the original Activity Context with the custom theme
+        final Context contextThemeWrapper = new android.view.ContextThemeWrapper(getActivity(), style);
+        LayoutInflater localInflater = inflater.cloneInContext(contextThemeWrapper);
+        View rootView = localInflater.inflate(R.layout.mal_material_about_fragment, container, false);
 
         recyclerView = (RecyclerView) rootView.findViewById(R.id.mal_recyclerview);
         adapter = new MaterialAboutListAdapter(list, getViewTypeManager());
