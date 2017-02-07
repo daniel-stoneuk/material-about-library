@@ -46,7 +46,7 @@ allprojects {
 ```
 ```gradle
 dependencies {
-    compile 'com.github.daniel-stoneuk:material-about-library:1.5.0'
+	  compile 'com.github.daniel-stoneuk:material-about-library:1.7.0'
 }
 ```
 
@@ -73,7 +73,14 @@ public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
 }
 ```
 
-Ensure that the theme extends 'Theme.Mal', and apply primary & accent colours.
+Ensure that the theme extends either of these themes, and apply primary & accent colours:
+
+* Theme.Mal.Light.DarkActionBar
+* Theme.Mal.Light.LightActionBar
+
+* Theme.Mal.Dark.LightActionBar
+* Theme.Mal.Dark.DarkActionBar
+
 ```xml
 <manifest ...>
     <application ...>
@@ -83,7 +90,7 @@ Ensure that the theme extends 'Theme.Mal', and apply primary & accent colours.
 </manifest>
 ```
 ```xml
-    <style name="AppTheme.MaterialAboutActivity" parent="Theme.Mal" >
+    <style name="AppTheme.MaterialAboutActivity" parent="Theme.Mal.Light.DarkActionBar" >
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
