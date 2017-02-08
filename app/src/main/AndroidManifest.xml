@@ -41,6 +41,11 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
+        <activity
+            android:name=".ExampleMaterialAboutLicenseActivity"
+            android:theme="@style/AppTheme.MaterialAboutActivity.Light.DarkActionBar"
+            tools:ignore="UnusedAttribute">
+        </activity>
     </application>
 
 </manifest>

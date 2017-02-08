@@ -5,12 +5,14 @@ import android.content.Context;
 import com.danielstone.materialaboutlibrary.MaterialAboutFragment;
 import com.danielstone.materialaboutlibrary.model.MaterialAboutList;
 
+import static com.danielstone.materialaboutlibrarydemo.ExampleMaterialAboutActivity.THEME_LIGHT_DARKBAR;
+
 
 public class ExampleMaterialAboutFragment extends MaterialAboutFragment {
 
     @Override
     protected MaterialAboutList getMaterialAboutList(final Context c) {
-        return Demo.createMaterialAboutList(c, R.color.colorIconLight);
+        return Demo.createMaterialAboutList(c, R.color.colorIconLight, THEME_LIGHT_DARKBAR);
     }
 
     @Override
