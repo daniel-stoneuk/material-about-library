@@ -174,7 +174,7 @@ public class MaterialAboutTitleItem extends MaterialAboutItem {
 
         @Override
         public void onClick(View v) {
-
+            onClickListener.onClick();
         }
     }
 

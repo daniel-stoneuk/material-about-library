@@ -1,14 +1,18 @@
 package com.danielstone.materialaboutlibrarydemo;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.danielstone.materialaboutlibrary.MaterialAboutActivity;
 import com.danielstone.materialaboutlibrary.items.MaterialAboutActionItem;
+import com.danielstone.materialaboutlibrary.items.MaterialAboutTitleItem;
 import com.danielstone.materialaboutlibrary.model.MaterialAboutCard;
 import com.danielstone.materialaboutlibrary.model.MaterialAboutList;
 import com.danielstone.materialaboutlibrary.util.ViewTypeManager;
@@ -31,6 +35,24 @@ public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
     protected MaterialAboutList getMaterialAboutList(final Context c) {
         MaterialAboutCard.Builder advancedCardBuilder = new MaterialAboutCard.Builder();
         advancedCardBuilder.title("Advanced");
+
+        advancedCardBuilder.addItem(new MaterialAboutTitleItem.Builder()
+                .text("TitleItem OnClickAction")
+                .icon(R.mipmap.ic_launcher)
+                .setOnClickListener(new MaterialAboutTitleItem.OnClickListener() {
+                    @Override
+                    public void onClick() {
+                        Intent i = new Intent(Intent.ACTION_VIEW);
+                        i.setData(Uri.parse("http://www.daniel-stone.uk"));
+                        try {
+                            c.startActivity(i);
+                        } catch (Exception e) {
+                            // No activity to handle intent
+                            Toast.makeText(c, com.danielstone.materialaboutlibrary.R.string.mal_activity_exception, Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                })
+                .build());
 
         advancedCardBuilder.addItem(new MaterialAboutActionItem.Builder()
                 .text("Snackbar demo")
