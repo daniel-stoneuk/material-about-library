@@ -1,23 +1,24 @@
 package com.danielstone.materialaboutlibrarydemo;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.support.v4.content.ContextCompat;
-import android.widget.Toast;
 
 import com.danielstone.materialaboutlibrary.ConvenienceBuilder;
 import com.danielstone.materialaboutlibrary.items.MaterialAboutActionItem;
 import com.danielstone.materialaboutlibrary.model.MaterialAboutCard;
 import com.danielstone.materialaboutlibrary.model.MaterialAboutList;
 import com.danielstone.materialaboutlibrary.items.MaterialAboutTitleItem;
+import com.danielstone.materialaboutlibrary.util.OpenSourceLicense;
 import com.mikepenz.community_material_typeface_library.CommunityMaterial;
 import com.mikepenz.google_material_typeface_library.GoogleMaterial;
 import com.mikepenz.iconics.IconicsDrawable;
 
 public class Demo {
 
-    public static MaterialAboutList createMaterialAboutList(final Context c, int colorIcon) {
+    public static MaterialAboutList createMaterialAboutList(final Context c, final int colorIcon, final int theme) {
         MaterialAboutCard.Builder appCardBuilder = new MaterialAboutCard.Builder();
 
         // Add items to card
@@ -59,8 +60,9 @@ public class Demo {
                 .setOnClickListener(new MaterialAboutActionItem.OnClickListener() {
                     @Override
                     public void onClick() {
-                        Toast.makeText(
-                                c, "Material Design About Library with Mike Penz Android Iconics", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(c, ExampleMaterialAboutLicenseActivity.class);
+                        intent.putExtra(ExampleMaterialAboutActivity.THEME_EXTRA, theme);
+                        c.startActivity(intent);
                     }
                 })
                 .build());
@@ -165,4 +167,52 @@ public class Demo {
         return new MaterialAboutList(appCardBuilder.build(), authorCardBuilder.build(), convenienceCardBuilder.build(), otherCardBuilder.build());
     }
 
+    public static MaterialAboutList createMaterialAboutLicenseList(final Context c, int colorIcon) {
+
+        MaterialAboutCard materialAboutLIbraryLicenseCard = ConvenienceBuilder.createLicenseCard(c,
+                new IconicsDrawable(c)
+                        .icon(GoogleMaterial.Icon.gmd_book)
+                        .color(ContextCompat.getColor(c, colorIcon))
+                        .sizeDp(18),
+                "material-about-library", "2016", "Daniel Stone",
+                OpenSourceLicense.APACHE_2);
+
+        MaterialAboutCard androidIconicsLicenseCard = ConvenienceBuilder.createLicenseCard(c,
+                new IconicsDrawable(c)
+                        .icon(GoogleMaterial.Icon.gmd_book)
+                        .color(ContextCompat.getColor(c, colorIcon))
+                        .sizeDp(18),
+                "Android Iconics", "2016", "Mike Penz",
+                OpenSourceLicense.APACHE_2);
+
+        MaterialAboutCard leakCanaryLicenseCard = ConvenienceBuilder.createLicenseCard(c,
+                new IconicsDrawable(c)
+                        .icon(GoogleMaterial.Icon.gmd_book)
+                        .color(ContextCompat.getColor(c, colorIcon))
+                        .sizeDp(18),
+                "LeakCanary", "2015", "Square, Inc",
+                OpenSourceLicense.APACHE_2);
+
+        MaterialAboutCard mitLicenseCard = ConvenienceBuilder.createLicenseCard(c,
+                new IconicsDrawable(c)
+                        .icon(GoogleMaterial.Icon.gmd_book)
+                        .color(ContextCompat.getColor(c, colorIcon))
+                        .sizeDp(18),
+                "MIT Example", "2017", "Matthew Ian Thomson",
+                OpenSourceLicense.MIT);
+
+        MaterialAboutCard gplLicenseCard = ConvenienceBuilder.createLicenseCard(c,
+                new IconicsDrawable(c)
+                        .icon(GoogleMaterial.Icon.gmd_book)
+                        .color(ContextCompat.getColor(c, colorIcon))
+                        .sizeDp(18),
+                "GPL Example", "2017", "George Perry Lindsay",
+                OpenSourceLicense.GNU_GPL_3);
+
+        return new MaterialAboutList(materialAboutLIbraryLicenseCard,
+                androidIconicsLicenseCard,
+                leakCanaryLicenseCard,
+                mitLicenseCard,
+                gplLicenseCard);
+    }
 }

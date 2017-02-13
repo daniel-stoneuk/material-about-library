@@ -17,6 +17,8 @@ import android.widget.Toast;
 import com.danielstone.materialaboutlibrary.items.MaterialAboutActionItem;
 import com.danielstone.materialaboutlibrary.items.MaterialAboutItem;
 import com.danielstone.materialaboutlibrary.items.MaterialAboutTitleItem;
+import com.danielstone.materialaboutlibrary.model.MaterialAboutCard;
+import com.danielstone.materialaboutlibrary.util.OpenSourceLicense;
 
 @SuppressWarnings("JavaDoc")
 public class ConvenienceBuilder {
@@ -327,6 +329,18 @@ public class ConvenienceBuilder {
                 .icon(icon)
                 .setOnClickListener(createMapOnClickAction(c, addressQuery))
                 .build();
+    }
+
+    public static MaterialAboutCard createLicenseCard(Context c, Drawable icon, CharSequence libraryTitle, CharSequence year, CharSequence name, OpenSourceLicense license) {
+
+        MaterialAboutActionItem licenseItem = new MaterialAboutActionItem.Builder()
+                .icon(icon)
+                .setIconGravity(MaterialAboutActionItem.GRAVITY_TOP)
+                .text(libraryTitle)
+                .subText(String.format(c.getString(license.getResourceId()), year, name))
+                .build();
+
+        return new MaterialAboutCard.Builder().addItem(licenseItem).build();
     }
 
 }

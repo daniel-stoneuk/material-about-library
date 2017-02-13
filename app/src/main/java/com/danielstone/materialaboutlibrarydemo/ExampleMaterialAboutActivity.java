@@ -29,7 +29,7 @@ public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
     public static final int THEME_DARK_LIGHTBAR = 2;
     public static final int THEME_DARK_DARKBAR = 3;
 
-    private int colorIcon = R.color.colorIconLight;
+    protected int colorIcon = R.color.colorIconLight;
 
     @Override
     protected MaterialAboutList getMaterialAboutList(final Context c) {
@@ -96,7 +96,7 @@ public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
                 })
                 .build());
 
-        return Demo.createMaterialAboutList(c, colorIcon).addCard(advancedCardBuilder.build());
+        return Demo.createMaterialAboutList(c, colorIcon, getIntent().getIntExtra(THEME_EXTRA, THEME_LIGHT_DARKBAR)).addCard(advancedCardBuilder.build());
     }
 
     @Override

@@ -183,6 +183,7 @@ Apps using this library
 * [Monitor for EnergyHive & Engage][5]
 * [Crafting Assistant NMS](https://play.google.com/store/apps/details?id=biemann.android.craftingnms)
 * [ComicsDB Client](https://play.google.com/store/apps/details?id=cz.kutner.comicsdbclient.comicsdbclient), code available on [GitHub](https://github.com/tukak/comicsdbclient)
+* [Android About Box](https://github.com/eggheadgames/android-about-box) (library) - an opinionated About Box for Android
 
 License
 -------
