@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.danielstone.materialaboutlibrary.items.MaterialAboutActionItem;
 import com.danielstone.materialaboutlibrary.items.MaterialAboutItem;
+import com.danielstone.materialaboutlibrary.items.MaterialAboutItemOnClickListener;
 import com.danielstone.materialaboutlibrary.items.MaterialAboutTitleItem;
 import com.danielstone.materialaboutlibrary.model.MaterialAboutCard;
 import com.danielstone.materialaboutlibrary.util.OpenSourceLicense;
@@ -52,13 +53,13 @@ public class ConvenienceBuilder {
                 .build();
     }
 
-    public static MaterialAboutActionItem.OnClickListener createWebViewDialogOnClickAction(final Context c, final CharSequence dialogTitle, final String htmlString, final boolean isStringUrl, final boolean supportZoom) {
+    public static MaterialAboutItemOnClickListener createWebViewDialogOnClickAction(final Context c, final CharSequence dialogTitle, final String htmlString, final boolean isStringUrl, final boolean supportZoom) {
         return createWebViewDialogOnClickAction(c, dialogTitle, c.getString(R.string.mal_close), htmlString, isStringUrl, supportZoom);
     }
 
-    public static MaterialAboutActionItem.OnClickListener createWebViewDialogOnClickAction(final Context c, final CharSequence dialogTitle, final CharSequence dialogNegativeButton, final String htmlString, final boolean isStringUrl, final boolean supportZoom) {
+    public static MaterialAboutItemOnClickListener createWebViewDialogOnClickAction(final Context c, final CharSequence dialogTitle, final CharSequence dialogNegativeButton, final String htmlString, final boolean isStringUrl, final boolean supportZoom) {
 
-        return new MaterialAboutActionItem.OnClickListener() {
+        return new MaterialAboutItemOnClickListener() {
             @Override
             public void onClick() {
                 AlertDialog.Builder alertBuilder = new AlertDialog.Builder(c);
@@ -106,8 +107,8 @@ public class ConvenienceBuilder {
     }
 
 
-    public static MaterialAboutActionItem.OnClickListener createWebsiteOnClickAction(final Context c, final Uri websiteUrl) {
-        return new MaterialAboutActionItem.OnClickListener() {
+    public static MaterialAboutItemOnClickListener createWebsiteOnClickAction(final Context c, final Uri websiteUrl) {
+        return new MaterialAboutItemOnClickListener() {
             @Override
             public void onClick() {
                 Intent i = new Intent(Intent.ACTION_VIEW);
@@ -141,13 +142,13 @@ public class ConvenienceBuilder {
     }
 
     /**
-     * Creates a MaterialAboutActionItem.OnClickListener that will open
+     * Creates a MaterialAboutItemOnClickListener that will open
      * the Google Play store listing for the app.
      *
      * @param c context
      * @return onClickListener
      */
-    public static MaterialAboutActionItem.OnClickListener createRateOnClickAction(final Context c) {
+    public static MaterialAboutItemOnClickListener createRateOnClickAction(final Context c) {
         Uri uri = Uri.parse("market://details?id=" + c.getPackageName());
         final Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -159,7 +160,7 @@ public class ConvenienceBuilder {
                     Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
         }
 
-        return new MaterialAboutActionItem.OnClickListener() {
+        return new MaterialAboutItemOnClickListener() {
             @Override
             public void onClick() {
                 try {
@@ -191,24 +192,24 @@ public class ConvenienceBuilder {
                 .build();
     }
 
-    public static MaterialAboutActionItem.OnClickListener createEmailOnClickAction(final Context c, String email, String emailSubject) {
+    public static MaterialAboutItemOnClickListener createEmailOnClickAction(final Context c, String email, String emailSubject) {
         return createEmailOnClickAction(c, email, emailSubject, c.getString(R.string.mal_send_email));
     }
 
     /**
-     * Creates a MaterialAboutActionItem.OnClickListener that will open
+     * Creates a MaterialAboutItemOnClickListener that will open
      * an email intent with specified address.
      *
      * @param c     context
      * @param email email address
      * @return onClickListener
      */
-    public static MaterialAboutActionItem.OnClickListener createEmailOnClickAction(final Context c, String email, String emailSubject, final CharSequence chooserTitle) {
+    public static MaterialAboutItemOnClickListener createEmailOnClickAction(final Context c, String email, String emailSubject, final CharSequence chooserTitle) {
 
         final Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:" + email));
         emailIntent.putExtra(Intent.EXTRA_SUBJECT, emailSubject);
 
-        return new MaterialAboutActionItem.OnClickListener() {
+        return new MaterialAboutItemOnClickListener() {
             @Override
             public void onClick() {
                 try {
@@ -244,18 +245,18 @@ public class ConvenienceBuilder {
     }
 
     /**
-     * Creates a MaterialAboutActionItem.OnClickListener that will open
+     * Creates a MaterialAboutItemOnClickListener that will open
      * the dialer with specified number.
      *
      * @param c      context
      * @param number phone number
      * @return onClickListener
      */
-    public static MaterialAboutActionItem.OnClickListener createPhoneOnClickAction(final Context c, String number) {
+    public static MaterialAboutItemOnClickListener createPhoneOnClickAction(final Context c, String number) {
         final Intent phoneIntent = new Intent(Intent.ACTION_DIAL);
         phoneIntent.setData(Uri.parse("tel:" + number));
 
-        return new MaterialAboutActionItem.OnClickListener() {
+        return new MaterialAboutItemOnClickListener() {
             @Override
             public void onClick() {
                 try {
@@ -287,7 +288,7 @@ public class ConvenienceBuilder {
     }
 
     /**
-     * Creates a MaterialAboutActionItem.OnClickListener that will open
+     * Creates a MaterialAboutItemOnClickListener that will open
      * maps with a query.
      * Query can be either lat,lng(label) or written address
      *
@@ -295,10 +296,10 @@ public class ConvenienceBuilder {
      * @param addressQuery address query
      * @return onClickListener
      */
-    public static MaterialAboutActionItem.OnClickListener createMapOnClickAction(final Context c, String addressQuery) {
+    public static MaterialAboutItemOnClickListener createMapOnClickAction(final Context c, String addressQuery) {
         final Intent mapIntent = new Intent(Intent.ACTION_VIEW);
         mapIntent.setData(Uri.parse("geo:0,0").buildUpon().appendQueryParameter("q", addressQuery).build());
-        return new MaterialAboutActionItem.OnClickListener() {
+        return new MaterialAboutItemOnClickListener() {
             @Override
             public void onClick() {
                 try {

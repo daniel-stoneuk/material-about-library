@@ -36,7 +36,7 @@ public class MaterialAboutActionItem extends MaterialAboutItem {
     private int iconRes = 0;
     private boolean showIcon = true;
     private int iconGravity = GRAVITY_MIDDLE;
-    private MaterialAboutActionItem.OnClickListener onClickListener = null;
+    private MaterialAboutItemOnClickListener onClickListener = null;
     private MaterialAboutActionItem(Builder builder) {
         this.text = builder.text;
         this.textRes = builder.textRes;
@@ -54,7 +54,7 @@ public class MaterialAboutActionItem extends MaterialAboutItem {
         this.onClickListener = builder.onClickListener;
     }
 
-    public MaterialAboutActionItem(CharSequence text, CharSequence subText, Drawable icon, OnClickListener onClickListener) {
+    public MaterialAboutActionItem(CharSequence text, CharSequence subText, Drawable icon, MaterialAboutItemOnClickListener onClickListener) {
         this.text = text;
         this.subText = subText;
         this.icon = icon;
@@ -67,7 +67,7 @@ public class MaterialAboutActionItem extends MaterialAboutItem {
         this.icon = icon;
     }
 
-    public MaterialAboutActionItem(int textRes, int subTextRes, int iconRes, OnClickListener onClickListener) {
+    public MaterialAboutActionItem(int textRes, int subTextRes, int iconRes, MaterialAboutItemOnClickListener onClickListener) {
         this.textRes = textRes;
         this.subTextRes = subTextRes;
         this.iconRes = iconRes;
@@ -247,17 +247,13 @@ public class MaterialAboutActionItem extends MaterialAboutItem {
         return this;
     }
 
-    public MaterialAboutActionItem.OnClickListener getOnClickListener() {
+    public MaterialAboutItemOnClickListener getOnClickListener() {
         return onClickListener;
     }
 
-    public MaterialAboutActionItem setOnClickListener(OnClickListener onClickListener) {
+    public MaterialAboutActionItem setOnClickListener(MaterialAboutItemOnClickListener onClickListener) {
         this.onClickListener = onClickListener;
         return this;
-    }
-
-    public interface OnClickListener {
-        void onClick();
     }
 
     @Retention(RetentionPolicy.SOURCE)
@@ -270,7 +266,7 @@ public class MaterialAboutActionItem extends MaterialAboutItem {
         public final ImageView icon;
         public final TextView text;
         public final TextView subText;
-        public MaterialAboutActionItem.OnClickListener onClickListener;
+        public MaterialAboutItemOnClickListener onClickListener;
 
         MaterialAboutActionItemViewHolder(View view) {
             super(view);
@@ -293,7 +289,7 @@ public class MaterialAboutActionItem extends MaterialAboutItem {
 
     public static class Builder {
 
-        MaterialAboutActionItem.OnClickListener onClickListener = null;
+        MaterialAboutItemOnClickListener onClickListener = null;
         private CharSequence text = null;
         @StringRes
         private int textRes = 0;
@@ -364,7 +360,7 @@ public class MaterialAboutActionItem extends MaterialAboutItem {
             return this;
         }
 
-        public Builder setOnClickListener(MaterialAboutActionItem.OnClickListener onClickListener) {
+        public Builder setOnClickListener(MaterialAboutItemOnClickListener onClickListener) {
             this.onClickListener = onClickListener;
             return this;
         }

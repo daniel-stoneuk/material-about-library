@@ -23,7 +23,7 @@ public class MaterialAboutTitleItem extends MaterialAboutItem {
     private int textRes = 0;
     private Drawable icon = null;
     private int iconRes = 0;
-    private MaterialAboutTitleItem.OnClickListener onClickListener = null;
+    private MaterialAboutItemOnClickListener onClickListener = null;
 
     private MaterialAboutTitleItem(MaterialAboutTitleItem.Builder builder) {
         this.text = builder.text;
@@ -143,24 +143,20 @@ public class MaterialAboutTitleItem extends MaterialAboutItem {
         return this;
     }
 
-    public OnClickListener getOnClickListener() {
+    public MaterialAboutItemOnClickListener getOnClickListener() {
         return onClickListener;
     }
 
-    public MaterialAboutTitleItem setOnClickListener(OnClickListener onClickListener) {
+    public MaterialAboutTitleItem setOnClickListener(MaterialAboutItemOnClickListener onClickListener) {
         this.onClickListener = onClickListener;
         return this;
-    }
-
-    public interface OnClickListener {
-        void onClick();
     }
 
     public static class MaterialAboutTitleItemViewHolder extends MaterialAboutItemViewHolder implements View.OnClickListener {
         public final View view;
         public final ImageView icon;
         public final TextView text;
-        public MaterialAboutTitleItem.OnClickListener onClickListener;
+        public MaterialAboutItemOnClickListener onClickListener;
 
         MaterialAboutTitleItemViewHolder(View view) {
             super(view);
@@ -180,7 +176,7 @@ public class MaterialAboutTitleItem extends MaterialAboutItem {
 
     public static class Builder {
 
-        MaterialAboutTitleItem.OnClickListener onClickListener = null;
+        MaterialAboutItemOnClickListener onClickListener = null;
         private CharSequence text = null;
         @StringRes
         private int textRes = 0;
@@ -214,7 +210,7 @@ public class MaterialAboutTitleItem extends MaterialAboutItem {
             return this;
         }
 
-        public MaterialAboutTitleItem.Builder setOnClickListener(MaterialAboutTitleItem.OnClickListener onClickListener) {
+        public MaterialAboutTitleItem.Builder setOnClickListener(MaterialAboutItemOnClickListener onClickListener) {
             this.onClickListener = onClickListener;
             return this;
         }
