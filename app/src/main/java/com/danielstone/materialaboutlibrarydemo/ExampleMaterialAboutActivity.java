@@ -91,7 +91,7 @@ public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
                         ((MaterialAboutActionItem) newList.getCards()
                                 .get(4)
                                 .getItems()
-                                .get(2)).setSubText("Random number: " + ((int) (Math.random() * 10)));
+                                .get(3)).setSubText("Random number: " + ((int) (Math.random() * 10)));
                         setMaterialAboutList(newList);
                     }
                 })
