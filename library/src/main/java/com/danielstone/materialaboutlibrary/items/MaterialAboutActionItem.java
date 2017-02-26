@@ -261,7 +261,7 @@ public class MaterialAboutActionItem extends MaterialAboutItem {
     public @interface IconGravity {
     }
 
-    public static class MaterialAboutActionItemViewHolder extends MaterialAboutItemViewHolder implements View.OnClickListener {
+    public static class MaterialAboutActionItemViewHolder extends MaterialAboutItemViewHolder implements View.OnClickListener, View.OnLongClickListener {
         public final View view;
         public final ImageView icon;
         public final TextView text;
@@ -276,14 +276,24 @@ public class MaterialAboutActionItem extends MaterialAboutItem {
             subText = (TextView) view.findViewById(R.id.mal_action_item_subtext);
 
             view.setOnClickListener(this);
+            view.setOnLongClickListener(this);
             onClickListener = null;
         }
 
         @Override
         public void onClick(View v) {
             if (onClickListener != null) {
-                onClickListener.onClick();
+                onClickListener.onClick(false);
             }
+        }
+
+        @Override
+        public boolean onLongClick(View v) {
+            if (onClickListener != null) {
+                onClickListener.onClick(true);
+                return true;
+            }
+            return false;
         }
     }
 

@@ -61,7 +61,7 @@ public class ConvenienceBuilder {
 
         return new MaterialAboutItemOnClickListener() {
             @Override
-            public void onClick() {
+            public void onClick(boolean longClick) {
                 AlertDialog.Builder alertBuilder = new AlertDialog.Builder(c);
                 alertBuilder.setTitle(dialogTitle);
 
@@ -110,7 +110,7 @@ public class ConvenienceBuilder {
     public static MaterialAboutItemOnClickListener createWebsiteOnClickAction(final Context c, final Uri websiteUrl) {
         return new MaterialAboutItemOnClickListener() {
             @Override
-            public void onClick() {
+            public void onClick(boolean longClick) {
                 Intent i = new Intent(Intent.ACTION_VIEW);
                 i.setData(websiteUrl);
                 try {
@@ -162,7 +162,7 @@ public class ConvenienceBuilder {
 
         return new MaterialAboutItemOnClickListener() {
             @Override
-            public void onClick() {
+            public void onClick(boolean longClick) {
                 try {
                     c.startActivity(goToMarket);
                 } catch (ActivityNotFoundException e) {
@@ -211,7 +211,7 @@ public class ConvenienceBuilder {
 
         return new MaterialAboutItemOnClickListener() {
             @Override
-            public void onClick() {
+            public void onClick(boolean longClick) {
                 try {
                     c.startActivity(Intent.createChooser(emailIntent, chooserTitle));
                 } catch (Exception e) {
@@ -258,7 +258,7 @@ public class ConvenienceBuilder {
 
         return new MaterialAboutItemOnClickListener() {
             @Override
-            public void onClick() {
+            public void onClick(boolean longClick) {
                 try {
                     c.startActivity(phoneIntent);
                 } catch (Exception e) {
@@ -301,7 +301,7 @@ public class ConvenienceBuilder {
         mapIntent.setData(Uri.parse("geo:0,0").buildUpon().appendQueryParameter("q", addressQuery).build());
         return new MaterialAboutItemOnClickListener() {
             @Override
-            public void onClick() {
+            public void onClick(boolean longClick) {
                 try {
                     c.startActivity(mapIntent);
                 } catch (Exception e) {

@@ -60,7 +60,7 @@ public class Demo {
                         .sizeDp(18))
                 .setOnClickListener(new MaterialAboutItemOnClickListener() {
                     @Override
-                    public void onClick() {
+                    public void onClick(boolean longClick) {
                         Intent intent = new Intent(c, ExampleMaterialAboutLicenseActivity.class);
                         intent.putExtra(ExampleMaterialAboutActivity.THEME_EXTRA, theme);
                         c.startActivity(intent);

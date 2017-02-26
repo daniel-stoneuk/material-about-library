@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.danielstone.materialaboutlibrary.ConvenienceBuilder;
 import com.danielstone.materialaboutlibrary.MaterialAboutActivity;
@@ -50,7 +51,8 @@ public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
                         .sizeDp(18))
                 .setOnClickListener(new MaterialAboutItemOnClickListener() {
                     @Override
-                    public void onClick() {
+                    public void onClick(boolean longClick) {
+                        if (longClick) Toast.makeText(c, "Long pressed", Toast.LENGTH_SHORT).show();
                         Snackbar.make(((ExampleMaterialAboutActivity) c).findViewById(R.id.mal_material_about_activity_coordinator_layout), "Test", Snackbar.LENGTH_SHORT).show();
                     }
                 })
@@ -73,7 +75,7 @@ public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
                         ).sizeDp(18))
                 .setOnClickListener(new MaterialAboutItemOnClickListener() {
                     @Override
-                    public void onClick() {
+                    public void onClick(boolean longClick) {
                         MaterialAboutList newList = getMaterialAboutList();
                         ((MaterialAboutActionItem) newList.getCards()
                                 .get(4)
@@ -82,7 +84,7 @@ public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
                         setMaterialAboutList(newList);
                     }
                 })
-                .build());
+                 .build());
 
         return Demo.createMaterialAboutList(c, colorIcon, getIntent().getIntExtra(THEME_EXTRA, THEME_LIGHT_DARKBAR)).addCard(advancedCardBuilder.build());
     }
