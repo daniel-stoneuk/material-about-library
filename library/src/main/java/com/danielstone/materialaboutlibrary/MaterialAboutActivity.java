@@ -7,9 +7,9 @@ import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
-import android.support.v4.app.NavUtils;
 import android.support.v4.view.animation.FastOutSlowInInterpolator;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -17,6 +17,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.TypedValue;
+import android.view.MenuItem;
 
 import com.danielstone.materialaboutlibrary.adapters.MaterialAboutListAdapter;
 import com.danielstone.materialaboutlibrary.model.MaterialAboutList;
@@ -26,13 +27,14 @@ import com.danielstone.materialaboutlibrary.util.ViewTypeManager;
 public abstract class MaterialAboutActivity extends AppCompatActivity {
 
     private MaterialAboutList list = new MaterialAboutList.Builder().build();
-    private AppBarLayout appBarLayout;
     private Toolbar toolbar;
     private RecyclerView recyclerView;
     private MaterialAboutListAdapter adapter;
 
-    protected abstract MaterialAboutList getMaterialAboutList(Context c);
+    @NonNull
+    protected abstract MaterialAboutList getMaterialAboutList(@NonNull Context context);
 
+    @Nullable
     protected abstract CharSequence getActivityTitle();
 
     @Override
@@ -58,7 +60,6 @@ public abstract class MaterialAboutActivity extends AppCompatActivity {
 
     private void assignViews() {
         toolbar = (Toolbar) findViewById(R.id.mal_toolbar);
-        appBarLayout = (AppBarLayout) findViewById(R.id.mal_appbarlayout);
         recyclerView = (RecyclerView) findViewById(R.id.mal_recyclerview);
         recyclerView.setAlpha(0f);
         recyclerView.setTranslationY(20);
@@ -66,11 +67,9 @@ public abstract class MaterialAboutActivity extends AppCompatActivity {
 
     private void initViews() {
         setSupportActionBar(toolbar);
-        if (NavUtils.getParentActivityName(this) != null) {
-            ActionBar actionBar = getSupportActionBar();
-            if (actionBar != null) {
-                actionBar.setDisplayHomeAsUpEnabled(true);
-            }
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
         Resources.Theme theme = getTheme();
@@ -93,12 +92,37 @@ public abstract class MaterialAboutActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
     }
 
+    @NonNull
     protected ViewTypeManager getViewTypeManager() {
         return new DefaultViewTypeManager();
     }
 
+    @NonNull
     protected MaterialAboutList getMaterialAboutList() {
         return list;
+    }
+
+    @Override public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == android.R.id.home){
+            onBackPressed();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void onTaskFinished(@Nullable MaterialAboutList materialAboutList) {
+        if (materialAboutList != null) {
+            list = materialAboutList;
+            adapter.swapData(list);
+            recyclerView.animate()
+                    .alpha(1f)
+                    .translationY(0f)
+                    .setDuration(400)
+                    .setInterpolator(new FastOutSlowInInterpolator())
+                    .start();
+        } else {
+            finish();//?? why we remain here anyway?
+        }
     }
 
     protected void setMaterialAboutList(MaterialAboutList materialAboutList) {
@@ -119,26 +143,25 @@ public abstract class MaterialAboutActivity extends AppCompatActivity {
         }
     }
 
-    private class ListTask extends AsyncTask<String, String, String> {
+    private static class ListTask extends AsyncTask<String, String, MaterialAboutList> {
 
-        Context context;
+        private MaterialAboutActivity context;
 
-        public ListTask(Context context) {
+        ListTask(MaterialAboutActivity context) {
             this.context = context;
         }
 
         @Override
-        protected String doInBackground(String... params) {
-            list = getMaterialAboutList(context);
-            return null;
+        protected MaterialAboutList doInBackground(String... params) {
+            return isCancelled() ? null : context.getMaterialAboutList(context);
         }
 
         @Override
-        protected void onPostExecute(String s) {
-
-            adapter.swapData(list);
-            recyclerView.animate().alpha(1f).translationY(0f).setDuration(400).setInterpolator(new FastOutSlowInInterpolator()).start();
-            super.onPostExecute(s);
+        protected void onPostExecute(MaterialAboutList materialAboutList) {
+            super.onPostExecute(materialAboutList);
+            if (!context.isFinishing()) {
+                context.onTaskFinished(materialAboutList);
+            }
             context = null;
         }
     }

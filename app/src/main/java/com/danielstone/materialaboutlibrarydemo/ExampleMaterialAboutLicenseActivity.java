@@ -1,14 +1,15 @@
 package com.danielstone.materialaboutlibrarydemo;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.view.MenuItem;
 
 import com.danielstone.materialaboutlibrary.model.MaterialAboutList;
 
 public class ExampleMaterialAboutLicenseActivity extends ExampleMaterialAboutActivity {
 
-    @Override
-    protected MaterialAboutList getMaterialAboutList(final Context c) {
+    @NonNull @Override
+    protected MaterialAboutList getMaterialAboutList(@NonNull final Context c) {
         return Demo.createMaterialAboutLicenseList(c, colorIcon);
     }
 
