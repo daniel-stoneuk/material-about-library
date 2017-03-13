@@ -7,12 +7,12 @@ def versionBuild = 0 // bump for dogfood builds, public betas, etc.
 
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
     defaultConfig {
         applicationId "com.danielstone.materialaboutlibrarydemo"
-        minSdkVersion 14
-        targetSdkVersion 25
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode versionMajor * 10000 + versionMinor * 1000 + versionPatch * 100 + versionBuild
         versionName "${versionMajor}.${versionMinor}" + (versionPatch == 0 ? "" : ".${versionPatch}")
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -31,14 +31,14 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile project(':library')
-    compile 'com.android.support:appcompat-v7:25.2.0'
-    compile 'com.android.support:design:25.2.0'
+    compile "com.android.support:appcompat-v7:$supportLibVersion"
+    compile "com.android.support:design:$supportLibVersion"
     compile "com.mikepenz:iconics-core:2.8.2@aar"
     compile 'com.mikepenz:google-material-typeface:2.2.0.3.original@aar'
     compile 'com.mikepenz:community-material-typeface:1.7.22.1@aar'
 
-    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
-    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
-    testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
+    debugCompile "com.squareup.leakcanary:leakcanary-android:$leakCanaryVersion"
+    releaseCompile "com.squareup.leakcanary:leakcanary-android-no-op:$leakCanaryVersion"
+    testCompile "com.squareup.leakcanary:leakcanary-android-no-op:$leakCanaryVersion"
     testCompile 'junit:junit:4.12'
 }
