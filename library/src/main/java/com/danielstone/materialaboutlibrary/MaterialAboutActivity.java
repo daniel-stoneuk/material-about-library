@@ -40,6 +40,7 @@ public abstract class MaterialAboutActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        verifyAttributesExist();
 
         setContentView(R.layout.mal_material_about_activity);
 
@@ -55,7 +56,20 @@ public abstract class MaterialAboutActivity extends AppCompatActivity {
 
         ListTask task = new ListTask(this);
         task.execute();
+    }
 
+    private void verifyAttributesExist() {
+        TypedValue typedValue = new TypedValue();
+        boolean malColorPrimaryExists =
+                getTheme().resolveAttribute(R.attr.mal_color_primary, typedValue, true);
+        boolean malColorSecondaryExists =
+                getTheme().resolveAttribute(R.attr.mal_color_secondary, typedValue, true);
+        if (!malColorPrimaryExists || !malColorSecondaryExists) {
+            throw new IllegalStateException(String.format("The current theme doesn't provide %s " +
+                            "and/or %s. Please use a theme provided by the library or an extension.",
+                    getResources().getResourceEntryName(R.attr.mal_color_primary),
+                    getResources().getResourceEntryName(R.attr.mal_color_secondary)));
+        }
     }
 
     private void assignViews() {
