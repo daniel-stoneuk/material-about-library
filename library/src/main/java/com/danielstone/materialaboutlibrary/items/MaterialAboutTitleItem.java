@@ -21,6 +21,8 @@ public class MaterialAboutTitleItem extends MaterialAboutItem {
 
     private CharSequence text = null;
     private int textRes = 0;
+    private CharSequence desc = null;
+    private int descRes = 0;
     private Drawable icon = null;
     private int iconRes = 0;
     private MaterialAboutItemOnClickListener onClickListener = null;
@@ -29,19 +31,24 @@ public class MaterialAboutTitleItem extends MaterialAboutItem {
         this.text = builder.text;
         this.textRes = builder.textRes;
 
+        this.desc = builder.desc;
+        this.descRes = builder.descRes;
+
         this.icon = builder.icon;
         this.iconRes = builder.iconRes;
 
         this.onClickListener = builder.onClickListener;
     }
 
-    public MaterialAboutTitleItem(CharSequence text, Drawable icon) {
+    public MaterialAboutTitleItem(CharSequence text, CharSequence desc, Drawable icon) {
         this.text = text;
+        this.desc = desc;
         this.icon = icon;
     }
 
-    public MaterialAboutTitleItem(int textRes, int iconRes) {
+    public MaterialAboutTitleItem(int textRes, int descRes, int iconRes) {
         this.textRes = textRes;
+        this.descRes = descRes;
         this.iconRes = iconRes;
     }
 
@@ -61,6 +68,18 @@ public class MaterialAboutTitleItem extends MaterialAboutItem {
             holder.text.setText(textRes);
         } else {
             holder.text.setVisibility(GONE);
+        }
+
+        CharSequence desc = item.getDesc();
+        int descRes = item.getDescRes();
+
+        holder.desc.setVisibility(View.VISIBLE);
+        if (text != null) {
+            holder.desc.setText(desc);
+        } else if (descRes != 0) {
+            holder.desc.setText(descRes);
+        } else {
+            holder.desc.setVisibility(GONE);
         }
 
         Drawable drawable = item.getIcon();
@@ -123,6 +142,26 @@ public class MaterialAboutTitleItem extends MaterialAboutItem {
         return this;
     }
 
+    public CharSequence getDesc() {
+        return desc;
+    }
+
+    public MaterialAboutTitleItem setDesc(CharSequence desc) {
+        this.descRes = 0;
+        this.desc = desc;
+        return this;
+    }
+
+    public int getDescRes() {
+        return descRes;
+    }
+
+    public MaterialAboutTitleItem setDescRes(int descRes) {
+        this.desc = null;
+        this.descRes = textRes;
+        return this;
+    }
+
     public Drawable getIcon() {
         return icon;
     }
@@ -156,6 +195,7 @@ public class MaterialAboutTitleItem extends MaterialAboutItem {
         public final View view;
         public final ImageView icon;
         public final TextView text;
+        public final TextView desc;
         public MaterialAboutItemOnClickListener onClickListener;
 
         MaterialAboutTitleItemViewHolder(View view) {
@@ -163,6 +203,7 @@ public class MaterialAboutTitleItem extends MaterialAboutItem {
             this.view = view;
             icon = (ImageView) view.findViewById(R.id.mal_item_image);
             text = (TextView) view.findViewById(R.id.mal_item_text);
+            desc = (TextView) view.findViewById(R.id.mal_item_desc);
 
             view.setOnClickListener(this);
             view.setOnLongClickListener(this);
@@ -192,6 +233,9 @@ public class MaterialAboutTitleItem extends MaterialAboutItem {
         private CharSequence text = null;
         @StringRes
         private int textRes = 0;
+        private CharSequence desc = null;
+        @StringRes
+        private int descRes = 0;
         private Drawable icon = null;
         @DrawableRes
         private int iconRes = 0;
@@ -206,6 +250,19 @@ public class MaterialAboutTitleItem extends MaterialAboutItem {
         public MaterialAboutTitleItem.Builder text(@StringRes int text) {
             this.textRes = text;
             this.text = null;
+            return this;
+        }
+
+        public MaterialAboutTitleItem.Builder desc(CharSequence desc) {
+            this.desc = desc;
+            this.descRes = 0;
+            return this;
+        }
+
+
+        public MaterialAboutTitleItem.Builder desc(@StringRes int desc) {
+            this.descRes = desc;
+            this.desc = null;
             return this;
         }
 
