@@ -25,7 +25,7 @@ import com.danielstone.materialaboutlibrary.util.OpenSourceLicense;
 public class ConvenienceBuilder {
 
     public static MaterialAboutTitleItem createAppTitleItem(String appName, Drawable applicationIcon) {
-        return new MaterialAboutTitleItem(appName, applicationIcon);
+        return new MaterialAboutTitleItem(appName, null, applicationIcon);
     }
 
     public static MaterialAboutTitleItem createAppTitleItem(Context c) {
