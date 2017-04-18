@@ -26,6 +26,7 @@ public class MaterialAboutTitleItem extends MaterialAboutItem {
     private Drawable icon = null;
     private int iconRes = 0;
     private MaterialAboutItemOnClickAction onClickAction = null;
+    private MaterialAboutItemOnClickAction onLongClickAction = null;
 
     private MaterialAboutTitleItem(MaterialAboutTitleItem.Builder builder) {
         this.text = builder.text;
@@ -38,6 +39,7 @@ public class MaterialAboutTitleItem extends MaterialAboutItem {
         this.iconRes = builder.iconRes;
 
         this.onClickAction = builder.onClickAction;
+        this.onLongClickAction = builder.onLongClickAction;
     }
 
     public MaterialAboutTitleItem(CharSequence text, CharSequence desc, Drawable icon) {
@@ -98,12 +100,13 @@ public class MaterialAboutTitleItem extends MaterialAboutItem {
             pB = holder.view.getPaddingBottom();
         }
 
-        if (item.getOnClickAction() != null) {
+        if (item.getOnClickAction() != null || item.getOnLongClickAction() != null) {
             TypedValue outValue = new TypedValue();
             context.getTheme().resolveAttribute(R.attr.selectableItemBackground, outValue, true);
             holder.view.setBackgroundResource(outValue.resourceId);
         }
         holder.setOnClickAction(item.getOnClickAction());
+        holder.setOnLongClickAction(item.getOnLongClickAction());
 
         if (Build.VERSION.SDK_INT < 21) {
             holder.view.setPadding(pL, pT, pR, pB);
@@ -184,12 +187,22 @@ public class MaterialAboutTitleItem extends MaterialAboutItem {
         return this;
     }
 
-    public static class MaterialAboutTitleItemViewHolder extends MaterialAboutItemViewHolder implements View.OnClickListener {
+    public MaterialAboutItemOnClickAction getOnLongClickAction() {
+        return onLongClickAction;
+    }
+
+    public MaterialAboutTitleItem setOnLongClickAction(MaterialAboutItemOnClickAction onLongClickAction) {
+        this.onLongClickAction = onLongClickAction;
+        return this;
+    }
+
+    public static class MaterialAboutTitleItemViewHolder extends MaterialAboutItemViewHolder implements View.OnClickListener, View.OnLongClickListener {
         public final View view;
         public final ImageView icon;
         public final TextView text;
         public final TextView desc;
         private MaterialAboutItemOnClickAction onClickAction;
+        private MaterialAboutItemOnClickAction onLongClickAction;
 
         MaterialAboutTitleItemViewHolder(View view) {
             super(view);
@@ -208,17 +221,36 @@ public class MaterialAboutTitleItem extends MaterialAboutItem {
             }
         }
 
+        public void setOnLongClickAction(MaterialAboutItemOnClickAction onLongClickAction) {
+            this.onLongClickAction = onLongClickAction;
+            if (onLongClickAction != null) {
+                view.setOnLongClickListener(this);
+            } else {
+                view.setLongClickable(false);
+            }
+        }
+
         @Override
         public void onClick(View v) {
             if (onClickAction != null) {
                 onClickAction.onClick();
             }
         }
+
+        @Override
+        public boolean onLongClick(View v) {
+            if (onLongClickAction != null) {
+                onLongClickAction.onClick();
+                return true;
+            }
+            return false;
+        }
     }
 
     public static class Builder {
 
         MaterialAboutItemOnClickAction onClickAction = null;
+        MaterialAboutItemOnClickAction onLongClickAction = null;
         private CharSequence text = null;
         @StringRes
         private int textRes = 0;
@@ -270,6 +302,11 @@ public class MaterialAboutTitleItem extends MaterialAboutItem {
 
         public MaterialAboutTitleItem.Builder setOnClickAction(MaterialAboutItemOnClickAction onClickAction) {
             this.onClickAction = onClickAction;
+            return this;
+        }
+
+        public MaterialAboutTitleItem.Builder setOnLongClickAction(MaterialAboutItemOnClickAction onLongClickAction) {
+            this.onLongClickAction = onLongClickAction;
             return this;
         }
 

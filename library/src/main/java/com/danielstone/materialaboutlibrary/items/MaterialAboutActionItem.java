@@ -37,6 +37,8 @@ public class MaterialAboutActionItem extends MaterialAboutItem {
     private boolean showIcon = true;
     private int iconGravity = GRAVITY_MIDDLE;
     private MaterialAboutItemOnClickAction onClickAction = null;
+    private MaterialAboutItemOnClickAction onLongClickAction = null;
+
     private MaterialAboutActionItem(Builder builder) {
         this.text = builder.text;
         this.textRes = builder.textRes;
@@ -52,6 +54,7 @@ public class MaterialAboutActionItem extends MaterialAboutItem {
         this.iconGravity = builder.iconGravity;
 
         this.onClickAction = builder.onClickAction;
+        this.onLongClickAction = builder.onLongClickAction;
     }
 
     public MaterialAboutActionItem(CharSequence text, CharSequence subText, Drawable icon, MaterialAboutItemOnClickAction onClickAction) {
@@ -144,12 +147,13 @@ public class MaterialAboutActionItem extends MaterialAboutItem {
             pB = holder.view.getPaddingBottom();
         }
 
-        if (item.getOnClickAction() != null) {
+        if (item.getOnClickAction() != null || item.getOnLongClickAction() != null) {
             TypedValue outValue = new TypedValue();
             context.getTheme().resolveAttribute(R.attr.selectableItemBackground, outValue, true);
             holder.view.setBackgroundResource(outValue.resourceId);
 	    }
         holder.setOnClickAction(item.getOnClickAction());
+        holder.setOnLongClickAction(item.getOnLongClickAction());
 
         if (Build.VERSION.SDK_INT < 21) {
             holder.view.setPadding(pL, pT, pR, pB);
@@ -249,17 +253,27 @@ public class MaterialAboutActionItem extends MaterialAboutItem {
         return this;
     }
 
+    public MaterialAboutItemOnClickAction getOnLongClickAction() {
+        return onLongClickAction;
+    }
+
+    public MaterialAboutActionItem setOnLongClickAction(MaterialAboutItemOnClickAction onLongClickAction) {
+        this.onLongClickAction = onLongClickAction;
+        return this;
+    }
+
     @Retention(RetentionPolicy.SOURCE)
     @IntDef({GRAVITY_TOP, GRAVITY_MIDDLE, GRAVITY_BOTTOM})
     public @interface IconGravity {
     }
 
-    public static class MaterialAboutActionItemViewHolder extends MaterialAboutItemViewHolder implements View.OnClickListener {
+    public static class MaterialAboutActionItemViewHolder extends MaterialAboutItemViewHolder implements View.OnClickListener, View.OnLongClickListener {
         public final View view;
         public final ImageView icon;
         public final TextView text;
         public final TextView subText;
         private MaterialAboutItemOnClickAction onClickAction;
+        private MaterialAboutItemOnClickAction onLongClickAction;
 
         MaterialAboutActionItemViewHolder(View view) {
             super(view);
@@ -274,17 +288,32 @@ public class MaterialAboutActionItem extends MaterialAboutItem {
             view.setOnClickListener(onClickAction != null ? this : null);
         }
 
+        public void setOnLongClickAction(MaterialAboutItemOnClickAction onLongClickAction) {
+            this.onLongClickAction = onLongClickAction;
+            view.setOnLongClickListener(onLongClickAction != null ? this : null);
+        }
+
         @Override
         public void onClick(View v) {
             if (onClickAction != null) {
                 onClickAction.onClick();
             }
         }
+
+	    @Override
+	    public boolean onLongClick(View v) {
+		    if (onLongClickAction != null) {
+			    onLongClickAction.onClick();
+			    return true;
+		    }
+		    return false;
+	    }
     }
 
     public static class Builder {
 
         MaterialAboutItemOnClickAction onClickAction = null;
+        MaterialAboutItemOnClickAction onLongClickAction = null;
         private CharSequence text = null;
         @StringRes
         private int textRes = 0;
@@ -357,6 +386,11 @@ public class MaterialAboutActionItem extends MaterialAboutItem {
 
         public Builder setOnClickAction(MaterialAboutItemOnClickAction onClickAction) {
             this.onClickAction = onClickAction;
+            return this;
+        }
+
+        public Builder setOnLongClickAction(MaterialAboutItemOnClickAction onLongClickAction) {
+            this.onLongClickAction = onLongClickAction;
             return this;
         }
 
