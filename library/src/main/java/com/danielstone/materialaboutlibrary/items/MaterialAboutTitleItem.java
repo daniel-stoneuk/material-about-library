@@ -191,7 +191,7 @@ public class MaterialAboutTitleItem extends MaterialAboutItem {
         return this;
     }
 
-    public static class MaterialAboutTitleItemViewHolder extends MaterialAboutItemViewHolder implements View.OnClickListener, View.OnLongClickListener {
+    public static class MaterialAboutTitleItemViewHolder extends MaterialAboutItemViewHolder implements View.OnClickListener {
         public final View view;
         public final ImageView icon;
         public final TextView text;
@@ -206,7 +206,6 @@ public class MaterialAboutTitleItem extends MaterialAboutItem {
             desc = (TextView) view.findViewById(R.id.mal_item_desc);
 
             view.setOnClickListener(this);
-            view.setOnLongClickListener(this);
             onClickListener = null;
         }
 
@@ -215,15 +214,6 @@ public class MaterialAboutTitleItem extends MaterialAboutItem {
             if (onClickListener != null) {
                 onClickListener.onClick();
             }
-        }
-
-        @Override
-        public boolean onLongClick(View v) {
-            if (onClickListener != null) {
-                onClickListener.onClick();
-                return true;
-            }
-            return false;
         }
     }
 
