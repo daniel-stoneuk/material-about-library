@@ -102,15 +102,8 @@ public class MaterialAboutTitleItem extends MaterialAboutItem {
             TypedValue outValue = new TypedValue();
             context.getTheme().resolveAttribute(R.attr.selectableItemBackground, outValue, true);
             holder.view.setBackgroundResource(outValue.resourceId);
-            holder.onClickAction = item.getOnClickAction();
-            holder.view.setSoundEffectsEnabled(true);
-        } else {
-            TypedValue outValue = new TypedValue();
-            context.getTheme().resolveAttribute(R.attr.selectableItemBackground, outValue, false);
-            holder.view.setBackgroundResource(outValue.resourceId);
-            holder.onClickAction = null;
-            holder.view.setSoundEffectsEnabled(false);
         }
+        holder.setOnClickAction(item.getOnClickAction());
 
         if (Build.VERSION.SDK_INT < 21) {
             holder.view.setPadding(pL, pT, pR, pB);
@@ -196,7 +189,7 @@ public class MaterialAboutTitleItem extends MaterialAboutItem {
         public final ImageView icon;
         public final TextView text;
         public final TextView desc;
-        public MaterialAboutItemOnClickAction onClickAction;
+        private MaterialAboutItemOnClickAction onClickAction;
 
         MaterialAboutTitleItemViewHolder(View view) {
             super(view);
@@ -204,9 +197,15 @@ public class MaterialAboutTitleItem extends MaterialAboutItem {
             icon = (ImageView) view.findViewById(R.id.mal_item_image);
             text = (TextView) view.findViewById(R.id.mal_item_text);
             desc = (TextView) view.findViewById(R.id.mal_item_desc);
+        }
 
-            view.setOnClickListener(this);
-            onClickAction = null;
+        public void setOnClickAction(MaterialAboutItemOnClickAction onClickAction) {
+            this.onClickAction = onClickAction;
+            if (onClickAction != null) {
+                view.setOnClickListener(this);
+            } else {
+                view.setClickable(false);
+            }
         }
 
         @Override
