@@ -25,7 +25,7 @@ public class MaterialAboutTitleItem extends MaterialAboutItem {
     private int descRes = 0;
     private Drawable icon = null;
     private int iconRes = 0;
-    private MaterialAboutItemOnClickListener onClickListener = null;
+    private MaterialAboutItemOnClickAction onClickAction = null;
 
     private MaterialAboutTitleItem(MaterialAboutTitleItem.Builder builder) {
         this.text = builder.text;
@@ -37,7 +37,7 @@ public class MaterialAboutTitleItem extends MaterialAboutItem {
         this.icon = builder.icon;
         this.iconRes = builder.iconRes;
 
-        this.onClickListener = builder.onClickListener;
+        this.onClickAction = builder.onClickAction;
     }
 
     public MaterialAboutTitleItem(CharSequence text, CharSequence desc, Drawable icon) {
@@ -98,17 +98,17 @@ public class MaterialAboutTitleItem extends MaterialAboutItem {
             pB = holder.view.getPaddingBottom();
         }
 
-        if (item.getOnClickListener() != null) {
+        if (item.getOnClickAction() != null) {
             TypedValue outValue = new TypedValue();
             context.getTheme().resolveAttribute(R.attr.selectableItemBackground, outValue, true);
             holder.view.setBackgroundResource(outValue.resourceId);
-            holder.onClickListener = item.getOnClickListener();
+            holder.onClickAction = item.getOnClickAction();
             holder.view.setSoundEffectsEnabled(true);
         } else {
             TypedValue outValue = new TypedValue();
             context.getTheme().resolveAttribute(R.attr.selectableItemBackground, outValue, false);
             holder.view.setBackgroundResource(outValue.resourceId);
-            holder.onClickListener = null;
+            holder.onClickAction = null;
             holder.view.setSoundEffectsEnabled(false);
         }
 
@@ -182,12 +182,12 @@ public class MaterialAboutTitleItem extends MaterialAboutItem {
         return this;
     }
 
-    public MaterialAboutItemOnClickListener getOnClickListener() {
-        return onClickListener;
+    public MaterialAboutItemOnClickAction getOnClickAction() {
+        return onClickAction;
     }
 
-    public MaterialAboutTitleItem setOnClickListener(MaterialAboutItemOnClickListener onClickListener) {
-        this.onClickListener = onClickListener;
+    public MaterialAboutTitleItem setOnClickAction(MaterialAboutItemOnClickAction onClickAction) {
+        this.onClickAction = onClickAction;
         return this;
     }
 
@@ -196,7 +196,7 @@ public class MaterialAboutTitleItem extends MaterialAboutItem {
         public final ImageView icon;
         public final TextView text;
         public final TextView desc;
-        public MaterialAboutItemOnClickListener onClickListener;
+        public MaterialAboutItemOnClickAction onClickAction;
 
         MaterialAboutTitleItemViewHolder(View view) {
             super(view);
@@ -206,20 +206,20 @@ public class MaterialAboutTitleItem extends MaterialAboutItem {
             desc = (TextView) view.findViewById(R.id.mal_item_desc);
 
             view.setOnClickListener(this);
-            onClickListener = null;
+            onClickAction = null;
         }
 
         @Override
         public void onClick(View v) {
-            if (onClickListener != null) {
-                onClickListener.onClick();
+            if (onClickAction != null) {
+                onClickAction.onClick();
             }
         }
     }
 
     public static class Builder {
 
-        MaterialAboutItemOnClickListener onClickListener = null;
+        MaterialAboutItemOnClickAction onClickAction = null;
         private CharSequence text = null;
         @StringRes
         private int textRes = 0;
@@ -269,8 +269,8 @@ public class MaterialAboutTitleItem extends MaterialAboutItem {
             return this;
         }
 
-        public MaterialAboutTitleItem.Builder setOnClickListener(MaterialAboutItemOnClickListener onClickListener) {
-            this.onClickListener = onClickListener;
+        public MaterialAboutTitleItem.Builder setOnClickAction(MaterialAboutItemOnClickAction onClickAction) {
+            this.onClickAction = onClickAction;
             return this;
         }
 

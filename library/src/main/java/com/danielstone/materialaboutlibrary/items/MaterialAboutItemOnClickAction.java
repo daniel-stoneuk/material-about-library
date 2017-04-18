@@ -1,5 +1,5 @@
 package com.danielstone.materialaboutlibrary.items;
 
-public interface MaterialAboutItemOnClickListener {
+public interface MaterialAboutItemOnClickAction {
     void onClick();
 }

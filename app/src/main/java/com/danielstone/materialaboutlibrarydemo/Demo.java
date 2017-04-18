@@ -8,7 +8,7 @@ import android.support.v4.content.ContextCompat;
 
 import com.danielstone.materialaboutlibrary.ConvenienceBuilder;
 import com.danielstone.materialaboutlibrary.items.MaterialAboutActionItem;
-import com.danielstone.materialaboutlibrary.items.MaterialAboutItemOnClickListener;
+import com.danielstone.materialaboutlibrary.items.MaterialAboutItemOnClickAction;
 import com.danielstone.materialaboutlibrary.items.MaterialAboutTitleItem;
 import com.danielstone.materialaboutlibrary.model.MaterialAboutCard;
 import com.danielstone.materialaboutlibrary.model.MaterialAboutList;
@@ -49,7 +49,7 @@ public class Demo {
                         .icon(CommunityMaterial.Icon.cmd_history)
                         .color(ContextCompat.getColor(c, colorIcon))
                         .sizeDp(18))
-                .setOnClickListener(ConvenienceBuilder.createWebViewDialogOnClickAction(c, "Releases", "https://github.com/daniel-stoneuk/material-about-library/releases", true, false))
+                .setOnClickAction(ConvenienceBuilder.createWebViewDialogOnClickAction(c, "Releases", "https://github.com/daniel-stoneuk/material-about-library/releases", true, false))
                 .build());
 
         appCardBuilder.addItem(new MaterialAboutActionItem.Builder()
@@ -58,7 +58,7 @@ public class Demo {
                         .icon(GoogleMaterial.Icon.gmd_book)
                         .color(ContextCompat.getColor(c, colorIcon))
                         .sizeDp(18))
-                .setOnClickListener(new MaterialAboutItemOnClickListener() {
+                .setOnClickAction(new MaterialAboutItemOnClickAction() {
                     @Override
                     public void onClick() {
                         Intent intent = new Intent(c, ExampleMaterialAboutLicenseActivity.class);
@@ -87,7 +87,7 @@ public class Demo {
                         .icon(CommunityMaterial.Icon.cmd_github_circle)
                         .color(ContextCompat.getColor(c, colorIcon))
                         .sizeDp(18))
-                .setOnClickListener(ConvenienceBuilder.createWebsiteOnClickAction(c, Uri.parse("https://github.com/daniel-stoneuk")))
+                .setOnClickAction(ConvenienceBuilder.createWebsiteOnClickAction(c, Uri.parse("https://github.com/daniel-stoneuk")))
                 .build());
 
         MaterialAboutCard.Builder convenienceCardBuilder = new MaterialAboutCard.Builder();
