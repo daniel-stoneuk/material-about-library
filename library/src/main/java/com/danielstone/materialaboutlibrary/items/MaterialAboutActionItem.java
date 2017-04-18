@@ -283,14 +283,14 @@ public class MaterialAboutActionItem extends MaterialAboutItem {
         @Override
         public void onClick(View v) {
             if (onClickListener != null) {
-                onClickListener.onClick(false);
+                onClickListener.onClick();
             }
         }
 
         @Override
         public boolean onLongClick(View v) {
             if (onClickListener != null) {
-                onClickListener.onClick(true);
+                onClickListener.onClick();
                 return true;
             }
             return false;

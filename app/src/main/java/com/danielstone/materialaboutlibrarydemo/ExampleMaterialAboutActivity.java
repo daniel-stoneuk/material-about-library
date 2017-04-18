@@ -52,8 +52,7 @@ public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
                         .sizeDp(18))
                 .setOnClickListener(new MaterialAboutItemOnClickListener() {
                     @Override
-                    public void onClick(boolean longClick) {
-                        if (longClick) Toast.makeText(c, "Long pressed", Toast.LENGTH_SHORT).show();
+                    public void onClick() {
                         Snackbar.make(((ExampleMaterialAboutActivity) c).findViewById(R.id.mal_material_about_activity_coordinator_layout), "Test", Snackbar.LENGTH_SHORT).show();
                     }
                 })
@@ -76,7 +75,7 @@ public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
                         ).sizeDp(18))
                 .setOnClickListener(new MaterialAboutItemOnClickListener() {
                     @Override
-                    public void onClick(boolean longClick) {
+                    public void onClick() {
                         MaterialAboutList newList = getMaterialAboutList();
                         ((MaterialAboutActionItem) newList.getCards()
                                 .get(4)
