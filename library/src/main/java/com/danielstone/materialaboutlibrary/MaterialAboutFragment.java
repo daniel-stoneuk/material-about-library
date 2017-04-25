@@ -29,7 +29,9 @@ public abstract class MaterialAboutFragment extends Fragment {
 
     @Retention(RetentionPolicy.SOURCE)
     @IntDef({THEME_LIGHT, THEME_DARK})
-    public @interface FragmentTheme {}
+    public @interface FragmentTheme {
+    }
+
     public static final int THEME_LIGHT = 0;
     public static final int THEME_DARK = 1;
 
@@ -42,7 +44,11 @@ public abstract class MaterialAboutFragment extends Fragment {
     @FragmentTheme
     protected int getTheme() {
         return THEME_LIGHT;
-    };
+    }
+
+    protected boolean shouldAnimate() {
+        return true;
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -110,9 +116,19 @@ public abstract class MaterialAboutFragment extends Fragment {
 
         @Override
         protected void onPostExecute(String s) {
-
             adapter.swapData(list);
-            recyclerView.animate().alpha(1f).translationY(0f).setDuration(400).setInterpolator(new FastOutSlowInInterpolator()).start();
+
+            if (shouldAnimate()) {
+                recyclerView.animate()
+                        .alpha(1f)
+                        .translationY(0f)
+                        .setDuration(400)
+                        .setInterpolator(new FastOutSlowInInterpolator()).start();
+            } else {
+                recyclerView.setAlpha(1f);
+                recyclerView.setTranslationY(0f);
+            }
+
             super.onPostExecute(s);
             fragmentContext = null;
         }

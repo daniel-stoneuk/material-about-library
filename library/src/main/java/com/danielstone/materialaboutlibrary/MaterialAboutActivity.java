@@ -116,13 +116,17 @@ public abstract class MaterialAboutActivity extends AppCompatActivity {
         return list;
     }
 
-    @NonNull
+    protected boolean shouldAnimate() {
+        return true;
+    }
+
     protected void refreshMaterialAboutList() {
         adapter.notifyDataSetChanged();
     }
 
-    @Override public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == android.R.id.home){
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
             onBackPressed();
             return true;
         }
@@ -133,12 +137,17 @@ public abstract class MaterialAboutActivity extends AppCompatActivity {
         if (materialAboutList != null) {
             list = materialAboutList;
             adapter.swapData(list);
-            recyclerView.animate()
-                    .alpha(1f)
-                    .translationY(0f)
-                    .setDuration(400)
-                    .setInterpolator(new FastOutSlowInInterpolator())
-                    .start();
+
+            if (shouldAnimate()) {
+                recyclerView.animate()
+                        .alpha(1f)
+                        .translationY(0f)
+                        .setDuration(400)
+                        .setInterpolator(new FastOutSlowInInterpolator()).start();
+            } else {
+                recyclerView.setAlpha(1f);
+                recyclerView.setTranslationY(0f);
+            }
         } else {
             finish();//?? why we remain here anyway?
         }
