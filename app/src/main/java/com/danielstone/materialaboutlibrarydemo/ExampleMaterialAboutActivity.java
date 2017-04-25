@@ -80,25 +80,22 @@ public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
                         .sizeDp(18))
                 .build());
 
-        advancedCardBuilder.addItem(new MaterialAboutActionItem.Builder()
+        final MaterialAboutActionItem dynamicItem = new MaterialAboutActionItem.Builder()
                 .text("Dynamic UI")
                 .subText("Tap for a random number.")
                 .icon(new IconicsDrawable(c)
                         .icon(CommunityMaterial.Icon.cmd_refresh)
                         .color(ContextCompat.getColor(c, colorIcon)
                         ).sizeDp(18))
-                .setOnClickAction(new MaterialAboutItemOnClickAction() {
-                    @Override
-                    public void onClick() {
-                        MaterialAboutList newList = getMaterialAboutList();
-                        ((MaterialAboutActionItem) newList.getCards()
-                                .get(4)
-                                .getItems()
-                                .get(4)).setSubText("Random number: " + ((int) (Math.random() * 10)));
-                        setMaterialAboutList(newList);
-                    }
-                })
-                 .build());
+                .build();
+        dynamicItem.setOnClickAction(new MaterialAboutItemOnClickAction() {
+            @Override
+            public void onClick() {
+                dynamicItem.setSubText("Random number: " + ((int) (Math.random() * 10)));
+                refreshMaterialAboutList();
+            }
+        });
+        advancedCardBuilder.addItem(dynamicItem);
 
         return Demo.createMaterialAboutList(c, colorIcon, getIntent().getIntExtra(THEME_EXTRA, THEME_LIGHT_DARKBAR)).addCard(advancedCardBuilder.build());
     }
