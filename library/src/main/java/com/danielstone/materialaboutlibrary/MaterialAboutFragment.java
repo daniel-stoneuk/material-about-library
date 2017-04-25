@@ -50,12 +50,6 @@ public abstract class MaterialAboutFragment extends Fragment {
         return true;
     }
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-    }
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -68,10 +62,9 @@ public abstract class MaterialAboutFragment extends Fragment {
                 style = R.style.Theme_Mal_Dark_DarkActionBar;
                 break;
         }
-        // create ContextThemeWrapper from the original Activity Context with the custom theme
-        final Context contextThemeWrapper = new android.view.ContextThemeWrapper(getActivity(), style);
-        LayoutInflater localInflater = inflater.cloneInContext(contextThemeWrapper);
-        View rootView = localInflater.inflate(R.layout.mal_material_about_fragment, container, false);
+
+        getContext().getTheme().applyStyle(style, false);
+        View rootView = inflater.inflate(R.layout.mal_material_about_fragment, container, false);
 
         recyclerView = (RecyclerView) rootView.findViewById(R.id.mal_recyclerview);
         adapter = new MaterialAboutListAdapter(list, getViewTypeManager());
@@ -123,7 +116,8 @@ public abstract class MaterialAboutFragment extends Fragment {
                         .alpha(1f)
                         .translationY(0f)
                         .setDuration(400)
-                        .setInterpolator(new FastOutSlowInInterpolator()).start();
+                        .setInterpolator(new FastOutSlowInInterpolator())
+                        .start();
             } else {
                 recyclerView.setAlpha(1f);
                 recyclerView.setTranslationY(0f);
