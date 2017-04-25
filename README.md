@@ -140,13 +140,13 @@ There are currently two types of item you can add to a card - [`MaterialAboutTit
                 .icon(R.mipmap.ic_launcher)
                 .build());
 ```
-[`MaterialAboutActionItem`][10] is created with [`MaterialAboutActionItem.Builder()`][10] and lets you specify **text**, **sub-text**, an **icon** and an **OnClickListener**.
+[`MaterialAboutActionItem`][10] is created with [`MaterialAboutActionItem.Builder()`][10] and lets you specify **text**, **sub-text**, an **icon** and an **OnClickAction**.
 ```java
         appCardBuilder.addItem(new MaterialAboutActionItem.Builder()
                 .text("Version")
                 .subText("1.0.0")
                 .icon(R.drawable.ic_about_info)
-                .setOnClickListener(new MaterialAboutActionItem.OnClickListener() {
+                .setOnClickAction(new MaterialAboutActionItem.OnClickAction() {
                     @Override
                     public void onClick() {
                         Toast.makeText(ExampleMaterialAboutActivity.this, "Version Tapped", Toast.LENGTH_SHORT).show();
@@ -170,7 +170,7 @@ Check out a working example in [`Demo.java`][3].
 
 **Tip:** Use [Android-Iconics][iconics] for icons. "Android-Iconics - Use any icon font, or vector (.svg) as drawable in your application."
 
-**Tip:** Use [ConvenienceBuilder][conveniencebuilderjava] to easily create items or OnClickListeners.
+**Tip:** Use [ConvenienceBuilder][conveniencebuilderjava] to easily create items or OnClickActions.
 
 Contributors
 -------

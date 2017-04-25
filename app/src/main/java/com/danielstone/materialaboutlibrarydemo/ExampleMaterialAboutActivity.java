@@ -13,7 +13,7 @@ import android.widget.Toast;
 import com.danielstone.materialaboutlibrary.ConvenienceBuilder;
 import com.danielstone.materialaboutlibrary.MaterialAboutActivity;
 import com.danielstone.materialaboutlibrary.items.MaterialAboutActionItem;
-import com.danielstone.materialaboutlibrary.items.MaterialAboutItemOnClickListener;
+import com.danielstone.materialaboutlibrary.items.MaterialAboutItemOnClickAction;
 import com.danielstone.materialaboutlibrary.items.MaterialAboutTitleItem;
 import com.danielstone.materialaboutlibrary.model.MaterialAboutCard;
 import com.danielstone.materialaboutlibrary.model.MaterialAboutList;
@@ -41,7 +41,7 @@ public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
         advancedCardBuilder.addItem(new MaterialAboutTitleItem.Builder()
                 .text("TitleItem OnClickAction")
                 .icon(R.mipmap.ic_launcher)
-                .setOnClickListener(ConvenienceBuilder.createWebsiteOnClickAction(c, Uri.parse("http://www.daniel-stone.uk")))
+                .setOnClickAction(ConvenienceBuilder.createWebsiteOnClickAction(c, Uri.parse("http://www.daniel-stone.uk")))
                 .build());
 
         advancedCardBuilder.addItem(new MaterialAboutActionItem.Builder()
@@ -50,11 +50,24 @@ public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
                         .icon(CommunityMaterial.Icon.cmd_code_tags)
                         .color(ContextCompat.getColor(c, colorIcon))
                         .sizeDp(18))
-                .setOnClickListener(new MaterialAboutItemOnClickListener() {
+                .setOnClickAction(new MaterialAboutItemOnClickAction() {
                     @Override
-                    public void onClick(boolean longClick) {
-                        if (longClick) Toast.makeText(c, "Long pressed", Toast.LENGTH_SHORT).show();
+                    public void onClick() {
                         Snackbar.make(((ExampleMaterialAboutActivity) c).findViewById(R.id.mal_material_about_activity_coordinator_layout), "Test", Snackbar.LENGTH_SHORT).show();
+                    }
+                })
+                .build());
+
+        advancedCardBuilder.addItem(new MaterialAboutActionItem.Builder()
+                .text("OnLongClickAction demo")
+                .icon(new IconicsDrawable(c)
+                        .icon(CommunityMaterial.Icon.cmd_hand_pointing_right)
+                        .color(ContextCompat.getColor(c, colorIcon))
+                        .sizeDp(18))
+                .setOnLongClickAction(new MaterialAboutItemOnClickAction() {
+                    @Override
+                    public void onClick() {
+                        Toast.makeText(c, "Long pressed", Toast.LENGTH_SHORT).show();
                     }
                 })
                 .build());
@@ -74,9 +87,9 @@ public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
                         .icon(CommunityMaterial.Icon.cmd_refresh)
                         .color(ContextCompat.getColor(c, colorIcon)
                         ).sizeDp(18))
-                .setOnClickListener(new MaterialAboutItemOnClickListener() {
+                .setOnClickAction(new MaterialAboutItemOnClickAction() {
                     @Override
-                    public void onClick(boolean longClick) {
+                    public void onClick() {
                         MaterialAboutList newList = getMaterialAboutList();
                         ((MaterialAboutActionItem) newList.getCards()
                                 .get(4)
