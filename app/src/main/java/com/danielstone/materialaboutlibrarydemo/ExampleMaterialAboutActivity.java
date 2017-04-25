@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.danielstone.materialaboutlibrary.ConvenienceBuilder;
 import com.danielstone.materialaboutlibrary.MaterialAboutActivity;
@@ -53,6 +54,20 @@ public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
                     @Override
                     public void onClick() {
                         Snackbar.make(((ExampleMaterialAboutActivity) c).findViewById(R.id.mal_material_about_activity_coordinator_layout), "Test", Snackbar.LENGTH_SHORT).show();
+                    }
+                })
+                .build());
+
+        advancedCardBuilder.addItem(new MaterialAboutActionItem.Builder()
+                .text("OnLongClickAction demo")
+                .icon(new IconicsDrawable(c)
+                        .icon(CommunityMaterial.Icon.cmd_hand_pointing_right)
+                        .color(ContextCompat.getColor(c, colorIcon))
+                        .sizeDp(18))
+                .setOnLongClickAction(new MaterialAboutItemOnClickAction() {
+                    @Override
+                    public void onClick() {
+                        Toast.makeText(c, "Long pressed", Toast.LENGTH_SHORT).show();
                     }
                 })
                 .build());
