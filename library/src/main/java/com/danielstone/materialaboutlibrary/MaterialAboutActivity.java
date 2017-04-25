@@ -116,6 +116,11 @@ public abstract class MaterialAboutActivity extends AppCompatActivity {
         return list;
     }
 
+    @NonNull
+    protected void refreshMaterialAboutList() {
+        adapter.notifyDataSetChanged();
+    }
+
     @Override public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId() == android.R.id.home){
             onBackPressed();
