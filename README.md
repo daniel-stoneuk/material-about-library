@@ -12,7 +12,7 @@ If you use this library in your app, please let me know and I'll add it to the l
 
 ## Demo
 
-[![Get it on Google Play](https://play.google.com/intl/en_gb/badges/images/generic/en_badge_web_generic.png)](https://play.google.com/store/apps/details?id=com.danielstone.materialaboutlibrarydemo&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1)
+<a href='https://play.google.com/store/apps/details?id=com.danielstone.materialaboutlibrarydemo&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_gb/badges/images/generic/en_badge_web_generic.png' height="60" /></a>
 
 ## Screenshots
 
@@ -119,7 +119,7 @@ public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
     protected MaterialAboutList getMaterialAboutList() {
         MaterialAboutCard.Builder appCardBuilder = new MaterialAboutCard.Builder();
 
-        // Configuration here.
+        // Configuration here
 
         return appCardBuilder.build();
     }
