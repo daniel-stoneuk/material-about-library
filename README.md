@@ -2,7 +2,7 @@
 
 [![Release][101]][102] [![Apache License 2.0][103]][104]
 
-Makes it easy to create a beautiful about screen for your app. Generates an activity or fragment.
+Makes it easy to create a beautiful about screen for your app. Generates an `Activity` or `Fragment`.
 
 Idea from here: [Heinrich Reimer's open-source-library-request-manager][6]
 
@@ -16,10 +16,10 @@ If you use this library in your app, please let me know and I'll add it to the l
 
 ## Screenshots
 
-                Demo App                 |    Example
-:--------------------------------------: | :------------:
-             ![Demo App][2]              | ![Monitor][4]
-[_ExampleMaterialAboutActivity.java_][3] | [_Monitor_][5]
+|                Demo App                  |     Example    |
+| :--------------------------------------: | :------------: |
+|             ![Demo App][2]               |  ![Monitor][4] |
+| [_ExampleMaterialAboutActivity.java_][3] | [_Monitor_][5] |
 
 ## Features
 
@@ -44,7 +44,7 @@ allprojects {
 
 ```gradle
 dependencies {
-      compile 'com.github.daniel-stoneuk:material-about-library:1.8.2'
+    compile 'com.github.daniel-stoneuk:material-about-library:1.8.2'
 }
 ```
 
@@ -67,16 +67,15 @@ public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
     protected CharSequence getActivityTitle() {
         return getString(R.string.mal_title_about);
     }
-
 }
 ```
 
 Ensure that the theme extends either of these themes, and apply primary & accent colours:
 
-- Theme.Mal.Light.DarkActionBar
-- Theme.Mal.Light.LightActionBar
-- Theme.Mal.Dark.LightActionBar
-- Theme.Mal.Dark.DarkActionBar
+- `Theme.Mal.Light.DarkActionBar`
+- `Theme.Mal.Light.LightActionBar`
+- `Theme.Mal.Dark.LightActionBar`
+- `Theme.Mal.Dark.DarkActionBar`
 
 ```xml
 <manifest ...>
@@ -88,16 +87,16 @@ Ensure that the theme extends either of these themes, and apply primary & accent
 ```
 
 ```xml
-    <style name="AppTheme.MaterialAboutActivity" parent="Theme.Mal.Light.DarkActionBar" >
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-    </style>
+<style name="AppTheme.MaterialAboutActivity" parent="Theme.Mal.Light.DarkActionBar" >
+    <item name="colorPrimary">@color/colorPrimary</item>
+    <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+    <item name="colorAccent">@color/colorAccent</item>
+</style>
 ```
 
 ### Fragment
 
-Your `fragment` must extend [`MaterialAboutFragment`][materialaboutfragmentjava].
+Your `Fragment` must extend [`MaterialAboutFragment`][materialaboutfragmentjava].
 
 ```java
 public class ExampleMaterialAboutFragment extends MaterialAboutFragment {
@@ -119,7 +118,12 @@ public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
     @Override
     protected MaterialAboutList getMaterialAboutList() {
         MaterialAboutCard.Builder appCardBuilder = new MaterialAboutCard.Builder();
+
+        // Configuration here.
+
+        return appCardBuilder.build();
     }
+}
 ```
 
 Give the card a title by calling `.title` on the `Builder`
