@@ -217,12 +217,6 @@ limitations under the License.
 ```
 
 [1]: https://jitpack.io
-[10]: https://github.com/daniel-stoneuk/material-about-library/blob/master/library/src/main/java/com/danielstone/materialaboutlibrary/model/MaterialAboutActionItem.java
-[101]: https://jitpack.io/v/daniel-stoneuk/material-about-library.svg
-[102]: https://jitpack.io/#daniel-stoneuk/material-about-library
-[103]: https://img.shields.io/github/license/HeinrichReimer/material-intro.svg
-[104]: https://www.apache.org/licenses/LICENSE-2.0.html
-[11]: https://github.com/daniel-stoneuk/material-about-library/blob/master/library/src/main/java/com/danielstone/materialaboutlibrary/model/MaterialAboutList.java
 [2]: http://i.imgur.com/xXWDmLb.png
 [3]: https://github.com/daniel-stoneuk/material-about-library/blob/master/app/src/main/java/com/danielstone/materialaboutlibrarydemo/Demo.java
 [4]: http://i.imgur.com/HEm08Ax.png
@@ -230,6 +224,12 @@ limitations under the License.
 [6]: https://github.com/HeinrichReimer/open-source-library-request-manager/issues/3
 [8]: https://github.com/daniel-stoneuk/material-about-library/blob/master/library/src/main/java/com/danielstone/materialaboutlibrary/model/MaterialAboutCard.java
 [9]: https://github.com/daniel-stoneuk/material-about-library/blob/master/library/src/main/java/com/danielstone/materialaboutlibrary/model/MaterialAboutTitleItem.java
+[10]: https://github.com/daniel-stoneuk/material-about-library/blob/master/library/src/main/java/com/danielstone/materialaboutlibrary/model/MaterialAboutActionItem.java
+[11]: https://github.com/daniel-stoneuk/material-about-library/blob/master/library/src/main/java/com/danielstone/materialaboutlibrary/model/MaterialAboutList.java
+[101]: https://jitpack.io/v/daniel-stoneuk/material-about-library.svg
+[102]: https://jitpack.io/#daniel-stoneuk/material-about-library
+[103]: https://img.shields.io/github/license/HeinrichReimer/material-intro.svg
+[104]: https://www.apache.org/licenses/LICENSE-2.0.html
 [conveniencebuilderjava]: https://github.com/daniel-stoneuk/material-about-library/blob/master/library/src/main/java/com/danielstone/materialaboutlibrary/ConvenienceBuilder.java
 [iconics]: https://github.com/mikepenz/Android-Iconics
 [materialaboutactivityjava]: https://github.com/daniel-stoneuk/material-about-library/blob/master/library/src/main/java/com/danielstone/materialaboutlibrary/MaterialAboutActivity.java
