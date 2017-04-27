@@ -158,7 +158,8 @@ appCardBuilder.addItem(new MaterialAboutActionItem.Builder()
         .setOnClickAction(new MaterialAboutActionItem.OnClickAction() {
             @Override
             public void onClick() {
-                Toast.makeText(ExampleMaterialAboutActivity.this, "Version Tapped", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ExampleMaterialAboutActivity.this, "Version Tapped", Toast.LENGTH_SHORT)
+                        .show();
             }
         })
         .build());
