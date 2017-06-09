@@ -26,6 +26,7 @@ public class Demo {
 
         appCardBuilder.addItem(new MaterialAboutTitleItem.Builder()
                 .text("Material About Library")
+                .desc("© 2017 Daniel Stone")
                 .icon(R.mipmap.ic_launcher)
                 .build());
 
