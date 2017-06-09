@@ -10,13 +10,14 @@ import static com.danielstone.materialaboutlibrarydemo.ExampleMaterialAboutActiv
 
 public class ExampleMaterialAboutFragment extends MaterialAboutFragment {
 
+
     @Override
     protected MaterialAboutList getMaterialAboutList(final Context c) {
-        return Demo.createMaterialAboutList(c, R.color.colorIconLight, THEME_LIGHT_DARKBAR);
+        return Demo.createMaterialAboutList(c, R.color.colorIconDark, THEME_LIGHT_DARKBAR);
     }
 
     @Override
     protected int getTheme() {
-        return THEME_LIGHT;
+        return THEME_DARK;
     }
 }

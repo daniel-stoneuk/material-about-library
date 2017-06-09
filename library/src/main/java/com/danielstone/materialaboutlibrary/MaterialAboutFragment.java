@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.animation.FastOutSlowInInterpolator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,15 +57,19 @@ public abstract class MaterialAboutFragment extends Fragment {
         int style = -1;
         switch (getTheme()) {
             case THEME_LIGHT:
+                Log.i("test", "onCreateView: light theme");
                 style = R.style.Theme_Mal_Light_DarkActionBar;
                 break;
             case THEME_DARK:
+                Log.i("test", "onCreateView: dark theme");
                 style = R.style.Theme_Mal_Dark_DarkActionBar;
                 break;
         }
 
-        getContext().getTheme().applyStyle(style, false);
-        View rootView = inflater.inflate(R.layout.mal_material_about_fragment, container, false);
+        // create ContextThemeWrapper from the original Activity Context with the custom theme
+        final Context contextThemeWrapper = new android.view.ContextThemeWrapper(getActivity(), style);
+        LayoutInflater localInflater = inflater.cloneInContext(contextThemeWrapper);
+        View rootView = localInflater.inflate(R.layout.mal_material_about_fragment, container, false);
 
         recyclerView = (RecyclerView) rootView.findViewById(R.id.mal_recyclerview);
         adapter = new MaterialAboutListAdapter(list, getViewTypeManager());
