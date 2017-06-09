@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 
-def versionMajor = 1
-def versionMinor = 8
+def versionMajor = 2
+def versionMinor = 0
 def versionPatch = 0
 def versionBuild = 0 // bump for dogfood builds, public betas, etc.
 
