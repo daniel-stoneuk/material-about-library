@@ -7,4 +7,6 @@
     <color name="mal_text_primary_dark">#FFFFFF</color>
     <color name="mal_text_secondary_dark">#b4ffffff</color>
 
+    <color name="mal_color_icon_light_theme">#616161</color>
+    <color name="mal_color_icon_dark_theme">#E0E0E0</color>
 </resources>

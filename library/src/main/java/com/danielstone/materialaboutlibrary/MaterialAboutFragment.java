@@ -3,13 +3,11 @@ package com.danielstone.materialaboutlibrary;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.annotation.IntDef;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.animation.FastOutSlowInInterpolator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,22 +17,11 @@ import com.danielstone.materialaboutlibrary.model.MaterialAboutList;
 import com.danielstone.materialaboutlibrary.util.DefaultViewTypeManager;
 import com.danielstone.materialaboutlibrary.util.ViewTypeManager;
 
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-
 public abstract class MaterialAboutFragment extends Fragment {
 
     private MaterialAboutList list = new MaterialAboutList.Builder().build();
     private RecyclerView recyclerView;
     private MaterialAboutListAdapter adapter;
-
-    @Retention(RetentionPolicy.SOURCE)
-    @IntDef({THEME_LIGHT, THEME_DARK})
-    public @interface FragmentTheme {
-    }
-
-    public static final int THEME_LIGHT = 0;
-    public static final int THEME_DARK = 1;
 
     public static MaterialAboutFragment newInstance(MaterialAboutFragment fragment) {
         return fragment;
@@ -42,9 +29,8 @@ public abstract class MaterialAboutFragment extends Fragment {
 
     protected abstract MaterialAboutList getMaterialAboutList(Context activityContext);
 
-    @FragmentTheme
     protected int getTheme() {
-        return THEME_LIGHT;
+        return R.style.Theme_Mal_Light_DarkActionBar;
     }
 
     protected boolean shouldAnimate() {
@@ -54,17 +40,7 @@ public abstract class MaterialAboutFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        int style = -1;
-        switch (getTheme()) {
-            case THEME_LIGHT:
-                Log.i("test", "onCreateView: light theme");
-                style = R.style.Theme_Mal_Light_DarkActionBar;
-                break;
-            case THEME_DARK:
-                Log.i("test", "onCreateView: dark theme");
-                style = R.style.Theme_Mal_Dark_DarkActionBar;
-                break;
-        }
+        int style = getTheme();
 
         // create ContextThemeWrapper from the original Activity Context with the custom theme
         final Context contextThemeWrapper = new android.view.ContextThemeWrapper(getActivity(), style);

@@ -13,11 +13,11 @@ public class ExampleMaterialAboutFragment extends MaterialAboutFragment {
 
     @Override
     protected MaterialAboutList getMaterialAboutList(final Context c) {
-        return Demo.createMaterialAboutList(c, R.color.colorIconDark, THEME_LIGHT_DARKBAR);
+        return Demo.createMaterialAboutList(c, R.color.mal_color_icon_dark_theme, THEME_LIGHT_DARKBAR);
     }
 
     @Override
     protected int getTheme() {
-        return THEME_DARK;
+        return R.style.AppTheme_MaterialAboutActivity_Fragment;
     }
 }

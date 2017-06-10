@@ -20,6 +20,13 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="AppTheme.MaterialAboutActivity.Fragment" parent="Theme.Mal.Dark.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
     <style name="AppTheme.MaterialAboutActivity.Dark.LightActionBar" parent="Theme.Mal.Dark.LightActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorLightBar</item>

@@ -31,7 +31,7 @@ public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
     public static final int THEME_DARK_LIGHTBAR = 2;
     public static final int THEME_DARK_DARKBAR = 3;
 
-    protected int colorIcon = R.color.colorIconLight;
+    protected int colorIcon = R.color.mal_color_icon_light_theme;
 
     @NonNull @Override
     protected MaterialAboutList getMaterialAboutList(@NonNull final Context c) {
@@ -106,19 +106,19 @@ public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
         switch (getIntent().getIntExtra(THEME_EXTRA, THEME_LIGHT_DARKBAR)) {
             case THEME_LIGHT_LIGHTBAR:
                 setTheme(R.style.AppTheme_MaterialAboutActivity_Light_LightActionBar);
-                colorIcon = R.color.colorIconLight;
+                colorIcon = R.color.mal_color_icon_light_theme;
                 break;
             case THEME_DARK_LIGHTBAR:
                 setTheme(R.style.AppTheme_MaterialAboutActivity_Dark_LightActionBar);
-                colorIcon = R.color.colorIconDark;
+                colorIcon = R.color.mal_color_icon_dark_theme;
                 break;
             case THEME_LIGHT_DARKBAR:
                 setTheme(R.style.AppTheme_MaterialAboutActivity_Light_DarkActionBar);
-                colorIcon = R.color.colorIconLight;
+                colorIcon = R.color.mal_color_icon_light_theme;
                 break;
             case THEME_DARK_DARKBAR:
                 setTheme(R.style.AppTheme_MaterialAboutActivity_Dark_DarkActionBar);
-                colorIcon = R.color.colorIconDark;
+                colorIcon = R.color.mal_color_icon_dark_theme;
                 break;
         }
 
