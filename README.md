@@ -197,6 +197,7 @@ Check out a working example in [`Demo.java`][3].
 - [ComicsDB Client](https://play.google.com/store/apps/details?id=cz.kutner.comicsdbclient.comicsdbclient), code available on [GitHub](https://github.com/tukak/comicsdbclient)
 - [Android About Box](https://github.com/eggheadgames/android-about-box) (library) - an opinionated About Box for Android
 - [Skin Widget for Minecraft](https://play.google.com/store/apps/details?id=com.rabross.android.minecraftskinwidget)
+- [FastHub for GitHub](https://play.google.com/store/apps/details?id=com.fastaccess.github&hl=en)
 
 ## License
 
