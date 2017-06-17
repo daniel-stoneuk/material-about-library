@@ -8,6 +8,7 @@
         <item name="mal_popupOverlay">@style/Theme.Mal.Light.PopupOverlay</item>
         <item name="mal_color_primary">@color/mal_text_primary</item>
         <item name="mal_color_secondary">@color/mal_text_secondary</item>
+        <item name="mal_card_background">@color/cardview_light_background</item>
     </style>
 
     <style name="Theme.Mal.Light.DarkActionBar" parent="Theme.AppCompat.Light.NoActionBar">
@@ -17,6 +18,7 @@
         <item name="mal_popupOverlay">@style/Theme.Mal.Light.PopupOverlay</item>
         <item name="mal_color_primary">@color/mal_text_primary</item>
         <item name="mal_color_secondary">@color/mal_text_secondary</item>
+        <item name="mal_card_background">@color/cardview_light_background</item>
     </style>
 
     <style name="Theme.Mal.Light.LightActionBar" parent="Theme.AppCompat.Light.NoActionBar">
@@ -26,6 +28,7 @@
         <item name="mal_popupOverlay">@style/Theme.Mal.Light.PopupOverlay</item>
         <item name="mal_color_primary">@color/mal_text_primary</item>
         <item name="mal_color_secondary">@color/mal_text_secondary</item>
+        <item name="mal_card_background">@color/cardview_light_background</item>
     </style>
 
     <style name="Theme.Mal.Dark.DarkActionBar" parent="Theme.AppCompat.NoActionBar">
@@ -35,6 +38,7 @@
         <item name="mal_popupOverlay">@style/Theme.Mal.Dark.PopupOverlay</item>
         <item name="mal_color_primary">@color/mal_text_primary_dark</item>
         <item name="mal_color_secondary">@color/mal_text_secondary_dark</item>
+        <item name="mal_card_background">@color/cardview_dark_background</item>
     </style>
 
     <style name="Theme.Mal.Dark.LightActionBar" parent="Theme.AppCompat.NoActionBar">
@@ -44,6 +48,7 @@
         <item name="mal_popupOverlay">@style/Theme.Mal.Dark.PopupOverlay</item>
         <item name="mal_color_primary">@color/mal_text_primary_dark</item>
         <item name="mal_color_secondary">@color/mal_text_secondary_dark</item>
+        <item name="mal_card_background">@color/cardview_dark_background</item>
     </style>
 
     <style name="Theme.Mal.Light.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />

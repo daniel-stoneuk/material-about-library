@@ -5,4 +5,5 @@
     
     <attr name="mal_color_primary" format="reference|color" />
     <attr name="mal_color_secondary" format="reference|color" />
+    <attr name="mal_card_background" format="reference|color" />
 </resources>
