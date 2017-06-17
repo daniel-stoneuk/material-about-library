@@ -24,6 +24,8 @@ import com.danielstone.materialaboutlibrary.model.MaterialAboutList;
 import com.danielstone.materialaboutlibrary.util.DefaultViewTypeManager;
 import com.danielstone.materialaboutlibrary.util.ViewTypeManager;
 
+import java.lang.ref.WeakReference;
+
 public abstract class MaterialAboutActivity extends AppCompatActivity {
 
     private MaterialAboutList list = new MaterialAboutList.Builder().build();
@@ -173,22 +175,22 @@ public abstract class MaterialAboutActivity extends AppCompatActivity {
 
     private static class ListTask extends AsyncTask<String, String, MaterialAboutList> {
 
-        private MaterialAboutActivity context;
+        private WeakReference<MaterialAboutActivity> context;
 
         ListTask(MaterialAboutActivity context) {
-            this.context = context;
+            this.context = new WeakReference<>(context);
         }
 
         @Override
         protected MaterialAboutList doInBackground(String... params) {
-            return isCancelled() ? null : context.getMaterialAboutList(context);
+            return isCancelled() || context.get() == null ? null : context.get().getMaterialAboutList(context.get());
         }
 
         @Override
         protected void onPostExecute(MaterialAboutList materialAboutList) {
             super.onPostExecute(materialAboutList);
-            if (!context.isFinishing()) {
-                context.onTaskFinished(materialAboutList);
+            if (!context.get().isFinishing()) {
+                context.get().onTaskFinished(materialAboutList);
             }
             context = null;
         }

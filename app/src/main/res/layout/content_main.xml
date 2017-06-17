@@ -55,5 +55,12 @@
         android:tag="3"
         android:text="Launch Activity - Dark with Dark Action Bar" />
 
-
+    <Button
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/mal_baseline"
+        android:onClick="onActivityButtonPressed"
+        android:tag="4"
+        android:text="Launch Activity - Custom CardView Background" />
 </LinearLayout>
