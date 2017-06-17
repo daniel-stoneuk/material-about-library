@@ -30,7 +30,7 @@ public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
     public static final int THEME_LIGHT_DARKBAR = 1;
     public static final int THEME_DARK_LIGHTBAR = 2;
     public static final int THEME_DARK_DARKBAR = 3;
-    public static final int THEME_DARK_CUSTOM_CARDVIEW = 4;
+    public static final int THEME_CUSTOM_CARDVIEW = 4;
 
     protected int colorIcon = R.color.mal_color_icon_light_theme;
 
@@ -121,7 +121,7 @@ public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
                 setTheme(R.style.AppTheme_MaterialAboutActivity_Dark_DarkActionBar);
                 colorIcon = R.color.mal_color_icon_dark_theme;
                 break;
-            case THEME_DARK_CUSTOM_CARDVIEW:
+            case THEME_CUSTOM_CARDVIEW:
                 setTheme(R.style.AppTheme_MaterialAboutActivity_Light_CustomCardView);
                 colorIcon = R.color.mal_color_icon_dark_theme;
                 break;
