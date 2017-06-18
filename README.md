@@ -67,6 +67,7 @@ public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
     protected CharSequence getActivityTitle() {
         return getString(R.string.mal_title_about);
     }
+    
 }
 ```
 
@@ -105,7 +106,23 @@ public class ExampleMaterialAboutFragment extends MaterialAboutFragment {
     protected MaterialAboutList getMaterialAboutList(final Context activityContext) {
       // TODO
     }
+    
+    @Override
+    protected int getTheme() {
+        return R.style.AppTheme_MaterialAboutActivity_Fragment;
+    }
+    
 }
+```
+
+Pass in a theme that extends one of the styles above
+
+```xml
+<style name="AppTheme.MaterialAboutActivity.Fragment" parent="Theme.Mal.Light.DarkActionBar" >
+    <item name="colorPrimary">@color/colorPrimary</item>
+    <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+    <item name="colorAccent">@color/colorAccent</item>
+</style>
 ```
 
 ### Add Cards:
@@ -183,6 +200,21 @@ Check out a working example in [`Demo.java`][3].
 
 **Tip:** Use [ConvenienceBuilder][conveniencebuilderjava] to easily create items or OnClickActions.
 
+**Tip:** Customise text colour and card colour in your styles. Example below: 
+
+```xml
+<style name="AppTheme.MaterialAboutActivity.Light.CustomCardView" parent="Theme.Mal.Light.DarkActionBar">
+    <!-- Customize your theme here. -->
+    <item name="colorPrimary">@color/colorPrimary</item>
+    <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+    <item name="colorAccent">@color/colorAccent</item>
+    <item name="mal_card_background">@color/colorPrimaryDark</item>
+    <item name="android:textColorPrimary">#eee</item>
+    <item name="mal_color_primary">#eee</item>
+    <item name="mal_color_secondary">#ffe0e0e0</item>
+</style>
+```
+
 ## Contributors
 
 - Daniel Stone ([@daniel-stoneuk](https://github.com/daniel-stoneuk))
@@ -197,7 +229,7 @@ Check out a working example in [`Demo.java`][3].
 - [ComicsDB Client](https://play.google.com/store/apps/details?id=cz.kutner.comicsdbclient.comicsdbclient), code available on [GitHub](https://github.com/tukak/comicsdbclient)
 - [Android About Box](https://github.com/eggheadgames/android-about-box) (library) - an opinionated About Box for Android
 - [Skin Widget for Minecraft](https://play.google.com/store/apps/details?id=com.rabross.android.minecraftskinwidget)
-- [FastHub for GitHub](https://play.google.com/store/apps/details?id=com.fastaccess.github&hl=en)
+- [FastHub for GitHub](https://play.google.com/store/apps/details?id=com.fastaccess.github)
 
 ## License
 
