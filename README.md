@@ -73,10 +73,10 @@ public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
 
 Ensure that the theme extends either of these themes, and apply primary & accent colours:
 
-- `Theme.Mal.Light.DarkActionBar`
-- `Theme.Mal.Light.LightActionBar`
-- `Theme.Mal.Dark.LightActionBar`
-- `Theme.Mal.Dark.DarkActionBar`
+- `Theme.Mal.Light` (with dark toolbar)
+- `Theme.Mal.Dark` (with dark toolbar)
+- `Theme.Mal.Light.LightActionBar` (with light toolbar)
+- `Theme.Mal.Dark.LightActionBar` (with light toolbar)
 
 ```xml
 <manifest ...>
