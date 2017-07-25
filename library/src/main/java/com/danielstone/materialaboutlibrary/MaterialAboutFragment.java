@@ -30,7 +30,7 @@ public abstract class MaterialAboutFragment extends Fragment {
     protected abstract MaterialAboutList getMaterialAboutList(Context activityContext);
 
     protected int getTheme() {
-        return R.style.Theme_Mal_Light_DarkActionBar;
+        return R.style.Theme_Mal_Light;
     }
 
     protected boolean shouldAnimate() {

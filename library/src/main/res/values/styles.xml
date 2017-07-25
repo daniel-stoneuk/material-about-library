@@ -1,44 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.Mal" parent="Theme.AppCompat.Light.NoActionBar">
-	    <item name="mal_toolbarTheme">@style/Theme.Mal.Toolbar.Dark</item>
-	    <item name="mal_toolbarPopupTheme">@style/Theme.Mal.Toolbar.Light</item>
+    <style name="Theme.Mal.Light" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="mal_toolbarTheme">@style/Theme.Mal.Toolbar.Dark</item>
+        <item name="mal_toolbarPopupTheme">@style/Theme.Mal.Toolbar.Light</item>
         <item name="mal_color_primary">@color/mal_text_primary</item>
         <item name="mal_color_secondary">@color/mal_text_secondary</item>
         <item name="mal_card_background">@color/cardview_light_background</item>
     </style>
 
-    <style name="Theme.Mal.Light.DarkActionBar" parent="Theme.AppCompat.Light.NoActionBar">
-	    <item name="mal_toolbarTheme">@style/Theme.Mal.Toolbar.Dark</item>
-	    <item name="mal_toolbarPopupTheme">@style/Theme.Mal.Toolbar.Light</item>
-        <item name="mal_color_primary">@color/mal_text_primary</item>
-        <item name="mal_color_secondary">@color/mal_text_secondary</item>
-        <item name="mal_card_background">@color/cardview_light_background</item>
-    </style>
-
-    <style name="Theme.Mal.Light.LightActionBar" parent="Theme.AppCompat.Light.NoActionBar">
-	    <item name="mal_toolbarTheme">@style/Theme.Mal.Toolbar.Light</item>
-	    <item name="mal_toolbarPopupTheme">@style/Theme.Mal.Toolbar.Light</item>
-        <item name="mal_color_primary">@color/mal_text_primary</item>
-        <item name="mal_color_secondary">@color/mal_text_secondary</item>
-        <item name="mal_card_background">@color/cardview_light_background</item>
-    </style>
-
-    <style name="Theme.Mal.Dark.DarkActionBar" parent="Theme.AppCompat.NoActionBar">
-	    <item name="mal_toolbarTheme">@style/Theme.Mal.Toolbar.Dark</item>
-	    <item name="mal_toolbarPopupTheme">@style/Theme.Mal.Toolbar.Dark</item>
+    <style name="Theme.Mal.Dark" parent="Theme.AppCompat.NoActionBar">
+        <item name="mal_toolbarTheme">@style/Theme.Mal.Toolbar.Dark</item>
+        <item name="mal_toolbarPopupTheme">@style/Theme.Mal.Toolbar.Dark</item>
         <item name="mal_color_primary">@color/mal_text_primary_dark</item>
         <item name="mal_color_secondary">@color/mal_text_secondary_dark</item>
         <item name="mal_card_background">@color/cardview_dark_background</item>
     </style>
 
-    <style name="Theme.Mal.Dark.LightActionBar" parent="Theme.AppCompat.NoActionBar">
-	    <item name="mal_toolbarTheme">@style/Theme.Mal.Toolbar.Light</item>
-	    <item name="mal_toolbarPopupTheme">@style/Theme.Mal.Toolbar.Dark</item>
-        <item name="mal_color_primary">@color/mal_text_primary_dark</item>
-        <item name="mal_color_secondary">@color/mal_text_secondary_dark</item>
-        <item name="mal_card_background">@color/cardview_dark_background</item>
+    <style name="Theme.Mal.Dark.LightActionBar">
+        <item name="mal_toolbarTheme">@style/Theme.Mal.Toolbar.Light</item>
+    </style>
+
+    <style name="Theme.Mal.Light.LightActionBar">
+        <item name="mal_toolbarTheme">@style/Theme.Mal.Toolbar.Light</item>
     </style>
 
     <style name="Theme.Mal.Toolbar.Light" parent="ThemeOverlay.AppCompat.Light" />
