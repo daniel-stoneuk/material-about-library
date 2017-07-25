@@ -87,22 +87,6 @@ public abstract class MaterialAboutActivity extends AppCompatActivity {
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
-
-        Resources.Theme theme = getTheme();
-        TypedArray lightTheme = theme.obtainStyledAttributes(new int[]{R.attr.mal_lightActionBar});
-
-        TypedValue popupOverlay = new TypedValue();
-        theme.resolveAttribute(R.attr.mal_popupOverlay, popupOverlay, true);
-        toolbar.setPopupTheme(popupOverlay.data);
-
-        if (lightTheme.getBoolean(0, true)) {
-            toolbar.setTitleTextColor(Color.BLACK);
-            toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black);
-        } else {
-            toolbar.setTitleTextColor(Color.WHITE);
-            toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white);
-        }
-
         adapter = new MaterialAboutListAdapter(list, getViewTypeManager());
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);

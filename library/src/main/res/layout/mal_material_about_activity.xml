@@ -17,7 +17,8 @@
             android:id="@+id/mal_toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
+            app:theme="?attr/mal_toolbarTheme"
+            app:popupTheme="?attr/mal_toolbarPopupTheme"
             />
 
     </android.support.design.widget.AppBarLayout>
