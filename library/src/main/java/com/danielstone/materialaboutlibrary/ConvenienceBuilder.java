@@ -35,17 +35,24 @@ public class ConvenienceBuilder {
     }
 
     /**
-     * This methods reads the version infos from the PackageManager and displays them
+     * Creates an item with version info read from the PackageManager for current application.
      *
-     * @param c Context
-     * @return A MaterialAboutItem with the version infos
-     * @throws PackageManager.NameNotFoundException
+     * @param c      context
+     * @param icon
+     * @param text
+     * @param includeVersionCode
+     * @return Item to add to card.
      */
-    public static MaterialAboutItem createVersionActionItem(Context c, Drawable icon, CharSequence text, boolean includeVersionCode) throws PackageManager.NameNotFoundException {
-        PackageInfo pInfo = c.getPackageManager().getPackageInfo(c.getPackageName(), 0);
-        String versionName = pInfo.versionName;
-        int versionCode = pInfo.versionCode;
-
+    public static MaterialAboutActionItem createVersionActionItem(Context c, Drawable icon, CharSequence text, boolean includeVersionCode) {
+	    String versionName = "";
+	    int versionCode = 0;
+	    try {
+		    PackageInfo pInfo = c.getPackageManager().getPackageInfo(c.getPackageName(), 0);
+		    versionName = pInfo.versionName;
+		    versionCode = pInfo.versionCode;
+	    } catch (PackageManager.NameNotFoundException ignored) {
+		    // This shouldn't happen.
+	    }
         return new MaterialAboutActionItem.Builder()
                 .text(text)
                 .subText(versionName + (includeVersionCode ? " (" + versionCode + ")" : ""))
