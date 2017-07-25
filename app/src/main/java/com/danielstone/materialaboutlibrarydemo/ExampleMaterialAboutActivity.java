@@ -8,6 +8,8 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.danielstone.materialaboutlibrary.ConvenienceBuilder;
@@ -141,5 +143,21 @@ public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
     @NonNull @Override
     protected ViewTypeManager getViewTypeManager() {
         return new MyViewTypeManager();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        getMenuInflater().inflate(R.menu.menu_example_material_about, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.action_refresh) {
+            refreshMaterialAboutList();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

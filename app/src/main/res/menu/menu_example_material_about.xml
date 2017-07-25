@@ -3,4 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.danielstone.materialaboutlibrarydemo.ExampleMaterialAboutFragmentActivity"
     tools:ignore="UnusedResources">
+	<item
+		android:id="@+id/action_refresh"
+		android:orderInCategory="100"
+		android:title="@string/action_refresh"
+		app:showAsAction="never" />
 </menu>

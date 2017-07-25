@@ -1,6 +1,7 @@
 <resources tools:ignore="MissingTranslation" xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Material About Library Demo</string>
     <string name="action_about">About</string>
+    <string name="action_refresh">Refresh</string>
     <string name="title_activity_example_material_about_fragment" tools:ignore="UnusedResources">ExampleMaterialAboutFragment
     </string>
     <string name="action_settings" tools:ignore="UnusedResources">Settings</string>
