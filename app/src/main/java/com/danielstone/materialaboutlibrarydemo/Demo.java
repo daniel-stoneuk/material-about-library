@@ -2,7 +2,6 @@ package com.danielstone.materialaboutlibrarydemo;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.support.v4.content.ContextCompat;
 
@@ -30,19 +29,13 @@ public class Demo {
                 .icon(R.mipmap.ic_launcher)
                 .build());
 
-        try {
-
-            appCardBuilder.addItem(ConvenienceBuilder.createVersionActionItem(c,
-                    new IconicsDrawable(c)
-                            .icon(GoogleMaterial.Icon.gmd_info_outline)
-                            .color(ContextCompat.getColor(c, colorIcon))
-                            .sizeDp(18),
-                    "Version",
-                    false));
-
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
-        }
+        appCardBuilder.addItem(ConvenienceBuilder.createVersionActionItem(c,
+                new IconicsDrawable(c)
+                        .icon(GoogleMaterial.Icon.gmd_info_outline)
+                        .color(ContextCompat.getColor(c, colorIcon))
+                        .sizeDp(18),
+                "Version",
+                false));
 
         appCardBuilder.addItem(new MaterialAboutActionItem.Builder()
                 .text("Changelog")
@@ -94,17 +87,14 @@ public class Demo {
         MaterialAboutCard.Builder convenienceCardBuilder = new MaterialAboutCard.Builder();
 
         convenienceCardBuilder.title("Convenience Builder");
-        try {
-            convenienceCardBuilder.addItem(ConvenienceBuilder.createVersionActionItem(c,
-                    new IconicsDrawable(c)
-                            .icon(CommunityMaterial.Icon.cmd_information_outline)
-                            .color(ContextCompat.getColor(c, colorIcon))
-                            .sizeDp(18),
-                    "Version",
-                    false));
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
-        }
+
+        convenienceCardBuilder.addItem(ConvenienceBuilder.createVersionActionItem(c,
+                new IconicsDrawable(c)
+                        .icon(CommunityMaterial.Icon.cmd_information_outline)
+                        .color(ContextCompat.getColor(c, colorIcon))
+                        .sizeDp(18),
+                "Version",
+                false));
 
         convenienceCardBuilder.addItem(ConvenienceBuilder.createWebsiteActionItem(c,
                 new IconicsDrawable(c)
