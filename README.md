@@ -88,7 +88,7 @@ Ensure that the theme extends either of these themes, and apply primary & accent
 ```
 
 ```xml
-<style name="AppTheme.MaterialAboutActivity" parent="Theme.Mal.Light.DarkActionBar" >
+<style name="AppTheme.MaterialAboutActivity" parent="Theme.Mal.Light">
     <item name="colorPrimary">@color/colorPrimary</item>
     <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
     <item name="colorAccent">@color/colorAccent</item>
@@ -118,7 +118,7 @@ public class ExampleMaterialAboutFragment extends MaterialAboutFragment {
 Pass in a theme that extends one of the styles above
 
 ```xml
-<style name="AppTheme.MaterialAboutActivity.Fragment" parent="Theme.Mal.Light.DarkActionBar" >
+<style name="AppTheme.MaterialAboutActivity.Fragment" parent="Theme.Mal.Light">
     <item name="colorPrimary">@color/colorPrimary</item>
     <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
     <item name="colorAccent">@color/colorAccent</item>
@@ -203,15 +203,19 @@ Check out a working example in [`Demo.java`][3].
 **Tip:** Customise text colour and card colour in your styles. Example below: 
 
 ```xml
-<style name="AppTheme.MaterialAboutActivity.Light.CustomCardView" parent="Theme.Mal.Light.DarkActionBar">
+<style name="AppTheme.MaterialAboutActivity.Light.CustomCardView" parent="Theme.Mal.Light">
     <!-- Customize your theme here. -->
     <item name="colorPrimary">@color/colorPrimary</item>
     <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
     <item name="colorAccent">@color/colorAccent</item>
     <item name="mal_card_background">@color/colorPrimaryDark</item>
     <item name="android:textColorPrimary">#eee</item>
+    <item name="android:textColorSecondary">#ffe0e0e0</item>
     <item name="mal_color_primary">#eee</item>
     <item name="mal_color_secondary">#ffe0e0e0</item>
+    <!-- You can specify custom theme for toolbar and toolbarPopup. -->
+    <item name="mal_toolbarTheme">@style/Theme.Mal.Toolbar.Dark</item>
+    <item name="mal_toolbarPopupTheme">@style/Theme.Mal.Toolbar.Dark</item>
 </style>
 ```
 
