@@ -16,10 +16,9 @@ If you use this library in your app, please let me know and I'll add it to the l
 
 ## Screenshots
 
-|                Demo App                  |     Example    |
-| :--------------------------------------: | :------------: |
-|             ![Demo App][2]               |  ![Monitor][4] |
-| [_ExampleMaterialAboutActivity.java_][3] | [_Monitor_][5] |
+| Light with Light Action Bar    | Light with Dark Action Bar     | Dark with Light Action Bar    | Dark with Dark Action Bar     | Custom Cardview Background     |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| ![Demo App](screenshots/1.png) | ![Demo App](screenshots/2.png) | ![Demo App](screenshots/3.png) | ![Demo App](screenshots/4.png) | ![Demo App](screenshots/5.png) |
 
 ## Features
 
