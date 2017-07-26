@@ -44,7 +44,7 @@ allprojects {
 
 ```gradle
 dependencies {
-    compile 'com.github.daniel-stoneuk:material-about-library:2.2.0'
+    compile 'com.github.daniel-stoneuk:material-about-library:2.2.1'
 }
 ```
 
@@ -73,10 +73,10 @@ public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
 
 Ensure that the theme extends either of these themes, and apply primary & accent colours:
 
-- `Theme.Mal.Light` (with dark toolbar)
-- `Theme.Mal.Dark` (with dark toolbar)
-- `Theme.Mal.Light.LightActionBar` (with light toolbar)
-- `Theme.Mal.Dark.LightActionBar` (with light toolbar)
+- `Theme.Mal.Light` (light theme with light toolbar)
+- `Theme.Mal.Light.DarkActionBar` (light theme with dark toolbar)
+- `Theme.Mal.Dark` (dark theme with dark toolbar)
+- `Theme.Mal.Dark.LightActionBar` (dark theme with light toolbar)
 
 ```xml
 <manifest ...>

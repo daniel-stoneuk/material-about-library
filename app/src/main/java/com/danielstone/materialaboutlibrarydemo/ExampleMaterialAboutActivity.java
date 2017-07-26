@@ -108,7 +108,7 @@ public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
         Log.i("test", "onCreate: " + getIntent().getIntExtra(THEME_EXTRA, THEME_LIGHT_DARKBAR));
         switch (getIntent().getIntExtra(THEME_EXTRA, THEME_LIGHT_DARKBAR)) {
             case THEME_LIGHT_LIGHTBAR:
-                setTheme(R.style.AppTheme_MaterialAboutActivity_Light_LightActionBar);
+                setTheme(R.style.AppTheme_MaterialAboutActivity_Light);
                 colorIcon = R.color.mal_color_icon_light_theme;
                 break;
             case THEME_DARK_LIGHTBAR:
@@ -120,11 +120,11 @@ public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
                 colorIcon = R.color.mal_color_icon_light_theme;
                 break;
             case THEME_DARK_DARKBAR:
-                setTheme(R.style.AppTheme_MaterialAboutActivity_Dark_DarkActionBar);
+                setTheme(R.style.AppTheme_MaterialAboutActivity_Dark);
                 colorIcon = R.color.mal_color_icon_dark_theme;
                 break;
             case THEME_CUSTOM_CARDVIEW:
-                setTheme(R.style.AppTheme_MaterialAboutActivity_Light_CustomCardView);
+                setTheme(R.style.AppTheme_MaterialAboutActivity_Light_DarkActionBar_CustomCardView);
                 colorIcon = R.color.mal_color_icon_dark_theme;
                 break;
         }

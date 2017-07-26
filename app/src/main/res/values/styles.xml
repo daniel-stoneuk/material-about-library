@@ -13,7 +13,7 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="AppTheme.MaterialAboutActivity.Dark.DarkActionBar" parent="Theme.Mal.Dark">
+    <style name="AppTheme.MaterialAboutActivity.Dark" parent="Theme.Mal.Dark">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -35,14 +35,14 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="AppTheme.MaterialAboutActivity.Light.DarkActionBar" parent="Theme.Mal.Light">
+    <style name="AppTheme.MaterialAboutActivity.Light.DarkActionBar" parent="Theme.Mal.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="AppTheme.MaterialAboutActivity.Light.CustomCardView" parent="Theme.Mal.Light">
+    <style name="AppTheme.MaterialAboutActivity.Light.DarkActionBar.CustomCardView" parent="Theme.Mal.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -53,7 +53,7 @@
         <item name="mal_color_secondary">#ffe0e0e0</item>
     </style>
 
-    <style name="AppTheme.MaterialAboutActivity.Light.LightActionBar" parent="Theme.Mal.Light.LightActionBar">
+    <style name="AppTheme.MaterialAboutActivity.Light" parent="Theme.Mal.Light">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorLightBar</item>
         <item name="colorPrimaryDark">@color/colorLightStatus</item>
