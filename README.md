@@ -1,6 +1,6 @@
 # material-about-library
 
-[![Release][101]][102] [![GitHub license](https://img.shields.io/badge/license-Apache%202-blue.svg)](https://raw.githubusercontent.com/daniel-stoneuk/material-about-library/master/LICENSE) [![GitHub issues](https://img.shields.io/github/issues/daniel-stoneuk/material-about-library.svg)](https://github.com/daniel-stoneuk/material-about-library/issues)
+[![Release][101]][102] ![Downloads](https://jitpack.io/v/daniel-stoneuk/material-about-library/month.svg) [![GitHub license](https://img.shields.io/badge/license-Apache%202-blue.svg)](https://raw.githubusercontent.com/daniel-stoneuk/material-about-library/master/LICENSE) [![GitHub issues](https://img.shields.io/github/issues/daniel-stoneuk/material-about-library.svg)](https://github.com/daniel-stoneuk/material-about-library/issues)
 
 Makes it easy to create a beautiful about screen for your app. Generates an `Activity` or `Fragment`.
 
