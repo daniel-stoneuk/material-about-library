@@ -4,9 +4,6 @@
     <string name="mal_title_about">About</string>
     <string name="mal_title_licenses">Licenses</string>
 
-    <string name="mal_content_desc_application_icon">Application icon</string>
-    <string name="mal_content_desc_action_icon">Action icon</string>
-
     <string name="mal_close">Close</string>
     <string name="mal_send_email">Send email</string>
 

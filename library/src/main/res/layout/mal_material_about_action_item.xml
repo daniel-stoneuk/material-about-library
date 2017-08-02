@@ -16,7 +16,7 @@
         android:layout_marginRight="@dimen/mal_baseline_half"
         android:layout_marginStart="@dimen/mal_baseline"
         android:adjustViewBounds="false"
-        android:contentDescription="@string/mal_content_desc_action_icon"
+        android:contentDescription="@null"
         android:cropToPadding="false"
         android:scaleType="centerInside" />
 
