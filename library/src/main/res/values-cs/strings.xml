@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="mal_activity_exception">Nenalezena aplikace pro tuto akci</string>
+	<string name="mal_close">Zavřít</string>
+	<string name="mal_send_email">Odeslat e-mail</string>
+	<string name="mal_title_about">O aplikaci</string>
+	<string name="mal_title_licenses">Licence</string>
+</resources>
