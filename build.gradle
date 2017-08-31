@@ -24,8 +24,8 @@ ext {
     buildToolsVersion = '25.0.2'
     targetSdkVersion = compileSdkVersion
     minSdkVersion = 14
-
-    supportLibVersion = '26.0.1'
+ 
+    supportLibVersion = '26.0.2'
     leakCanaryVersion = '1.5'
 }
 
