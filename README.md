@@ -29,7 +29,7 @@ If you use this library in your app, please let me know and I'll add it to the l
 
 ## Dependency
 
-_material-about-library_ is available on [**jitpack.io**][1]
+_material-about-library_ is available on [**jitpack.io**][1] and has support for different support library versions. See the full list [here](https://jitpack.io/#daniel-stoneuk/material-about-library).
 
 **Gradle dependency:**
 
@@ -43,7 +43,7 @@ allprojects {
 
 ```gradle
 dependencies {
-    compile 'com.github.daniel-stoneuk:material-about-library:2.2.1'
+    compile 'com.github.daniel-stoneuk:material-about-library:2.2.3-support26.1.0'
 }
 ```
 
