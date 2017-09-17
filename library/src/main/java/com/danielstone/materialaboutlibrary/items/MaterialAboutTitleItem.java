@@ -76,7 +76,7 @@ public class MaterialAboutTitleItem extends MaterialAboutItem {
         int descRes = item.getDescRes();
 
         holder.desc.setVisibility(View.VISIBLE);
-        if (text != null) {
+        if (desc != null) {
             holder.desc.setText(desc);
         } else if (descRes != 0) {
             holder.desc.setText(descRes);
