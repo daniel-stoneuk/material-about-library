@@ -3,6 +3,7 @@
 buildscript {
     repositories {
         jcenter()
+        google()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.0.0-beta6'
@@ -16,6 +17,7 @@ buildscript {
 allprojects {
     repositories {
         jcenter()
+        google()
     }
 }
 
@@ -25,7 +27,7 @@ ext {
     targetSdkVersion = compileSdkVersion
     minSdkVersion = 14
  
-    supportLibVersion = '26.1.0'
+    supportLibVersion = '26.0.1'
     leakCanaryVersion = '1.5.1'
 }
 
