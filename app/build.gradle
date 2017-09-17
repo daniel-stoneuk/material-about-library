@@ -2,8 +2,8 @@ apply plugin: 'com.android.application'
 
 def versionMajor = 2
 def versionMinor = 2
-def versionPatch = 1
-def versionBuild = 1 // bump for dogfood builds, public betas, etc.
+def versionPatch = 2
+def versionBuild = 0 // bump for dogfood builds, public betas, etc.
 
 repositories {
 	maven { url 'https://maven.google.com' }
