@@ -2,9 +2,6 @@ package com.danielstone.materialaboutlibrary;
 
 
 import android.content.Context;
-import android.content.res.Resources;
-import android.content.res.TypedArray;
-import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -173,8 +170,10 @@ public abstract class MaterialAboutActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(MaterialAboutList materialAboutList) {
             super.onPostExecute(materialAboutList);
-            if (!context.get().isFinishing()) {
-                context.get().onTaskFinished(materialAboutList);
+            if (context.get() != null) {
+                if (!context.get().isFinishing()) {
+                    context.get().onTaskFinished(materialAboutList);
+                }
             }
             context = null;
         }
