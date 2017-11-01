@@ -32,9 +32,8 @@ dependencies {
     compile project(':library')
     compile "com.android.support:appcompat-v7:$supportLibVersion"
     compile "com.android.support:design:$supportLibVersion"
-    compile "com.mikepenz:iconics-core:2.8.2@aar"
-    compile 'com.mikepenz:google-material-typeface:2.2.0.3.original@aar'
-    compile 'com.mikepenz:community-material-typeface:1.7.22.1@aar'
+    compile "com.mikepenz:iconics-core:2.9.5@aar"
+    compile 'com.mikepenz:community-material-typeface:2.0.46.1@aar'
 
     debugCompile "com.squareup.leakcanary:leakcanary-android:$leakCanaryVersion"
     releaseCompile "com.squareup.leakcanary:leakcanary-android-no-op:$leakCanaryVersion"

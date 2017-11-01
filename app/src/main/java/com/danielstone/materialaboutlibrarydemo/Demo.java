@@ -13,7 +13,6 @@ import com.danielstone.materialaboutlibrary.model.MaterialAboutCard;
 import com.danielstone.materialaboutlibrary.model.MaterialAboutList;
 import com.danielstone.materialaboutlibrary.util.OpenSourceLicense;
 import com.mikepenz.community_material_typeface_library.CommunityMaterial;
-import com.mikepenz.google_material_typeface_library.GoogleMaterial;
 import com.mikepenz.iconics.IconicsDrawable;
 
 public class Demo {
@@ -31,7 +30,7 @@ public class Demo {
 
         appCardBuilder.addItem(ConvenienceBuilder.createVersionActionItem(c,
                 new IconicsDrawable(c)
-                        .icon(GoogleMaterial.Icon.gmd_info_outline)
+                        .icon(CommunityMaterial.Icon.cmd_information_outline)
                         .color(ContextCompat.getColor(c, colorIcon))
                         .sizeDp(18),
                 "Version",
@@ -49,7 +48,7 @@ public class Demo {
         appCardBuilder.addItem(new MaterialAboutActionItem.Builder()
                 .text("Licenses")
                 .icon(new IconicsDrawable(c)
-                        .icon(GoogleMaterial.Icon.gmd_book)
+                        .icon(CommunityMaterial.Icon.cmd_book)
                         .color(ContextCompat.getColor(c, colorIcon))
                         .sizeDp(18))
                 .setOnClickAction(new MaterialAboutItemOnClickAction() {
@@ -70,7 +69,7 @@ public class Demo {
                 .text("Daniel Stone")
                 .subText("United Kingdom")
                 .icon(new IconicsDrawable(c)
-                        .icon(GoogleMaterial.Icon.gmd_person)
+                        .icon(CommunityMaterial.Icon.cmd_account)
                         .color(ContextCompat.getColor(c, colorIcon))
                         .sizeDp(18))
                 .build());
@@ -163,7 +162,7 @@ public class Demo {
 
         MaterialAboutCard materialAboutLIbraryLicenseCard = ConvenienceBuilder.createLicenseCard(c,
                 new IconicsDrawable(c)
-                        .icon(GoogleMaterial.Icon.gmd_book)
+                        .icon(CommunityMaterial.Icon.cmd_book)
                         .color(ContextCompat.getColor(c, colorIcon))
                         .sizeDp(18),
                 "material-about-library", "2016", "Daniel Stone",
@@ -171,7 +170,7 @@ public class Demo {
 
         MaterialAboutCard androidIconicsLicenseCard = ConvenienceBuilder.createLicenseCard(c,
                 new IconicsDrawable(c)
-                        .icon(GoogleMaterial.Icon.gmd_book)
+                        .icon(CommunityMaterial.Icon.cmd_book)
                         .color(ContextCompat.getColor(c, colorIcon))
                         .sizeDp(18),
                 "Android Iconics", "2016", "Mike Penz",
@@ -179,7 +178,7 @@ public class Demo {
 
         MaterialAboutCard leakCanaryLicenseCard = ConvenienceBuilder.createLicenseCard(c,
                 new IconicsDrawable(c)
-                        .icon(GoogleMaterial.Icon.gmd_book)
+                        .icon(CommunityMaterial.Icon.cmd_book)
                         .color(ContextCompat.getColor(c, colorIcon))
                         .sizeDp(18),
                 "LeakCanary", "2015", "Square, Inc",
@@ -187,7 +186,7 @@ public class Demo {
 
         MaterialAboutCard mitLicenseCard = ConvenienceBuilder.createLicenseCard(c,
                 new IconicsDrawable(c)
-                        .icon(GoogleMaterial.Icon.gmd_book)
+                        .icon(CommunityMaterial.Icon.cmd_book)
                         .color(ContextCompat.getColor(c, colorIcon))
                         .sizeDp(18),
                 "MIT Example", "2017", "Matthew Ian Thomson",
@@ -195,7 +194,7 @@ public class Demo {
 
         MaterialAboutCard gplLicenseCard = ConvenienceBuilder.createLicenseCard(c,
                 new IconicsDrawable(c)
-                        .icon(GoogleMaterial.Icon.gmd_book)
+                        .icon(CommunityMaterial.Icon.cmd_book)
                         .color(ContextCompat.getColor(c, colorIcon))
                         .sizeDp(18),
                 "GPL Example", "2017", "George Perry Lindsay",
