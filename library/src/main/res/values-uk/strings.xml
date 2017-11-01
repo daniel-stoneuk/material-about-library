@@ -1,6 +1,4 @@
 <resources tools:ignore="MissingTranslation" xmlns:tools="http://schemas.android.com/tools">
-    <string name="app_name">Material About Library</string>
-
     <string name="mal_title_about">Про застосунок</string>
     <string name="mal_title_licenses">Ліцензії</string>
 
