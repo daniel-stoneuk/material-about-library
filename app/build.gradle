@@ -5,10 +5,6 @@ def versionMinor = 2
 def versionPatch = 3
 def versionBuild = 0 // bump for dogfood builds, public betas, etc.
 
-repositories {
-	maven { url 'https://maven.google.com' }
-}
-
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
