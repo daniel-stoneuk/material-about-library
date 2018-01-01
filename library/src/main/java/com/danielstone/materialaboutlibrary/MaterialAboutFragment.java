@@ -74,6 +74,10 @@ public abstract class MaterialAboutFragment extends Fragment {
         adapter.swapData(materialAboutList);
     }
 
+    protected void refreshMaterialAboutList() {
+        adapter.notifyDataSetChanged();
+    }
+
     private class ListTask extends AsyncTask<String, String, String> {
 
         Context fragmentContext;
