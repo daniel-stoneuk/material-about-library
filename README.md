@@ -57,9 +57,10 @@ Your `Activity` must extend [`MaterialAboutActivity`][materialaboutactivityjava]
 public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
 
     @Override
-    protected MaterialAboutList getMaterialAboutList(Context context) {
+    @NonNull
+    protected MaterialAboutList getMaterialAboutList(@NonNull Context context) {
         return new MaterialAboutList.Builder()
-                .build();
+                .build(); // This creates an empty screen, add cards with .addCard()
     }
 
     @Override
@@ -103,7 +104,8 @@ public class ExampleMaterialAboutFragment extends MaterialAboutFragment {
 
     @Override
     protected MaterialAboutList getMaterialAboutList(final Context activityContext) {
-      // TODO
+        return new MaterialAboutList.Builder()
+                .build(); // This creates an empty screen, add cards with .addCard()
     }
     
     @Override
@@ -132,33 +134,39 @@ Start building a "card" using [`MaterialAboutCard.Builder()`][8]
 public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
 
     @Override
-    protected MaterialAboutList getMaterialAboutList() {
-        MaterialAboutCard.Builder appCardBuilder = new MaterialAboutCard.Builder();
+    @NonNull
+    protected MaterialAboutList getMaterialAboutList(@NonNull Context context) {
+        MaterialAboutCard card = new MaterialAboutCard.Builder()
+                // Configure card here
+                .build();
 
-        // Configuration here
-
-        return appCardBuilder.build();
+        return new MaterialAboutList.Builder()
+                    .addCard(card)
+                    .build();
     }
 }
 ```
 
-Give the card a title by calling `.title` on the `Builder`
+Give the card a title by calling `.title()` on the `MaterialAboutCard.Builder`
 
 ```java
-authorCardBuilder.title("Author");
+MaterialAboutCard card = new MaterialAboutCard.Builder()
+    .title("Author")
+    .build();
 ```
 
-### Add Items:
+### Add Items to a card:
 
-There are currently two types of item you can add to a card - [`MaterialAboutTitleItem`][9] and [`MaterialAboutActionItem`][10]. Planned items include "person" items which feature buttons to showcase a single person. Feel free to submit a PR or Issue for more item ideas.
+There are currently two types of items you can add to a card - [`MaterialAboutTitleItem`][9] and [`MaterialAboutActionItem`][10]. Other types of items are planned, for example "person" items which feature buttons to showcase a single person. Feel free to submit a PR or Issue for more item ideas.
 
 - `MaterialAboutActionItem`: Standard item with text, icon and optional subtext.
-- `MaterialAboutTitleItem`: Larger item with large icon (eg app icon) and larger text.
+- `MaterialAboutTitleItem`: Larger item with large icon (e.g. app icon) and larger text.
 
 [`MaterialAboutTitleItem`][9] is created with [`MaterialAboutTitleItem.Builder()`][9] and lets you specify **text** and an **icon**.
 
 ```java
-appCardBuilder.addItem(new MaterialAboutTitleItem.Builder()
+MaterialAboutCard.Builder cardBuilder = new MaterialAboutCard.Builder();
+cardBuilder.addItem(new MaterialAboutTitleItem.Builder()
         .text("Material About Library")
         .icon(R.mipmap.ic_launcher)
         .build());
@@ -167,7 +175,7 @@ appCardBuilder.addItem(new MaterialAboutTitleItem.Builder()
 [`MaterialAboutActionItem`][10] is created with [`MaterialAboutActionItem.Builder()`][10] and lets you specify **text**, **sub-text**, an **icon** and an **OnClickAction**.
 
 ```java
-appCardBuilder.addItem(new MaterialAboutActionItem.Builder()
+cardBuilder.addItem(new MaterialAboutActionItem.Builder()
         .text("Version")
         .subText("1.0.0")
         .icon(R.drawable.ic_about_info)
@@ -186,8 +194,12 @@ appCardBuilder.addItem(new MaterialAboutActionItem.Builder()
 Create a [`MaterialAboutList`][11] using [`MaterialAboutList.Builder()`][11], passing in the cards you would like to display.
 
 ```java
+MaterialAboutCard card = new MaterialAboutCard.Builder()
+        .title("Hey! I'm a card")
+        .build();
+
 return new MaterialAboutList.Builder()
-        .addCard(supportCardBuilder.build())
+        .addCard(card)
         .build();
 ```
 
@@ -237,7 +249,7 @@ Check out a working example in [`Demo.java`][3].
 ## License
 
 ```
-Copyright 2016 Daniel Stone
+Copyright 2016-2018 Daniel Stone
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
