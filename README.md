@@ -60,7 +60,7 @@ public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
     @NonNull
     protected MaterialAboutList getMaterialAboutList(@NonNull Context context) {
         return new MaterialAboutList.Builder()
-                .build();
+                .build(); // This creates an empty screen, add cards with .addCard()
     }
 
     @Override
@@ -104,7 +104,8 @@ public class ExampleMaterialAboutFragment extends MaterialAboutFragment {
 
     @Override
     protected MaterialAboutList getMaterialAboutList(final Context activityContext) {
-      // TODO
+        return new MaterialAboutList.Builder()
+                .build(); // This creates an empty screen, add cards with .addCard()
     }
     
     @Override
