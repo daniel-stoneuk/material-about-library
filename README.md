@@ -136,11 +136,13 @@ public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
     @Override
     @NonNull
     protected MaterialAboutList getMaterialAboutList(@NonNull Context context) {
-        MaterialAboutCard.Builder appCardBuilder = new MaterialAboutCard.Builder();
+        MaterialAboutCard card = new MaterialAboutCard.Builder()
+                // Configure card here
+                .build();
 
-        // Configuration here
-
-        return appCardBuilder.build();
+        return new MaterialAboutList.Builder()
+                    .addCard(card)
+                    .build();
     }
 }
 ```
