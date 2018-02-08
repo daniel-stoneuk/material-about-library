@@ -249,7 +249,7 @@ Check out a working example in [`Demo.java`][3].
 ## License
 
 ```
-Copyright 2016 Daniel Stone
+Copyright 2016-2018 Daniel Stone
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
