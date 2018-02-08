@@ -57,7 +57,8 @@ Your `Activity` must extend [`MaterialAboutActivity`][materialaboutactivityjava]
 public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
 
     @Override
-    protected MaterialAboutList getMaterialAboutList(Context context) {
+    @NonNull
+    protected MaterialAboutList getMaterialAboutList(@NonNull Context context) {
         return new MaterialAboutList.Builder()
                 .build();
     }
@@ -132,7 +133,8 @@ Start building a "card" using [`MaterialAboutCard.Builder()`][8]
 public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
 
     @Override
-    protected MaterialAboutList getMaterialAboutList() {
+    @NonNull
+    protected MaterialAboutList getMaterialAboutList(@NonNull Context context) {
         MaterialAboutCard.Builder appCardBuilder = new MaterialAboutCard.Builder();
 
         // Configuration here
