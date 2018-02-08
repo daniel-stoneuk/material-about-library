@@ -155,12 +155,12 @@ MaterialAboutCard card = new MaterialAboutCard.Builder()
     .build();
 ```
 
-### Add Items:
+### Add Items to a card:
 
-There are currently two types of item you can add to a card - [`MaterialAboutTitleItem`][9] and [`MaterialAboutActionItem`][10]. Planned items include "person" items which feature buttons to showcase a single person. Feel free to submit a PR or Issue for more item ideas.
+There are currently two types of items you can add to a card - [`MaterialAboutTitleItem`][9] and [`MaterialAboutActionItem`][10]. Other types of items are planned, for example "person" items which feature buttons to showcase a single person. Feel free to submit a PR or Issue for more item ideas.
 
 - `MaterialAboutActionItem`: Standard item with text, icon and optional subtext.
-- `MaterialAboutTitleItem`: Larger item with large icon (eg app icon) and larger text.
+- `MaterialAboutTitleItem`: Larger item with large icon (e.g. app icon) and larger text.
 
 [`MaterialAboutTitleItem`][9] is created with [`MaterialAboutTitleItem.Builder()`][9] and lets you specify **text** and an **icon**.
 
