@@ -4,4 +4,7 @@
     <string name="mal_title_licenses">Lizenzen</string>
 
     <string name="mal_close">Schließen</string>
+    <string name="mal_send_email">E-Mail senden</string>
+
+    <string name="mal_activity_exception">Keine apps um Aktion durchzuführen</string>
 </resources>
