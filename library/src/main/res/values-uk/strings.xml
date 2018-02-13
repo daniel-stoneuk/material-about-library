@@ -1,4 +1,4 @@
-<resources tools:ignore="MissingTranslation" xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <string name="mal_title_about">Про застосунок</string>
     <string name="mal_title_licenses">Ліцензії</string>
 
