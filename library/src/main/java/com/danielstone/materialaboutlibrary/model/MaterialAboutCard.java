@@ -3,6 +3,7 @@ package com.danielstone.materialaboutlibrary.model;
 
 import android.support.annotation.ColorInt;
 import android.support.annotation.StringRes;
+import android.support.annotation.StyleRes;
 
 import com.danielstone.materialaboutlibrary.items.MaterialAboutItem;
 
@@ -15,24 +16,26 @@ public class MaterialAboutCard {
     private int titleRes = 0;
 
     private int titleColor = 0;
+    private int cardColor = 0;
 
-    private ArrayList<MaterialAboutItem> mItems = new ArrayList<>();;
+    private ArrayList<MaterialAboutItem> items = new ArrayList<>();;
 
     private MaterialAboutCard(Builder builder) {
         this.title = builder.title;
         this.titleRes = builder.titleRes;
         this.titleColor = builder.titleColor;
-        this.mItems = builder.items;
+        this.cardColor = builder.cardColor;
+        this.items = builder.items;
     }
 
     public MaterialAboutCard(CharSequence title, MaterialAboutItem... materialAboutItems) {
         this.title = title;
-        Collections.addAll(mItems, materialAboutItems);
+        Collections.addAll(items, materialAboutItems);
     }
 
     public MaterialAboutCard(int titleRes, MaterialAboutItem... materialAboutItems) {
         this.titleRes = titleRes;
-        Collections.addAll(mItems, materialAboutItems);
+        Collections.addAll(items, materialAboutItems);
     }
 
     public CharSequence getTitle() {
@@ -47,8 +50,12 @@ public class MaterialAboutCard {
         return titleColor;
     }
 
+    public int getCardColor() {
+        return cardColor;
+    }
+
     public ArrayList<MaterialAboutItem> getItems() {
-        return mItems;
+        return items;
     }
 
     public static class Builder {
@@ -58,6 +65,9 @@ public class MaterialAboutCard {
 
         @ColorInt
         private int titleColor = 0;
+
+        @ColorInt
+        private int cardColor = 0;
 
         private ArrayList<MaterialAboutItem> items = new ArrayList<>();
 
@@ -75,6 +85,11 @@ public class MaterialAboutCard {
 
         public Builder titleColor(@ColorInt int color) {
             this.titleColor = color;
+            return this;
+        }
+
+        public Builder cardColor(@ColorInt int cardColor) {
+            this.cardColor = cardColor;
             return this;
         }
 

@@ -1,8 +1,13 @@
 package com.danielstone.materialaboutlibrary.adapters;
 
 import android.content.Context;
+import android.content.res.Resources;
+import android.content.res.TypedArray;
+import android.graphics.Color;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,9 +55,18 @@ public class MaterialAboutListAdapter extends RecyclerView.Adapter<MaterialAbout
 
     @Override
     public void onBindViewHolder(MaterialAboutListViewHolder holder, int position) {
+        MaterialAboutCard card = data.get(position);
 
-        CharSequence title = data.get(position).getTitle();
-        int titleRes = data.get(position).getTitleRes();
+
+        int cardColor = card.getCardColor();
+        if (cardColor != 0) {
+            holder.cardView.setBackgroundColor(cardColor);
+        } else {
+            holder.cardView.setBackgroundColor(holder.cardView.getCardBackgroundColor().getDefaultColor());
+        }
+
+        CharSequence title = card.getTitle();
+        int titleRes = card.getTitleRes();
 
         holder.title.setVisibility(View.VISIBLE);
         if (title != null) {
@@ -63,17 +77,17 @@ public class MaterialAboutListAdapter extends RecyclerView.Adapter<MaterialAbout
             holder.title.setVisibility(View.GONE);
         }
 
-        int color = data.get(position).getTitleColor();
+        int titleColor = card.getTitleColor();
 
         if (holder.title.getVisibility() == View.VISIBLE) {
-            if (color != 0) {
-                holder.title.setTextColor(color);
+            if (titleColor != 0) {
+                holder.title.setTextColor(titleColor);
             } else {
                 holder.title.setTextColor(holder.title.getTextColors().getDefaultColor());
             }
         }
 
-        holder.adapter.swapData(data.get(position).getItems());
+        holder.adapter.swapData(card.getItems());
 
     }
 
@@ -93,12 +107,14 @@ public class MaterialAboutListAdapter extends RecyclerView.Adapter<MaterialAbout
 
     class MaterialAboutListViewHolder extends RecyclerView.ViewHolder {
 
+        final CardView cardView;
         final TextView title;
         final RecyclerView recyclerView;
         MaterialAboutItemAdapter adapter;
 
         MaterialAboutListViewHolder(View view) {
             super(view);
+            cardView = view.findViewById(R.id.mal_list_card);
             title = (TextView) view.findViewById(R.id.mal_list_card_title);
             recyclerView = (RecyclerView) view.findViewById(R.id.mal_card_recyclerview);
             adapter = new MaterialAboutItemAdapter(new ArrayList<MaterialAboutItem>(), viewTypeManager);

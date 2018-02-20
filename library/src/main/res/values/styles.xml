@@ -25,6 +25,8 @@
         <item name="mal_toolbarTheme">@style/Theme.Mal.Toolbar.Dark</item>
     </style>
 
+
+
     <style name="Theme.Mal.Toolbar.Light" parent="ThemeOverlay.AppCompat.Light" />
     <style name="Theme.Mal.Toolbar.Dark" parent="ThemeOverlay.AppCompat.Dark" />
 
