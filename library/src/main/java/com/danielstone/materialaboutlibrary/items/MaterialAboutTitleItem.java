@@ -29,6 +29,7 @@ public class MaterialAboutTitleItem extends MaterialAboutItem {
     private MaterialAboutItemOnClickAction onLongClickAction = null;
 
     private MaterialAboutTitleItem(MaterialAboutTitleItem.Builder builder) {
+        super();
         this.text = builder.text;
         this.textRes = builder.textRes;
 
@@ -118,82 +119,67 @@ public class MaterialAboutTitleItem extends MaterialAboutItem {
         return ViewTypeManager.ItemType.TITLE_ITEM;
     }
 
-    public CharSequence getText() {
-        return text;
+    @Override
+    public String getDetailString() {
+        return "MaterialAboutTitleItem{" +
+                "text=" + text +
+                ", textRes=" + textRes +
+                ", desc=" + desc +
+                ", descRes=" + descRes +
+                ", icon=" + icon +
+                ", iconRes=" + iconRes +
+                ", onClickAction=" + onClickAction +
+                ", onLongClickAction=" + onLongClickAction +
+                '}';
     }
 
-    public MaterialAboutTitleItem setText(CharSequence text) {
-        this.textRes = 0;
-        this.text = text;
-        return this;
+    public MaterialAboutTitleItem(MaterialAboutTitleItem item) {
+        this.id = item.getId();
+        this.text = item.getText();
+        this.textRes = item.getTextRes();
+        this.desc = item.getDesc();
+        this.descRes = item.getDescRes();
+        this.icon = item.getIcon();
+        this.iconRes = item.getIconRes();
+        this.onClickAction = item.getOnClickAction();
+        this.onLongClickAction = item.getOnLongClickAction();
+    }
+
+    @Override
+    public MaterialAboutTitleItem clone() {
+        return new MaterialAboutTitleItem(this);
+    }
+
+    public CharSequence getText() {
+        return text;
     }
 
     public int getTextRes() {
         return textRes;
     }
 
-    public MaterialAboutTitleItem setTextRes(int textRes) {
-        this.text = null;
-        this.textRes = textRes;
-        return this;
-    }
-
     public CharSequence getDesc() {
         return desc;
-    }
-
-    public MaterialAboutTitleItem setDesc(CharSequence desc) {
-        this.descRes = 0;
-        this.desc = desc;
-        return this;
     }
 
     public int getDescRes() {
         return descRes;
     }
 
-    public MaterialAboutTitleItem setDescRes(int descRes) {
-        this.desc = null;
-        this.descRes = textRes;
-        return this;
-    }
-
     public Drawable getIcon() {
         return icon;
-    }
-
-    public MaterialAboutTitleItem setIcon(Drawable icon) {
-        this.iconRes = 0;
-        this.icon = icon;
-        return this;
     }
 
     public int getIconRes() {
         return iconRes;
     }
 
-    public MaterialAboutTitleItem setIconRes(int iconRes) {
-        this.icon = null;
-        this.iconRes = iconRes;
-        return this;
-    }
-
     public MaterialAboutItemOnClickAction getOnClickAction() {
         return onClickAction;
     }
 
-    public MaterialAboutTitleItem setOnClickAction(MaterialAboutItemOnClickAction onClickAction) {
-        this.onClickAction = onClickAction;
-        return this;
-    }
-
     public MaterialAboutItemOnClickAction getOnLongClickAction() {
         return onLongClickAction;
-    }
-
-    public MaterialAboutTitleItem setOnLongClickAction(MaterialAboutItemOnClickAction onLongClickAction) {
-        this.onLongClickAction = onLongClickAction;
-        return this;
     }
 
     public static class MaterialAboutTitleItemViewHolder extends MaterialAboutItemViewHolder implements View.OnClickListener, View.OnLongClickListener {

@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.animation.FastOutSlowInInterpolator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SimpleItemAnimator;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,6 +52,10 @@ public abstract class MaterialAboutFragment extends Fragment {
         adapter = new MaterialAboutListAdapter(list, getViewTypeManager());
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
+        RecyclerView.ItemAnimator animator = recyclerView.getItemAnimator();
+        if (animator instanceof SimpleItemAnimator) {
+            ((SimpleItemAnimator) animator).setSupportsChangeAnimations(false);
+        }
 
         recyclerView.setAlpha(0f);
         recyclerView.setTranslationY(20);
@@ -65,17 +70,17 @@ public abstract class MaterialAboutFragment extends Fragment {
         return new DefaultViewTypeManager();
     }
 
-    protected MaterialAboutList getMaterialAboutList() {
+    protected MaterialAboutList getList() {
         return list;
     }
 
     protected void setMaterialAboutList(MaterialAboutList materialAboutList) {
         list = materialAboutList;
-        adapter.swapData(materialAboutList);
+        adapter.setData(list.getCards());
     }
 
     protected void refreshMaterialAboutList() {
-        adapter.notifyDataSetChanged();
+        adapter.setData(list.getCards());
     }
 
     private class ListTask extends AsyncTask<String, String, String> {
@@ -94,7 +99,7 @@ public abstract class MaterialAboutFragment extends Fragment {
 
         @Override
         protected void onPostExecute(String s) {
-            adapter.swapData(list);
+            adapter.setData(list.getCards());
 
             if (shouldAnimate()) {
                 recyclerView.animate()

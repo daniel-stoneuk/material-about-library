@@ -1,13 +1,11 @@
 package com.danielstone.materialaboutlibrary.adapters;
 
 import android.content.Context;
-import android.content.res.Resources;
-import android.content.res.TypedArray;
-import android.graphics.Color;
+import android.support.v7.util.DiffUtil;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.TypedValue;
+import android.support.v7.widget.SimpleItemAnimator;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,23 +19,29 @@ import com.danielstone.materialaboutlibrary.util.DefaultViewTypeManager;
 import com.danielstone.materialaboutlibrary.util.ViewTypeManager;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.UUID;
 
 
 public class MaterialAboutListAdapter extends RecyclerView.Adapter<MaterialAboutListAdapter.MaterialAboutListViewHolder> {
 
-    private ArrayList<MaterialAboutCard> data;
+    private ArrayList<MaterialAboutCard> data = new ArrayList<>();
 
     private Context context;
 
     private ViewTypeManager viewTypeManager;
 
     public MaterialAboutListAdapter(MaterialAboutList list) {
-        this.data = list.getCards();
+        setHasStableIds(true);
+        data.clear();
+        data.addAll(list.getCards());
         this.viewTypeManager = new DefaultViewTypeManager();
     }
 
     public MaterialAboutListAdapter(MaterialAboutList list, ViewTypeManager customViewTypeManager) {
-        this.data = list.getCards();
+        setHasStableIds(true);
+        data.clear();
+        data.addAll(list.getCards());
         this.viewTypeManager = customViewTypeManager;
     }
 
@@ -56,7 +60,6 @@ public class MaterialAboutListAdapter extends RecyclerView.Adapter<MaterialAbout
     @Override
     public void onBindViewHolder(MaterialAboutListViewHolder holder, int position) {
         MaterialAboutCard card = data.get(position);
-
 
         int cardColor = card.getCardColor();
         if (cardColor != 0) {
@@ -87,8 +90,12 @@ public class MaterialAboutListAdapter extends RecyclerView.Adapter<MaterialAbout
             }
         }
 
-        holder.adapter.swapData(card.getItems());
+        holder.adapter.setData(card.getItems());
+    }
 
+    @Override
+    public long getItemId(int position) {
+        return UUID.fromString(data.get(position).getId()).getMostSignificantBits() & Long.MAX_VALUE;
     }
 
     @Override
@@ -96,10 +103,15 @@ public class MaterialAboutListAdapter extends RecyclerView.Adapter<MaterialAbout
         return data.size();
     }
 
-    public void swapData(MaterialAboutList list) {
-        data = list.getCards();
-        notifyDataSetChanged();
+    public void setData(ArrayList<MaterialAboutCard> newData) {
+        DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(new MaterialAboutListDiffUtilCallback(this.data, newData));
+        data.clear();
+        for (MaterialAboutCard card : newData) {
+            data.add(card.clone());
+        }
+        diffResult.dispatchUpdatesTo(this);
     }
+
 
     ArrayList<MaterialAboutCard> getData() {
         return data;
@@ -121,7 +133,6 @@ public class MaterialAboutListAdapter extends RecyclerView.Adapter<MaterialAbout
             recyclerView.setLayoutManager(new LinearLayoutManager(context));
             recyclerView.setAdapter(adapter);
             recyclerView.setNestedScrollingEnabled(false);
-
         }
     }
 }

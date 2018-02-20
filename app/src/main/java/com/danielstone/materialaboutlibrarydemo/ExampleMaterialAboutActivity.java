@@ -83,25 +83,31 @@ public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
                         .sizeDp(18))
                 .build());
 
-        final MaterialAboutActionItem dynamicItem = new MaterialAboutActionItem.Builder()
-                .text("Dynamic UI")
-                .subText("Tap for a random number.")
-                .icon(new IconicsDrawable(c)
-                        .icon(CommunityMaterial.Icon.cmd_refresh)
-                        .color(ContextCompat.getColor(c, colorIcon)
-                        ).sizeDp(18))
-                .build();
-        dynamicItem.setOnClickAction(new MaterialAboutItemOnClickAction() {
-            @Override
-            public void onClick() {
-                dynamicItem.setSubText("Random number: " + ((int) (Math.random() * 10)));
-                refreshMaterialAboutList();
-            }
-        });
-        advancedCardBuilder.addItem(dynamicItem);
+        advancedCardBuilder.addItem(createDynamicItem("Tap for a random number & swap position", c, 4));
 
         return Demo.createMaterialAboutList(c, colorIcon, getIntent().getIntExtra(THEME_EXTRA, THEME_LIGHT_DARKBAR)).addCard(advancedCardBuilder.build());
     }
+
+    private MaterialAboutActionItem createDynamicItem(String subText, final Context c, final int index) {
+        return new MaterialAboutActionItem.Builder()
+                .text("Dynamic UI")
+                .subText(subText)
+                .icon(new IconicsDrawable(c)
+                        .icon(CommunityMaterial.Icon.cmd_refresh)
+                        .color(ContextCompat.getColor(c, R.color.mal_color_icon_dark_theme)
+                        ).sizeDp(18))
+                .setOnClickAction(new MaterialAboutItemOnClickAction() {
+                    @Override
+                    public void onClick() {
+                        getList().getCards().get(4).getItems().remove(index);
+                        int newIndex = ((int) (Math.random() * 4));
+                        getList().getCards().get(4).getItems().add( newIndex, createDynamicItem("Random number: " + ((int) (Math.random() * 10)), c,  newIndex));
+                        setMaterialAboutList(getList());
+                    }
+                })
+                .build();
+    }
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

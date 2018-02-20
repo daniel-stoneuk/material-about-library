@@ -9,8 +9,11 @@ import com.danielstone.materialaboutlibrary.items.MaterialAboutItem;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.UUID;
 
 public class MaterialAboutCard {
+
+    private String id = "NO-UUID";
 
     private CharSequence title = null;
     private int titleRes = 0;
@@ -18,9 +21,11 @@ public class MaterialAboutCard {
     private int titleColor = 0;
     private int cardColor = 0;
 
-    private ArrayList<MaterialAboutItem> items = new ArrayList<>();;
+    private ArrayList<MaterialAboutItem> items = new ArrayList<>();
+    ;
 
     private MaterialAboutCard(Builder builder) {
+        this.id = UUID.randomUUID().toString();
         this.title = builder.title;
         this.titleRes = builder.titleRes;
         this.titleColor = builder.titleColor;
@@ -101,6 +106,37 @@ public class MaterialAboutCard {
         public MaterialAboutCard build() {
             return new MaterialAboutCard(this);
         }
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    @Override
+    public String toString() {
+        String result = "MaterialAboutCard{" +
+                "id='" + id + '\'' +
+                ", title=" + title +
+                ", titleRes=" + titleRes +
+                ", titleColor=" + titleColor +
+                ", cardColor=" + cardColor + '}';
+        return result;
+    }
+
+    public MaterialAboutCard(MaterialAboutCard card) {
+        this.id = card.getId();
+        this.title = card.getTitle();
+        this.titleRes = card.getTitleRes();
+        this.titleColor = card.getTitleColor();
+        this.cardColor = card.getCardColor();
+        this.items = new ArrayList<>();
+        for (MaterialAboutItem item : card.items) {
+            this.items.add(item.clone());
+        }
+    }
+
+    public MaterialAboutCard clone() {
+        return new MaterialAboutCard(this);
     }
 
 }
