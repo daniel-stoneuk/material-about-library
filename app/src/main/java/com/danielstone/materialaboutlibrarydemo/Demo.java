@@ -145,7 +145,7 @@ public class Demo {
         MaterialAboutCard.Builder otherCardBuilder = new MaterialAboutCard.Builder();
         otherCardBuilder.title("Other");
 
-        otherCardBuilder.cardColor(Color.parseColor("#4FC3F7"));
+        otherCardBuilder.cardColor(Color.parseColor("#7986CB"));
 
         otherCardBuilder.addItem(new MaterialAboutActionItem.Builder()
                 .icon(new IconicsDrawable(c)
