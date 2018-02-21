@@ -154,34 +154,79 @@ public class MaterialAboutTitleItem extends MaterialAboutItem {
         return text;
     }
 
+    public MaterialAboutTitleItem setText(CharSequence text) {
+        this.textRes = 0;
+        this.text = text;
+        return this;
+    }
+
     public int getTextRes() {
         return textRes;
+    }
+
+    public MaterialAboutTitleItem setTextRes(int textRes) {
+        this.text = null;
+        this.textRes = textRes;
+        return this;
     }
 
     public CharSequence getDesc() {
         return desc;
     }
 
+    public MaterialAboutTitleItem setDesc(CharSequence desc) {
+        this.descRes = 0;
+        this.desc = desc;
+        return this;
+    }
+
     public int getDescRes() {
         return descRes;
+    }
+
+    public MaterialAboutTitleItem setDescRes(int descRes) {
+        this.desc = null;
+        this.descRes = textRes;
+        return this;
     }
 
     public Drawable getIcon() {
         return icon;
     }
 
+    public MaterialAboutTitleItem setIcon(Drawable icon) {
+        this.iconRes = 0;
+        this.icon = icon;
+        return this;
+    }
+
     public int getIconRes() {
         return iconRes;
+    }
+
+    public MaterialAboutTitleItem setIconRes(int iconRes) {
+        this.icon = null;
+        this.iconRes = iconRes;
+        return this;
     }
 
     public MaterialAboutItemOnClickAction getOnClickAction() {
         return onClickAction;
     }
 
+    public MaterialAboutTitleItem setOnClickAction(MaterialAboutItemOnClickAction onClickAction) {
+        this.onClickAction = onClickAction;
+        return this;
+    }
+
     public MaterialAboutItemOnClickAction getOnLongClickAction() {
         return onLongClickAction;
     }
 
+    public MaterialAboutTitleItem setOnLongClickAction(MaterialAboutItemOnClickAction onLongClickAction) {
+        this.onLongClickAction = onLongClickAction;
+        return this;
+    }
     public static class MaterialAboutTitleItemViewHolder extends MaterialAboutItemViewHolder implements View.OnClickListener, View.OnLongClickListener {
         public final View view;
         public final ImageView icon;

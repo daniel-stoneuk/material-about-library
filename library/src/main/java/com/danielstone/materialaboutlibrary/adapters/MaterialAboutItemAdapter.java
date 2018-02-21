@@ -82,9 +82,6 @@ public class MaterialAboutItemAdapter extends RecyclerView.Adapter<MaterialAbout
     public void setData(ArrayList<MaterialAboutItem> newData) {
         DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(new MaterialAboutItemDiffUtilCallback(this.data, newData));
         data.clear();
-//        for (MaterialAboutItem item : newData) {
-//            data.add(item.clone());
-//        }
         data.addAll(newData);
         diffResult.dispatchUpdatesTo(this);
     }
