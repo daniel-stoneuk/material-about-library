@@ -18,7 +18,7 @@ If you use this library in your app, please let me know and I'll add it to the l
 
 | Light with Light Action Bar    | Light with Dark Action Bar     | Dark with Light Action Bar    | Dark with Dark Action Bar     | Custom Cardview Background     | Custom card & action item layout |
 | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |  ------------------------------ |
-| ![Demo App](screenshots/1.png) | ![Demo App](screenshots/2.png) | ![Demo App](screenshots/3.png) | ![Demo App](screenshots/4.png) | ![Demo App](screenshots/5.png) | ![Demo App](screenshots/6.png)
+| ![Demo App](screenshots/1.png) | ![Demo App](screenshots/2.png) | ![Demo App](screenshots/3.png) | ![Demo App](screenshots/4.png) | ![Demo App](screenshots/5.png) | ![Demo App](screenshots/6.png) |
 
 ## Features
 
@@ -251,6 +251,9 @@ final MaterialAboutActionItem item = new MaterialAboutActionItem.Builder()
             }
         });
 ```
+
+### Custom card and Action layout
+To get a layout that is similar to the 6th screenshot above simply override the files `mal_material_about_action_item` and `mal_material_about_list_card` by creating new layout resources with the same filename. See [here](https://github.com/daniel-stoneuk/material-about-library/tree/master/app/src/main/res/layout).
 
 ## Contributors
 
