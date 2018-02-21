@@ -61,11 +61,14 @@ public class MaterialAboutListAdapter extends RecyclerView.Adapter<MaterialAbout
     public void onBindViewHolder(MaterialAboutListViewHolder holder, int position) {
         MaterialAboutCard card = data.get(position);
 
-        int cardColor = card.getCardColor();
-        if (cardColor != 0) {
-            holder.cardView.setBackgroundColor(cardColor);
-        } else {
-            holder.cardView.setBackgroundColor(holder.cardView.getCardBackgroundColor().getDefaultColor());
+        if (holder.cardView instanceof CardView) {
+            CardView cardView = (CardView) holder.cardView;
+            int cardColor = card.getCardColor();
+            if (cardColor != 0) {
+                cardView.setBackgroundColor(cardColor);
+            } else {
+                cardView.setBackgroundColor(cardView.getCardBackgroundColor().getDefaultColor());
+            }
         }
 
         CharSequence title = card.getTitle();
@@ -119,7 +122,7 @@ public class MaterialAboutListAdapter extends RecyclerView.Adapter<MaterialAbout
 
     class MaterialAboutListViewHolder extends RecyclerView.ViewHolder {
 
-        final CardView cardView;
+        final View cardView;
         final TextView title;
         final RecyclerView recyclerView;
         MaterialAboutItemAdapter adapter;

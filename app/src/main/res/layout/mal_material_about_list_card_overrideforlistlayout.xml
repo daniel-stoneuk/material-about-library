@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mal_list_card"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/mal_list_card_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/mal_baseline_half"
+        android:layout_marginEnd="@dimen/mal_baseline"
+        android:layout_marginLeft="@dimen/mal_baseline"
+        android:layout_marginRight="@dimen/mal_baseline"
+        android:layout_marginStart="@dimen/mal_baseline"
+        android:layout_marginTop="@dimen/mal_baseline"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textColor="?mal_color_primary"
+        tools:text="Author" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/mal_card_recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        android:paddingBottom="@dimen/mal_baseline_half"
+        android:paddingTop="@dimen/mal_baseline_half" />
+
+    <View android:background="#616161" android:layout_width="match_parent" android:layout_height="1px"/>
+
+</LinearLayout>
