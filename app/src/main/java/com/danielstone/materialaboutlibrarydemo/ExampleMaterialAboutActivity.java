@@ -95,7 +95,7 @@ public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
                 .subText(subText)
                 .icon(new IconicsDrawable(c)
                         .icon(CommunityMaterial.Icon.cmd_refresh)
-                        .color(ContextCompat.getColor(c, R.color.mal_color_icon_dark_theme)
+                        .color(ContextCompat.getColor(c, colorIcon)
                         ).sizeDp(18))
                 .build();
         item.setOnClickAction(new MaterialAboutItemOnClickAction() {
