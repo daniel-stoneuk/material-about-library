@@ -36,7 +36,8 @@ public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
 
     protected int colorIcon = R.color.mal_color_icon_light_theme;
 
-    @NonNull @Override
+    @NonNull
+    @Override
     protected MaterialAboutList getMaterialAboutList(@NonNull final Context c) {
         MaterialAboutCard.Builder advancedCardBuilder = new MaterialAboutCard.Builder();
         advancedCardBuilder.title("Advanced");
@@ -83,29 +84,32 @@ public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
                         .sizeDp(18))
                 .build());
 
-        advancedCardBuilder.addItem(createDynamicItem("Tap for a random number & swap position", c, 4));
+        advancedCardBuilder.addItem(createDynamicItem("Tap for a random number & swap position", c));
 
         return Demo.createMaterialAboutList(c, colorIcon, getIntent().getIntExtra(THEME_EXTRA, THEME_LIGHT_DARKBAR)).addCard(advancedCardBuilder.build());
     }
 
-    private MaterialAboutActionItem createDynamicItem(String subText, final Context c, final int index) {
-        return new MaterialAboutActionItem.Builder()
+    private MaterialAboutActionItem createDynamicItem(String subText, final Context c) {
+        final MaterialAboutActionItem item = new MaterialAboutActionItem.Builder()
                 .text("Dynamic UI")
                 .subText(subText)
                 .icon(new IconicsDrawable(c)
                         .icon(CommunityMaterial.Icon.cmd_refresh)
                         .color(ContextCompat.getColor(c, R.color.mal_color_icon_dark_theme)
                         ).sizeDp(18))
-                .setOnClickAction(new MaterialAboutItemOnClickAction() {
-                    @Override
-                    public void onClick() {
-                        getList().getCards().get(4).getItems().remove(index);
-                        int newIndex = ((int) (Math.random() * 4));
-                        getList().getCards().get(4).getItems().add( newIndex, createDynamicItem("Random number: " + ((int) (Math.random() * 10)), c,  newIndex));
-                        setMaterialAboutList(getList());
-                    }
-                })
                 .build();
+        item.setOnClickAction(new MaterialAboutItemOnClickAction() {
+            @Override
+            public void onClick() {
+                getList().getCards().get(4).getItems().remove(getList().getCards().get(4).getItems().indexOf(item));
+                int newIndex = ((int) (Math.random() * 5));
+                getList().getCards().get(4).getItems().add(newIndex, item);
+                item.setSubText("Random number: " + ((int) (Math.random() * 10)));
+                setMaterialAboutList(getList());
+            }
+        });
+
+        return item;
     }
 
 
@@ -146,7 +150,8 @@ public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
         return getString(R.string.mal_title_about);
     }
 
-    @NonNull @Override
+    @NonNull
+    @Override
     protected ViewTypeManager getViewTypeManager() {
         return new MyViewTypeManager();
     }

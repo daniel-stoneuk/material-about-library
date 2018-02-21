@@ -7,6 +7,7 @@ import android.util.Log;
 
 import com.danielstone.materialaboutlibrary.MaterialAboutFragment;
 import com.danielstone.materialaboutlibrary.items.MaterialAboutActionItem;
+import com.danielstone.materialaboutlibrary.items.MaterialAboutItem;
 import com.danielstone.materialaboutlibrary.items.MaterialAboutItemOnClickAction;
 import com.danielstone.materialaboutlibrary.model.MaterialAboutCard;
 import com.danielstone.materialaboutlibrary.model.MaterialAboutList;
@@ -22,24 +23,23 @@ import static com.danielstone.materialaboutlibrarydemo.ExampleMaterialAboutActiv
 public class ExampleMaterialAboutFragment extends MaterialAboutFragment {
 
     private MaterialAboutActionItem createDynamicItem(String subText, final Context c) {
-        return new MaterialAboutActionItem.Builder()
+        final MaterialAboutActionItem item = new MaterialAboutActionItem.Builder()
                 .text("Dynamic UI")
                 .subText(subText)
                 .icon(new IconicsDrawable(c)
                         .icon(CommunityMaterial.Icon.cmd_refresh)
                         .color(ContextCompat.getColor(c, R.color.mal_color_icon_dark_theme)
                         ).sizeDp(18))
-                .setOnClickAction(new MaterialAboutItemOnClickAction() {
-                    @Override
-                    public void onClick() {
-                        MaterialAboutList list = getList();
-                        ArrayList<MaterialAboutCard> cards = list.getCards();
-                        cards.get(2).getItems().remove(6);
-                        cards.get(2).getItems().add(6, createDynamicItem("Random number: " + ((int) (Math.random() * 10)), c));
-                        refreshMaterialAboutList();
-                    }
-                })
                 .build();
+        item.setOnClickAction(new MaterialAboutItemOnClickAction() {
+            @Override
+            public void onClick() {
+                item.setSubText("Random number: " + ((int) (Math.random() * 10)));
+                refreshMaterialAboutList();
+            }
+        });
+        return item;
+
     }
 
     @Override
@@ -67,24 +67,12 @@ public class ExampleMaterialAboutFragment extends MaterialAboutFragment {
         public void run() {
             Log.i("MaterialAboutFragment", "Updating with time");
             if (getList().getCards().size() > 0) {
-                getList().getCards().get(2).getItems().remove(7);
-                getList().getCards().get(2).getItems().add(createTimeItem(getContext()));
+                ((MaterialAboutActionItem) getList().getCards().get(2).getItems().get(7)).setSubText("" + System.currentTimeMillis());
                 refreshMaterialAboutList();
             }
             handler.postDelayed(this, 1000);
         }
     };
-
-    private MaterialAboutActionItem createTimeItem(Context c) {
-        return new MaterialAboutActionItem.Builder()
-                .text("Unix Time")
-                .subText("" + System.currentTimeMillis())
-                .icon(new IconicsDrawable(c)
-                        .icon(CommunityMaterial.Icon.cmd_clock)
-                        .color(ContextCompat.getColor(c, R.color.mal_color_icon_dark_theme)
-                        ).sizeDp(18))
-                .build();
-    }
 
 
     @Override

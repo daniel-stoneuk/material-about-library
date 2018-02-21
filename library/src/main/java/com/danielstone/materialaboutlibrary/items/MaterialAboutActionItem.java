@@ -152,6 +152,8 @@ public class MaterialAboutActionItem extends MaterialAboutItem {
             TypedValue outValue = new TypedValue();
             context.getTheme().resolveAttribute(R.attr.selectableItemBackground, outValue, true);
             holder.view.setBackgroundResource(outValue.resourceId);
+        } else {
+            holder.view.setBackgroundResource(0);
         }
         holder.setOnClickAction(item.getOnClickAction());
         holder.setOnLongClickAction(item.getOnLongClickAction());
