@@ -3,6 +3,7 @@ package com.danielstone.materialaboutlibrary;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.animation.FastOutSlowInInterpolator;
@@ -38,6 +39,7 @@ public abstract class MaterialAboutFragment extends Fragment {
         return true;
     }
 
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -52,6 +54,7 @@ public abstract class MaterialAboutFragment extends Fragment {
         adapter = new MaterialAboutListAdapter(getViewTypeManager());
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
+
         RecyclerView.ItemAnimator animator = recyclerView.getItemAnimator();
         if (animator instanceof SimpleItemAnimator) {
             ((SimpleItemAnimator) animator).setSupportsChangeAnimations(false);
@@ -79,8 +82,13 @@ public abstract class MaterialAboutFragment extends Fragment {
         adapter.setData(list.getCards());
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+    }
+
     protected void refreshMaterialAboutList() {
-        adapter.setData(list.getCards());
+        setMaterialAboutList(list);
     }
 
     private class ListTask extends AsyncTask<String, String, String> {

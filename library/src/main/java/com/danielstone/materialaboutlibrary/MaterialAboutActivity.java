@@ -109,7 +109,7 @@ public abstract class MaterialAboutActivity extends AppCompatActivity {
     }
 
     protected void refreshMaterialAboutList() {
-        adapter.setData(list.getCards());
+        setMaterialAboutList(list);
     }
 
     @Override
