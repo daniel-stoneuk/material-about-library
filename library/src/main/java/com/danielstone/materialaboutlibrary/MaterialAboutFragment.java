@@ -49,7 +49,7 @@ public abstract class MaterialAboutFragment extends Fragment {
         View rootView = localInflater.inflate(R.layout.mal_material_about_fragment, container, false);
 
         recyclerView = (RecyclerView) rootView.findViewById(R.id.mal_recyclerview);
-        adapter = new MaterialAboutListAdapter(list, getViewTypeManager());
+        adapter = new MaterialAboutListAdapter(getViewTypeManager());
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
         RecyclerView.ItemAnimator animator = recyclerView.getItemAnimator();
@@ -105,7 +105,7 @@ public abstract class MaterialAboutFragment extends Fragment {
                 recyclerView.animate()
                         .alpha(1f)
                         .translationY(0f)
-                        .setDuration(400)
+                        .setDuration(600)
                         .setInterpolator(new FastOutSlowInInterpolator())
                         .start();
             } else {

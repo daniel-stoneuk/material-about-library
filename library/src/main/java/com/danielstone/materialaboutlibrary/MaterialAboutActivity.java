@@ -85,7 +85,7 @@ public abstract class MaterialAboutActivity extends AppCompatActivity {
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
-        adapter = new MaterialAboutListAdapter(list, getViewTypeManager());
+        adapter = new MaterialAboutListAdapter(getViewTypeManager());
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
         RecyclerView.ItemAnimator animator = recyclerView.getItemAnimator();
@@ -130,7 +130,7 @@ public abstract class MaterialAboutActivity extends AppCompatActivity {
                 recyclerView.animate()
                         .alpha(1f)
                         .translationY(0f)
-                        .setDuration(400)
+                        .setDuration(600)
                         .setInterpolator(new FastOutSlowInInterpolator()).start();
             } else {
                 recyclerView.setAlpha(1f);

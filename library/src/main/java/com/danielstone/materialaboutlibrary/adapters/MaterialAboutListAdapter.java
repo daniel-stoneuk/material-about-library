@@ -1,6 +1,7 @@
 package com.danielstone.materialaboutlibrary.adapters;
 
 import android.content.Context;
+import android.support.v7.recyclerview.extensions.AsyncListDiffer;
 import android.support.v7.util.DiffUtil;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
@@ -20,28 +21,26 @@ import com.danielstone.materialaboutlibrary.util.ViewTypeManager;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.UUID;
 
 
 public class MaterialAboutListAdapter extends RecyclerView.Adapter<MaterialAboutListAdapter.MaterialAboutListViewHolder> {
 
-    private ArrayList<MaterialAboutCard> data = new ArrayList<>();
+
+    private final AsyncListDiffer<MaterialAboutCard> differ = new AsyncListDiffer<MaterialAboutCard>(this, DIFF_CALLBACK);
 
     private Context context;
 
     private ViewTypeManager viewTypeManager;
 
-    public MaterialAboutListAdapter(MaterialAboutList list) {
+    public MaterialAboutListAdapter() {
         setHasStableIds(true);
-        data.clear();
-        data.addAll(list.getCards());
         this.viewTypeManager = new DefaultViewTypeManager();
     }
 
-    public MaterialAboutListAdapter(MaterialAboutList list, ViewTypeManager customViewTypeManager) {
+    public MaterialAboutListAdapter(ViewTypeManager customViewTypeManager) {
         setHasStableIds(true);
-        data.clear();
-        data.addAll(list.getCards());
         this.viewTypeManager = customViewTypeManager;
     }
 
@@ -59,7 +58,7 @@ public class MaterialAboutListAdapter extends RecyclerView.Adapter<MaterialAbout
 
     @Override
     public void onBindViewHolder(MaterialAboutListViewHolder holder, int position) {
-        MaterialAboutCard card = data.get(position);
+        MaterialAboutCard card = differ.getCurrentList().get(position);
 
         if (holder.cardView instanceof CardView) {
             CardView cardView = (CardView) holder.cardView;
@@ -98,26 +97,25 @@ public class MaterialAboutListAdapter extends RecyclerView.Adapter<MaterialAbout
 
     @Override
     public long getItemId(int position) {
-        return UUID.fromString(data.get(position).getId()).getMostSignificantBits() & Long.MAX_VALUE;
+        return UUID.fromString(differ.getCurrentList().get(position).getId()).getMostSignificantBits() & Long.MAX_VALUE;
     }
 
     @Override
     public int getItemCount() {
-        return data.size();
+        return differ.getCurrentList().size();
     }
 
     public void setData(ArrayList<MaterialAboutCard> newData) {
-        DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(new MaterialAboutListDiffUtilCallback(this.data, newData));
-        data.clear();
+        List<MaterialAboutCard> data = new ArrayList<>();
         for (MaterialAboutCard card : newData) {
             data.add(card.clone());
         }
-        diffResult.dispatchUpdatesTo(this);
+        differ.submitList(data);
     }
 
 
-    ArrayList<MaterialAboutCard> getData() {
-        return data;
+    List<MaterialAboutCard> getData() {
+        return differ.getCurrentList();
     }
 
     class MaterialAboutListViewHolder extends RecyclerView.ViewHolder {
@@ -132,10 +130,29 @@ public class MaterialAboutListAdapter extends RecyclerView.Adapter<MaterialAbout
             cardView = view.findViewById(R.id.mal_list_card);
             title = (TextView) view.findViewById(R.id.mal_list_card_title);
             recyclerView = (RecyclerView) view.findViewById(R.id.mal_card_recyclerview);
-            adapter = new MaterialAboutItemAdapter(new ArrayList<MaterialAboutItem>(), viewTypeManager);
+            adapter = new MaterialAboutItemAdapter(viewTypeManager);
             recyclerView.setLayoutManager(new LinearLayoutManager(context));
             recyclerView.setAdapter(adapter);
             recyclerView.setNestedScrollingEnabled(false);
         }
     }
+
+
+    public static final DiffUtil.ItemCallback<MaterialAboutCard> DIFF_CALLBACK = new DiffUtil.ItemCallback<MaterialAboutCard>() {
+        @Override
+        public boolean areItemsTheSame(MaterialAboutCard oldItem, MaterialAboutCard newItem) {
+            return oldItem.getId().equals(newItem.getId());
+        }
+
+        @Override
+        public boolean areContentsTheSame(MaterialAboutCard oldItem, MaterialAboutCard newItem) {
+            boolean result;
+            result = oldItem.toString().equals(newItem.toString());
+            if (oldItem.getItems().size() != newItem.getItems().size()) return false;
+            for (int i = 0; i < oldItem.getItems().size(); i++) {
+                if (!oldItem.getItems().get(i).getDetailString().equals(newItem.getItems().get(i).getDetailString())) return false;
+            }
+            return result;
+        }
+    };
 }
