@@ -16,9 +16,9 @@ If you use this library in your app, please let me know and I'll add it to the l
 
 ## Screenshots
 
-| Light with Light Action Bar    | Light with Dark Action Bar     | Dark with Light Action Bar    | Dark with Dark Action Bar     | Custom Cardview Background     |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| ![Demo App](screenshots/1.png) | ![Demo App](screenshots/2.png) | ![Demo App](screenshots/3.png) | ![Demo App](screenshots/4.png) | ![Demo App](screenshots/5.png) |
+| Light with Light Action Bar    | Light with Dark Action Bar     | Dark with Light Action Bar    | Dark with Dark Action Bar     | Custom Cardview Background     | Custom card & action item layout |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |  ------------------------------ |
+| ![Demo App](screenshots/1.png) | ![Demo App](screenshots/2.png) | ![Demo App](screenshots/3.png) | ![Demo App](screenshots/4.png) | ![Demo App](screenshots/5.png) | ![Demo App](screenshots/6.png) |
 
 ## Features
 
@@ -26,6 +26,7 @@ If you use this library in your app, please let me know and I'll add it to the l
 - Modular backend
 - Easy to implement
 - Simple but intuitive API
+- Dynamic item support
 
 ## Dependency
 
@@ -43,7 +44,7 @@ allprojects {
 
 ```gradle
 dependencies {
-    compile 'com.github.daniel-stoneuk:material-about-library:2.2.3-support26.1.0'
+    compile 'com.github.daniel-stoneuk:material-about-library:2.2.4'
 }
 ```
 
@@ -229,6 +230,30 @@ Check out a working example in [`Demo.java`][3].
     <item name="mal_toolbarPopupTheme">@style/Theme.Mal.Toolbar.Dark</item>
 </style>
 ```
+
+### Dynamic items:
+It's possible to create dynamic items that either change on tap (or when any other event occurs). There are two examples in the sample application. Simply change the items in the list variable and then call `refreshMaterialAboutList()`. DiffUtil calculates the changes to animate in the RecyclerView.
+
+```java
+final MaterialAboutActionItem item = new MaterialAboutActionItem.Builder()
+                .text("Dynamic UI")
+                .subText(subText)
+                .icon(new IconicsDrawable(c)
+                        .icon(CommunityMaterial.Icon.cmd_refresh)
+                        .color(ContextCompat.getColor(c, R.color.mal_color_icon_dark_theme)
+                        ).sizeDp(18))
+                .build();
+        item.setOnClickAction(new MaterialAboutItemOnClickAction() {
+            @Override
+            public void onClick() {
+                item.setSubText("Random number: " + ((int) (Math.random() * 10)));
+                refreshMaterialAboutList();
+            }
+        });
+```
+
+### Custom card and Action layout
+To get a layout that is similar to the 6th screenshot above simply override the files `mal_material_about_action_item` and `mal_material_about_list_card` by creating new layout resources with the same filename. See [here](https://github.com/daniel-stoneuk/material-about-library/tree/master/app/src/main/res/layout).
 
 ## Contributors
 

@@ -2,6 +2,7 @@ package com.danielstone.materialaboutlibrarydemo;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.support.v4.content.ContextCompat;
 
@@ -144,13 +145,15 @@ public class Demo {
         MaterialAboutCard.Builder otherCardBuilder = new MaterialAboutCard.Builder();
         otherCardBuilder.title("Other");
 
+        otherCardBuilder.cardColor(Color.parseColor("#7986CB"));
+
         otherCardBuilder.addItem(new MaterialAboutActionItem.Builder()
                 .icon(new IconicsDrawable(c)
                         .icon(CommunityMaterial.Icon.cmd_language_html5)
                         .color(ContextCompat.getColor(c, colorIcon))
                         .sizeDp(18))
                 .text("HTML Formatted Sub Text")
-                .subTextHtml("This is <b>HTML</b> formatted <i>text</i> <br /> This is very cool because it allows lines to get very long which can lead to all kinds of possibilities. <br /> And line breaks.")
+                .subTextHtml("This is <b>HTML</b> formatted <i>text</i> <br /> This is very cool because it allows lines to get very long which can lead to all kinds of possibilities. <br /> And line breaks. <br /> Oh and by the way, this card has a custom defined background.")
                 .setIconGravity(MaterialAboutActionItem.GRAVITY_TOP)
                 .build()
         );

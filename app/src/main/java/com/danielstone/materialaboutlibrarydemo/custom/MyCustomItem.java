@@ -29,6 +29,8 @@ public class MyCustomItem extends MaterialAboutItem {
         void onClick();
     }
 
+
+
     @Retention(RetentionPolicy.SOURCE)
     @IntDef({GRAVITY_TOP, GRAVITY_MIDDLE, GRAVITY_BOTTOM})
     public @interface IconGravity {
@@ -55,6 +57,39 @@ public class MyCustomItem extends MaterialAboutItem {
     @Override
     public int getType() {
         return MyViewTypeManager.ItemType.CUSTOM_ITEM;
+    }
+
+    @Override
+    public String getDetailString() {
+        return "MyCustomItem{" +
+                "text=" + text +
+                ", textRes=" + textRes +
+                ", subText=" + subText +
+                ", subTextRes=" + subTextRes +
+                ", icon=" + icon +
+                ", iconRes=" + iconRes +
+                ", showIcon=" + showIcon +
+                ", iconGravity=" + iconGravity +
+                ", onClickListener=" + onClickListener +
+                '}';
+    }
+
+    public MyCustomItem(MyCustomItem item) {
+        this.id = item.getId();
+        this.text = item.getText();
+        this.textRes = item.getTextRes();
+        this.subText = item.getSubText();
+        this.subTextRes = item.getSubTextRes();
+        this.icon = item.getIcon();
+        this.iconRes = item.getIconRes();
+        this.showIcon = item.shouldShowIcon();
+        this.iconGravity = item.getIconGravity();
+        this.onClickListener = item.getOnClickListener();
+    }
+
+    @Override
+    public MyCustomItem clone() {
+        return new MyCustomItem(this);
     }
 
     public static MaterialAboutItemViewHolder getViewHolder(View view) {

@@ -29,6 +29,7 @@ public class MaterialAboutTitleItem extends MaterialAboutItem {
     private MaterialAboutItemOnClickAction onLongClickAction = null;
 
     private MaterialAboutTitleItem(MaterialAboutTitleItem.Builder builder) {
+        super();
         this.text = builder.text;
         this.textRes = builder.textRes;
 
@@ -104,6 +105,8 @@ public class MaterialAboutTitleItem extends MaterialAboutItem {
             TypedValue outValue = new TypedValue();
             context.getTheme().resolveAttribute(R.attr.selectableItemBackground, outValue, true);
             holder.view.setBackgroundResource(outValue.resourceId);
+        } else {
+            holder.view.setBackgroundResource(0);
         }
         holder.setOnClickAction(item.getOnClickAction());
         holder.setOnLongClickAction(item.getOnLongClickAction());
@@ -116,6 +119,37 @@ public class MaterialAboutTitleItem extends MaterialAboutItem {
     @Override
     public int getType() {
         return ViewTypeManager.ItemType.TITLE_ITEM;
+    }
+
+    @Override
+    public String getDetailString() {
+        return "MaterialAboutTitleItem{" +
+                "text=" + text +
+                ", textRes=" + textRes +
+                ", desc=" + desc +
+                ", descRes=" + descRes +
+                ", icon=" + icon +
+                ", iconRes=" + iconRes +
+                ", onClickAction=" + onClickAction +
+                ", onLongClickAction=" + onLongClickAction +
+                '}';
+    }
+
+    public MaterialAboutTitleItem(MaterialAboutTitleItem item) {
+        this.id = item.getId();
+        this.text = item.getText();
+        this.textRes = item.getTextRes();
+        this.desc = item.getDesc();
+        this.descRes = item.getDescRes();
+        this.icon = item.getIcon();
+        this.iconRes = item.getIconRes();
+        this.onClickAction = item.getOnClickAction();
+        this.onLongClickAction = item.getOnLongClickAction();
+    }
+
+    @Override
+    public MaterialAboutTitleItem clone() {
+        return new MaterialAboutTitleItem(this);
     }
 
     public CharSequence getText() {
@@ -195,7 +229,6 @@ public class MaterialAboutTitleItem extends MaterialAboutItem {
         this.onLongClickAction = onLongClickAction;
         return this;
     }
-
     public static class MaterialAboutTitleItemViewHolder extends MaterialAboutItemViewHolder implements View.OnClickListener, View.OnLongClickListener {
         public final View view;
         public final ImageView icon;

@@ -40,6 +40,7 @@ public class MaterialAboutActionItem extends MaterialAboutItem {
     private MaterialAboutItemOnClickAction onLongClickAction = null;
 
     private MaterialAboutActionItem(Builder builder) {
+        super();
         this.text = builder.text;
         this.textRes = builder.textRes;
 
@@ -151,7 +152,9 @@ public class MaterialAboutActionItem extends MaterialAboutItem {
             TypedValue outValue = new TypedValue();
             context.getTheme().resolveAttribute(R.attr.selectableItemBackground, outValue, true);
             holder.view.setBackgroundResource(outValue.resourceId);
-	    }
+        } else {
+            holder.view.setBackgroundResource(0);
+        }
         holder.setOnClickAction(item.getOnClickAction());
         holder.setOnLongClickAction(item.getOnLongClickAction());
 
@@ -165,10 +168,44 @@ public class MaterialAboutActionItem extends MaterialAboutItem {
         return ViewTypeManager.ItemType.ACTION_ITEM;
     }
 
+    @Override
+    public String getDetailString() {
+        return "MaterialAboutActionItem{" +
+                "text=" + text +
+                ", textRes=" + textRes +
+                ", subText=" + subText +
+                ", subTextRes=" + subTextRes +
+                ", icon=" + icon +
+                ", iconRes=" + iconRes +
+                ", showIcon=" + showIcon +
+                ", iconGravity=" + iconGravity +
+                ", onClickAction=" + onClickAction +
+                ", onLongClickAction=" + onLongClickAction +
+                '}';
+    }
+
+    public MaterialAboutActionItem(MaterialAboutActionItem item) {
+        this.id = item.getId();
+        this.text = item.getText();
+        this.textRes = item.getTextRes();
+        this.subText = item.getSubText();
+        this.subTextRes = item.getSubTextRes();
+        this.icon = item.getIcon();
+        this.iconRes = item.getIconRes();
+        this.showIcon = item.showIcon;
+        this.iconGravity = item.iconGravity;
+        this.onClickAction = item.onClickAction;
+        this.onLongClickAction = item.onLongClickAction;
+    }
+
+    @Override
+    public MaterialAboutItem clone() {
+        return new MaterialAboutActionItem(this);
+    }
+
     public CharSequence getText() {
         return text;
     }
-
     public MaterialAboutActionItem setText(CharSequence text) {
         this.textRes = 0;
         this.text = text;
@@ -300,14 +337,14 @@ public class MaterialAboutActionItem extends MaterialAboutItem {
             }
         }
 
-	    @Override
-	    public boolean onLongClick(View v) {
-		    if (onLongClickAction != null) {
-			    onLongClickAction.onClick();
-			    return true;
-		    }
-		    return false;
-	    }
+        @Override
+        public boolean onLongClick(View v) {
+            if (onLongClickAction != null) {
+                onLongClickAction.onClick();
+                return true;
+            }
+            return false;
+        }
     }
 
     public static class Builder {

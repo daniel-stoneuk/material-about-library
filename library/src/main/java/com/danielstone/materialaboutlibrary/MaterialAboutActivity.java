@@ -12,6 +12,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SimpleItemAnimator;
 import android.support.v7.widget.Toolbar;
 import android.util.TypedValue;
 import android.view.MenuItem;
@@ -84,9 +85,13 @@ public abstract class MaterialAboutActivity extends AppCompatActivity {
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
-        adapter = new MaterialAboutListAdapter(list, getViewTypeManager());
+        adapter = new MaterialAboutListAdapter(getViewTypeManager());
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
+        RecyclerView.ItemAnimator animator = recyclerView.getItemAnimator();
+        if (animator instanceof SimpleItemAnimator) {
+            ((SimpleItemAnimator) animator).setSupportsChangeAnimations(false);
+        }
     }
 
     @NonNull
@@ -95,7 +100,7 @@ public abstract class MaterialAboutActivity extends AppCompatActivity {
     }
 
     @NonNull
-    protected MaterialAboutList getMaterialAboutList() {
+    protected MaterialAboutList getList() {
         return list;
     }
 
@@ -104,7 +109,7 @@ public abstract class MaterialAboutActivity extends AppCompatActivity {
     }
 
     protected void refreshMaterialAboutList() {
-        adapter.notifyDataSetChanged();
+        setMaterialAboutList(list);
     }
 
     @Override
@@ -119,13 +124,13 @@ public abstract class MaterialAboutActivity extends AppCompatActivity {
     private void onTaskFinished(@Nullable MaterialAboutList materialAboutList) {
         if (materialAboutList != null) {
             list = materialAboutList;
-            adapter.swapData(list);
+            adapter.setData(list.getCards());
 
             if (shouldAnimate()) {
                 recyclerView.animate()
                         .alpha(1f)
                         .translationY(0f)
-                        .setDuration(400)
+                        .setDuration(600)
                         .setInterpolator(new FastOutSlowInInterpolator()).start();
             } else {
                 recyclerView.setAlpha(1f);
@@ -138,7 +143,7 @@ public abstract class MaterialAboutActivity extends AppCompatActivity {
 
     protected void setMaterialAboutList(MaterialAboutList materialAboutList) {
         list = materialAboutList;
-        adapter.swapData(materialAboutList);
+        adapter.setData(list.getCards());
     }
 
     protected void setScrollToolbar(boolean scrollToolbar) {

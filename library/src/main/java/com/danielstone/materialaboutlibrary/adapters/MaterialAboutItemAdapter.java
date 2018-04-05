@@ -1,36 +1,41 @@
 package com.danielstone.materialaboutlibrary.adapters;
 
 import android.content.Context;
+import android.support.v7.recyclerview.extensions.AsyncListDiffer;
+import android.support.v7.util.DiffUtil;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.danielstone.materialaboutlibrary.holders.MaterialAboutItemViewHolder;
 import com.danielstone.materialaboutlibrary.items.MaterialAboutItem;
+import com.danielstone.materialaboutlibrary.model.MaterialAboutCard;
 import com.danielstone.materialaboutlibrary.util.DefaultViewTypeManager;
 import com.danielstone.materialaboutlibrary.util.ViewTypeManager;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.UUID;
 
 
 public class MaterialAboutItemAdapter extends RecyclerView.Adapter<MaterialAboutItemViewHolder> {
 
-    private static final String TAG = MaterialAboutItemAdapter.class.getSimpleName();
-
-    private ArrayList<MaterialAboutItem> data;
+    private final AsyncListDiffer<MaterialAboutItem> differ = new AsyncListDiffer<MaterialAboutItem>(this, DIFF_CALLBACK);
 
     private ViewTypeManager viewTypeManager;
 
     private Context context;
 
-    MaterialAboutItemAdapter(ArrayList<MaterialAboutItem> data) {
-        this.data = data;
+    MaterialAboutItemAdapter() {
+        setHasStableIds(true);
         this.viewTypeManager = new DefaultViewTypeManager();
     }
 
-    MaterialAboutItemAdapter(ArrayList<MaterialAboutItem> data, ViewTypeManager customViewTypeManager) {
-        this.data = data;
+    MaterialAboutItemAdapter(ViewTypeManager customViewTypeManager) {
+        setHasStableIds(true);
         this.viewTypeManager = customViewTypeManager;
     }
 
@@ -51,25 +56,48 @@ public class MaterialAboutItemAdapter extends RecyclerView.Adapter<MaterialAbout
 
     @Override
     public void onBindViewHolder(MaterialAboutItemViewHolder holder, int position) {
-        viewTypeManager.setupItem(getItemViewType(position), holder, data.get(position), context);
+        viewTypeManager.setupItem(getItemViewType(position), holder, differ.getCurrentList().get(position), context);
+    }
+
+
+    @Override
+    public long getItemId(int position) {
+        return UUID.fromString(differ.getCurrentList().get(position).getId()).getMostSignificantBits() & Long.MAX_VALUE;
     }
 
     @Override
     public int getItemCount() {
-        return data.size();
+        return differ.getCurrentList().size();
     }
 
     @Override
     public int getItemViewType(int position) {
-        return data.get(position).getType();
+        return differ.getCurrentList().get(position).getType();
     }
 
-    public void swapData(ArrayList<MaterialAboutItem> newData) {
-        data = newData;
-        notifyDataSetChanged();
+    public void setData(ArrayList<MaterialAboutItem> newData) {
+        List<MaterialAboutItem> data = new ArrayList<>();
+        for (MaterialAboutItem item : newData) {
+            data.add(item.clone());
+        }
+        differ.submitList(data);
     }
 
-    public ArrayList<MaterialAboutItem> getData() {
-        return data;
+    public List<MaterialAboutItem> getData() {
+        return differ.getCurrentList();
     }
+
+
+    public static final DiffUtil.ItemCallback<MaterialAboutItem> DIFF_CALLBACK = new DiffUtil.ItemCallback<MaterialAboutItem>() {
+        @Override
+        public boolean areItemsTheSame(MaterialAboutItem oldItem, MaterialAboutItem newItem) {
+            return oldItem.getId().equals(newItem.getId());
+        }
+
+        @Override
+        public boolean areContentsTheSame(MaterialAboutItem oldItem, MaterialAboutItem newItem) {
+            return oldItem.getDetailString().equals(newItem.getDetailString());
+        }
+    };
+
 }

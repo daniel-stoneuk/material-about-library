@@ -4,6 +4,7 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
@@ -29,8 +30,11 @@ public class ConvenienceBuilder {
     }
 
     public static MaterialAboutTitleItem createAppTitleItem(Context c) {
-        CharSequence appName = c.getPackageManager().getApplicationLabel(c.getApplicationInfo());
-        Drawable applicationIcon = c.getPackageManager().getApplicationIcon(c.getApplicationInfo());
+        Context applicationContext = c.getApplicationContext();
+        PackageManager packageManager = applicationContext.getPackageManager();
+        ApplicationInfo applicationInfo = applicationContext.getApplicationInfo();
+        CharSequence appName = packageManager.getApplicationLabel(applicationInfo);
+        Drawable applicationIcon = packageManager.getApplicationIcon(applicationInfo);
         return createAppTitleItem(appName == null ? "" : appName.toString(), applicationIcon);
     }
 
