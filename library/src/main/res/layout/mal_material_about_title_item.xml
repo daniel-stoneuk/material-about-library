@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
@@ -40,7 +41,8 @@
             android:layout_marginLeft="@dimen/mal_baseline_half"
             android:layout_marginStart="@dimen/mal_baseline_half"
             android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-            android:textColor="?mal_color_primary" />
+            android:textColor="?mal_color_primary"
+            tools:text="App Name" />
 
         <TextView
             android:id="@+id/mal_item_desc"
@@ -50,7 +52,8 @@
             android:layout_marginStart="@dimen/mal_baseline_half"
             android:layout_marginTop="-4dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:textColor="?mal_color_secondary" />
+            android:textColor="?mal_color_secondary"
+            tools:text="Copyright Me" />
 
     </LinearLayout>
 
