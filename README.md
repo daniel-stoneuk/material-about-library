@@ -261,6 +261,8 @@ To get a layout that is similar to the 6th screenshot above simply override the 
 - Robert Pösel ([@Robyer](https://github.com/Robyer))
 - Jonas Uekötter ([@ueman](https://github.com/ueman))
 - Rainer Lang ([@Rainer-Lang](https://github.com/rainer-lang))
+- Sebastian Guillen ([@code-schreiber](https://github.com/code-schreiber))
+- and [others](https://github.com/daniel-stoneuk/material-about-library/graphs/contributors)
 
 ## Apps using this library
 

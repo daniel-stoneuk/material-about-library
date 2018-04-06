@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="mal_title_about">Acerca de</string>
+    <string name="mal_title_licenses">Licencias</string>
+
+    <string name="mal_close">Cerrar</string>
+    <string name="mal_send_email">Enviar email</string>
+
+    <string name="mal_activity_exception">No hay apps para ejecutar esta acción</string>
+</resources>
