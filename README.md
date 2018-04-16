@@ -48,6 +48,10 @@ dependencies {
 }
 ```
 
+## Migration
+
+View the migration guide [here](/MIGRATION.md)
+
 ## Setup
 
 ### Activity
