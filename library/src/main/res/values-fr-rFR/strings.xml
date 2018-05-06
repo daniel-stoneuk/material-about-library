@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="mal_title_about">A propos</string>
+    <string name="mal_title_licenses">Licences</string>
+    <string name="mal_close">Fermer</string>
+    <string name="mal_send_email">Envoyer un mail</string>
+    <string name="mal_activity_exception">Aucune application pour gérer</string>
+</resources>

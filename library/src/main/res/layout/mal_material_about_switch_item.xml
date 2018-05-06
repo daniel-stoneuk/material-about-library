@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/mal_baseline_half"
+    android:paddingLeft="@dimen/mal_baseline_half"
+    android:paddingStart="@dimen/mal_baseline_half"
+    android:paddingTop="@dimen/mal_baseline_half">
+
+    <ImageView
+        android:id="@+id/mal_switch_image"
+        android:layout_width="@dimen/mal_action_item_image_width"
+        android:layout_height="@dimen/mal_action_action_item_image_height"
+        android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/mal_baseline_half"
+        android:layout_marginStart="@dimen/mal_baseline"
+        android:layout_marginTop="@dimen/mal_baseline_half"
+        android:adjustViewBounds="false"
+        android:contentDescription="@null"
+        android:cropToPadding="false"
+        android:scaleType="centerInside"
+        app:layout_constraintBottom_toBottomOf="@+id/mal_switch_subtext"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/mal_switch_text"
+        android:layout_marginLeft="@dimen/mal_baseline" />
+
+    <Switch
+        android:id="@+id/mal_switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/mal_baseline_half"
+        android:layout_marginEnd="@dimen/mal_baseline_half"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="@dimen/mal_baseline_half"
+        app:layout_constraintBottom_toBottomOf="@+id/mal_switch_subtext"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toTopOf="@+id/mal_switch_text"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="@dimen/mal_baseline_half" />
+
+    <TextView
+        android:id="@+id/mal_switch_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/mal_baseline_half"
+        android:layout_marginStart="@dimen/mal_action_item_image_width"
+        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+        android:textColor="?mal_color_primary"
+        app:layout_constraintEnd_toStartOf="@+id/mal_switch"
+        app:layout_constraintStart_toEndOf="@+id/mal_switch_image"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Keep screen on"
+        android:layout_marginLeft="@dimen/mal_action_item_image_width"
+        android:layout_marginRight="@dimen/mal_baseline_half" />
+
+    <TextView
+        android:id="@+id/mal_switch_subtext"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/mal_baseline_half"
+        android:layout_marginStart="@dimen/mal_action_item_image_width"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textColor="?mal_color_secondary"
+        android:visibility="gone"
+        app:layout_constraintEnd_toStartOf="@+id/mal_switch"
+        app:layout_constraintStart_toEndOf="@+id/mal_switch_image"
+        app:layout_constraintTop_toBottomOf="@+id/mal_switch_text"
+        tools:text="Disable the automatic shutdown of the screen"
+        tools:visibility="visible"
+        android:layout_marginRight="@dimen/mal_baseline_half"
+        android:layout_marginLeft="@dimen/mal_action_item_image_width" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.85" />
+
+</android.support.constraint.ConstraintLayout>
