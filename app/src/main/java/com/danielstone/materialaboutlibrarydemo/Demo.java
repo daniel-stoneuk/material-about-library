@@ -12,7 +12,7 @@ import com.danielstone.materialaboutlibrary.ConvenienceBuilder;
 import com.danielstone.materialaboutlibrary.items.MaterialAboutActionItem;
 import com.danielstone.materialaboutlibrary.items.MaterialAboutCheckBoxItem;
 import com.danielstone.materialaboutlibrary.items.MaterialAboutItemOnClickAction;
-import com.danielstone.materialaboutlibrary.items.MaterialAboutOnCheckedChangedListener;
+import com.danielstone.materialaboutlibrary.items.MaterialAboutOnCheckedChangedAction;
 import com.danielstone.materialaboutlibrary.items.MaterialAboutSwitchItem;
 import com.danielstone.materialaboutlibrary.items.MaterialAboutTitleItem;
 import com.danielstone.materialaboutlibrary.model.MaterialAboutCard;
@@ -169,7 +169,7 @@ public class Demo {
         preferenceCardBuilder.addItem(new MaterialAboutCheckBoxItem.Builder()
                 .text("This is a checkbox")
                 .subText("Description")
-                .setOnCheckedChanged(new MaterialAboutOnCheckedChangedListener() {
+                .setOnCheckedChanged(new MaterialAboutOnCheckedChangedAction() {
                     @Override
                     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                         Toast.makeText(c,"Now "+isChecked,Toast.LENGTH_SHORT).show();
@@ -182,7 +182,7 @@ public class Demo {
         preferenceCardBuilder.addItem(new MaterialAboutSwitchItem.Builder()
                 .text("This a switch")
                 .subText("Description")
-                .setOnCheckedChanged(new MaterialAboutOnCheckedChangedListener() {
+                .setOnCheckedChanged(new MaterialAboutOnCheckedChangedAction() {
                     @Override
                     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                         Toast.makeText(c,"Now "+isChecked,Toast.LENGTH_SHORT).show();
@@ -195,7 +195,7 @@ public class Demo {
         preferenceCardBuilder.addItem(new MaterialAboutSwitchItem.Builder()
                 .text("This a switch")
                 .subText("He is already checked")
-                .setOnCheckedChanged(new MaterialAboutOnCheckedChangedListener() {
+                .setOnCheckedChanged(new MaterialAboutOnCheckedChangedAction() {
                     @Override
                     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                         Toast.makeText(c,"Now "+isChecked,Toast.LENGTH_SHORT).show();
