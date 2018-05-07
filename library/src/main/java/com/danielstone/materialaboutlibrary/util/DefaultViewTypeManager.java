@@ -1,7 +1,6 @@
 package com.danielstone.materialaboutlibrary.util;
 
 import android.content.Context;
-import android.icu.util.ValueIterator;
 import android.view.View;
 
 import com.danielstone.materialaboutlibrary.holders.MaterialAboutItemViewHolder;

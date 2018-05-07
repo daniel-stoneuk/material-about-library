@@ -162,7 +162,7 @@ MaterialAboutCard card = new MaterialAboutCard.Builder()
 
 ### Add Items to a card:
 
-There are currently 4 types of items you can add to a card - [`MaterialPreferenceTitleItem`][9], [`MaterialPreferenceActionItem`][10], [`MaterialPreferenceCheckboxItem`][12] and [`MaterialPreferenceSwitchItem`][13]. Other types of items are planned, for example "person" items which feature buttons to showcase a single person. Feel free to submit a PR or Issue for more item ideas.
+There are currently 4 types of items you can add to a card - [`MaterialAboutTitleItem`][9], [`MaterialAboutActionItem`][10], [`MaterialAboutCheckboxItem`][12] and [`MaterialAboutSwitchItem`][13]. Other types of items are planned, for example "person" items which feature buttons to showcase a single person. Feel free to submit a PR or Issue for more item ideas.
 
 - `MaterialAboutActionItem`: Standard item with text, icon and optional subtext.
 - `MaterialAboutTitleItem`: Larger item with large icon (e.g. app icon) and larger text.
