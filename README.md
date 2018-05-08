@@ -196,14 +196,14 @@ cardBuilder.addItem(new MaterialAboutActionItem.Builder()
         .build());
 ```
 
-[`MaterialPreferenceCheckboxItem`][12] is created with [`MaterialPreferenceCheckboxItem.Builder()`][12] and lets you specify **text**, **sub-text**, an **icon** and an **onCheckedChangedListener**.
+[`MaterialAboutCheckboxItem`][12] is created with [`MaterialAbouteCheckboxItem.Builder()`][12] and lets you specify **text**, **sub-text**, an **icon** and an **onCheckedChangedAction**.
 
 ```java
-cardBuilder.addItem(new MaterialPreferenceCheckboxItem.Builder()
+cardBuilder.addItem(new MaterialAboutCheckboxItem.Builder()
         .text("Activate something")
         .subText("desciption")
         .icon(R.drawable.ic_about_info)
-        .setOnCheckedChanged(new MaterialPreferenceOnCheckedChangedListener() {
+        .setOnCheckedChanged(new MaterialAboutOnCheckedChangedAction() {
                     @Override
                     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                         Toast.makeText(c,"Now : "+isChecked,Toast.LENGTH_SHORT).show();
@@ -213,14 +213,14 @@ cardBuilder.addItem(new MaterialPreferenceCheckboxItem.Builder()
 ```
 
 
-[`MaterialPreferenceSwitchItem`][10] is created with [`MaterialPreferenceSwitchItem.Builder()`][10] and lets you specify **text**, **sub-text**, an **icon** and an **onCheckedChangedListener**.
+[`MaterialAboutSwitchItem`][10] is created with [`MaterialAboutSwitchItem.Builder()`][10] and lets you specify **text**, **sub-text**, an **icon** and an **onCheckedChangedAction**.
 
 ```java
-cardBuilder.addItem(new MaterialPreferenceSwitchItem.Builder()
+cardBuilder.addItem(new MaterialAboutSwitchItem.Builder()
         .text("Version")
         .subText("1.0.0")
         .icon(R.drawable.ic_about_info)
-        .setOnCheckedChanged(new MaterialPreferenceOnCheckedChangedListener() {
+        .setOnCheckedChanged(new MaterialAboutOnCheckedChangedAction() {
                     @Override
                     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                         Toast.makeText(c,"Now : "+isChecked,Toast.LENGTH_SHORT).show();
@@ -342,8 +342,8 @@ limitations under the License.
 [9]: https://github.com/daniel-stoneuk/material-about-library/blob/master/library/src/main/java/com/danielstone/materialaboutlibrary/items/MaterialAboutTitleItem.java
 [10]: https://github.com/daniel-stoneuk/material-about-library/blob/master/library/src/main/java/com/danielstone/materialaboutlibrary/items/MaterialAboutActionItem.java
 [11]: https://github.com/daniel-stoneuk/material-about-library/blob/master/library/src/main/java/com/danielstone/materialaboutlibrary/items/MaterialAboutList.java
-[12]: https://github.com/daniel-stoneuk/material-about-library/blob/master/library/src/main/java/com/danielstone/materialaboutlibrary/items/MaterialPreferenceCheckBoxItem.java
-[13]: https://github.com/filol/material-preference-library/blob/master/materialpreference/src/main/java/com/francoisdexemple/materialpreference/items/MaterialPreferenceSwitchItem.java
+[12]: https://github.com/daniel-stoneuk/material-about-library/blob/master/library/src/main/java/com/danielstone/materialaboutlibrary/items/MaterialAboutCheckBoxItem.java
+[13]: https://github.com/daniel-stoneuk/material-about-library/blob/master/library/src/main/java/com/danielstone/materialaboutlibrary/items/MaterialAboutSwitchItem.java
 [101]: https://jitpack.io/v/daniel-stoneuk/material-about-library.svg
 [102]: https://jitpack.io/#daniel-stoneuk/material-about-library
 [conveniencebuilderjava]: https://github.com/daniel-stoneuk/material-about-library/blob/master/library/src/main/java/com/danielstone/materialaboutlibrary/ConvenienceBuilder.java
