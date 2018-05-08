@@ -5,10 +5,15 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.support.v4.content.ContextCompat;
+import android.widget.CompoundButton;
+import android.widget.Toast;
 
 import com.danielstone.materialaboutlibrary.ConvenienceBuilder;
 import com.danielstone.materialaboutlibrary.items.MaterialAboutActionItem;
+import com.danielstone.materialaboutlibrary.items.MaterialAboutCheckBoxItem;
 import com.danielstone.materialaboutlibrary.items.MaterialAboutItemOnClickAction;
+import com.danielstone.materialaboutlibrary.items.MaterialAboutOnCheckedChangedAction;
+import com.danielstone.materialaboutlibrary.items.MaterialAboutSwitchItem;
 import com.danielstone.materialaboutlibrary.items.MaterialAboutTitleItem;
 import com.danielstone.materialaboutlibrary.model.MaterialAboutCard;
 import com.danielstone.materialaboutlibrary.model.MaterialAboutList;
@@ -158,7 +163,53 @@ public class Demo {
                 .build()
         );
 
-        return new MaterialAboutList(appCardBuilder.build(), authorCardBuilder.build(), convenienceCardBuilder.build(), otherCardBuilder.build());
+        MaterialAboutCard.Builder preferenceCardBuilder = new MaterialAboutCard.Builder();
+        preferenceCardBuilder.title("Preferences");
+
+        preferenceCardBuilder.addItem(new MaterialAboutCheckBoxItem.Builder()
+                .text("This is a checkbox")
+                .subText("Description")
+                .setOnCheckedChanged(new MaterialAboutOnCheckedChangedAction() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        Toast.makeText(c,"Now "+isChecked,Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .showIcon(false)
+                .build()
+        );
+
+        preferenceCardBuilder.addItem(new MaterialAboutSwitchItem.Builder()
+                .text("This a switch")
+                .subText("Description")
+                .setOnCheckedChanged(new MaterialAboutOnCheckedChangedAction() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        Toast.makeText(c,"Now "+isChecked,Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .showIcon(false)
+                .build()
+        );
+
+        preferenceCardBuilder.addItem(new MaterialAboutSwitchItem.Builder()
+                .text("This a switch")
+                .subText("He is already checked")
+                .setOnCheckedChanged(new MaterialAboutOnCheckedChangedAction() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        Toast.makeText(c,"Now "+isChecked,Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .setChecked(true)
+                .icon(new IconicsDrawable(c)
+                        .icon(CommunityMaterial.Icon.cmd_language_html5)
+                        .color(ContextCompat.getColor(c, colorIcon))
+                        .sizeDp(18))
+                .build()
+        );
+
+        return new MaterialAboutList(appCardBuilder.build(), authorCardBuilder.build(), convenienceCardBuilder.build(), otherCardBuilder.build(), preferenceCardBuilder.build());
     }
 
     public static MaterialAboutList createMaterialAboutLicenseList(final Context c, int colorIcon) {

@@ -12,11 +12,15 @@ public abstract class ViewTypeManager {
     public static final class ItemType {
         public static final int ACTION_ITEM = 0;
         public static final int TITLE_ITEM = 1;
+        public static final int CHECKBOX_ITEM = 2;
+        public static final int SWITCH_ITEM = 3;
     }
 
     public static final class ItemLayout {
         public static final int ACTION_LAYOUT = R.layout.mal_material_about_action_item;
         public static final int TITLE_LAYOUT = R.layout.mal_material_about_title_item;
+        public static final int CHECKBOX_LAYOUT = R.layout.mal_material_about_checkbox_item;
+        public static final int SWITCH_LAYOUT = R.layout.mal_material_about_switch_item;
     }
 
     public abstract int getLayout(int itemType);
