@@ -27,7 +27,7 @@ import static android.view.View.GONE;
 /**
  * Created by François Dexemple on 04/05/2018
  */
-public class MaterialAboutCheckBoxItem extends MaterialAboutItem{
+public class MaterialAboutCheckBoxItem extends MaterialAboutItem {
     public static final int GRAVITY_TOP = 0;
     public static final int GRAVITY_MIDDLE = 1;
     public static final int GRAVITY_BOTTOM = 2;
@@ -40,7 +40,7 @@ public class MaterialAboutCheckBoxItem extends MaterialAboutItem{
     private boolean showIcon = true;
     private int iconGravity = GRAVITY_MIDDLE;
     private MaterialAboutOnCheckedChangedAction onCheckedChanged = null;
-    private boolean checked =false;
+    private boolean checked = false;
 
     private MaterialAboutCheckBoxItem(MaterialAboutCheckBoxItem.Builder builder) {
         super();
@@ -66,7 +66,7 @@ public class MaterialAboutCheckBoxItem extends MaterialAboutItem{
         this.subText = subText;
         this.icon = icon;
         this.onCheckedChanged = onCheckedChanged;
-        this.checked=checked;
+        this.checked = checked;
     }
 
     public MaterialAboutCheckBoxItem(int textRes, int subTextRes, int iconRes, boolean checked, MaterialAboutOnCheckedChangedAction onCheckedChanged) {
@@ -74,7 +74,7 @@ public class MaterialAboutCheckBoxItem extends MaterialAboutItem{
         this.subTextRes = subTextRes;
         this.iconRes = iconRes;
         this.onCheckedChanged = onCheckedChanged;
-        this.checked=checked;
+        this.checked = checked;
     }
 
 
@@ -309,7 +309,8 @@ public class MaterialAboutCheckBoxItem extends MaterialAboutItem{
         @Override
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
             if (onCheckedChanged != null) {
-                onCheckedChanged.onCheckedChanged(buttonView, isChecked);
+                if (buttonView.isPressed())
+                    onCheckedChanged.onCheckedChanged(buttonView, isChecked);
             }
         }
     }
@@ -393,8 +394,8 @@ public class MaterialAboutCheckBoxItem extends MaterialAboutItem{
             return this;
         }
 
-        public Builder setChecked(boolean checked){
-            this.checked=checked;
+        public Builder setChecked(boolean checked) {
+            this.checked = checked;
             return this;
         }
 

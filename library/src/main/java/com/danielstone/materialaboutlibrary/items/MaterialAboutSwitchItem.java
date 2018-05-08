@@ -58,7 +58,7 @@ public class MaterialAboutSwitchItem extends MaterialAboutItem {
         this.iconGravity = builder.iconGravity;
 
         this.onCheckedChanged = builder.onCheckedChanged;
-        this.checked=builder.checked;
+        this.checked = builder.checked;
     }
 
     public MaterialAboutSwitchItem(CharSequence text, CharSequence subText, Drawable icon, boolean checked, MaterialAboutOnCheckedChangedAction onCheckedChanged) {
@@ -66,7 +66,7 @@ public class MaterialAboutSwitchItem extends MaterialAboutItem {
         this.subText = subText;
         this.icon = icon;
         this.onCheckedChanged = onCheckedChanged;
-        this.checked=checked;
+        this.checked = checked;
     }
 
     public MaterialAboutSwitchItem(int textRes, int subTextRes, int iconRes, boolean checked, MaterialAboutOnCheckedChangedAction onCheckedChanged) {
@@ -74,7 +74,7 @@ public class MaterialAboutSwitchItem extends MaterialAboutItem {
         this.subTextRes = subTextRes;
         this.iconRes = iconRes;
         this.onCheckedChanged = onCheckedChanged;
-        this.checked=checked;
+        this.checked = checked;
     }
 
     public static MaterialAboutItemViewHolder getViewHolder(View view) {
@@ -185,6 +185,7 @@ public class MaterialAboutSwitchItem extends MaterialAboutItem {
     public CharSequence getText() {
         return text;
     }
+
     public MaterialAboutSwitchItem setText(CharSequence text) {
         this.textRes = 0;
         this.text = text;
@@ -282,7 +283,7 @@ public class MaterialAboutSwitchItem extends MaterialAboutItem {
     public @interface IconGravity {
     }
 
-    public static class MaterialAboutSwitchItemViewHolder extends MaterialAboutItemViewHolder implements CompoundButton.OnCheckedChangeListener{
+    public static class MaterialAboutSwitchItemViewHolder extends MaterialAboutItemViewHolder implements CompoundButton.OnCheckedChangeListener {
         public final View view;
         public final ImageView icon;
         public final TextView text;
@@ -307,7 +308,8 @@ public class MaterialAboutSwitchItem extends MaterialAboutItem {
         @Override
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
             if (onCheckedChanged != null) {
-                onCheckedChanged.onCheckedChanged(buttonView,isChecked);
+                if (buttonView.isPressed())
+                    onCheckedChanged.onCheckedChanged(buttonView, isChecked);
             }
         }
     }
