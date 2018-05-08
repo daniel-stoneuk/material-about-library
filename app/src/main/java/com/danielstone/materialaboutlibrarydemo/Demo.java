@@ -171,8 +171,9 @@ public class Demo {
                 .subText("Description")
                 .setOnCheckedChanged(new MaterialAboutOnCheckedChangedAction() {
                     @Override
-                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                        Toast.makeText(c,"Now "+isChecked,Toast.LENGTH_SHORT).show();
+                    public boolean onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        Toast.makeText(c, "Now " + isChecked, Toast.LENGTH_SHORT).show();
+                        return true;
                     }
                 })
                 .showIcon(false)
@@ -184,28 +185,12 @@ public class Demo {
                 .subText("Description")
                 .setOnCheckedChanged(new MaterialAboutOnCheckedChangedAction() {
                     @Override
-                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                        Toast.makeText(c,"Now "+isChecked,Toast.LENGTH_SHORT).show();
+                    public boolean onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        Toast.makeText(c, "Now " + isChecked, Toast.LENGTH_SHORT).show();
+                        return true;
                     }
                 })
                 .showIcon(false)
-                .build()
-        );
-
-        preferenceCardBuilder.addItem(new MaterialAboutSwitchItem.Builder()
-                .text("This a switch")
-                .subText("He is already checked")
-                .setOnCheckedChanged(new MaterialAboutOnCheckedChangedAction() {
-                    @Override
-                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                        Toast.makeText(c,"Now "+isChecked,Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .setChecked(true)
-                .icon(new IconicsDrawable(c)
-                        .icon(CommunityMaterial.Icon.cmd_language_html5)
-                        .color(ContextCompat.getColor(c, colorIcon))
-                        .sizeDp(18))
                 .build()
         );
 

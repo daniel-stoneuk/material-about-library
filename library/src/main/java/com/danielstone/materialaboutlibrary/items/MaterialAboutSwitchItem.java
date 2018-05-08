@@ -82,6 +82,8 @@ public class MaterialAboutSwitchItem extends MaterialAboutItem {
     }
 
     public static void setupItem(MaterialAboutSwitchItemViewHolder holder, MaterialAboutSwitchItem item, Context context) {
+        holder.setMaterialAboutSwitchItem(item);
+
         CharSequence text = item.getText();
         int textRes = item.getTextRes();
 
@@ -134,13 +136,12 @@ public class MaterialAboutSwitchItem extends MaterialAboutItem {
         } else {
             holder.view.setBackgroundResource(0);
         }
+        holder.aswitch.setChecked(item.isChecked());
         holder.setOnCheckedChanged(item.getOnCheckedChanged());
 
         if (Build.VERSION.SDK_INT < 21) {
             holder.view.setPadding(pL, pT, pR, pB);
         }
-
-        holder.aswitch.setChecked(item.isChecked());
     }
 
     @Override
@@ -160,6 +161,7 @@ public class MaterialAboutSwitchItem extends MaterialAboutItem {
                 ", showIcon=" + showIcon +
                 ", iconGravity=" + iconGravity +
                 ", onCheckedChanged=" + onCheckedChanged +
+                ", checked=" + checked +
                 '}';
     }
 
@@ -171,10 +173,10 @@ public class MaterialAboutSwitchItem extends MaterialAboutItem {
         this.subTextRes = item.getSubTextRes();
         this.icon = item.getIcon();
         this.iconRes = item.getIconRes();
-        this.showIcon = item.showIcon;
-        this.iconGravity = item.iconGravity;
-        this.onCheckedChanged = item.onCheckedChanged;
-        this.checked = item.checked;
+        this.showIcon = item.shouldShowIcon();
+        this.iconGravity = item.getIconGravity();
+        this.onCheckedChanged = item.getOnCheckedChanged();
+        this.checked = item.isChecked();
     }
 
     @Override
@@ -290,6 +292,7 @@ public class MaterialAboutSwitchItem extends MaterialAboutItem {
         public final TextView subText;
         public final Switch aswitch;
         private MaterialAboutOnCheckedChangedAction onCheckedChanged;
+        MaterialAboutSwitchItem materialAboutSwitchItem;
 
         MaterialAboutSwitchItemViewHolder(View view) {
             super(view);
@@ -300,6 +303,10 @@ public class MaterialAboutSwitchItem extends MaterialAboutItem {
             aswitch = (Switch) view.findViewById(R.id.mal_switch);
         }
 
+        public void setMaterialAboutSwitchItem(MaterialAboutSwitchItem materialAboutSwitchItem) {
+            this.materialAboutSwitchItem = materialAboutSwitchItem;
+        }
+
         public void setOnCheckedChanged(MaterialAboutOnCheckedChangedAction onCheckedChanged) {
             this.onCheckedChanged = onCheckedChanged;
             this.aswitch.setOnCheckedChangeListener(onCheckedChanged != null ? this : null);
@@ -307,9 +314,12 @@ public class MaterialAboutSwitchItem extends MaterialAboutItem {
 
         @Override
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+            materialAboutSwitchItem.setChecked(isChecked);
             if (onCheckedChanged != null) {
                 if (buttonView.isPressed())
-                    onCheckedChanged.onCheckedChanged(buttonView, isChecked);
+                    if (!onCheckedChanged.onCheckedChanged(buttonView, isChecked)) {
+                        aswitch.setChecked(!isChecked);
+                    }
             }
         }
     }

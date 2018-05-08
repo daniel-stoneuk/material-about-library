@@ -135,13 +135,13 @@ public class MaterialAboutCheckBoxItem extends MaterialAboutItem {
         } else {
             holder.view.setBackgroundResource(0);
         }
+        holder.aCheckBox.setChecked(item.isChecked());
         holder.setOnCheckedChanged(item.getOnCheckedChanged());
 
         if (Build.VERSION.SDK_INT < 21) {
             holder.view.setPadding(pL, pT, pR, pB);
         }
 
-        holder.aCheckBox.setChecked(item.isChecked());
     }
 
     @Override
@@ -161,6 +161,7 @@ public class MaterialAboutCheckBoxItem extends MaterialAboutItem {
                 ", showIcon=" + showIcon +
                 ", iconGravity=" + iconGravity +
                 ", onCheckedChanged=" + onCheckedChanged +
+                ", checked=" + checked +
                 '}';
     }
 
@@ -310,7 +311,9 @@ public class MaterialAboutCheckBoxItem extends MaterialAboutItem {
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
             if (onCheckedChanged != null) {
                 if (buttonView.isPressed())
-                    onCheckedChanged.onCheckedChanged(buttonView, isChecked);
+                    if (!onCheckedChanged.onCheckedChanged(buttonView, isChecked)) {
+                        aCheckBox.setChecked(!isChecked);
+                    }
             }
         }
     }

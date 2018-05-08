@@ -10,12 +10,16 @@ import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.CompoundButton;
 import android.widget.Toast;
 
 import com.danielstone.materialaboutlibrary.ConvenienceBuilder;
 import com.danielstone.materialaboutlibrary.MaterialAboutActivity;
 import com.danielstone.materialaboutlibrary.items.MaterialAboutActionItem;
+import com.danielstone.materialaboutlibrary.items.MaterialAboutItem;
 import com.danielstone.materialaboutlibrary.items.MaterialAboutItemOnClickAction;
+import com.danielstone.materialaboutlibrary.items.MaterialAboutOnCheckedChangedAction;
+import com.danielstone.materialaboutlibrary.items.MaterialAboutSwitchItem;
 import com.danielstone.materialaboutlibrary.items.MaterialAboutTitleItem;
 import com.danielstone.materialaboutlibrary.model.MaterialAboutCard;
 import com.danielstone.materialaboutlibrary.model.MaterialAboutList;
@@ -39,7 +43,7 @@ public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
     @NonNull
     @Override
     protected MaterialAboutList getMaterialAboutList(@NonNull final Context c) {
-        MaterialAboutCard.Builder advancedCardBuilder = new MaterialAboutCard.Builder();
+        final MaterialAboutCard.Builder advancedCardBuilder = new MaterialAboutCard.Builder();
         advancedCardBuilder.title("Advanced");
 
         advancedCardBuilder.addItem(new MaterialAboutTitleItem.Builder()
@@ -71,6 +75,8 @@ public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
                 .setOnLongClickAction(new MaterialAboutItemOnClickAction() {
                     @Override
                     public void onClick() {
+                        ((MaterialAboutSwitchItem) getList().getCards().get(4).getItems().get(1)).setChecked(!((MaterialAboutSwitchItem) getList().getCards().get(4).getItems().get(1)).isChecked());
+                        refreshMaterialAboutList();
                         Toast.makeText(c, "Long pressed", Toast.LENGTH_SHORT).show();
                     }
                 })
@@ -83,6 +89,21 @@ public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
                         .color(ContextCompat.getColor(c, colorIcon))
                         .sizeDp(18))
                 .build());
+
+        final MaterialAboutSwitchItem switchItem = new MaterialAboutSwitchItem.Builder()
+                .text("This a switch")
+                .subText("This switch cannot be switched off")
+                .setChecked(true)
+                .build();
+        switchItem.setOnCheckedChanged(new MaterialAboutOnCheckedChangedAction() {
+            @Override
+            public boolean onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                switchItem.setChecked(true);
+                Toast.makeText(c, "This cannot be switched off", Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        });
+        advancedCardBuilder.addItem(switchItem);
 
         advancedCardBuilder.addItem(createDynamicItem("Tap for a random number & swap position", c));
 
@@ -101,10 +122,11 @@ public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
         item.setOnClickAction(new MaterialAboutItemOnClickAction() {
             @Override
             public void onClick() {
-                getList().getCards().get(4).getItems().remove(getList().getCards().get(4).getItems().indexOf(item));
+                getList().getCards().get(5).getItems().remove(getList().getCards().get(5).getItems().indexOf(item));
                 int newIndex = ((int) (Math.random() * 5));
-                getList().getCards().get(4).getItems().add(newIndex, item);
+                getList().getCards().get(5).getItems().add(newIndex, item);
                 item.setSubText("Random number: " + ((int) (Math.random() * 10)));
+
                 setMaterialAboutList(getList());
             }
         });
