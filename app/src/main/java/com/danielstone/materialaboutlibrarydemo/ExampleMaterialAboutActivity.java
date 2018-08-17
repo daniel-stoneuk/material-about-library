@@ -25,6 +25,13 @@ import com.danielstone.materialaboutlibrarydemo.custom.MyViewTypeManager;
 import com.mikepenz.community_material_typeface_library.CommunityMaterial;
 import com.mikepenz.iconics.IconicsDrawable;
 
+import net.yslibrary.licenseadapter.Library;
+import net.yslibrary.licenseadapter.LicenseAdapter;
+import net.yslibrary.licenseadapter.Licenses;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
 
     public static final String THEME_EXTRA = "";
@@ -86,7 +93,18 @@ public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
 
         advancedCardBuilder.addItem(createDynamicItem("Tap for a random number & swap position", c));
 
-        return Demo.createMaterialAboutList(c, colorIcon, getIntent().getIntExtra(THEME_EXTRA, THEME_LIGHT_DARKBAR)).addCard(advancedCardBuilder.build());
+        MaterialAboutCard.Builder customAdapterCardBuilder = new MaterialAboutCard.Builder();
+        // Create list of libraries
+        List<Library> libraries = new ArrayList<>();
+
+        // Add libraries that are hosted on GitHub with an Apache v2 license.
+        libraries.add(Licenses.fromGitHubApacheV2("yshrsmz/LicenseAdapter"));
+        libraries.add(Licenses.fromGitHubApacheV2("daniel-stoneuk/material-about-library"));
+
+        customAdapterCardBuilder.title("Custom Adapter (License Adapter)");
+        customAdapterCardBuilder.customAdapter(new LicenseAdapter(libraries));
+
+        return Demo.createMaterialAboutList(c, colorIcon, getIntent().getIntExtra(THEME_EXTRA, THEME_LIGHT_DARKBAR)).addCard(advancedCardBuilder.build()).addCard(customAdapterCardBuilder.build());
     }
 
     private MaterialAboutActionItem createDynamicItem(String subText, final Context c) {

@@ -92,7 +92,12 @@ public class MaterialAboutListAdapter extends RecyclerView.Adapter<MaterialAbout
             }
         }
 
-        holder.adapter.setData(card.getItems());
+        if (card.getCustomAdapter() != null) {
+            holder.useCustomAdapter(card.getCustomAdapter());
+        } else {
+            holder.useMaterialAboutItemAdapter();
+            ((MaterialAboutItemAdapter) holder.adapter).setData(card.getItems());
+        }
     }
 
     @Override
@@ -123,7 +128,7 @@ public class MaterialAboutListAdapter extends RecyclerView.Adapter<MaterialAbout
         final View cardView;
         final TextView title;
         final RecyclerView recyclerView;
-        MaterialAboutItemAdapter adapter;
+        RecyclerView.Adapter adapter;
 
         MaterialAboutListViewHolder(View view) {
             super(view);
@@ -134,6 +139,21 @@ public class MaterialAboutListAdapter extends RecyclerView.Adapter<MaterialAbout
             recyclerView.setLayoutManager(new LinearLayoutManager(context));
             recyclerView.setAdapter(adapter);
             recyclerView.setNestedScrollingEnabled(false);
+        }
+
+        public void useMaterialAboutItemAdapter() {
+            if (!(adapter instanceof MaterialAboutItemAdapter)) {
+                adapter = new MaterialAboutItemAdapter(viewTypeManager);
+                recyclerView.setLayoutManager(new LinearLayoutManager(context));
+                recyclerView.setAdapter(adapter);
+            }
+        }
+
+        public void useCustomAdapter(RecyclerView.Adapter newAdapter) {
+            if (adapter instanceof MaterialAboutItemAdapter) {
+                recyclerView.setLayoutManager(new LinearLayoutManager(context));
+                recyclerView.setAdapter(newAdapter);
+            }
         }
     }
 

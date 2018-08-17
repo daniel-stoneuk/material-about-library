@@ -4,6 +4,7 @@ package com.danielstone.materialaboutlibrary.model;
 import android.support.annotation.ColorInt;
 import android.support.annotation.StringRes;
 import android.support.annotation.StyleRes;
+import android.support.v7.widget.RecyclerView;
 
 import com.danielstone.materialaboutlibrary.items.MaterialAboutItem;
 
@@ -21,6 +22,7 @@ public class MaterialAboutCard {
     private int titleColor = 0;
     private int cardColor = 0;
 
+    private RecyclerView.Adapter customAdapter = null;
     private ArrayList<MaterialAboutItem> items = new ArrayList<>();
     ;
 
@@ -31,6 +33,7 @@ public class MaterialAboutCard {
         this.titleColor = builder.titleColor;
         this.cardColor = builder.cardColor;
         this.items = builder.items;
+        this.customAdapter = builder.customAdapter;
     }
 
     public MaterialAboutCard(CharSequence title, MaterialAboutItem... materialAboutItems) {
@@ -75,6 +78,7 @@ public class MaterialAboutCard {
         private int cardColor = 0;
 
         private ArrayList<MaterialAboutItem> items = new ArrayList<>();
+        private RecyclerView.Adapter customAdapter = null;
 
         public Builder title(CharSequence title) {
             this.title = title;
@@ -103,6 +107,11 @@ public class MaterialAboutCard {
             return this;
         }
 
+        public Builder customAdapter(RecyclerView.Adapter customAdapter) {
+            this.customAdapter = customAdapter;
+            return this;
+        }
+
         public MaterialAboutCard build() {
             return new MaterialAboutCard(this);
         }
@@ -112,6 +121,10 @@ public class MaterialAboutCard {
         return id;
     }
 
+    public RecyclerView.Adapter getCustomAdapter() {
+        return customAdapter;
+    }
+
     @Override
     public String toString() {
         String result = "MaterialAboutCard{" +
@@ -119,6 +132,7 @@ public class MaterialAboutCard {
                 ", title=" + title +
                 ", titleRes=" + titleRes +
                 ", titleColor=" + titleColor +
+                ", customAdapter=" + customAdapter +
                 ", cardColor=" + cardColor + '}';
         return result;
     }
@@ -130,6 +144,7 @@ public class MaterialAboutCard {
         this.titleColor = card.getTitleColor();
         this.cardColor = card.getCardColor();
         this.items = new ArrayList<>();
+        this.customAdapter = card.getCustomAdapter();
         for (MaterialAboutItem item : card.items) {
             this.items.add(item.clone());
         }
