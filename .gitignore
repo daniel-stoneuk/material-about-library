@@ -9,3 +9,4 @@
 .externalNativeBuild
 app-release-2-3-0.apk
 output.json
+build_file_checksums.ser
