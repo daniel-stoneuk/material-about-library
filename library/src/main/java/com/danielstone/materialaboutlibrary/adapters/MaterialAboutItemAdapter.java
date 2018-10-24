@@ -1,22 +1,20 @@
 package com.danielstone.materialaboutlibrary.adapters;
 
 import android.content.Context;
-import android.support.v7.recyclerview.extensions.AsyncListDiffer;
-import android.support.v7.util.DiffUtil;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
+import androidx.recyclerview.widget.AsyncListDiffer;
+import androidx.recyclerview.widget.DiffUtil;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.danielstone.materialaboutlibrary.holders.MaterialAboutItemViewHolder;
 import com.danielstone.materialaboutlibrary.items.MaterialAboutItem;
-import com.danielstone.materialaboutlibrary.model.MaterialAboutCard;
 import com.danielstone.materialaboutlibrary.util.DefaultViewTypeManager;
 import com.danielstone.materialaboutlibrary.util.ViewTypeManager;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 

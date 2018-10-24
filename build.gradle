@@ -27,7 +27,7 @@ ext {
     targetSdkVersion = compileSdkVersion
     minSdkVersion = 14
 
-    supportLibVersion = '28.0.0'
+    androidXVersion = '1.0.0'
     leakCanaryVersion = '1.5.4'
 }
 

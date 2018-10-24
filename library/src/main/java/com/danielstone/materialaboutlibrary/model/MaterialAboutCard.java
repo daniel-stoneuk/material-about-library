@@ -1,10 +1,10 @@
 package com.danielstone.materialaboutlibrary.model;
 
 
-import android.support.annotation.ColorInt;
-import android.support.annotation.StringRes;
-import android.support.annotation.StyleRes;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.ColorInt;
+import androidx.annotation.StringRes;
+import androidx.annotation.StyleRes;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.danielstone.materialaboutlibrary.items.MaterialAboutItem;
 
