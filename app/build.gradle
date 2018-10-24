@@ -34,7 +34,7 @@ dependencies {
     compile "com.google.android.material:material:$androidXVersion"
     compile "com.mikepenz:iconics-core:2.9.5@aar"
     compile 'com.mikepenz:community-material-typeface:2.0.46.1@aar'
-    implementation 'net.yslibrary.licenseadapter:licenseadapter:2.1.2'
+    implementation 'net.yslibrary.licenseadapter:licenseadapter:2.2.2'
 
     debugImplementation "com.squareup.leakcanary:leakcanary-android:$leakCanaryVersion"
     releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:$leakCanaryVersion"
