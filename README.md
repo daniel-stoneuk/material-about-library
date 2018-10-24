@@ -44,11 +44,11 @@ allprojects {
 
 ```gradle
 dependencies {
-    compile 'com.github.daniel-stoneuk:material-about-library:2.4.1'
+    compile 'com.github.daniel-stoneuk:material-about-library:2.4.2'
 }
 ```
 
-Releases from 2.4.1 onwards will be using the AndroidX libraries. Use an older release if you wish to continue using the support library version.
+Releases from 2.4.2 onwards will be using the AndroidX libraries. Use an older release if you wish to continue using the support library version.
 
 ## Migration
 
