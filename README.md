@@ -44,9 +44,11 @@ allprojects {
 
 ```gradle
 dependencies {
-    compile 'com.github.daniel-stoneuk:material-about-library:2.3.0'
+    compile 'com.github.daniel-stoneuk:material-about-library:2.4.0'
 }
 ```
+
+Releases from 2.4.0 onwards will be using the AndroidX libraries. Use `2.4.0-supportlibrary` if you wish to continue using the support library version.
 
 ## Migration
 
@@ -235,25 +237,43 @@ Check out a working example in [`Demo.java`][3].
 </style>
 ```
 
+### Custom Adapters:
+It is possible to replace the contents of a card with a custom adapter. If you do this, then none of the items associated with the card will be displayed. Check out the demo app, in which use [LicenseAdapter](https://github.com/yshrsmz/LicenseAdapter) (hence the INTERNET permission).
+
+```java
+MaterialAboutCard.Builder customAdapterCardBuilder = new MaterialAboutCard.Builder();
+// Create list of libraries
+List<Library> libraries = new ArrayList<>();
+
+// Add libraries that are hosted on GitHub with an Apache v2 license.
+libraries.add(Licenses.fromGitHubApacheV2("yshrsmz/LicenseAdapter"));
+libraries.add(Licenses.fromGitHubApacheV2("daniel-stoneuk/material-about-library"));
+
+customAdapterCardBuilder.title("Custom Adapter (License Adapter)");
+customAdapterCardBuilder.customAdapter(new LicenseAdapter(libraries));
+});
+```
+
+
 ### Dynamic items:
 It's possible to create dynamic items that either change on tap (or when any other event occurs). There are two examples in the sample application. Simply change the items in the list variable and then call `refreshMaterialAboutList()`. DiffUtil calculates the changes to animate in the RecyclerView.
 
 ```java
 final MaterialAboutActionItem item = new MaterialAboutActionItem.Builder()
-                .text("Dynamic UI")
-                .subText(subText)
-                .icon(new IconicsDrawable(c)
-                        .icon(CommunityMaterial.Icon.cmd_refresh)
-                        .color(ContextCompat.getColor(c, R.color.mal_color_icon_dark_theme)
-                        ).sizeDp(18))
-                .build();
-        item.setOnClickAction(new MaterialAboutItemOnClickAction() {
-            @Override
-            public void onClick() {
-                item.setSubText("Random number: " + ((int) (Math.random() * 10)));
-                refreshMaterialAboutList();
-            }
-        });
+            .text("Dynamic UI")
+            .subText(subText)
+            .icon(new IconicsDrawable(c)
+                    .icon(CommunityMaterial.Icon.cmd_refresh)
+                    .color(ContextCompat.getColor(c, R.color.mal_color_icon_dark_theme)
+                    ).sizeDp(18))
+            .build();
+    item.setOnClickAction(new MaterialAboutItemOnClickAction() {
+        @Override
+        public void onClick() {
+            item.setSubText("Random number: " + ((int) (Math.random() * 10)));
+            refreshMaterialAboutList();
+        }
+    });
 ```
 
 ### Custom card and Action layout
