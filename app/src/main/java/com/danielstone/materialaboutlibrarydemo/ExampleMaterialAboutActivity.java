@@ -3,10 +3,10 @@ package com.danielstone.materialaboutlibrarydemo;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
-import android.support.v4.content.ContextCompat;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import com.google.android.material.snackbar.Snackbar;
+import androidx.core.content.ContextCompat;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -28,6 +28,13 @@ import com.danielstone.materialaboutlibrarydemo.custom.MyCustomItem;
 import com.danielstone.materialaboutlibrarydemo.custom.MyViewTypeManager;
 import com.mikepenz.community_material_typeface_library.CommunityMaterial;
 import com.mikepenz.iconics.IconicsDrawable;
+
+import net.yslibrary.licenseadapter.Library;
+import net.yslibrary.licenseadapter.LicenseAdapter;
+import net.yslibrary.licenseadapter.Licenses;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
 
@@ -107,7 +114,18 @@ public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
 
         advancedCardBuilder.addItem(createDynamicItem("Tap for a random number & swap position", c));
 
-        return Demo.createMaterialAboutList(c, colorIcon, getIntent().getIntExtra(THEME_EXTRA, THEME_LIGHT_DARKBAR)).addCard(advancedCardBuilder.build());
+        MaterialAboutCard.Builder customAdapterCardBuilder = new MaterialAboutCard.Builder();
+        // Create list of libraries
+        List<Library> libraries = new ArrayList<>();
+
+        // Add libraries that are hosted on GitHub with an Apache v2 license.
+        libraries.add(Licenses.fromGitHubApacheV2("yshrsmz/LicenseAdapter"));
+        libraries.add(Licenses.fromGitHubApacheV2("daniel-stoneuk/material-about-library"));
+
+        customAdapterCardBuilder.title("Custom Adapter (License Adapter)");
+        customAdapterCardBuilder.customAdapter(new LicenseAdapter(libraries));
+
+        return Demo.createMaterialAboutList(c, colorIcon, getIntent().getIntExtra(THEME_EXTRA, THEME_LIGHT_DARKBAR)).addCard(advancedCardBuilder.build()).addCard(customAdapterCardBuilder.build());
     }
 
     private MaterialAboutActionItem createDynamicItem(String subText, final Context c) {

@@ -7,14 +7,14 @@ def versionBuild = 0 // bump for dogfood builds, public betas, etc.
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion rootProject.ext.buildToolsVersion
+    buildToolsVersion '28.0.3'
     defaultConfig {
         applicationId "com.danielstone.materialaboutlibrarydemo"
-        minSdkVersion rootProject.ext.minSdkVersion
+        minSdkVersion 15
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode versionMajor * 10000 + versionMinor * 1000 + versionPatch * 100 + versionBuild
         versionName "${versionMajor}.${versionMinor}" + (versionPatch == 0 ? "" : ".${versionPatch}")
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
@@ -25,15 +25,16 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('androidx.test.espresso:espresso-core:3.1.0-beta02', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    implementation project(':library')
-    implementation "com.android.support:appcompat-v7:$supportLibVersion"
-    implementation "com.android.support:design:$supportLibVersion"
-    implementation "com.mikepenz:iconics-core:2.9.5@aar"
-    implementation 'com.mikepenz:community-material-typeface:2.0.46.1@aar'
+    compile project(':library')
+    compile "androidx.appcompat:appcompat:$androidXVersion"
+    compile "com.google.android.material:material:$androidXVersion"
+    compile "com.mikepenz:iconics-core:2.9.5@aar"
+    compile 'com.mikepenz:community-material-typeface:2.0.46.1@aar'
+    implementation 'net.yslibrary.licenseadapter:licenseadapter:2.1.2'
 
     debugImplementation "com.squareup.leakcanary:leakcanary-android:$leakCanaryVersion"
     releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:$leakCanaryVersion"

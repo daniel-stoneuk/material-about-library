@@ -10,7 +10,7 @@ def versionBuild = 0 // bump for dogfood builds, public betas, etc.
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion rootProject.ext.buildToolsVersion
+    buildToolsVersion '28.0.3'
 
     defaultConfig {
         minSdkVersion rootProject.ext.minSdkVersion
@@ -28,8 +28,8 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "com.android.support:appcompat-v7:$supportLibVersion"
-    implementation "com.android.support:cardview-v7:$supportLibVersion"
-    implementation "com.android.support:design:$supportLibVersion"
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile "androidx.appcompat:appcompat:$androidXVersion"
+    compile "androidx.cardview:cardview:$androidXVersion"
+    compile "com.google.android.material:material:$androidXVersion"
 }

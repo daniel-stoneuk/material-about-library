@@ -1,26 +1,23 @@
 package com.danielstone.materialaboutlibrary.adapters;
 
 import android.content.Context;
-import android.support.v7.recyclerview.extensions.AsyncListDiffer;
-import android.support.v7.util.DiffUtil;
-import android.support.v7.widget.CardView;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SimpleItemAnimator;
+import androidx.recyclerview.widget.AsyncListDiffer;
+import androidx.recyclerview.widget.DiffUtil;
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.danielstone.materialaboutlibrary.R;
-import com.danielstone.materialaboutlibrary.items.MaterialAboutItem;
 import com.danielstone.materialaboutlibrary.model.MaterialAboutCard;
-import com.danielstone.materialaboutlibrary.model.MaterialAboutList;
 import com.danielstone.materialaboutlibrary.util.DefaultViewTypeManager;
 import com.danielstone.materialaboutlibrary.util.ViewTypeManager;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
@@ -92,7 +89,12 @@ public class MaterialAboutListAdapter extends RecyclerView.Adapter<MaterialAbout
             }
         }
 
-        holder.adapter.setData(card.getItems());
+        if (card.getCustomAdapter() != null) {
+            holder.useCustomAdapter(card.getCustomAdapter());
+        } else {
+            holder.useMaterialAboutItemAdapter();
+            ((MaterialAboutItemAdapter) holder.adapter).setData(card.getItems());
+        }
     }
 
     @Override
@@ -123,7 +125,7 @@ public class MaterialAboutListAdapter extends RecyclerView.Adapter<MaterialAbout
         final View cardView;
         final TextView title;
         final RecyclerView recyclerView;
-        MaterialAboutItemAdapter adapter;
+        RecyclerView.Adapter adapter;
 
         MaterialAboutListViewHolder(View view) {
             super(view);
@@ -134,6 +136,21 @@ public class MaterialAboutListAdapter extends RecyclerView.Adapter<MaterialAbout
             recyclerView.setLayoutManager(new LinearLayoutManager(context));
             recyclerView.setAdapter(adapter);
             recyclerView.setNestedScrollingEnabled(false);
+        }
+
+        public void useMaterialAboutItemAdapter() {
+            if (!(adapter instanceof MaterialAboutItemAdapter)) {
+                adapter = new MaterialAboutItemAdapter(viewTypeManager);
+                recyclerView.setLayoutManager(new LinearLayoutManager(context));
+                recyclerView.setAdapter(adapter);
+            }
+        }
+
+        public void useCustomAdapter(RecyclerView.Adapter newAdapter) {
+            if (adapter instanceof MaterialAboutItemAdapter) {
+                recyclerView.setLayoutManager(new LinearLayoutManager(context));
+                recyclerView.setAdapter(newAdapter);
+            }
         }
     }
 
