@@ -3,9 +3,9 @@ package com.danielstone.materialaboutlibrary.items;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.support.annotation.DrawableRes;
-import android.support.annotation.IntDef;
-import android.support.annotation.StringRes;
+import androidx.annotation.DrawableRes;
+import androidx.annotation.IntDef;
+import androidx.annotation.StringRes;
 import android.text.Html;
 import android.util.TypedValue;
 import android.view.View;
@@ -21,6 +21,10 @@ import com.danielstone.materialaboutlibrary.util.ViewTypeManager;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
+
+import androidx.annotation.DrawableRes;
+import androidx.annotation.IntDef;
+import androidx.annotation.StringRes;
 
 import static android.view.View.GONE;
 
