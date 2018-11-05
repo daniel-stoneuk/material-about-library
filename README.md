@@ -6,7 +6,7 @@ Makes it easy to create a beautiful about screen for your app. Generates an `Act
 
 Idea from here: [Heinrich Reimer's open-source-library-request-manager][6]
 
-Design inspired by Phonograph.
+Design inspired by [Phonograph](https://github.com/kabouzeid/Phonograph)
 
 If you use this library in your app, please let me know and I'll add it to the list.
 
