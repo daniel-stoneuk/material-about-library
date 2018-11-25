@@ -136,7 +136,7 @@ public class MaterialAboutSwitchItem extends MaterialAboutItem {
         } else {
             holder.view.setBackgroundResource(0);
         }
-        holder.aswitch.setChecked(item.isChecked());
+        holder.aSwitch.setChecked(item.isChecked());
         holder.setOnCheckedChanged(item.getOnCheckedChanged());
 
         if (Build.VERSION.SDK_INT < 21) {
@@ -290,7 +290,7 @@ public class MaterialAboutSwitchItem extends MaterialAboutItem {
         public final ImageView icon;
         public final TextView text;
         public final TextView subText;
-        public final Switch aswitch;
+        public final Switch aSwitch;
         private MaterialAboutOnCheckedChangedAction onCheckedChanged;
         private MaterialAboutSwitchItem materialAboutSwitchItem;
         private boolean broadcasting;
@@ -301,7 +301,7 @@ public class MaterialAboutSwitchItem extends MaterialAboutItem {
             icon = (ImageView) view.findViewById(R.id.mal_switch_image);
             text = (TextView) view.findViewById(R.id.mal_switch_text);
             subText = (TextView) view.findViewById(R.id.mal_switch_subtext);
-            aswitch = (Switch) view.findViewById(R.id.mal_switch);
+            aSwitch = (Switch) view.findViewById(R.id.mal_switch);
         }
 
         public void setMaterialAboutSwitchItem(MaterialAboutSwitchItem materialAboutSwitchItem) {
@@ -310,14 +310,14 @@ public class MaterialAboutSwitchItem extends MaterialAboutItem {
 
         public void setOnCheckedChanged(MaterialAboutOnCheckedChangedAction onCheckedChanged) {
             this.onCheckedChanged = onCheckedChanged;
-            this.aswitch.setOnCheckedChangeListener(onCheckedChanged != null ? this : null);
+            this.aSwitch.setOnCheckedChangeListener(onCheckedChanged != null ? this : null);
         }
 
         @Override
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
             this.materialAboutSwitchItem.setChecked(isChecked);
 
-            // Avoid infinite recursions if this.aswitch.setChecked() is called from a listener or below
+            // Avoid infinite recursions if this.aSwitch.setChecked() is called from a listener or below
             if (this.broadcasting) {
                 return;
             }
@@ -325,7 +325,7 @@ public class MaterialAboutSwitchItem extends MaterialAboutItem {
             this.broadcasting = true;
             if (this.onCheckedChanged != null) {
                 if (!this.onCheckedChanged.onCheckedChanged(buttonView, isChecked)) {
-                    this.aswitch.setChecked(!isChecked);
+                    this.aSwitch.setChecked(!isChecked);
                 }
             }
             this.broadcasting = false;
