@@ -105,7 +105,6 @@ public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
         switchItem.setOnCheckedChanged(new MaterialAboutOnCheckedChangedAction() {
             @Override
             public boolean onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                switchItem.setChecked(true);
                 Toast.makeText(c, "This cannot be switched off", Toast.LENGTH_SHORT).show();
                 return false;
             }

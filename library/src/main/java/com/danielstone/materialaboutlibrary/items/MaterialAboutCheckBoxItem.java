@@ -3,9 +3,6 @@ package com.danielstone.materialaboutlibrary.items;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import androidx.annotation.DrawableRes;
-import androidx.annotation.IntDef;
-import androidx.annotation.StringRes;
 import android.text.Html;
 import android.util.TypedValue;
 import android.view.View;
@@ -13,7 +10,6 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 
 import com.danielstone.materialaboutlibrary.R;
 import com.danielstone.materialaboutlibrary.holders.MaterialAboutItemViewHolder;
@@ -296,6 +292,7 @@ public class MaterialAboutCheckBoxItem extends MaterialAboutItem {
         public final TextView subText;
         public final CheckBox aCheckBox;
         private MaterialAboutOnCheckedChangedAction onCheckedChanged;
+        private boolean broadcasting;
 
         MaterialAboutCheckBoxItemViewHolder(View view) {
             super(view);
@@ -313,12 +310,18 @@ public class MaterialAboutCheckBoxItem extends MaterialAboutItem {
 
         @Override
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-            if (onCheckedChanged != null) {
-                if (buttonView.isPressed())
-                    if (!onCheckedChanged.onCheckedChanged(buttonView, isChecked)) {
-                        aCheckBox.setChecked(!isChecked);
-                    }
+            // Avoid infinite recursions if this.aCheckBox.setChecked() is called from a listener or below
+            if (this.broadcasting) {
+                return;
             }
+
+            this.broadcasting = true;
+            if (this.onCheckedChanged != null) {
+                if (!this.onCheckedChanged.onCheckedChanged(buttonView, isChecked)) {
+                    this.aCheckBox.setChecked(!isChecked);
+                }
+            }
+            this.broadcasting = false;
         }
     }
 

@@ -3,9 +3,6 @@ package com.danielstone.materialaboutlibrary.items;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import androidx.annotation.DrawableRes;
-import androidx.annotation.IntDef;
-import androidx.annotation.StringRes;
 import android.text.Html;
 import android.util.TypedValue;
 import android.view.View;
@@ -14,13 +11,16 @@ import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
 
-
 import com.danielstone.materialaboutlibrary.R;
 import com.danielstone.materialaboutlibrary.holders.MaterialAboutItemViewHolder;
 import com.danielstone.materialaboutlibrary.util.ViewTypeManager;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
+
+import androidx.annotation.DrawableRes;
+import androidx.annotation.IntDef;
+import androidx.annotation.StringRes;
 
 import static android.view.View.GONE;
 
@@ -293,6 +293,7 @@ public class MaterialAboutSwitchItem extends MaterialAboutItem {
         public final Switch aswitch;
         private MaterialAboutOnCheckedChangedAction onCheckedChanged;
         MaterialAboutSwitchItem materialAboutSwitchItem;
+        private boolean broadcasting;
 
         MaterialAboutSwitchItemViewHolder(View view) {
             super(view);
@@ -314,13 +315,20 @@ public class MaterialAboutSwitchItem extends MaterialAboutItem {
 
         @Override
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-            materialAboutSwitchItem.setChecked(isChecked);
-            if (onCheckedChanged != null) {
-                if (buttonView.isPressed())
-                    if (!onCheckedChanged.onCheckedChanged(buttonView, isChecked)) {
-                        aswitch.setChecked(!isChecked);
-                    }
+            this.materialAboutSwitchItem.setChecked(isChecked);
+
+            // Avoid infinite recursions if this.aswitch.setChecked() is called from a listener or below
+            if (this.broadcasting) {
+                return;
             }
+
+            this.broadcasting = true;
+            if (this.onCheckedChanged != null) {
+                if (!this.onCheckedChanged.onCheckedChanged(buttonView, isChecked)) {
+                    this.aswitch.setChecked(!isChecked);
+                }
+            }
+            this.broadcasting = false;
         }
     }
 
