@@ -25,15 +25,15 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('androidx.test.espresso:espresso-core:3.1.0-beta02', {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestImplementation('androidx.test.espresso:espresso-core:3.1.0-beta02', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile project(':library')
-    compile "androidx.appcompat:appcompat:$androidXVersion"
-    compile "com.google.android.material:material:$androidXVersion"
-    compile "com.mikepenz:iconics-core:2.9.5@aar"
-    compile 'com.mikepenz:community-material-typeface:2.0.46.1@aar'
+    implementation project(':library')
+    implementation "androidx.appcompat:appcompat:$androidXVersion"
+    implementation "com.google.android.material:material:$androidXVersion"
+    implementation "com.mikepenz:iconics-core:2.9.5@aar"
+    implementation 'com.mikepenz:community-material-typeface:2.0.46.1@aar'
     implementation 'net.yslibrary.licenseadapter:licenseadapter:2.2.2'
 
     debugImplementation "com.squareup.leakcanary:leakcanary-android:$leakCanaryVersion"
