@@ -196,16 +196,16 @@ cardBuilder.addItem(new MaterialAboutActionItem.Builder()
         .build());
 ```
 
-[`MaterialPreferenceCheckboxItem`][12] is created with [`MaterialPreferenceCheckboxItem.Builder()`][12] and lets you specify **text**, **sub-text**, an **icon** and an **onCheckedChangedListener**.
+[`MaterialPreferenceCheckboxItem`][12] is created with [`MaterialPreferenceCheckboxItem.Builder()`][12] and lets you specify **text**, **sub-text**, an **icon** and an **onCheckedChangedAction**.
 
 ```java
 cardBuilder.addItem(new MaterialPreferenceCheckboxItem.Builder()
         .text("Activate something")
         .subText("desciption")
         .icon(R.drawable.ic_about_info)
-        .setOnCheckedChanged(new MaterialPreferenceOnCheckedChangedListener() {
+        .setOnCheckedChangedAction(new MaterialPreferenceOnCheckedChangedAction() {
                     @Override
-                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    public void onCheckedChanged(MaterialAboutCheckableItem item, boolean isChecked) {
                         Toast.makeText(c,"Now : "+isChecked,Toast.LENGTH_SHORT).show();
                     }
                 })
@@ -213,16 +213,16 @@ cardBuilder.addItem(new MaterialPreferenceCheckboxItem.Builder()
 ```
 
 
-[`MaterialPreferenceSwitchItem`][10] is created with [`MaterialPreferenceSwitchItem.Builder()`][10] and lets you specify **text**, **sub-text**, an **icon** and an **onCheckedChangedListener**.
+[`MaterialPreferenceSwitchItem`][10] is created with [`MaterialPreferenceSwitchItem.Builder()`][10] and lets you specify **text**, **sub-text**, an **icon** and an **onCheckedChangedAction**.
 
 ```java
 cardBuilder.addItem(new MaterialPreferenceSwitchItem.Builder()
         .text("Version")
         .subText("1.0.0")
         .icon(R.drawable.ic_about_info)
-        .setOnCheckedChanged(new MaterialPreferenceOnCheckedChangedListener() {
+        .setOnCheckedChangedAction(new MaterialPreferenceOnCheckedChangedAction() {
                     @Override
-                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    public void onCheckedChanged(MaterialAboutCheckableItem item, boolean isChecked) {
                         Toast.makeText(c,"Now : "+isChecked,Toast.LENGTH_SHORT).show();
                     }
                 })
