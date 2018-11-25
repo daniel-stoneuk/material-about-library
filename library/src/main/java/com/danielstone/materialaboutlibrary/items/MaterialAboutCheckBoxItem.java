@@ -83,6 +83,8 @@ public class MaterialAboutCheckBoxItem extends MaterialAboutItem {
     }
 
     public static void setupItem(MaterialAboutCheckBoxItemViewHolder holder, MaterialAboutCheckBoxItem item, Context context) {
+        holder.setMaterialAboutCheckBoxItem(item);
+
         CharSequence text = item.getText();
         int textRes = item.getTextRes();
 
@@ -292,6 +294,7 @@ public class MaterialAboutCheckBoxItem extends MaterialAboutItem {
         public final TextView subText;
         public final CheckBox aCheckBox;
         private MaterialAboutOnCheckedChangedAction onCheckedChanged;
+        private MaterialAboutCheckBoxItem materialAboutCheckBoxItem;
         private boolean broadcasting;
 
         MaterialAboutCheckBoxItemViewHolder(View view) {
@@ -303,6 +306,10 @@ public class MaterialAboutCheckBoxItem extends MaterialAboutItem {
             aCheckBox = (CheckBox) view.findViewById(R.id.mal_checkbox);
         }
 
+        public void setMaterialAboutCheckBoxItem(MaterialAboutCheckBoxItem materialAboutCheckBoxItem) {
+            this.materialAboutCheckBoxItem = materialAboutCheckBoxItem;
+        }
+
         public void setOnCheckedChanged(MaterialAboutOnCheckedChangedAction onCheckedChanged) {
             this.onCheckedChanged = onCheckedChanged;
             this.aCheckBox.setOnCheckedChangeListener(onCheckedChanged != null ? this : null);
@@ -310,6 +317,8 @@ public class MaterialAboutCheckBoxItem extends MaterialAboutItem {
 
         @Override
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+            this.materialAboutCheckBoxItem.setChecked(isChecked);
+
             // Avoid infinite recursions if this.aCheckBox.setChecked() is called from a listener or below
             if (this.broadcasting) {
                 return;

@@ -292,7 +292,7 @@ public class MaterialAboutSwitchItem extends MaterialAboutItem {
         public final TextView subText;
         public final Switch aswitch;
         private MaterialAboutOnCheckedChangedAction onCheckedChanged;
-        MaterialAboutSwitchItem materialAboutSwitchItem;
+        private MaterialAboutSwitchItem materialAboutSwitchItem;
         private boolean broadcasting;
 
         MaterialAboutSwitchItemViewHolder(View view) {
