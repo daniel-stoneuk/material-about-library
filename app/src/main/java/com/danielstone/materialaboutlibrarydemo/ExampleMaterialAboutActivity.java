@@ -76,7 +76,7 @@ public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
         advancedCardBuilder.addItem(new MaterialAboutActionItem.Builder()
                 .text("OnLongClickAction demo")
                 .icon(new IconicsDrawable(c)
-                        .icon(CommunityMaterial.Icon.cmd_hand_pointing_right)
+                        .icon(CommunityMaterial.Icon2.cmd_hand_pointing_right)
                         .color(ContextCompat.getColor(c, colorIcon))
                         .sizeDp(18))
                 .setOnLongClickAction(new MaterialAboutItemOnClickAction() {
@@ -133,7 +133,7 @@ public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
                 .text("Dynamic UI")
                 .subText(subText)
                 .icon(new IconicsDrawable(c)
-                        .icon(CommunityMaterial.Icon.cmd_refresh)
+                        .icon(CommunityMaterial.Icon2.cmd_refresh)
                         .color(ContextCompat.getColor(c, colorIcon)
                         ).sizeDp(18))
                 .build();

@@ -37,7 +37,7 @@ public class Demo {
 
         appCardBuilder.addItem(ConvenienceBuilder.createVersionActionItem(c,
                 new IconicsDrawable(c)
-                        .icon(CommunityMaterial.Icon.cmd_information_outline)
+                        .icon(CommunityMaterial.Icon2.cmd_information_outline)
                         .color(ContextCompat.getColor(c, colorIcon))
                         .sizeDp(18),
                 "Version",
@@ -46,7 +46,7 @@ public class Demo {
         appCardBuilder.addItem(new MaterialAboutActionItem.Builder()
                 .text("Changelog")
                 .icon(new IconicsDrawable(c)
-                        .icon(CommunityMaterial.Icon.cmd_history)
+                        .icon(CommunityMaterial.Icon2.cmd_history)
                         .color(ContextCompat.getColor(c, colorIcon))
                         .sizeDp(18))
                 .setOnClickAction(ConvenienceBuilder.createWebViewDialogOnClickAction(c, "Releases", "https://github.com/daniel-stoneuk/material-about-library/releases", true, false))
@@ -96,7 +96,7 @@ public class Demo {
 
         convenienceCardBuilder.addItem(ConvenienceBuilder.createVersionActionItem(c,
                 new IconicsDrawable(c)
-                        .icon(CommunityMaterial.Icon.cmd_information_outline)
+                        .icon(CommunityMaterial.Icon2.cmd_information_outline)
                         .color(ContextCompat.getColor(c, colorIcon))
                         .sizeDp(18),
                 "Version",
@@ -113,7 +113,7 @@ public class Demo {
 
         convenienceCardBuilder.addItem(ConvenienceBuilder.createRateActionItem(c,
                 new IconicsDrawable(c)
-                        .icon(CommunityMaterial.Icon.cmd_star)
+                        .icon(CommunityMaterial.Icon2.cmd_star)
                         .color(ContextCompat.getColor(c, colorIcon))
                         .sizeDp(18),
                 "Rate this app",
@@ -132,7 +132,7 @@ public class Demo {
 
         convenienceCardBuilder.addItem(ConvenienceBuilder.createPhoneItem(c,
                 new IconicsDrawable(c)
-                        .icon(CommunityMaterial.Icon.cmd_phone)
+                        .icon(CommunityMaterial.Icon2.cmd_phone)
                         .color(ContextCompat.getColor(c, colorIcon))
                         .sizeDp(18),
                 "Call me",
@@ -141,7 +141,7 @@ public class Demo {
 
         convenienceCardBuilder.addItem(ConvenienceBuilder.createMapItem(c,
                 new IconicsDrawable(c)
-                        .icon(CommunityMaterial.Icon.cmd_map)
+                        .icon(CommunityMaterial.Icon2.cmd_map)
                         .color(ContextCompat.getColor(c, colorIcon))
                         .sizeDp(18),
                 "Visit London",
@@ -155,7 +155,7 @@ public class Demo {
 
         otherCardBuilder.addItem(new MaterialAboutActionItem.Builder()
                 .icon(new IconicsDrawable(c)
-                        .icon(CommunityMaterial.Icon.cmd_language_html5)
+                        .icon(CommunityMaterial.Icon2.cmd_language_html5)
                         .color(ContextCompat.getColor(c, colorIcon))
                         .sizeDp(18))
                 .text("HTML Formatted Sub Text")

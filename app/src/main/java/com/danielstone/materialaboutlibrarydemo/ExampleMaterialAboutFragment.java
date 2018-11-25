@@ -22,7 +22,7 @@ public class ExampleMaterialAboutFragment extends MaterialAboutFragment {
                 .text("Dynamic UI")
                 .subText(subText)
                 .icon(new IconicsDrawable(c)
-                        .icon(CommunityMaterial.Icon.cmd_refresh)
+                        .icon(CommunityMaterial.Icon2.cmd_refresh)
                         .color(ContextCompat.getColor(c, R.color.mal_color_icon_dark_theme)
                         ).sizeDp(18))
                 .build();
