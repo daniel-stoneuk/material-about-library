@@ -30,8 +30,8 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     implementation project(':library')
-    implementation "androidx.appcompat:appcompat:$androidXVersion"
-    implementation "com.google.android.material:material:$androidXVersion"
+    implementation "androidx.appcompat:appcompat:$appCompatVersion"
+    implementation "com.google.android.material:material:$materialVersion"
     implementation "com.mikepenz:iconics-core:2.9.5@aar"
     implementation 'com.mikepenz:community-material-typeface:2.0.46.1@aar'
     implementation 'net.yslibrary.licenseadapter:licenseadapter:2.2.2'

@@ -27,7 +27,9 @@ ext {
     targetSdkVersion = compileSdkVersion
     minSdkVersion = 14
 
-    androidXVersion = '1.0.0'
+    appCompatVersion = '1.0.2'
+    cardViewVersion = '1.0.0'
+    materialVersion = '1.0.0'
     leakCanaryVersion = '1.5.4'
 }
 
