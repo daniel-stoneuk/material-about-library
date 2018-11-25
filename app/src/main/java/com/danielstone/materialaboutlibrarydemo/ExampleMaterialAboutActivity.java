@@ -3,20 +3,15 @@ package com.danielstone.materialaboutlibrarydemo;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import com.google.android.material.snackbar.Snackbar;
-import androidx.core.content.ContextCompat;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.CompoundButton;
 import android.widget.Toast;
 
 import com.danielstone.materialaboutlibrary.ConvenienceBuilder;
 import com.danielstone.materialaboutlibrary.MaterialAboutActivity;
 import com.danielstone.materialaboutlibrary.items.MaterialAboutActionItem;
-import com.danielstone.materialaboutlibrary.items.MaterialAboutItem;
+import com.danielstone.materialaboutlibrary.items.MaterialAboutCheckableItem;
 import com.danielstone.materialaboutlibrary.items.MaterialAboutItemOnClickAction;
 import com.danielstone.materialaboutlibrary.items.MaterialAboutOnCheckedChangedAction;
 import com.danielstone.materialaboutlibrary.items.MaterialAboutSwitchItem;
@@ -26,6 +21,7 @@ import com.danielstone.materialaboutlibrary.model.MaterialAboutList;
 import com.danielstone.materialaboutlibrary.util.ViewTypeManager;
 import com.danielstone.materialaboutlibrarydemo.custom.MyCustomItem;
 import com.danielstone.materialaboutlibrarydemo.custom.MyViewTypeManager;
+import com.google.android.material.snackbar.Snackbar;
 import com.mikepenz.community_material_typeface_library.CommunityMaterial;
 import com.mikepenz.iconics.IconicsDrawable;
 
@@ -35,6 +31,10 @@ import net.yslibrary.licenseadapter.Licenses;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 
 public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
 
@@ -102,9 +102,9 @@ public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
                 .subText("This switch cannot be switched off")
                 .setChecked(true)
                 .build();
-        switchItem.setOnCheckedChanged(new MaterialAboutOnCheckedChangedAction() {
+        switchItem.setOnCheckedChangedAction(new MaterialAboutOnCheckedChangedAction() {
             @Override
-            public boolean onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+            public boolean onCheckedChanged(MaterialAboutCheckableItem item, boolean isChecked) {
                 Toast.makeText(c, "This cannot be switched off", Toast.LENGTH_SHORT).show();
                 return false;
             }

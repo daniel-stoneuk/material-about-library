@@ -12,6 +12,7 @@ import androidx.core.content.ContextCompat;
 import com.danielstone.materialaboutlibrary.ConvenienceBuilder;
 import com.danielstone.materialaboutlibrary.items.MaterialAboutActionItem;
 import com.danielstone.materialaboutlibrary.items.MaterialAboutCheckBoxItem;
+import com.danielstone.materialaboutlibrary.items.MaterialAboutCheckableItem;
 import com.danielstone.materialaboutlibrary.items.MaterialAboutItemOnClickAction;
 import com.danielstone.materialaboutlibrary.items.MaterialAboutOnCheckedChangedAction;
 import com.danielstone.materialaboutlibrary.items.MaterialAboutSwitchItem;
@@ -172,7 +173,7 @@ public class Demo {
                 .subText("Description")
                 .setOnCheckedChanged(new MaterialAboutOnCheckedChangedAction() {
                     @Override
-                    public boolean onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    public boolean onCheckedChanged(MaterialAboutCheckableItem item, boolean isChecked) {
                         Toast.makeText(c, "Now " + isChecked, Toast.LENGTH_SHORT).show();
                         return true;
                     }
@@ -186,7 +187,7 @@ public class Demo {
                 .subText("Description")
                 .setOnCheckedChanged(new MaterialAboutOnCheckedChangedAction() {
                     @Override
-                    public boolean onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    public boolean onCheckedChanged(MaterialAboutCheckableItem item, boolean isChecked) {
                         Toast.makeText(c, "Now " + isChecked, Toast.LENGTH_SHORT).show();
                         return true;
                     }

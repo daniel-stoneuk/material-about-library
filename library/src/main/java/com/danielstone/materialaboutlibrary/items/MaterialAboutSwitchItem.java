@@ -27,7 +27,7 @@ import static android.view.View.GONE;
 /**
  * Created by François Dexemple on 04/05/2018
  */
-public class MaterialAboutSwitchItem extends MaterialAboutItem {
+public class MaterialAboutSwitchItem extends MaterialAboutCheckableItem {
     public static final int GRAVITY_TOP = 0;
     public static final int GRAVITY_MIDDLE = 1;
     public static final int GRAVITY_BOTTOM = 2;
@@ -39,11 +39,9 @@ public class MaterialAboutSwitchItem extends MaterialAboutItem {
     private int iconRes = 0;
     private boolean showIcon = true;
     private int iconGravity = GRAVITY_MIDDLE;
-    private MaterialAboutOnCheckedChangedAction onCheckedChanged = null;
-    private boolean checked = false;
 
     private MaterialAboutSwitchItem(MaterialAboutSwitchItem.Builder builder) {
-        super();
+        super(builder);
         this.text = builder.text;
         this.textRes = builder.textRes;
 
@@ -56,25 +54,20 @@ public class MaterialAboutSwitchItem extends MaterialAboutItem {
         this.showIcon = builder.showIcon;
 
         this.iconGravity = builder.iconGravity;
-
-        this.onCheckedChanged = builder.onCheckedChanged;
-        this.checked = builder.checked;
     }
 
     public MaterialAboutSwitchItem(CharSequence text, CharSequence subText, Drawable icon, boolean checked, MaterialAboutOnCheckedChangedAction onCheckedChanged) {
+        super(checked, onCheckedChanged);
         this.text = text;
         this.subText = subText;
         this.icon = icon;
-        this.onCheckedChanged = onCheckedChanged;
-        this.checked = checked;
     }
 
     public MaterialAboutSwitchItem(int textRes, int subTextRes, int iconRes, boolean checked, MaterialAboutOnCheckedChangedAction onCheckedChanged) {
+        super(checked, onCheckedChanged);
         this.textRes = textRes;
         this.subTextRes = subTextRes;
         this.iconRes = iconRes;
-        this.onCheckedChanged = onCheckedChanged;
-        this.checked = checked;
     }
 
     public static MaterialAboutItemViewHolder getViewHolder(View view) {
@@ -82,8 +75,6 @@ public class MaterialAboutSwitchItem extends MaterialAboutItem {
     }
 
     public static void setupItem(MaterialAboutSwitchItemViewHolder holder, MaterialAboutSwitchItem item, Context context) {
-        holder.setMaterialAboutSwitchItem(item);
-
         CharSequence text = item.getText();
         int textRes = item.getTextRes();
 
@@ -129,7 +120,7 @@ public class MaterialAboutSwitchItem extends MaterialAboutItem {
             pB = holder.view.getPaddingBottom();
         }
 
-        if (item.getOnCheckedChanged() != null) {
+        if (item.getOnCheckedChangedAction() != null) {
             TypedValue outValue = new TypedValue();
             context.getTheme().resolveAttribute(R.attr.selectableItemBackground, outValue, true);
             holder.view.setBackgroundResource(outValue.resourceId);
@@ -137,7 +128,8 @@ public class MaterialAboutSwitchItem extends MaterialAboutItem {
             holder.view.setBackgroundResource(0);
         }
         holder.aSwitch.setChecked(item.isChecked());
-        holder.setOnCheckedChanged(item.getOnCheckedChanged());
+        // NOTE: We must call this after the setChanged call to not trigger the listener on initialization here
+        MaterialAboutCheckableItem.setupItem(holder, item);
 
         if (Build.VERSION.SDK_INT < 21) {
             holder.view.setPadding(pL, pT, pR, pB);
@@ -160,12 +152,11 @@ public class MaterialAboutSwitchItem extends MaterialAboutItem {
                 ", iconRes=" + iconRes +
                 ", showIcon=" + showIcon +
                 ", iconGravity=" + iconGravity +
-                ", onCheckedChanged=" + onCheckedChanged +
-                ", checked=" + checked +
-                '}';
+                "} extends " + super.getDetailString();
     }
 
     public MaterialAboutSwitchItem(MaterialAboutSwitchItem item) {
+        super(item);
         this.id = item.getId();
         this.text = item.getText();
         this.textRes = item.getTextRes();
@@ -175,8 +166,6 @@ public class MaterialAboutSwitchItem extends MaterialAboutItem {
         this.iconRes = item.getIconRes();
         this.showIcon = item.shouldShowIcon();
         this.iconGravity = item.getIconGravity();
-        this.onCheckedChanged = item.getOnCheckedChanged();
-        this.checked = item.isChecked();
     }
 
     @Override
@@ -263,37 +252,17 @@ public class MaterialAboutSwitchItem extends MaterialAboutItem {
         return this;
     }
 
-    public void setChecked(boolean checked) {
-        this.checked = checked;
-    }
-
-    public boolean isChecked() {
-        return checked;
-    }
-
-    public MaterialAboutOnCheckedChangedAction getOnCheckedChanged() {
-        return onCheckedChanged;
-    }
-
-    public MaterialAboutSwitchItem setOnCheckedChanged(MaterialAboutOnCheckedChangedAction onCheckedChanged) {
-        this.onCheckedChanged = onCheckedChanged;
-        return this;
-    }
-
     @Retention(RetentionPolicy.SOURCE)
     @IntDef({GRAVITY_TOP, GRAVITY_MIDDLE, GRAVITY_BOTTOM})
     public @interface IconGravity {
     }
 
-    public static class MaterialAboutSwitchItemViewHolder extends MaterialAboutItemViewHolder implements CompoundButton.OnCheckedChangeListener {
+    public static class MaterialAboutSwitchItemViewHolder extends MaterialAboutCheckableItemViewHolder implements CompoundButton.OnCheckedChangeListener {
         public final View view;
         public final ImageView icon;
         public final TextView text;
         public final TextView subText;
         public final Switch aSwitch;
-        private MaterialAboutOnCheckedChangedAction onCheckedChanged;
-        private MaterialAboutSwitchItem materialAboutSwitchItem;
-        private boolean broadcasting;
 
         MaterialAboutSwitchItemViewHolder(View view) {
             super(view);
@@ -304,37 +273,24 @@ public class MaterialAboutSwitchItem extends MaterialAboutItem {
             aSwitch = (Switch) view.findViewById(R.id.mal_switch);
         }
 
-        public void setMaterialAboutSwitchItem(MaterialAboutSwitchItem materialAboutSwitchItem) {
-            this.materialAboutSwitchItem = materialAboutSwitchItem;
+        @Override
+        protected void initActionViewListener(boolean hasListener) {
+            this.aSwitch.setOnCheckedChangeListener(hasListener ? this : null);
         }
 
-        public void setOnCheckedChanged(MaterialAboutOnCheckedChangedAction onCheckedChanged) {
-            this.onCheckedChanged = onCheckedChanged;
-            this.aSwitch.setOnCheckedChangeListener(onCheckedChanged != null ? this : null);
+        @Override
+        protected void setActionViewChecked(boolean isChecked) {
+            this.aSwitch.setChecked(isChecked);
         }
 
         @Override
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-            this.materialAboutSwitchItem.setChecked(isChecked);
-
-            // Avoid infinite recursions if this.aSwitch.setChecked() is called from a listener or below
-            if (this.broadcasting) {
-                return;
-            }
-
-            this.broadcasting = true;
-            if (this.onCheckedChanged != null) {
-                if (!this.onCheckedChanged.onCheckedChanged(buttonView, isChecked)) {
-                    this.aSwitch.setChecked(!isChecked);
-                }
-            }
-            this.broadcasting = false;
+            super.onCheckedChanged(isChecked);
         }
     }
 
-    public static class Builder {
+    public static class Builder extends CheckableBuilder<Builder> {
 
-        MaterialAboutOnCheckedChangedAction onCheckedChanged = null;
         private CharSequence text = null;
         @StringRes
         private int textRes = 0;
@@ -347,7 +303,6 @@ public class MaterialAboutSwitchItem extends MaterialAboutItem {
         private boolean showIcon = true;
         @IconGravity
         private int iconGravity = GRAVITY_MIDDLE;
-        private boolean checked = false;
 
         public Builder text(CharSequence text) {
             this.text = text;
@@ -403,16 +358,6 @@ public class MaterialAboutSwitchItem extends MaterialAboutItem {
 
         public Builder setIconGravity(@MaterialAboutSwitchItem.IconGravity int iconGravity) {
             this.iconGravity = iconGravity;
-            return this;
-        }
-
-        public Builder setOnCheckedChanged(MaterialAboutOnCheckedChangedAction onCheckedChanged) {
-            this.onCheckedChanged = onCheckedChanged;
-            return this;
-        }
-
-        public Builder setChecked(boolean checked) {
-            this.checked = checked;
             return this;
         }
 

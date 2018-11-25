@@ -27,7 +27,7 @@ import static android.view.View.GONE;
 /**
  * Created by François Dexemple on 04/05/2018
  */
-public class MaterialAboutCheckBoxItem extends MaterialAboutItem {
+public class MaterialAboutCheckBoxItem extends MaterialAboutCheckableItem {
     public static final int GRAVITY_TOP = 0;
     public static final int GRAVITY_MIDDLE = 1;
     public static final int GRAVITY_BOTTOM = 2;
@@ -39,11 +39,9 @@ public class MaterialAboutCheckBoxItem extends MaterialAboutItem {
     private int iconRes = 0;
     private boolean showIcon = true;
     private int iconGravity = GRAVITY_MIDDLE;
-    private MaterialAboutOnCheckedChangedAction onCheckedChanged = null;
-    private boolean checked = false;
 
     private MaterialAboutCheckBoxItem(MaterialAboutCheckBoxItem.Builder builder) {
-        super();
+        super(builder);
         this.text = builder.text;
         this.textRes = builder.textRes;
 
@@ -56,25 +54,20 @@ public class MaterialAboutCheckBoxItem extends MaterialAboutItem {
         this.showIcon = builder.showIcon;
 
         this.iconGravity = builder.iconGravity;
-
-        this.onCheckedChanged = builder.onCheckedChanged;
-        this.checked = builder.checked;
     }
 
     public MaterialAboutCheckBoxItem(CharSequence text, CharSequence subText, Drawable icon, boolean checked, MaterialAboutOnCheckedChangedAction onCheckedChanged) {
+        super(checked, onCheckedChanged);
         this.text = text;
         this.subText = subText;
         this.icon = icon;
-        this.onCheckedChanged = onCheckedChanged;
-        this.checked = checked;
     }
 
     public MaterialAboutCheckBoxItem(int textRes, int subTextRes, int iconRes, boolean checked, MaterialAboutOnCheckedChangedAction onCheckedChanged) {
+        super(checked, onCheckedChanged);
         this.textRes = textRes;
         this.subTextRes = subTextRes;
         this.iconRes = iconRes;
-        this.onCheckedChanged = onCheckedChanged;
-        this.checked = checked;
     }
 
 
@@ -83,8 +76,6 @@ public class MaterialAboutCheckBoxItem extends MaterialAboutItem {
     }
 
     public static void setupItem(MaterialAboutCheckBoxItemViewHolder holder, MaterialAboutCheckBoxItem item, Context context) {
-        holder.setMaterialAboutCheckBoxItem(item);
-
         CharSequence text = item.getText();
         int textRes = item.getTextRes();
 
@@ -130,7 +121,7 @@ public class MaterialAboutCheckBoxItem extends MaterialAboutItem {
             pB = holder.view.getPaddingBottom();
         }
 
-        if (item.getOnCheckedChanged() != null) {
+        if (item.getOnCheckedChangedAction() != null) {
             TypedValue outValue = new TypedValue();
             context.getTheme().resolveAttribute(R.attr.selectableItemBackground, outValue, true);
             holder.view.setBackgroundResource(outValue.resourceId);
@@ -138,12 +129,12 @@ public class MaterialAboutCheckBoxItem extends MaterialAboutItem {
             holder.view.setBackgroundResource(0);
         }
         holder.aCheckBox.setChecked(item.isChecked());
-        holder.setOnCheckedChanged(item.getOnCheckedChanged());
+        // NOTE: We must call this after the setChanged call to not trigger the listener on initialization here
+        MaterialAboutCheckableItem.setupItem(holder, item);
 
         if (Build.VERSION.SDK_INT < 21) {
             holder.view.setPadding(pL, pT, pR, pB);
         }
-
     }
 
     @Override
@@ -162,12 +153,11 @@ public class MaterialAboutCheckBoxItem extends MaterialAboutItem {
                 ", iconRes=" + iconRes +
                 ", showIcon=" + showIcon +
                 ", iconGravity=" + iconGravity +
-                ", onCheckedChanged=" + onCheckedChanged +
-                ", checked=" + checked +
-                '}';
+                "} extends " + super.getDetailString();
     }
 
     public MaterialAboutCheckBoxItem(MaterialAboutCheckBoxItem item) {
+    	super(item);
         this.id = item.getId();
         this.text = item.getText();
         this.textRes = item.getTextRes();
@@ -177,8 +167,6 @@ public class MaterialAboutCheckBoxItem extends MaterialAboutItem {
         this.iconRes = item.getIconRes();
         this.showIcon = item.showIcon;
         this.iconGravity = item.iconGravity;
-        this.onCheckedChanged = item.onCheckedChanged;
-        this.checked = item.checked;
     }
 
     @Override
@@ -265,37 +253,17 @@ public class MaterialAboutCheckBoxItem extends MaterialAboutItem {
         return this;
     }
 
-    public MaterialAboutOnCheckedChangedAction getOnCheckedChanged() {
-        return onCheckedChanged;
-    }
-
-    public void setChecked(boolean checked) {
-        this.checked = checked;
-    }
-
-    public boolean isChecked() {
-        return checked;
-    }
-
-    public MaterialAboutCheckBoxItem setOnCheckedChanged(MaterialAboutOnCheckedChangedAction onCheckedChanged) {
-        this.onCheckedChanged = onCheckedChanged;
-        return this;
-    }
-
     @Retention(RetentionPolicy.SOURCE)
     @IntDef({GRAVITY_TOP, GRAVITY_MIDDLE, GRAVITY_BOTTOM})
     public @interface IconGravity {
     }
 
-    public static class MaterialAboutCheckBoxItemViewHolder extends MaterialAboutItemViewHolder implements CompoundButton.OnCheckedChangeListener {
+    public static class MaterialAboutCheckBoxItemViewHolder extends MaterialAboutCheckableItemViewHolder implements CompoundButton.OnCheckedChangeListener {
         public final View view;
         public final ImageView icon;
         public final TextView text;
         public final TextView subText;
         public final CheckBox aCheckBox;
-        private MaterialAboutOnCheckedChangedAction onCheckedChanged;
-        private MaterialAboutCheckBoxItem materialAboutCheckBoxItem;
-        private boolean broadcasting;
 
         MaterialAboutCheckBoxItemViewHolder(View view) {
             super(view);
@@ -306,37 +274,24 @@ public class MaterialAboutCheckBoxItem extends MaterialAboutItem {
             aCheckBox = (CheckBox) view.findViewById(R.id.mal_checkbox);
         }
 
-        public void setMaterialAboutCheckBoxItem(MaterialAboutCheckBoxItem materialAboutCheckBoxItem) {
-            this.materialAboutCheckBoxItem = materialAboutCheckBoxItem;
-        }
+		@Override
+		protected void initActionViewListener(boolean hasListener) {
+			this.aCheckBox.setOnCheckedChangeListener(hasListener ? this : null);
+		}
 
-        public void setOnCheckedChanged(MaterialAboutOnCheckedChangedAction onCheckedChanged) {
-            this.onCheckedChanged = onCheckedChanged;
-            this.aCheckBox.setOnCheckedChangeListener(onCheckedChanged != null ? this : null);
-        }
+		@Override
+		protected void setActionViewChecked(boolean isChecked) {
+			this.aCheckBox.setChecked(isChecked);
+		}
 
         @Override
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-            this.materialAboutCheckBoxItem.setChecked(isChecked);
-
-            // Avoid infinite recursions if this.aCheckBox.setChecked() is called from a listener or below
-            if (this.broadcasting) {
-                return;
-            }
-
-            this.broadcasting = true;
-            if (this.onCheckedChanged != null) {
-                if (!this.onCheckedChanged.onCheckedChanged(buttonView, isChecked)) {
-                    this.aCheckBox.setChecked(!isChecked);
-                }
-            }
-            this.broadcasting = false;
+        	super.onCheckedChanged(isChecked);
         }
     }
 
-    public static class Builder {
+    public static class Builder extends CheckableBuilder<Builder> {
 
-        MaterialAboutOnCheckedChangedAction onCheckedChanged = null;
         private CharSequence text = null;
         @StringRes
         private int textRes = 0;
@@ -349,7 +304,6 @@ public class MaterialAboutCheckBoxItem extends MaterialAboutItem {
         private boolean showIcon = true;
         @IconGravity
         private int iconGravity = GRAVITY_MIDDLE;
-        boolean checked = false;
 
         public Builder text(CharSequence text) {
             this.text = text;
@@ -405,16 +359,6 @@ public class MaterialAboutCheckBoxItem extends MaterialAboutItem {
 
         public Builder setIconGravity(@MaterialAboutCheckBoxItem.IconGravity int iconGravity) {
             this.iconGravity = iconGravity;
-            return this;
-        }
-
-        public Builder setOnCheckedChanged(MaterialAboutOnCheckedChangedAction onCheckedChanged) {
-            this.onCheckedChanged = onCheckedChanged;
-            return this;
-        }
-
-        public Builder setChecked(boolean checked) {
-            this.checked = checked;
             return this;
         }
 
