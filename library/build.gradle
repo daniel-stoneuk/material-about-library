@@ -29,7 +29,7 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile "androidx.appcompat:appcompat:$androidXVersion"
+    compile "androidx.appcompat:appcompat:$appCompatVersion"
     compile "androidx.cardview:cardview:$androidXVersion"
-    compile "com.google.android.material:material:$androidXVersion"
+    compile "com.google.android.material:material:$materialVersion"
 }
