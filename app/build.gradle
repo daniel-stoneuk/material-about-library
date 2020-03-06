@@ -26,7 +26,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestImplementation('androidx.test.espresso:espresso-core:3.1.0-beta02', {
+    androidTestImplementation('androidx.test.espresso:espresso-core:3.3.0-alpha04', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     
@@ -35,10 +35,10 @@ dependencies {
     implementation "com.google.android.material:material:$materialVersion"
     implementation "com.mikepenz:iconics-core:2.9.5@aar"
     implementation 'com.mikepenz:community-material-typeface:2.0.46.1@aar'
-    implementation 'net.yslibrary.licenseadapter:licenseadapter:2.2.2'
+    implementation 'net.yslibrary.licenseadapter:licenseadapter:3.0.0'
 
     debugImplementation "com.squareup.leakcanary:leakcanary-android:$leakCanaryVersion"
-    releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:$leakCanaryVersion"
-    testImplementation "com.squareup.leakcanary:leakcanary-android-no-op:$leakCanaryVersion"
-    testImplementation "junit:junit:4.12"
+    releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:1.5.4"
+    testImplementation "com.squareup.leakcanary:leakcanary-android-no-op:1.5.4"
+    testImplementation 'junit:junit:4.13'
 }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.Mal.Light" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="Theme.Mal.Light" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="mal_toolbarTheme">@style/Theme.Mal.Toolbar.Light</item>
         <item name="mal_toolbarPopupTheme">@style/Theme.Mal.Toolbar.Light</item>
         <item name="mal_color_primary">@color/mal_text_primary</item>
@@ -9,7 +9,7 @@
         <item name="mal_card_background">@color/cardview_light_background</item>
     </style>
 
-    <style name="Theme.Mal.Dark" parent="Theme.AppCompat.NoActionBar">
+    <style name="Theme.Mal.Dark" parent="Theme.MaterialComponents.NoActionBar">
         <item name="mal_toolbarTheme">@style/Theme.Mal.Toolbar.Dark</item>
         <item name="mal_toolbarPopupTheme">@style/Theme.Mal.Toolbar.Dark</item>
         <item name="mal_color_primary">@color/mal_text_primary_dark</item>
@@ -27,7 +27,7 @@
 
 
 
-    <style name="Theme.Mal.Toolbar.Light" parent="ThemeOverlay.AppCompat.Light" />
-    <style name="Theme.Mal.Toolbar.Dark" parent="ThemeOverlay.AppCompat.Dark" />
+    <style name="Theme.Mal.Toolbar.Light" parent="ThemeOverlay.MaterialComponents.Light" />
+    <style name="Theme.Mal.Toolbar.Dark" parent="ThemeOverlay.MaterialComponents.Dark" />
 
 </resources>

@@ -6,7 +6,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.5.0'
+        classpath 'com.android.tools.build:gradle:3.6.1'
         classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1' // Add this line
 
         // NOTE: Do not place your application dependencies here; they belong
@@ -29,8 +29,8 @@ ext {
 
     androidXVersion = '1.0.0'
     appCompatVersion = '1.1.0'
-    materialVersion = '1.0.0'
-    leakCanaryVersion = '1.5.4'
+    materialVersion = '1.1.0'
+    leakCanaryVersion = '2.2'
 }
 
 task clean(type: Delete) {
