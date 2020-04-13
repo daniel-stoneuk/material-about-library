@@ -27,10 +27,8 @@ ext {
     targetSdkVersion = compileSdkVersion
     minSdkVersion = 14
 
-    androidXVersion = '1.0.0'
     appCompatVersion = '1.1.0'
     materialVersion = '1.1.0'
-    leakCanaryVersion = '2.2'
 }
 
 task clean(type: Delete) {
