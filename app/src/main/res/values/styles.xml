@@ -43,6 +43,7 @@
         <item name="android:textColorPrimary">#ffffff</item>
         <item name="android:textColorSecondary">#ffffff</item>
         <item name="colorSurface">@color/colorPrimaryDark</item>
+        <item name="colorOnSurface">#ffffff</item>
     </style>
 
     <style name="AppTheme.MaterialAboutActivity.Light" parent="Theme.MaterialComponents.Light.NoActionBar">
