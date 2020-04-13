@@ -25,7 +25,7 @@ public class Demo {
 
         appCardBuilder.addItem(new MaterialAboutTitleItem.Builder()
                 .text("Material About Library")
-                .desc("© 2017 Daniel Stone")
+                .desc("© 2020 Daniel Stone")
                 .icon(R.mipmap.ic_launcher)
                 .build());
 
@@ -103,7 +103,7 @@ public class Demo {
                         .sizeDp(18),
                 "Visit Website",
                 true,
-                Uri.parse("http://daniel-stone.uk")));
+                Uri.parse("http://danstone.uk")));
 
         convenienceCardBuilder.addItem(ConvenienceBuilder.createRateActionItem(c,
                 new IconicsDrawable(c)
@@ -121,7 +121,7 @@ public class Demo {
                         .sizeDp(18),
                 "Send an email",
                 true,
-                "apps@daniel-stone.uk",
+                "apps@danstone.uk",
                 "Question concerning MaterialAboutLibrary"));
 
         convenienceCardBuilder.addItem(ConvenienceBuilder.createPhoneItem(c,
