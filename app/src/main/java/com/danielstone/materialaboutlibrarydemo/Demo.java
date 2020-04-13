@@ -19,7 +19,7 @@ import com.mikepenz.iconics.IconicsDrawable;
 
 public class Demo {
 
-    public static MaterialAboutList createMaterialAboutList(final Context c, final int colorIcon, final int theme) {
+    public static MaterialAboutList createMaterialAboutList(final Context c, final int theme) {
         MaterialAboutCard.Builder appCardBuilder = new MaterialAboutCard.Builder();
 
         // Add items to card
@@ -135,7 +135,7 @@ public class Demo {
         MaterialAboutCard.Builder otherCardBuilder = new MaterialAboutCard.Builder();
         otherCardBuilder.title("Other");
 
-        otherCardBuilder.cardColor(Color.parseColor("#7986CB"));
+        otherCardBuilder.cardColor(Color.parseColor("#c0cfff"));
 
         otherCardBuilder.addItem(new MaterialAboutActionItem.Builder()
                 .icon(new IconicsDrawable(c)
@@ -150,7 +150,7 @@ public class Demo {
         return new MaterialAboutList(appCardBuilder.build(), authorCardBuilder.build(), convenienceCardBuilder.build(), otherCardBuilder.build());
     }
 
-    public static MaterialAboutList createMaterialAboutLicenseList(final Context c, int colorIcon) {
+    public static MaterialAboutList createMaterialAboutLicenseList(final Context c) {
 
         MaterialAboutCard materialAboutLibraryLicenseCard = ConvenienceBuilder.createLicenseCard(c,
                 new IconicsDrawable(c)

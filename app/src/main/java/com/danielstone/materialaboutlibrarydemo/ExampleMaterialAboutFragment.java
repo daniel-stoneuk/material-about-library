@@ -23,8 +23,7 @@ public class ExampleMaterialAboutFragment extends MaterialAboutFragment {
                 .subText(subText)
                 .icon(new IconicsDrawable(c)
                         .icon(CommunityMaterial.Icon.cmd_refresh)
-                        .color(ContextCompat.getColor(c, R.color.mal_color_icon_dark_theme)
-                        ).sizeDp(18))
+                        .sizeDp(18))
                 .build();
         item.setOnClickAction(new MaterialAboutItemOnClickAction() {
             @Override
@@ -39,7 +38,7 @@ public class ExampleMaterialAboutFragment extends MaterialAboutFragment {
 
     @Override
     protected MaterialAboutList getMaterialAboutList(final Context c) {
-        MaterialAboutList list = Demo.createMaterialAboutList(c, R.color.mal_color_icon_dark_theme, THEME_LIGHT);
+        MaterialAboutList list = Demo.createMaterialAboutList(c, THEME_LIGHT);
 
         list.getCards().get(2).getItems().add(createDynamicItem("Tap for a random number", c));
 
@@ -48,8 +47,7 @@ public class ExampleMaterialAboutFragment extends MaterialAboutFragment {
                 .subText("Time")
                 .icon(new IconicsDrawable(c)
                         .icon(CommunityMaterial.Icon.cmd_clock)
-                        .color(ContextCompat.getColor(c, R.color.mal_color_icon_dark_theme)
-                        ).sizeDp(18))
+                        .sizeDp(18))
                 .build();
         list.getCards().get(2).getItems().add(time);
 
