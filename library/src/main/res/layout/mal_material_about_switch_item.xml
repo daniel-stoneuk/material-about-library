@@ -16,6 +16,7 @@
         android:layout_gravity="center"
         android:layout_marginEnd="@dimen/mal_baseline_half"
         android:layout_marginLeft="@dimen/mal_baseline"
+        android:tint="?colorOnSurface"
         android:layout_marginRight="@dimen/mal_baseline_half"
         android:layout_marginStart="@dimen/mal_baseline"
         android:adjustViewBounds="false"
@@ -40,16 +41,14 @@
             android:id="@+id/mal_switch_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-            android:textColor="?mal_color_primary"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
             tools:text="Version" />
 
         <TextView
             android:id="@+id/mal_switch_subtext"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:textColor="?mal_color_secondary"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
             android:visibility="gone"
             tools:visibility="visible"
             tools:text="Current Version Of App" />
@@ -58,11 +57,9 @@
     <Switch
         android:id="@+id/mal_switch"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/mal_baseline_half"
+        android:layout_height="32dp"
         android:layout_marginEnd="@dimen/mal_baseline_half"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="@dimen/mal_baseline_half"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="@dimen/mal_baseline_half" />
 

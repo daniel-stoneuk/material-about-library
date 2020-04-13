@@ -4,12 +4,17 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
+import android.widget.Toast;
 
 import androidx.core.content.ContextCompat;
 
 import com.danielstone.materialaboutlibrary.ConvenienceBuilder;
 import com.danielstone.materialaboutlibrary.items.MaterialAboutActionItem;
+import com.danielstone.materialaboutlibrary.items.MaterialAboutCheckBoxItem;
+import com.danielstone.materialaboutlibrary.items.MaterialAboutCheckableItem;
 import com.danielstone.materialaboutlibrary.items.MaterialAboutItemOnClickAction;
+import com.danielstone.materialaboutlibrary.items.MaterialAboutOnCheckedChangedAction;
+import com.danielstone.materialaboutlibrary.items.MaterialAboutSwitchItem;
 import com.danielstone.materialaboutlibrary.items.MaterialAboutTitleItem;
 import com.danielstone.materialaboutlibrary.model.MaterialAboutCard;
 import com.danielstone.materialaboutlibrary.model.MaterialAboutList;
@@ -44,6 +49,36 @@ public class Demo {
                         .sizeDp(18))
                 .setOnClickAction(ConvenienceBuilder.createWebViewDialogOnClickAction(c, "Releases", "https://github.com/daniel-stoneuk/material-about-library/releases", true, false))
                 .build());
+
+        appCardBuilder.addItem(new MaterialAboutCheckBoxItem.Builder()
+                .text("Checkbox")
+                .icon(new IconicsDrawable(c)
+                        .icon(CommunityMaterial.Icon.cmd_checkbox_marked_outline)
+                        .sizeDp(18))
+                .setOnCheckedChanged(new MaterialAboutOnCheckedChangedAction() {
+                    @Override
+                    public boolean onCheckedChanged(MaterialAboutCheckableItem item, boolean isChecked) {
+                        Toast.makeText(c, "checked: " + isChecked, Toast.LENGTH_SHORT).show();
+                        return true;
+                    }
+                })
+                .build()
+        );
+
+        appCardBuilder.addItem(new MaterialAboutSwitchItem.Builder()
+                .text("Switch")
+                .icon(new IconicsDrawable(c)
+                        .icon(CommunityMaterial.Icon.cmd_toggle_switch)
+                        .sizeDp(18))
+                .setOnCheckedChanged(new MaterialAboutOnCheckedChangedAction() {
+                    @Override
+                    public boolean onCheckedChanged(MaterialAboutCheckableItem item, boolean isChecked) {
+                        Toast.makeText(c, "switch: " + isChecked, Toast.LENGTH_SHORT).show();
+                        return true;
+                    }
+                })
+                .build()
+        );
 
         appCardBuilder.addItem(new MaterialAboutActionItem.Builder()
                 .text("Licenses")
@@ -146,7 +181,6 @@ public class Demo {
                 .setIconGravity(MaterialAboutActionItem.GRAVITY_TOP)
                 .build()
         );
-
         return new MaterialAboutList(appCardBuilder.build(), authorCardBuilder.build(), convenienceCardBuilder.build(), otherCardBuilder.build());
     }
 
