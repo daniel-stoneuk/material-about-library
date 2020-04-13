@@ -7,7 +7,7 @@ def versionBuild = 0 // bump for dogfood builds, public betas, etc.
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion '28.0.3'
+
     defaultConfig {
         applicationId "com.danielstone.materialaboutlibrarydemo"
         minSdkVersion 15
