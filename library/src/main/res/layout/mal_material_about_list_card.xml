@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
+<com.google.android.material.card.MaterialCardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -17,11 +17,9 @@
     android:paddingRight="@dimen/mal_baseline_half"
     android:paddingStart="@dimen/mal_baseline_half"
     android:paddingTop="@dimen/mal_baseline"
-    app:cardBackgroundColor="?mal_card_background"
-    app:cardCornerRadius="@dimen/mal_card_radius"
-    app:cardElevation="@dimen/mal_card_elevation"
-    app:cardPreventCornerOverlap="false"
-    app:cardUseCompatPadding="true"
+    app:strokeWidth="1dp"
+    app:strokeColor="@color/mal_stroke_color"
+    app:cardElevation="0dp"
     >
 
     <LinearLayout
@@ -40,17 +38,16 @@
             android:layout_marginStart="@dimen/mal_baseline"
             android:layout_marginTop="@dimen/mal_baseline"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-            android:textColor="?mal_color_primary"
             tools:text="Author"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/mal_card_recyclerview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:clipToPadding="false"
+            android:clipToPadding="true"
             android:paddingBottom="@dimen/mal_baseline_half"
             android:paddingTop="@dimen/mal_baseline_half"/>
 
     </LinearLayout>
 
-</androidx.cardview.widget.CardView>
+</com.google.android.material.card.MaterialCardView>

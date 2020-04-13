@@ -12,7 +12,7 @@ import com.danielstone.materialaboutlibrary.model.MaterialAboutList;
 import com.mikepenz.community_material_typeface_library.CommunityMaterial;
 import com.mikepenz.iconics.IconicsDrawable;
 
-import static com.danielstone.materialaboutlibrarydemo.ExampleMaterialAboutActivity.THEME_LIGHT_DARKBAR;
+import static com.danielstone.materialaboutlibrarydemo.ExampleMaterialAboutActivity.THEME_LIGHT;
 
 
 public class ExampleMaterialAboutFragment extends MaterialAboutFragment {
@@ -22,9 +22,8 @@ public class ExampleMaterialAboutFragment extends MaterialAboutFragment {
                 .text("Dynamic UI")
                 .subText(subText)
                 .icon(new IconicsDrawable(c)
-                        .icon(CommunityMaterial.Icon2.cmd_refresh)
-                        .color(ContextCompat.getColor(c, R.color.mal_color_icon_dark_theme)
-                        ).sizeDp(18))
+                        .icon(CommunityMaterial.Icon.cmd_refresh)
+                        .sizeDp(18))
                 .build();
         item.setOnClickAction(new MaterialAboutItemOnClickAction() {
             @Override
@@ -39,7 +38,7 @@ public class ExampleMaterialAboutFragment extends MaterialAboutFragment {
 
     @Override
     protected MaterialAboutList getMaterialAboutList(final Context c) {
-        MaterialAboutList list = Demo.createMaterialAboutList(c, R.color.mal_color_icon_dark_theme, THEME_LIGHT_DARKBAR);
+        MaterialAboutList list = Demo.createMaterialAboutList(c, THEME_LIGHT);
 
         list.getCards().get(2).getItems().add(createDynamicItem("Tap for a random number", c));
 
@@ -48,8 +47,7 @@ public class ExampleMaterialAboutFragment extends MaterialAboutFragment {
                 .subText("Time")
                 .icon(new IconicsDrawable(c)
                         .icon(CommunityMaterial.Icon.cmd_clock)
-                        .color(ContextCompat.getColor(c, R.color.mal_color_icon_dark_theme)
-                        ).sizeDp(18))
+                        .sizeDp(18))
                 .build();
         list.getCards().get(2).getItems().add(time);
 
@@ -82,8 +80,4 @@ public class ExampleMaterialAboutFragment extends MaterialAboutFragment {
         handler.removeCallbacks(runnable);
     }
 
-    @Override
-    protected int getTheme() {
-        return R.style.AppTheme_MaterialAboutActivity_Fragment;
-    }
 }

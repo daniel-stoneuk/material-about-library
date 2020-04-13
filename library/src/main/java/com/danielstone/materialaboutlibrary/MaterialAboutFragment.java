@@ -3,6 +3,9 @@ package com.danielstone.materialaboutlibrary;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -10,14 +13,13 @@ import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SimpleItemAnimator;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.danielstone.materialaboutlibrary.adapters.MaterialAboutListAdapter;
 import com.danielstone.materialaboutlibrary.model.MaterialAboutList;
 import com.danielstone.materialaboutlibrary.util.DefaultViewTypeManager;
 import com.danielstone.materialaboutlibrary.util.ViewTypeManager;
+
+import java.lang.ref.WeakReference;
 
 public abstract class MaterialAboutFragment extends Fragment {
 
@@ -31,11 +33,8 @@ public abstract class MaterialAboutFragment extends Fragment {
 
     protected abstract MaterialAboutList getMaterialAboutList(Context activityContext);
 
-    protected int getTheme() {
-        return R.style.Theme_Mal_Light;
-    }
 
-    protected boolean shouldAnimate() {
+    private boolean shouldAnimate() {
         return true;
     }
 
@@ -43,12 +42,7 @@ public abstract class MaterialAboutFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        int style = getTheme();
-
-        // create ContextThemeWrapper from the original Activity Context with the custom theme
-        final Context contextThemeWrapper = new android.view.ContextThemeWrapper(getActivity(), style);
-        LayoutInflater localInflater = inflater.cloneInContext(contextThemeWrapper);
-        View rootView = localInflater.inflate(R.layout.mal_material_about_fragment, container, false);
+        View rootView = inflater.inflate(R.layout.mal_material_about_fragment, container, false);
 
         recyclerView = (RecyclerView) rootView.findViewById(R.id.mal_recyclerview);
         adapter = new MaterialAboutListAdapter(getViewTypeManager());
@@ -63,13 +57,12 @@ public abstract class MaterialAboutFragment extends Fragment {
         recyclerView.setAlpha(0f);
         recyclerView.setTranslationY(20);
 
-        ListTask task = new ListTask(getActivity());
-        task.execute();
+        new ListTask(this).execute();
 
         return rootView;
     }
 
-    protected ViewTypeManager getViewTypeManager() {
+    private ViewTypeManager getViewTypeManager() {
         return new DefaultViewTypeManager();
     }
 
@@ -77,9 +70,23 @@ public abstract class MaterialAboutFragment extends Fragment {
         return list;
     }
 
-    protected void setMaterialAboutList(MaterialAboutList materialAboutList) {
+    private void setMaterialAboutList(MaterialAboutList materialAboutList) {
         list = materialAboutList;
         adapter.setData(list.getCards());
+    }
+
+    private void displayList(){
+        if (shouldAnimate()) {
+            recyclerView.animate()
+                    .alpha(1f)
+                    .translationY(0f)
+                    .setDuration(600)
+                    .setInterpolator(new FastOutSlowInInterpolator())
+                    .start();
+        } else {
+            recyclerView.setAlpha(1f);
+            recyclerView.setTranslationY(0f);
+        }
     }
 
     @Override
@@ -91,38 +98,28 @@ public abstract class MaterialAboutFragment extends Fragment {
         setMaterialAboutList(list);
     }
 
-    private class ListTask extends AsyncTask<String, String, String> {
+    private static class ListTask extends AsyncTask<String, String, MaterialAboutList> {
 
-        Context fragmentContext;
+        private final WeakReference<MaterialAboutFragment> fragmentContextReference;
 
-        public ListTask(Context activityContext) {
-            this.fragmentContext = activityContext;
+        ListTask(MaterialAboutFragment materialAboutFragment) {
+            this.fragmentContextReference = new WeakReference<>(materialAboutFragment);
         }
 
         @Override
-        protected String doInBackground(String... params) {
-            list = getMaterialAboutList(fragmentContext);
-            return null;
+        protected MaterialAboutList doInBackground(String... params) {
+            MaterialAboutFragment fragment = fragmentContextReference.get();
+            return isCancelled() || fragment == null ? null : fragment.getMaterialAboutList(fragment.getActivity());
         }
 
         @Override
-        protected void onPostExecute(String s) {
-            adapter.setData(list.getCards());
-
-            if (shouldAnimate()) {
-                recyclerView.animate()
-                        .alpha(1f)
-                        .translationY(0f)
-                        .setDuration(600)
-                        .setInterpolator(new FastOutSlowInInterpolator())
-                        .start();
-            } else {
-                recyclerView.setAlpha(1f);
-                recyclerView.setTranslationY(0f);
+        protected void onPostExecute(MaterialAboutList materialAboutList) {
+            MaterialAboutFragment fragment = fragmentContextReference.get();
+            if (fragment != null) {
+                fragment.setMaterialAboutList(materialAboutList);
+                fragment.displayList();
             }
-
-            super.onPostExecute(s);
-            fragmentContext = null;
+            fragmentContextReference.clear();
         }
     }
 }

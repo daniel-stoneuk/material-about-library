@@ -61,9 +61,9 @@ public class MaterialAboutListAdapter extends RecyclerView.Adapter<MaterialAbout
             CardView cardView = (CardView) holder.cardView;
             int cardColor = card.getCardColor();
             if (cardColor != 0) {
-                cardView.setBackgroundColor(cardColor);
+                cardView.setCardBackgroundColor(cardColor);
             } else {
-                cardView.setBackgroundColor(cardView.getCardBackgroundColor().getDefaultColor());
+                cardView.setCardBackgroundColor(cardView.getCardBackgroundColor().getDefaultColor());
             }
         }
 

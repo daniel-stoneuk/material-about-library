@@ -3,6 +3,10 @@ package com.danielstone.materialaboutlibrarydemo;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import com.google.android.material.snackbar.Snackbar;
+import androidx.core.content.ContextCompat;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -11,17 +15,13 @@ import android.widget.Toast;
 import com.danielstone.materialaboutlibrary.ConvenienceBuilder;
 import com.danielstone.materialaboutlibrary.MaterialAboutActivity;
 import com.danielstone.materialaboutlibrary.items.MaterialAboutActionItem;
-import com.danielstone.materialaboutlibrary.items.MaterialAboutCheckableItem;
 import com.danielstone.materialaboutlibrary.items.MaterialAboutItemOnClickAction;
-import com.danielstone.materialaboutlibrary.items.MaterialAboutOnCheckedChangedAction;
-import com.danielstone.materialaboutlibrary.items.MaterialAboutSwitchItem;
 import com.danielstone.materialaboutlibrary.items.MaterialAboutTitleItem;
 import com.danielstone.materialaboutlibrary.model.MaterialAboutCard;
 import com.danielstone.materialaboutlibrary.model.MaterialAboutList;
 import com.danielstone.materialaboutlibrary.util.ViewTypeManager;
 import com.danielstone.materialaboutlibrarydemo.custom.MyCustomItem;
 import com.danielstone.materialaboutlibrarydemo.custom.MyViewTypeManager;
-import com.google.android.material.snackbar.Snackbar;
 import com.mikepenz.community_material_typeface_library.CommunityMaterial;
 import com.mikepenz.iconics.IconicsDrawable;
 
@@ -32,38 +32,30 @@ import net.yslibrary.licenseadapter.Licenses;
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
-
 public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
 
     public static final String THEME_EXTRA = "";
-    public static final int THEME_LIGHT_LIGHTBAR = 0;
-    public static final int THEME_LIGHT_DARKBAR = 1;
-    public static final int THEME_DARK_LIGHTBAR = 2;
-    public static final int THEME_DARK_DARKBAR = 3;
-    public static final int THEME_CUSTOM_CARDVIEW = 4;
-
-    protected int colorIcon = R.color.mal_color_icon_light_theme;
+    public static final int THEME_LIGHT = 0;
+    public static final int THEME_DARK = 1;
+    public static final int THEME_DAYNIGHT = 2;
+    public static final int THEME_CUSTOM_CARDVIEW = 3;
 
     @NonNull
     @Override
     protected MaterialAboutList getMaterialAboutList(@NonNull final Context c) {
-        final MaterialAboutCard.Builder advancedCardBuilder = new MaterialAboutCard.Builder();
+        MaterialAboutCard.Builder advancedCardBuilder = new MaterialAboutCard.Builder();
         advancedCardBuilder.title("Advanced");
 
         advancedCardBuilder.addItem(new MaterialAboutTitleItem.Builder()
                 .text("TitleItem OnClickAction")
                 .icon(R.mipmap.ic_launcher)
-                .setOnClickAction(ConvenienceBuilder.createWebsiteOnClickAction(c, Uri.parse("http://www.daniel-stone.uk")))
+                .setOnClickAction(ConvenienceBuilder.createWebsiteOnClickAction(c, Uri.parse("http://www.danstone.uk")))
                 .build());
 
         advancedCardBuilder.addItem(new MaterialAboutActionItem.Builder()
                 .text("Snackbar demo")
                 .icon(new IconicsDrawable(c)
                         .icon(CommunityMaterial.Icon.cmd_code_tags)
-                        .color(ContextCompat.getColor(c, colorIcon))
                         .sizeDp(18))
                 .setOnClickAction(new MaterialAboutItemOnClickAction() {
                     @Override
@@ -76,14 +68,11 @@ public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
         advancedCardBuilder.addItem(new MaterialAboutActionItem.Builder()
                 .text("OnLongClickAction demo")
                 .icon(new IconicsDrawable(c)
-                        .icon(CommunityMaterial.Icon2.cmd_hand_pointing_right)
-                        .color(ContextCompat.getColor(c, colorIcon))
+                        .icon(CommunityMaterial.Icon.cmd_hand_pointing_right)
                         .sizeDp(18))
                 .setOnLongClickAction(new MaterialAboutItemOnClickAction() {
                     @Override
                     public void onClick() {
-                        ((MaterialAboutSwitchItem) getList().getCards().get(4).getItems().get(1)).setChecked(!((MaterialAboutSwitchItem) getList().getCards().get(4).getItems().get(1)).isChecked());
-                        refreshMaterialAboutList();
                         Toast.makeText(c, "Long pressed", Toast.LENGTH_SHORT).show();
                     }
                 })
@@ -93,23 +82,8 @@ public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
                 .text("Custom Item")
                 .icon(new IconicsDrawable(c)
                         .icon(CommunityMaterial.Icon.cmd_code_braces)
-                        .color(ContextCompat.getColor(c, colorIcon))
                         .sizeDp(18))
                 .build());
-
-        final MaterialAboutSwitchItem switchItem = new MaterialAboutSwitchItem.Builder()
-                .text("This a switch")
-                .subText("This switch cannot be switched off")
-                .setChecked(true)
-                .build();
-        switchItem.setOnCheckedChangedAction(new MaterialAboutOnCheckedChangedAction() {
-            @Override
-            public boolean onCheckedChanged(MaterialAboutCheckableItem item, boolean isChecked) {
-                Toast.makeText(c, "This cannot be switched off", Toast.LENGTH_SHORT).show();
-                return false;
-            }
-        });
-        advancedCardBuilder.addItem(switchItem);
 
         advancedCardBuilder.addItem(createDynamicItem("Tap for a random number & swap position", c));
 
@@ -124,7 +98,7 @@ public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
         customAdapterCardBuilder.title("Custom Adapter (License Adapter)");
         customAdapterCardBuilder.customAdapter(new LicenseAdapter(libraries));
 
-        return Demo.createMaterialAboutList(c, colorIcon, getIntent().getIntExtra(THEME_EXTRA, THEME_LIGHT_DARKBAR)).addCard(advancedCardBuilder.build()).addCard(customAdapterCardBuilder.build());
+        return Demo.createMaterialAboutList(c, getIntent().getIntExtra(THEME_EXTRA, THEME_LIGHT)).addCard(advancedCardBuilder.build()).addCard(customAdapterCardBuilder.build());
     }
 
     private MaterialAboutActionItem createDynamicItem(String subText, final Context c) {
@@ -132,18 +106,16 @@ public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
                 .text("Dynamic UI")
                 .subText(subText)
                 .icon(new IconicsDrawable(c)
-                        .icon(CommunityMaterial.Icon2.cmd_refresh)
-                        .color(ContextCompat.getColor(c, colorIcon)
-                        ).sizeDp(18))
+                        .icon(CommunityMaterial.Icon.cmd_refresh)
+                        .sizeDp(18))
                 .build();
         item.setOnClickAction(new MaterialAboutItemOnClickAction() {
             @Override
             public void onClick() {
-                getList().getCards().get(5).getItems().remove(getList().getCards().get(5).getItems().indexOf(item));
+                getList().getCards().get(4).getItems().remove(getList().getCards().get(4).getItems().indexOf(item));
                 int newIndex = ((int) (Math.random() * 5));
-                getList().getCards().get(5).getItems().add(newIndex, item);
+                getList().getCards().get(4).getItems().add(newIndex, item);
                 item.setSubText("Random number: " + ((int) (Math.random() * 10)));
-
                 setMaterialAboutList(getList());
             }
         });
@@ -154,27 +126,18 @@ public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        Log.i("test", "onCreate: " + getIntent().getIntExtra(THEME_EXTRA, THEME_LIGHT_DARKBAR));
-        switch (getIntent().getIntExtra(THEME_EXTRA, THEME_LIGHT_DARKBAR)) {
-            case THEME_LIGHT_LIGHTBAR:
+        switch (getIntent().getIntExtra(THEME_EXTRA, THEME_LIGHT)) {
+            case THEME_LIGHT:
                 setTheme(R.style.AppTheme_MaterialAboutActivity_Light);
-                colorIcon = R.color.mal_color_icon_light_theme;
                 break;
-            case THEME_DARK_LIGHTBAR:
-                setTheme(R.style.AppTheme_MaterialAboutActivity_Dark_LightActionBar);
-                colorIcon = R.color.mal_color_icon_dark_theme;
-                break;
-            case THEME_LIGHT_DARKBAR:
-                setTheme(R.style.AppTheme_MaterialAboutActivity_Light_DarkActionBar);
-                colorIcon = R.color.mal_color_icon_light_theme;
-                break;
-            case THEME_DARK_DARKBAR:
+            case THEME_DARK:
                 setTheme(R.style.AppTheme_MaterialAboutActivity_Dark);
-                colorIcon = R.color.mal_color_icon_dark_theme;
+                break;
+            case THEME_DAYNIGHT:
+                setTheme(R.style.AppTheme_MaterialAboutActivity_DayNight);
                 break;
             case THEME_CUSTOM_CARDVIEW:
                 setTheme(R.style.AppTheme_MaterialAboutActivity_Light_DarkActionBar_CustomCardView);
-                colorIcon = R.color.mal_color_icon_dark_theme;
                 break;
         }
 

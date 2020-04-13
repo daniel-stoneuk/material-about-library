@@ -26,7 +26,7 @@
         android:layout_marginTop="@dimen/mal_baseline"
         android:onClick="onActivityButtonPressed"
         android:tag="0"
-        android:text="Launch Activity - Light with Light Action Bar" />
+        android:text="Launch Activity - Light" />
 
     <Button
         style="@style/Widget.AppCompat.Button.Colored"
@@ -35,7 +35,7 @@
         android:layout_marginTop="@dimen/mal_baseline"
         android:onClick="onActivityButtonPressed"
         android:tag="1"
-        android:text="Launch Activity - Light with Dark Action Bar" />
+        android:text="Launch Activity - Dark" />
 
     <Button
         style="@style/Widget.AppCompat.Button.Colored"
@@ -44,7 +44,7 @@
         android:layout_marginTop="@dimen/mal_baseline"
         android:onClick="onActivityButtonPressed"
         android:tag="2"
-        android:text="Launch Activity - Dark with Light Action Bar" />
+        android:text="Launch Activity - Daynight" />
 
     <Button
         style="@style/Widget.AppCompat.Button.Colored"
@@ -53,14 +53,5 @@
         android:layout_marginTop="@dimen/mal_baseline"
         android:onClick="onActivityButtonPressed"
         android:tag="3"
-        android:text="Launch Activity - Dark with Dark Action Bar" />
-
-    <Button
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/mal_baseline"
-        android:onClick="onActivityButtonPressed"
-        android:tag="4"
         android:text="Launch Activity - Custom CardView Background" />
 </LinearLayout>

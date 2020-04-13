@@ -41,7 +41,6 @@
             android:layout_marginLeft="@dimen/mal_baseline_half"
             android:layout_marginStart="@dimen/mal_baseline_half"
             android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-            android:textColor="?mal_color_primary"
             tools:text="App Name" />
 
         <TextView
@@ -52,7 +51,6 @@
             android:layout_marginStart="@dimen/mal_baseline_half"
             android:layout_marginTop="-4dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:textColor="?mal_color_secondary"
             tools:text="Copyright Me" />
 
     </LinearLayout>
