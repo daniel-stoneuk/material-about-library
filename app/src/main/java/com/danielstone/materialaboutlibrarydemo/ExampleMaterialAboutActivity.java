@@ -35,11 +35,10 @@ import java.util.List;
 public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
 
     public static final String THEME_EXTRA = "";
-    public static final int THEME_LIGHT_LIGHTBAR = 0;
-    public static final int THEME_LIGHT_DARKBAR = 1;
-    public static final int THEME_DARK_LIGHTBAR = 2;
-    public static final int THEME_DARK_DARKBAR = 3;
-    public static final int THEME_CUSTOM_CARDVIEW = 4;
+    public static final int THEME_LIGHT = 0;
+    public static final int THEME_DARK = 1;
+    public static final int THEME_DAYNIGHT = 2;
+    public static final int THEME_CUSTOM_CARDVIEW = 3;
 
     protected int colorIcon = R.color.mal_color_icon_light_theme;
 
@@ -104,7 +103,7 @@ public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
         customAdapterCardBuilder.title("Custom Adapter (License Adapter)");
         customAdapterCardBuilder.customAdapter(new LicenseAdapter(libraries));
 
-        return Demo.createMaterialAboutList(c, colorIcon, getIntent().getIntExtra(THEME_EXTRA, THEME_LIGHT_DARKBAR)).addCard(advancedCardBuilder.build()).addCard(customAdapterCardBuilder.build());
+        return Demo.createMaterialAboutList(c, colorIcon, getIntent().getIntExtra(THEME_EXTRA, THEME_LIGHT)).addCard(advancedCardBuilder.build()).addCard(customAdapterCardBuilder.build());
     }
 
     private MaterialAboutActionItem createDynamicItem(String subText, final Context c) {
@@ -133,23 +132,18 @@ public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        Log.i("test", "onCreate: " + getIntent().getIntExtra(THEME_EXTRA, THEME_LIGHT_DARKBAR));
-        switch (getIntent().getIntExtra(THEME_EXTRA, THEME_LIGHT_DARKBAR)) {
-            case THEME_LIGHT_LIGHTBAR:
+        switch (getIntent().getIntExtra(THEME_EXTRA, THEME_LIGHT)) {
+            case THEME_LIGHT:
                 setTheme(R.style.AppTheme_MaterialAboutActivity_Light);
                 colorIcon = R.color.mal_color_icon_light_theme;
                 break;
-            case THEME_DARK_LIGHTBAR:
-                setTheme(R.style.AppTheme_MaterialAboutActivity_Dark_LightActionBar);
-                colorIcon = R.color.mal_color_icon_dark_theme;
-                break;
-            case THEME_LIGHT_DARKBAR:
-                setTheme(R.style.AppTheme_MaterialAboutActivity_Light_DarkActionBar);
-                colorIcon = R.color.mal_color_icon_light_theme;
-                break;
-            case THEME_DARK_DARKBAR:
+            case THEME_DARK:
                 setTheme(R.style.AppTheme_MaterialAboutActivity_Dark);
                 colorIcon = R.color.mal_color_icon_dark_theme;
+                break;
+            case THEME_DAYNIGHT:
+                setTheme(R.style.AppTheme_MaterialAboutActivity_DayNight);
+                colorIcon = R.color.mal_color_icon_light_theme;
                 break;
             case THEME_CUSTOM_CARDVIEW:
                 setTheme(R.style.AppTheme_MaterialAboutActivity_Light_DarkActionBar_CustomCardView);

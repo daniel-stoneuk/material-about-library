@@ -26,13 +26,13 @@
         </activity>
         <activity
             android:name=".ExampleMaterialAboutActivity"
-            android:theme="@style/AppTheme.MaterialAboutActivity.Light.DarkActionBar"/>
+            android:theme="@style/AppTheme.MaterialAboutActivity.Light"/>
         <activity
             android:name=".ExampleMaterialAboutFragmentActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".ExampleMaterialAboutLicenseActivity"
-            android:theme="@style/AppTheme.MaterialAboutActivity.Light.DarkActionBar">
+            android:theme="@style/AppTheme.MaterialAboutActivity.Light">
         </activity>
     </application>
 

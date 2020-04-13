@@ -13,7 +13,7 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="AppTheme.MaterialAboutActivity.Dark" parent="Theme.Mal.Dark">
+    <style name="AppTheme.MaterialAboutActivity.Dark" parent="Theme.MaterialComponents.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -21,39 +21,31 @@
     </style>
 
 
-    <style name="AppTheme.MaterialAboutActivity.Fragment" parent="Theme.Mal.Dark">
+    <style name="AppTheme.MaterialAboutActivity.Fragment" parent="Theme.MaterialComponents.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="AppTheme.MaterialAboutActivity.Dark.LightActionBar" parent="Theme.Mal.Dark.LightActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorLightBar</item>
-        <item name="colorPrimaryDark">@color/colorLightStatus</item>
-        <item name="colorAccent">@color/colorAccent</item>
-    </style>
-
-    <style name="AppTheme.MaterialAboutActivity.Light.DarkActionBar" parent="Theme.Mal.Light.DarkActionBar">
+    <style name="AppTheme.MaterialAboutActivity.DayNight" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="AppTheme.MaterialAboutActivity.Light.DarkActionBar.CustomCardView" parent="Theme.Mal.Light.DarkActionBar">
+    <style name="AppTheme.MaterialAboutActivity.Light.DarkActionBar.CustomCardView" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="mal_card_background">@color/colorPrimaryDark</item>
-        <item name="android:textColorPrimary">#eee</item>
-        <item name="mal_color_primary">#eee</item>
-        <item name="mal_color_secondary">#ffe0e0e0</item>
+        <item name="android:textColorPrimary">#ffffff</item>
+        <item name="android:textColorSecondary">#ffffff</item>
+        <item name="colorSurface">@color/colorPrimaryDark</item>
     </style>
 
-    <style name="AppTheme.MaterialAboutActivity.Light" parent="Theme.Mal.Light">
+    <style name="AppTheme.MaterialAboutActivity.Light" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorLightBar</item>
         <item name="colorPrimaryDark">@color/colorLightStatus</item>

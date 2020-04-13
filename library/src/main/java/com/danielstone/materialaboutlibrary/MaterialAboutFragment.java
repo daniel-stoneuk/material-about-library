@@ -33,9 +33,6 @@ public abstract class MaterialAboutFragment extends Fragment {
 
     protected abstract MaterialAboutList getMaterialAboutList(Context activityContext);
 
-    protected int getTheme() {
-        return R.style.Theme_Mal_Light;
-    }
 
     private boolean shouldAnimate() {
         return true;
@@ -45,12 +42,7 @@ public abstract class MaterialAboutFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        int style = getTheme();
-
-        // create ContextThemeWrapper from the original Activity Context with the custom theme
-        final Context contextThemeWrapper = new android.view.ContextThemeWrapper(getActivity(), style);
-        LayoutInflater localInflater = inflater.cloneInContext(contextThemeWrapper);
-        View rootView = localInflater.inflate(R.layout.mal_material_about_fragment, container, false);
+        View rootView = inflater.inflate(R.layout.mal_material_about_fragment, container, false);
 
         recyclerView = (RecyclerView) rootView.findViewById(R.id.mal_recyclerview);
         adapter = new MaterialAboutListAdapter(getViewTypeManager());
