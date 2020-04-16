@@ -60,7 +60,7 @@ public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
                 .setOnClickAction(new MaterialAboutItemOnClickAction() {
                     @Override
                     public void onClick() {
-                        Snackbar.make(((ExampleMaterialAboutActivity) c).findViewById(R.id.mal_material_about_activity_coordinator_layout), "Test", Snackbar.LENGTH_SHORT).show();
+                        Snackbar.make(getRecyclerView(), "Test", Snackbar.LENGTH_SHORT).show();
                     }
                 })
                 .build());

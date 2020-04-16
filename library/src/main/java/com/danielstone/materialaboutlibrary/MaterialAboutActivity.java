@@ -27,7 +27,6 @@ import java.lang.ref.WeakReference;
 public abstract class MaterialAboutActivity extends AppCompatActivity {
 
     private MaterialAboutList list = new MaterialAboutList.Builder().build();
-    private Toolbar toolbar;
     private RecyclerView recyclerView;
     private MaterialAboutListAdapter adapter;
 
@@ -37,11 +36,19 @@ public abstract class MaterialAboutActivity extends AppCompatActivity {
     @Nullable
     protected abstract CharSequence getActivityTitle();
 
+    /**
+     * Get a reference to the recyclerview in case a snackbar needs to be displayed
+     * @return
+     */
+    public RecyclerView getRecyclerView() {
+        return recyclerView;
+    }
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.mal_material_about_activity);
+        setContentView(R.layout.mal_material_about_content);
 
         CharSequence title = getActivityTitle();
         if (title == null)
@@ -58,18 +65,16 @@ public abstract class MaterialAboutActivity extends AppCompatActivity {
     }
 
     private void assignViews() {
-        toolbar = (Toolbar) findViewById(R.id.mal_toolbar);
         recyclerView = (RecyclerView) findViewById(R.id.mal_recyclerview);
         recyclerView.setAlpha(0f);
         recyclerView.setTranslationY(20);
     }
 
     private void initViews() {
-        setSupportActionBar(toolbar);
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
-        }
+//        ActionBar actionBar = getSupportActionBar();
+//        if (actionBar != null) {
+//            actionBar.setDisplayHomeAsUpEnabled(true);
+//        }
         adapter = new MaterialAboutListAdapter(getViewTypeManager());
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
@@ -129,19 +134,6 @@ public abstract class MaterialAboutActivity extends AppCompatActivity {
     protected void setMaterialAboutList(MaterialAboutList materialAboutList) {
         list = materialAboutList;
         adapter.setData(list.getCards());
-    }
-
-    protected void setScrollToolbar(boolean scrollToolbar) {
-        if (toolbar != null) {
-            AppBarLayout.LayoutParams params =
-                    (AppBarLayout.LayoutParams) toolbar.getLayoutParams();
-            if (scrollToolbar) {
-                params.setScrollFlags(AppBarLayout.LayoutParams.SCROLL_FLAG_SCROLL
-                        | AppBarLayout.LayoutParams.SCROLL_FLAG_ENTER_ALWAYS);
-            } else {
-                params.setScrollFlags(0);
-            }
-        }
     }
 
     private static class ListTask extends AsyncTask<String, String, MaterialAboutList> {

@@ -42,7 +42,7 @@ public abstract class MaterialAboutFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.mal_material_about_fragment, container, false);
+        View rootView = inflater.inflate(R.layout.mal_material_about_content, container, false);
 
         recyclerView = (RecyclerView) rootView.findViewById(R.id.mal_recyclerview);
         adapter = new MaterialAboutListAdapter(getViewTypeManager());

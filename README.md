@@ -44,7 +44,7 @@ allprojects {
 
 ```gradle
 dependencies {
-    implementation 'com.github.daniel-stoneuk:material-about-library:3.0.0'
+    implementation 'com.github.daniel-stoneuk:material-about-library:3.1.0'
 }
 ```
 
@@ -88,10 +88,9 @@ Ensure that the theme extends a `MaterialComponents` theme, and apply primary & 
 ```
 
 ```xml
-<style name="AppTheme.MaterialAboutActivity" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+<style name="AppTheme.MaterialAboutActivity" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
     <item name="colorPrimary">@color/colorPrimary</item>
     <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-    <item name="colorSecondary">@color/colorAccent</item>
 </style>
 ```
 
@@ -201,11 +200,10 @@ Check out a working example in [`Demo.java`][3].
 **Tip:** Customise text colour and card colour in your styles. Example below: 
 
 ```xml
-<style name="AppTheme.MaterialAboutActivity.Light.DarkActionBar.CustomCardView" parent="Theme.MaterialComponents.Light.NoActionBar">
+<style name="AppTheme.MaterialAboutActivity.Light.DarkActionBar.CustomCardView" parent="Theme.MaterialComponents.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
         <item name="android:textColorPrimary">#ffffff</item>
         <item name="android:textColorSecondary">#ffffff</item>
         <item name="colorSurface">@color/colorPrimaryDark</item>

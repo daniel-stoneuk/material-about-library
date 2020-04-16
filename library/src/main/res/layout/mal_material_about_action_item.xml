@@ -49,9 +49,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+            android:textColor="?android:attr/textColorSecondary"
             android:visibility="gone"
-            tools:visibility="visible"
-            tools:text="Current Version Of App" />
+            tools:text="Current Version Of App"
+            tools:visibility="visible" />
     </LinearLayout>
 
 </LinearLayout>
