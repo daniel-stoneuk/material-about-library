@@ -44,7 +44,7 @@ allprojects {
 
 ```gradle
 dependencies {
-    compile 'com.github.daniel-stoneuk:material-about-library:3.0.0'
+    implementation 'com.github.daniel-stoneuk:material-about-library:3.0.0'
 }
 ```
 
@@ -201,7 +201,7 @@ Check out a working example in [`Demo.java`][3].
 **Tip:** Customise text colour and card colour in your styles. Example below: 
 
 ```xml
-<style name="AppTheme.MaterialAboutActivity.Light.CustomCardView"  <style name="AppTheme.MaterialAboutActivity.Light.DarkActionBar.CustomCardView" parent="Theme.MaterialComponents.Light.NoActionBar">
+<style name="AppTheme.MaterialAboutActivity.Light.DarkActionBar.CustomCardView" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
