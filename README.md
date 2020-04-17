@@ -44,7 +44,7 @@ allprojects {
 
 ```gradle
 dependencies {
-    implementation 'com.github.daniel-stoneuk:material-about-library:3.1.1'
+    implementation 'com.github.daniel-stoneuk:material-about-library:3.1.2'
 }
 ```
 
