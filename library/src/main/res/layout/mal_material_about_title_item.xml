@@ -40,7 +40,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/mal_baseline_half"
             android:layout_marginStart="@dimen/mal_baseline_half"
-            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            android:textAppearance="?attr/textAppearanceHeadline5"
             tools:text="App Name" />
 
         <TextView
@@ -49,8 +49,7 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="@dimen/mal_baseline_half"
             android:layout_marginStart="@dimen/mal_baseline_half"
-            android:layout_marginTop="-4dp"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textAppearance="?textAppearanceSubtitle1"
             tools:text="Copyright Me" />
 
     </LinearLayout>

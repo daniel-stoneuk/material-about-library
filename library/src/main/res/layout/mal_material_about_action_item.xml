@@ -41,15 +41,15 @@
             android:id="@+id/mal_item_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+            android:textAppearance="?attr/textAppearanceBody1"
             tools:text="Version" />
 
         <TextView
             android:id="@+id/mal_action_item_subtext"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
-            android:textColor="?android:attr/textColorSecondary"
+            android:textAppearance="?attr/textAppearanceBody2"
+            android:textColor="?android:textColorSecondary"
             android:visibility="gone"
             tools:text="Current Version Of App"
             tools:visibility="visible" />

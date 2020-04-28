@@ -31,14 +31,14 @@
             android:id="@+id/mal_list_card_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/mal_baseline_half"
-            android:layout_marginEnd="@dimen/mal_baseline"
-            android:layout_marginLeft="@dimen/mal_baseline"
-            android:layout_marginRight="@dimen/mal_baseline"
             android:layout_marginStart="@dimen/mal_baseline"
+            android:layout_marginLeft="@dimen/mal_baseline"
             android:layout_marginTop="@dimen/mal_baseline"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-            tools:text="Author"/>
+            android:layout_marginEnd="@dimen/mal_baseline"
+            android:layout_marginRight="@dimen/mal_baseline"
+            android:layout_marginBottom="@dimen/mal_baseline_half"
+            android:textAppearance="?attr/textAppearanceSubtitle2"
+            tools:text="Author" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/mal_card_recyclerview"
