@@ -21,6 +21,7 @@ public class MaterialAboutCard {
 
     private int titleColor = 0;
     private int cardColor = 0;
+    private boolean outline = true;
 
     private RecyclerView.Adapter customAdapter = null;
     private ArrayList<MaterialAboutItem> items = new ArrayList<>();
@@ -34,6 +35,7 @@ public class MaterialAboutCard {
         this.cardColor = builder.cardColor;
         this.items = builder.items;
         this.customAdapter = builder.customAdapter;
+        this.outline = builder.outline;
     }
 
     public MaterialAboutCard(CharSequence title, MaterialAboutItem... materialAboutItems) {
@@ -62,6 +64,10 @@ public class MaterialAboutCard {
         return cardColor;
     }
 
+    public boolean isOutline() {
+        return outline;
+    }
+
     public ArrayList<MaterialAboutItem> getItems() {
         return items;
     }
@@ -76,6 +82,8 @@ public class MaterialAboutCard {
 
         @ColorInt
         private int cardColor = 0;
+
+        private boolean outline = true;
 
         private ArrayList<MaterialAboutItem> items = new ArrayList<>();
         private RecyclerView.Adapter customAdapter = null;
@@ -99,6 +107,16 @@ public class MaterialAboutCard {
 
         public Builder cardColor(@ColorInt int cardColor) {
             this.cardColor = cardColor;
+            return this;
+        }
+
+        /**
+         * Use outlined card design - true by default
+         * @param outline false to enable elevation
+         * @return builder instance
+         */
+        public Builder outline(boolean outline) {
+            this.outline = outline;
             return this;
         }
 
@@ -133,6 +151,7 @@ public class MaterialAboutCard {
                 ", titleRes=" + titleRes +
                 ", titleColor=" + titleColor +
                 ", customAdapter=" + customAdapter +
+                ", outline=" + outline +
                 ", cardColor=" + cardColor + '}';
         return result;
     }
@@ -144,6 +163,7 @@ public class MaterialAboutCard {
         this.titleColor = card.getTitleColor();
         this.cardColor = card.getCardColor();
         this.items = new ArrayList<>();
+        this.outline = card.isOutline();
         this.customAdapter = card.getCustomAdapter();
         for (MaterialAboutItem item : card.items) {
             this.items.add(item.clone());

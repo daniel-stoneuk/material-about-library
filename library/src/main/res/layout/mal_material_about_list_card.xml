@@ -17,7 +17,7 @@
     android:paddingRight="@dimen/mal_baseline_half"
     android:paddingStart="@dimen/mal_baseline_half"
     android:paddingTop="@dimen/mal_baseline"
-    app:strokeWidth="1dp"
+    app:strokeWidth="@dimen/mal_stroke_width"
     app:strokeColor="@color/mal_stroke_color"
     app:cardElevation="0dp"
     >
