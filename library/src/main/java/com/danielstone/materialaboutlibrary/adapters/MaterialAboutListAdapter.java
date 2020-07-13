@@ -31,14 +31,18 @@ public class MaterialAboutListAdapter extends RecyclerView.Adapter<MaterialAbout
 
     private ViewTypeManager viewTypeManager;
 
+    private RecyclerView.RecycledViewPool viewPool;
+
     public MaterialAboutListAdapter() {
         setHasStableIds(true);
         this.viewTypeManager = new DefaultViewTypeManager();
+        viewPool = new RecyclerView.RecycledViewPool();
     }
 
     public MaterialAboutListAdapter(ViewTypeManager customViewTypeManager) {
         setHasStableIds(true);
         this.viewTypeManager = customViewTypeManager;
+        viewPool = new RecyclerView.RecycledViewPool();
     }
 
     @Override
@@ -47,7 +51,7 @@ public class MaterialAboutListAdapter extends RecyclerView.Adapter<MaterialAbout
         if (viewGroup instanceof RecyclerView) {
             View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.mal_material_about_list_card, viewGroup, false);
             view.setFocusable(true);
-            return new MaterialAboutListViewHolder(view);
+            return new MaterialAboutListViewHolder(view, viewPool);
         } else {
             throw new RuntimeException("Not bound to RecyclerView");
         }
@@ -127,13 +131,14 @@ public class MaterialAboutListAdapter extends RecyclerView.Adapter<MaterialAbout
         final RecyclerView recyclerView;
         RecyclerView.Adapter adapter;
 
-        MaterialAboutListViewHolder(View view) {
+        MaterialAboutListViewHolder(View view, RecyclerView.RecycledViewPool viewPool) {
             super(view);
             cardView = view.findViewById(R.id.mal_list_card);
             title = (TextView) view.findViewById(R.id.mal_list_card_title);
             recyclerView = (RecyclerView) view.findViewById(R.id.mal_card_recyclerview);
             adapter = new MaterialAboutItemAdapter(viewTypeManager);
             recyclerView.setLayoutManager(new LinearLayoutManager(context));
+            recyclerView.setRecycledViewPool(viewPool);
             recyclerView.setAdapter(adapter);
             recyclerView.setNestedScrollingEnabled(false);
         }

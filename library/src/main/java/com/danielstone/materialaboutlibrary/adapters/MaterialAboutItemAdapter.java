@@ -1,10 +1,13 @@
 package com.danielstone.materialaboutlibrary.adapters;
 
 import android.content.Context;
+
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.AsyncListDiffer;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,12 +40,15 @@ public class MaterialAboutItemAdapter extends RecyclerView.Adapter<MaterialAbout
         this.viewTypeManager = customViewTypeManager;
     }
 
+    @NonNull
     @Override
     public MaterialAboutItemViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         context = viewGroup.getContext();
         if (!(viewGroup instanceof RecyclerView)) {
             throw new RuntimeException("Not bound to RecyclerView");
         }
+
+        Log.i("test", "onCreateViewHolder: ");
 
         int layoutId = viewTypeManager.getLayout(viewType);
 
