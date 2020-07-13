@@ -49,7 +49,7 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="@dimen/mal_baseline_half"
             android:layout_marginStart="@dimen/mal_baseline_half"
-            android:textAppearance="?textAppearanceSubtitle1"
+            android:textAppearance="?attr/textAppearanceSubtitle1"
             tools:text="Copyright Me" />
 
     </LinearLayout>
