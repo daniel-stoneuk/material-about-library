@@ -48,6 +48,14 @@ dependencies {
 }
 ```
 
+Help test `3.2.0` with shared views between adapters (may cause crashes):
+
+```gradle
+dependencies {
+    implementation 'com.github.daniel-stoneuk:material-about-library:3.2.0-rc01'
+}
+```
+
 ## Migration
 
 View the migration guide [here](/MIGRATION.md)
@@ -138,6 +146,15 @@ Give the card a title by calling `.title()` on the `MaterialAboutCard.Builder`
 ```java
 MaterialAboutCard card = new MaterialAboutCard.Builder()
     .title("Author")
+    .build();
+```
+
+
+Enable elevation and disable the outline to get a more classic design by calling `.outline(false)` on the `MaterialAboutCard.Builder`
+
+```java
+MaterialAboutCard card = new MaterialAboutCard.Builder()
+    .outline(false)
     .build();
 ```
 

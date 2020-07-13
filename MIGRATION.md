@@ -1,5 +1,11 @@
 # Migration Guide
 
+### Release 3.2.0
+
+* RecycledViewPool is now used to improve performance in longer lists
+
+* Change back to old style of card with elevation and no outline with `.outline(false)` on your card builder.
+
 ### Release 3.1.0
 
 * New layout shouldn't cause any issues.
