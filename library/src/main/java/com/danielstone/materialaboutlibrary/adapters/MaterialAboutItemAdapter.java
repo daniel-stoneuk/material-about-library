@@ -48,8 +48,6 @@ public class MaterialAboutItemAdapter extends RecyclerView.Adapter<MaterialAbout
             throw new RuntimeException("Not bound to RecyclerView");
         }
 
-        Log.i("test", "onCreateViewHolder: ");
-
         int layoutId = viewTypeManager.getLayout(viewType);
 
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(layoutId, viewGroup, false);

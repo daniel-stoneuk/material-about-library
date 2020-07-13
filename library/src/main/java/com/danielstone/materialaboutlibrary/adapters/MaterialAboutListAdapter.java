@@ -129,17 +129,16 @@ public class MaterialAboutListAdapter extends RecyclerView.Adapter<MaterialAbout
         final View cardView;
         final TextView title;
         final RecyclerView recyclerView;
+        final RecyclerView.RecycledViewPool viewPool;
         RecyclerView.Adapter adapter;
 
         MaterialAboutListViewHolder(View view, RecyclerView.RecycledViewPool viewPool) {
             super(view);
+            this.viewPool = viewPool;
             cardView = view.findViewById(R.id.mal_list_card);
             title = (TextView) view.findViewById(R.id.mal_list_card_title);
             recyclerView = (RecyclerView) view.findViewById(R.id.mal_card_recyclerview);
-            adapter = new MaterialAboutItemAdapter(viewTypeManager);
             recyclerView.setLayoutManager(new LinearLayoutManager(context));
-            recyclerView.setRecycledViewPool(viewPool);
-            recyclerView.setAdapter(adapter);
             recyclerView.setNestedScrollingEnabled(false);
         }
 
@@ -147,13 +146,15 @@ public class MaterialAboutListAdapter extends RecyclerView.Adapter<MaterialAbout
             if (!(adapter instanceof MaterialAboutItemAdapter)) {
                 adapter = new MaterialAboutItemAdapter(viewTypeManager);
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
+                recyclerView.setRecycledViewPool(viewPool);
                 recyclerView.setAdapter(adapter);
             }
         }
 
         public void useCustomAdapter(RecyclerView.Adapter newAdapter) {
-            if (adapter instanceof MaterialAboutItemAdapter) {
+            if (adapter == null || !(adapter.getClass().isInstance(newAdapter))) {
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
+                recyclerView.setRecycledViewPool(null);
                 recyclerView.setAdapter(newAdapter);
             }
         }
