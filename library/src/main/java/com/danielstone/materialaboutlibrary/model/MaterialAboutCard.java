@@ -14,7 +14,7 @@ import java.util.UUID;
 
 public class MaterialAboutCard {
 
-    private String id = "NO-UUID";
+    private String id = UUID.randomUUID().toString();
 
     private CharSequence title = null;
     private int titleRes = 0;
@@ -28,7 +28,6 @@ public class MaterialAboutCard {
     ;
 
     private MaterialAboutCard(Builder builder) {
-        this.id = UUID.randomUUID().toString();
         this.title = builder.title;
         this.titleRes = builder.titleRes;
         this.titleColor = builder.titleColor;
