@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="mal_title_about">정보</string>
+    <string name="mal_title_licenses">라이선스</string>
+
+    <string name="mal_close">종료</string>
+    <string name="mal_send_email">이메일 전송</string>
+
+    <string name="mal_activity_exception">액션을 처리할 앱이 없습니다</string>
+</resources>
