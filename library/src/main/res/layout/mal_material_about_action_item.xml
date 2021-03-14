@@ -3,21 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingTop="@dimen/mal_baseline_half"
-    android:paddingBottom="@dimen/mal_baseline_half"
-    android:paddingStart="8dp"
     android:orientation="horizontal"
-    android:paddingLeft="8dp">
+    android:padding="@dimen/mal_baseline_half">
 
     <ImageView
         android:id="@+id/mal_item_image"
         android:layout_width="@dimen/mal_action_item_image_width"
         android:layout_height="@dimen/mal_action_action_item_image_height"
         android:layout_gravity="center"
-        android:layout_marginEnd="@dimen/mal_baseline_half"
-        android:layout_marginLeft="@dimen/mal_baseline"
-        android:layout_marginRight="@dimen/mal_baseline_half"
-        android:layout_marginStart="@dimen/mal_baseline"
+        android:layout_marginHorizontal="@dimen/mal_baseline"
         android:adjustViewBounds="false"
         android:tint="?colorOnSurface"
         android:contentDescription="@null"
@@ -30,10 +24,7 @@
         android:minHeight="@dimen/mal_action_action_item_image_height"
         android:layout_gravity="center_vertical"
         android:gravity="center_vertical"
-        android:layout_marginEnd="@dimen/mal_baseline"
-        android:layout_marginLeft="@dimen/mal_baseline"
-        android:layout_marginRight="@dimen/mal_baseline"
-        android:layout_marginStart="@dimen/mal_baseline"
+        android:layout_marginHorizontal="@dimen/mal_baseline_half"
         android:layout_weight="1"
         android:orientation="vertical">
 
