@@ -54,7 +54,7 @@
             tools:text="Current Version Of App" />
     </LinearLayout>
 
-    <CheckBox
+    <com.google.android.material.checkbox.MaterialCheckBox
         android:id="@+id/mal_checkbox"
         android:layout_width="wrap_content"
         android:layout_height="32dp"

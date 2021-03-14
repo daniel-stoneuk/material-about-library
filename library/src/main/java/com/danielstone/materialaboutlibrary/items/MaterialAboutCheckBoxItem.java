@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.danielstone.materialaboutlibrary.R;
 import com.danielstone.materialaboutlibrary.holders.MaterialAboutItemViewHolder;
 import com.danielstone.materialaboutlibrary.util.ViewTypeManager;
+import com.google.android.material.checkbox.MaterialCheckBox;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -263,7 +264,7 @@ public class MaterialAboutCheckBoxItem extends MaterialAboutCheckableItem {
         public final ImageView icon;
         public final TextView text;
         public final TextView subText;
-        public final CheckBox aCheckBox;
+        public final MaterialCheckBox aCheckBox;
 
         MaterialAboutCheckBoxItemViewHolder(View view) {
             super(view);
@@ -271,7 +272,7 @@ public class MaterialAboutCheckBoxItem extends MaterialAboutCheckableItem {
             icon = (ImageView) view.findViewById(R.id.mal_checkbox_image);
             text = (TextView) view.findViewById(R.id.mal_checkbox_text);
             subText = (TextView) view.findViewById(R.id.mal_checkbox_subtext);
-            aCheckBox = (CheckBox) view.findViewById(R.id.mal_checkbox);
+            aCheckBox = (MaterialCheckBox) view.findViewById(R.id.mal_checkbox);
         }
 
 		@Override

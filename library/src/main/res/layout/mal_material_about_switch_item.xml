@@ -54,7 +54,7 @@
             tools:text="Current Version Of App" />
     </LinearLayout>
 
-    <Switch
+    <com.google.android.material.switchmaterial.SwitchMaterial
         android:id="@+id/mal_switch"
         android:layout_width="wrap_content"
         android:layout_height="32dp"
