@@ -12,20 +12,20 @@
         android:layout_height="@dimen/mal_action_action_item_image_height"
         android:layout_gravity="center"
         android:layout_marginHorizontal="16dp"
-        android:tint="?colorOnSurface"
         android:adjustViewBounds="false"
         android:contentDescription="@null"
         android:cropToPadding="false"
-        android:scaleType="centerInside" />
+        android:scaleType="centerInside"
+        android:tint="?colorOnSurface" />
 
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:minHeight="@dimen/mal_action_action_item_image_height"
         android:layout_gravity="center_vertical"
-        android:gravity="center_vertical"
         android:layout_marginHorizontal="8dp"
         android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:minHeight="@dimen/mal_action_action_item_image_height"
         android:orientation="vertical">
 
         <TextView
@@ -41,8 +41,8 @@
             android:layout_height="wrap_content"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
             android:visibility="gone"
-            tools:visibility="visible"
-            tools:text="Current Version Of App" />
+            tools:text="Current Version Of App"
+            tools:visibility="visible" />
     </LinearLayout>
 
     <com.google.android.material.checkbox.MaterialCheckBox
@@ -50,5 +50,4 @@
         android:layout_width="wrap_content"
         android:layout_height="32dp"
         android:layout_marginHorizontal="@dimen/mal_baseline_half" />
-
 </LinearLayout>

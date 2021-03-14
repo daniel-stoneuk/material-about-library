@@ -13,19 +13,19 @@
         android:layout_gravity="center"
         android:layout_marginHorizontal="@dimen/mal_baseline"
         android:adjustViewBounds="false"
-        android:tint="?colorOnSurface"
         android:contentDescription="@null"
         android:cropToPadding="false"
-        android:scaleType="centerInside" />
+        android:scaleType="centerInside"
+        android:tint="?colorOnSurface" />
 
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:minHeight="@dimen/mal_action_action_item_image_height"
         android:layout_gravity="center_vertical"
-        android:gravity="center_vertical"
         android:layout_marginHorizontal="@dimen/mal_baseline_half"
         android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:minHeight="@dimen/mal_action_action_item_image_height"
         android:orientation="vertical">
 
         <TextView
@@ -45,5 +45,4 @@
             tools:text="Current Version Of App"
             tools:visibility="visible" />
     </LinearLayout>
-
 </LinearLayout>
