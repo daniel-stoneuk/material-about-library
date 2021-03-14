@@ -276,6 +276,12 @@ public class MaterialAboutSwitchItem extends MaterialAboutCheckableItem {
 
         @Override
         protected void initActionViewListener(boolean hasListener) {
+            this.view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    aSwitch.toggle();
+                }
+            });
             this.aSwitch.setOnCheckedChangeListener(hasListener ? this : null);
         }
 

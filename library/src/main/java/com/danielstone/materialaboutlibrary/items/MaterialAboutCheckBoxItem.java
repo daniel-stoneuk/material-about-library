@@ -277,6 +277,12 @@ public class MaterialAboutCheckBoxItem extends MaterialAboutCheckableItem {
 
 		@Override
 		protected void initActionViewListener(boolean hasListener) {
+            this.view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    aCheckBox.toggle();
+                }
+            });
 			this.aCheckBox.setOnCheckedChangeListener(hasListener ? this : null);
 		}
 
