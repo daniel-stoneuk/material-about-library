@@ -41,7 +41,7 @@ public class MaterialAboutSwitchItem extends MaterialAboutCheckableItem {
     private boolean showIcon = true;
     private int iconGravity = GRAVITY_MIDDLE;
 
-    private MaterialAboutSwitchItem(MaterialAboutSwitchItem.Builder builder) {
+    MaterialAboutSwitchItem(MaterialAboutSwitchItem.Builder builder) {
         super(builder);
         this.text = builder.text;
         this.textRes = builder.textRes;

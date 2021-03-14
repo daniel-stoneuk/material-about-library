@@ -41,7 +41,7 @@ public class MaterialAboutCheckBoxItem extends MaterialAboutCheckableItem {
     private boolean showIcon = true;
     private int iconGravity = GRAVITY_MIDDLE;
 
-    private MaterialAboutCheckBoxItem(MaterialAboutCheckBoxItem.Builder builder) {
+    MaterialAboutCheckBoxItem(MaterialAboutCheckBoxItem.Builder builder) {
         super(builder);
         this.text = builder.text;
         this.textRes = builder.textRes;
