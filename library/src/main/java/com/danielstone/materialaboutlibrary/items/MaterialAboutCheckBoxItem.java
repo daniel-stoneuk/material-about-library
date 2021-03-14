@@ -36,6 +36,8 @@ public class MaterialAboutCheckBoxItem extends MaterialAboutCheckableItem {
     private int textRes = 0;
     private CharSequence subText = null;
     private int subTextRes = 0;
+    private CharSequence subTextChecked = null;
+    private int subTextCheckedRes = 0;
     private Drawable icon = null;
     private int iconRes = 0;
     private boolean showIcon = true;
@@ -48,6 +50,9 @@ public class MaterialAboutCheckBoxItem extends MaterialAboutCheckableItem {
 
         this.subText = builder.subText;
         this.subTextRes = builder.subTextRes;
+
+        this.subTextChecked = builder.subTextChecked;
+        this.subTextCheckedRes = builder.subTextCheckedRes;
 
         this.icon = builder.icon;
         this.iconRes = builder.iconRes;
@@ -89,17 +94,8 @@ public class MaterialAboutCheckBoxItem extends MaterialAboutCheckableItem {
             holder.text.setVisibility(GONE);
         }
 
-        CharSequence subText = item.getSubText();
-        int subTextRes = item.getSubTextRes();
-
         holder.subText.setVisibility(View.VISIBLE);
-        if (subText != null) {
-            holder.subText.setText(subText);
-        } else if (subTextRes != 0) {
-            holder.subText.setText(subTextRes);
-        } else {
-            holder.subText.setVisibility(GONE);
-        }
+        holder.updateSubText(item);
 
         if (item.shouldShowIcon()) {
             holder.icon.setVisibility(View.VISIBLE);
@@ -150,6 +146,8 @@ public class MaterialAboutCheckBoxItem extends MaterialAboutCheckableItem {
                 ", textRes=" + textRes +
                 ", subText=" + subText +
                 ", subTextRes=" + subTextRes +
+                ", subTextChecked=" + subTextChecked +
+                ", subTextCheckedRes=" + subTextCheckedRes +
                 ", icon=" + icon +
                 ", iconRes=" + iconRes +
                 ", showIcon=" + showIcon +
@@ -164,6 +162,8 @@ public class MaterialAboutCheckBoxItem extends MaterialAboutCheckableItem {
         this.textRes = item.getTextRes();
         this.subText = item.getSubText();
         this.subTextRes = item.getSubTextRes();
+        this.subTextChecked = item.getSubTextChecked();
+        this.subTextCheckedRes = item.getSubTextCheckedRes();
         this.icon = item.getIcon();
         this.iconRes = item.getIconRes();
         this.showIcon = item.showIcon;
@@ -212,6 +212,26 @@ public class MaterialAboutCheckBoxItem extends MaterialAboutCheckableItem {
     public MaterialAboutCheckBoxItem setSubTextRes(int subTextRes) {
         this.subText = null;
         this.subTextRes = subTextRes;
+        return this;
+    }
+
+    public CharSequence getSubTextChecked() {
+        return subTextChecked;
+    }
+
+    public MaterialAboutCheckBoxItem setSubTextChecked(CharSequence subTextChecked) {
+        this.subTextCheckedRes = 0;
+        this.subTextChecked = subTextChecked;
+        return this;
+    }
+
+    public int getSubTextCheckedRes() {
+        return subTextCheckedRes;
+    }
+
+    public MaterialAboutCheckBoxItem setSubTextCheckedRes(int subTextCheckedRes) {
+        this.subText = null;
+        this.subTextCheckedRes = subTextCheckedRes;
         return this;
     }
 
@@ -295,6 +315,22 @@ public class MaterialAboutCheckBoxItem extends MaterialAboutCheckableItem {
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         	super.onCheckedChanged(isChecked);
         }
+
+        @Override
+        public void updateSubText(MaterialAboutCheckableItem item) {
+            MaterialAboutCheckBoxItem thisItem = (MaterialAboutCheckBoxItem) item;
+            if (thisItem.isChecked() && thisItem.subTextChecked != null) {
+                subText.setText(thisItem.subTextChecked);
+            } else if (thisItem.isChecked() && thisItem.subTextCheckedRes != 0) {
+                subText.setText(thisItem.subTextCheckedRes);
+            } else if (thisItem.subText != null) {
+                subText.setText(thisItem.subText);
+            } else if (thisItem.subTextRes != 0) {
+                subText.setText(thisItem.subTextRes);
+            } else {
+                subText.setVisibility(GONE);
+            }
+        }
     }
 
     public static class Builder extends CheckableBuilder<Builder> {
@@ -305,6 +341,9 @@ public class MaterialAboutCheckBoxItem extends MaterialAboutCheckableItem {
         private CharSequence subText = null;
         @StringRes
         private int subTextRes = 0;
+        private CharSequence subTextChecked = null;
+        @StringRes
+        private int subTextCheckedRes = 0;
         private Drawable icon = null;
         @DrawableRes
         private int iconRes = 0;
@@ -344,6 +383,29 @@ public class MaterialAboutCheckBoxItem extends MaterialAboutCheckableItem {
                 this.subText = Html.fromHtml(subTextHtml);
             }
             this.subTextRes = 0;
+            return this;
+        }
+
+        public Builder subTextChecked(CharSequence subTextChecked) {
+            this.subTextChecked = subTextChecked;
+            this.subTextCheckedRes = 0;
+            return this;
+        }
+
+        public Builder subTextChecked(@StringRes int subTextCheckedRes) {
+            this.subTextChecked = null;
+            this.subTextCheckedRes = subTextCheckedRes;
+            return this;
+        }
+
+        public Builder subTextCheckedHtml(String subTextCheckedHtml) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                this.subTextChecked = Html.fromHtml(subTextCheckedHtml, Html.FROM_HTML_MODE_LEGACY);
+            } else {
+                //noinspection deprecation
+                this.subTextChecked = Html.fromHtml(subTextCheckedHtml);
+            }
+            this.subTextCheckedRes = 0;
             return this;
         }
 

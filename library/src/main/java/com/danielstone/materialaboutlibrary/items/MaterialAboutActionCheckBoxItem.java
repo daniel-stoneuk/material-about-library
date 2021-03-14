@@ -159,6 +159,21 @@ public class MaterialAboutActionCheckBoxItem extends MaterialAboutCheckBoxItem {
         }
 
         @Override
+        public Builder subTextChecked(CharSequence subTextChecked) {
+            return (Builder) super.subTextChecked(subTextChecked);
+        }
+
+        @Override
+        public Builder subTextChecked(int subTextCheckedRes) {
+            return (Builder) super.subTextChecked(subTextCheckedRes);
+        }
+
+        @Override
+        public Builder subTextCheckedHtml(String subTextCheckedHtml) {
+            return (Builder) super.subTextCheckedHtml(subTextCheckedHtml);
+        }
+
+        @Override
         public Builder icon(Drawable icon) {
             return (Builder) super.icon(icon);
         }

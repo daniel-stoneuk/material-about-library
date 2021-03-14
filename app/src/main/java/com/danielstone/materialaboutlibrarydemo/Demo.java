@@ -54,6 +54,8 @@ public class Demo {
 
         appCardBuilder.addItem(new MaterialAboutCheckBoxItem.Builder()
                 .text("Checkbox")
+                .subText("Sub Text unchecked")
+                .subTextChecked("Sub Text checked")
                 .icon(new IconicsDrawable(c)
                         .icon(CommunityMaterial.Icon.cmd_checkbox_marked_outline)
                         .sizeDp(18))
@@ -70,6 +72,8 @@ public class Demo {
 
         appCardBuilder.addItem(new MaterialAboutSwitchItem.Builder()
                 .text("Switch")
+                .subText("Sub Text unchecked")
+                .subTextChecked("Sub Text checked")
                 .icon(new IconicsDrawable(c)
                         .icon(CommunityMaterial.Icon.cmd_toggle_switch)
                         .sizeDp(18))
@@ -86,6 +90,8 @@ public class Demo {
 
         appCardBuilder.addItem(new MaterialAboutActionCheckBoxItem.Builder()
                 .text("Action Checkbox")
+                .subText("Sub Text unchecked")
+                .subTextChecked("Sub Text checked")
                 .icon(new IconicsDrawable(c)
                         .icon(CommunityMaterial.Icon.cmd_checkbox_marked_outline)
                         .sizeDp(18))
@@ -114,6 +120,8 @@ public class Demo {
 
         appCardBuilder.addItem(new MaterialAboutActionSwitchItem.Builder()
                 .text("Action Switch")
+                .subText("Sub Text unchecked")
+                .subTextChecked("Sub Text checked")
                 .icon(new IconicsDrawable(c)
                         .icon(CommunityMaterial.Icon.cmd_toggle_switch)
                         .sizeDp(18))
