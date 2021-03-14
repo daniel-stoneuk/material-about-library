@@ -95,9 +95,7 @@ public class MaterialAboutItemAdapter extends RecyclerView.Adapter<MaterialAbout
 
         @Override
         public boolean areContentsTheSame(MaterialAboutItem oldItem, MaterialAboutItem newItem) {
-            boolean result = oldItem.getDetailString().equals(newItem.getDetailString());
-            Log.i("TEST", oldItem.getDetailString() + "<- old / new ->" + newItem.getDetailString() + " areContentsTheSame: " + result);
-            return result;
+            return oldItem.getDetailString().equals(newItem.getDetailString());
         }
     };
 
