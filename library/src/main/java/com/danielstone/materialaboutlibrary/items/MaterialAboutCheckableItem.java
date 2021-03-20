@@ -85,6 +85,7 @@ public abstract class MaterialAboutCheckableItem extends MaterialAboutItem {
 			this.broadcasting = true;
 			if (this.onCheckedChanged != null) {
 				if (!this.onCheckedChanged.onCheckedChanged(this.materialAboutCheckableItem, isChecked)) {
+					this.materialAboutCheckableItem.setChecked(!isChecked);
 					this.setActionViewChecked(!isChecked);
 				}
 				else {
