@@ -16,9 +16,9 @@ If you use this library in your app, please let me know and I'll add it to the l
 
 ## Screenshots
 
-| Light with Light Action Bar    | Light with Dark Action Bar     | Dark with Light Action Bar    | Dark with Dark Action Bar     | Custom Cardview Background     | Custom card & action item layout |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |  ------------------------------ |
-| ![Demo App](screenshots/1.png) | ![Demo App](screenshots/2.png) | ![Demo App](screenshots/3.png) | ![Demo App](screenshots/4.png) | ![Demo App](screenshots/5.png) | ![Demo App](screenshots/6.png) |
+| Light                          | Dark                           | Custom Cardview Background     |
+| ------------------------------ | ------------------------------ | ------------------------------ |
+| ![Demo App](screenshots/1.png) | ![Demo App](screenshots/2.png) | ![Demo App](screenshots/3.png) |
 
 ## Features
 
@@ -30,7 +30,7 @@ If you use this library in your app, please let me know and I'll add it to the l
 
 ## Dependency
 
-_material-about-library_ is available on [**jitpack.io**][1] and has support for different support library versions. See the full list [here](https://jitpack.io/#daniel-stoneuk/material-about-library).
+_material-about-library_ is available on [**jitpack.io**][1].
 
 **Gradle dependency:**
 
@@ -44,11 +44,9 @@ allprojects {
 
 ```gradle
 dependencies {
-    compile 'com.github.daniel-stoneuk:material-about-library:2.4.2'
+    implementation 'com.github.daniel-stoneuk:material-about-library:3.1.2'
 }
 ```
-
-Releases from 2.4.2 onwards will be using the AndroidX libraries. Use an older release if you wish to continue using the support library version.
 
 ## Migration
 
@@ -78,12 +76,7 @@ public class ExampleMaterialAboutActivity extends MaterialAboutActivity {
 }
 ```
 
-Ensure that the theme extends either of these themes, and apply primary & accent colours:
-
-- `Theme.Mal.Light` (light theme with light toolbar)
-- `Theme.Mal.Light.DarkActionBar` (light theme with dark toolbar)
-- `Theme.Mal.Dark` (dark theme with dark toolbar)
-- `Theme.Mal.Dark.LightActionBar` (dark theme with light toolbar)
+Ensure that the theme extends a `MaterialComponents` theme, and apply primary & secondary colours:
 
 ```xml
 <manifest ...>
@@ -95,10 +88,9 @@ Ensure that the theme extends either of these themes, and apply primary & accent
 ```
 
 ```xml
-<style name="AppTheme.MaterialAboutActivity" parent="Theme.Mal.Light">
+<style name="AppTheme.MaterialAboutActivity" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
     <item name="colorPrimary">@color/colorPrimary</item>
     <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-    <item name="colorAccent">@color/colorAccent</item>
 </style>
 ```
 
@@ -114,24 +106,11 @@ public class ExampleMaterialAboutFragment extends MaterialAboutFragment {
         return new MaterialAboutList.Builder()
                 .build(); // This creates an empty screen, add cards with .addCard()
     }
-    
-    @Override
-    protected int getTheme() {
-        return R.style.AppTheme_MaterialAboutActivity_Fragment;
-    }
-    
+
 }
 ```
 
-Pass in a theme that extends one of the styles above
-
-```xml
-<style name="AppTheme.MaterialAboutActivity.Fragment" parent="Theme.Mal.Light">
-    <item name="colorPrimary">@color/colorPrimary</item>
-    <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-    <item name="colorAccent">@color/colorAccent</item>
-</style>
-```
+Theming will follow the activity theme.
 
 ### Add Cards:
 
@@ -221,20 +200,15 @@ Check out a working example in [`Demo.java`][3].
 **Tip:** Customise text colour and card colour in your styles. Example below: 
 
 ```xml
-<style name="AppTheme.MaterialAboutActivity.Light.CustomCardView" parent="Theme.Mal.Light">
-    <!-- Customize your theme here. -->
-    <item name="colorPrimary">@color/colorPrimary</item>
-    <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-    <item name="colorAccent">@color/colorAccent</item>
-    <item name="mal_card_background">@color/colorPrimaryDark</item>
-    <item name="android:textColorPrimary">#eee</item>
-    <item name="android:textColorSecondary">#ffe0e0e0</item>
-    <item name="mal_color_primary">#eee</item>
-    <item name="mal_color_secondary">#ffe0e0e0</item>
-    <!-- You can specify custom theme for toolbar and toolbarPopup. -->
-    <item name="mal_toolbarTheme">@style/Theme.Mal.Toolbar.Dark</item>
-    <item name="mal_toolbarPopupTheme">@style/Theme.Mal.Toolbar.Dark</item>
-</style>
+<style name="AppTheme.MaterialAboutActivity.Light.DarkActionBar.CustomCardView" parent="Theme.MaterialComponents.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="android:textColorPrimary">#ffffff</item>
+        <item name="android:textColorSecondary">#ffffff</item>
+        <item name="colorSurface">@color/colorPrimaryDark</item>
+        <item name="colorOnSurface">#ffffff</item>
+    </style>
 ```
 
 ### Custom Adapters:
@@ -300,7 +274,7 @@ To get a layout that is similar to the 6th screenshot above simply override the 
 ## License
 
 ```
-Copyright 2016-2018 Daniel Stone
+Copyright 2016-2020 Daniel Stone
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -315,7 +289,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ```
 
-[1]: https://jitpack.io
+[1]: https://jitpack.io/#daniel-stoneuk/material-about-library
 [2]: http://i.imgur.com/xXWDmLb.png
 [3]: https://github.com/daniel-stoneuk/material-about-library/blob/master/app/src/main/java/com/danielstone/materialaboutlibrarydemo/Demo.java
 [4]: http://i.imgur.com/HEm08Ax.png

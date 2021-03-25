@@ -1,26 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mal_list_card"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginEnd="@dimen/mal_baseline_half"
-    android:layout_marginLeft="@dimen/mal_baseline_half"
-    android:layout_marginRight="@dimen/mal_baseline_half"
-    android:layout_marginStart="@dimen/mal_baseline_half"
+    android:layout_marginHorizontal="@dimen/mal_baseline_half"
     android:layout_marginTop="@dimen/mal_baseline_half"
-    android:paddingBottom="@dimen/mal_baseline"
-    android:paddingEnd="@dimen/mal_baseline_half"
-    android:paddingLeft="@dimen/mal_baseline_half"
-    android:paddingRight="@dimen/mal_baseline_half"
-    android:paddingStart="@dimen/mal_baseline_half"
-    android:paddingTop="@dimen/mal_baseline"
-    app:strokeWidth="1dp"
-    app:strokeColor="@color/mal_stroke_color"
+    android:paddingHorizontal="@dimen/mal_baseline_half"
+    android:paddingVertical="@dimen/mal_baseline"
     app:cardElevation="0dp"
-    >
+    app:strokeColor="@color/mal_stroke_color"
+    app:strokeWidth="1dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -31,23 +22,17 @@
             android:id="@+id/mal_list_card_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/mal_baseline_half"
-            android:layout_marginEnd="@dimen/mal_baseline"
-            android:layout_marginLeft="@dimen/mal_baseline"
-            android:layout_marginRight="@dimen/mal_baseline"
-            android:layout_marginStart="@dimen/mal_baseline"
+            android:layout_marginHorizontal="@dimen/mal_baseline"
             android:layout_marginTop="@dimen/mal_baseline"
+            android:layout_marginBottom="@dimen/mal_baseline_half"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-            tools:text="Author"/>
+            tools:text="Author" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/mal_card_recyclerview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:clipToPadding="true"
-            android:paddingBottom="@dimen/mal_baseline_half"
-            android:paddingTop="@dimen/mal_baseline_half"/>
-
+            android:paddingVertical="@dimen/mal_baseline_half" />
     </LinearLayout>
-
 </com.google.android.material.card.MaterialCardView>

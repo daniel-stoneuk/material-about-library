@@ -85,7 +85,11 @@ public abstract class MaterialAboutCheckableItem extends MaterialAboutItem {
 			this.broadcasting = true;
 			if (this.onCheckedChanged != null) {
 				if (!this.onCheckedChanged.onCheckedChanged(this.materialAboutCheckableItem, isChecked)) {
+					this.materialAboutCheckableItem.setChecked(!isChecked);
 					this.setActionViewChecked(!isChecked);
+				}
+				else {
+					updateSubText(materialAboutCheckableItem);
 				}
 			}
 			this.broadcasting = false;
@@ -94,6 +98,8 @@ public abstract class MaterialAboutCheckableItem extends MaterialAboutItem {
 		protected abstract void initActionViewListener(boolean hasListener);
 
 		protected abstract void setActionViewChecked(boolean isChecked);
+
+		protected abstract void updateSubText(MaterialAboutCheckableItem item);
 	}
 
 	public abstract static class CheckableBuilder<T> {

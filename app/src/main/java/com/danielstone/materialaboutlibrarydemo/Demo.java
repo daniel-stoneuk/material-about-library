@@ -9,7 +9,9 @@ import android.widget.Toast;
 import androidx.core.content.ContextCompat;
 
 import com.danielstone.materialaboutlibrary.ConvenienceBuilder;
+import com.danielstone.materialaboutlibrary.items.MaterialAboutActionCheckBoxItem;
 import com.danielstone.materialaboutlibrary.items.MaterialAboutActionItem;
+import com.danielstone.materialaboutlibrary.items.MaterialAboutActionSwitchItem;
 import com.danielstone.materialaboutlibrary.items.MaterialAboutCheckBoxItem;
 import com.danielstone.materialaboutlibrary.items.MaterialAboutCheckableItem;
 import com.danielstone.materialaboutlibrary.items.MaterialAboutItemOnClickAction;
@@ -52,9 +54,12 @@ public class Demo {
 
         appCardBuilder.addItem(new MaterialAboutCheckBoxItem.Builder()
                 .text("Checkbox")
+                .subText("Sub Text unchecked")
+                .subTextChecked("Sub Text checked")
                 .icon(new IconicsDrawable(c)
                         .icon(CommunityMaterial.Icon.cmd_checkbox_marked_outline)
                         .sizeDp(18))
+                .setChecked(true)
                 .setOnCheckedChanged(new MaterialAboutOnCheckedChangedAction() {
                     @Override
                     public boolean onCheckedChanged(MaterialAboutCheckableItem item, boolean isChecked) {
@@ -67,9 +72,72 @@ public class Demo {
 
         appCardBuilder.addItem(new MaterialAboutSwitchItem.Builder()
                 .text("Switch")
+                .subText("Sub Text unchecked")
+                .subTextChecked("Sub Text checked")
                 .icon(new IconicsDrawable(c)
                         .icon(CommunityMaterial.Icon.cmd_toggle_switch)
                         .sizeDp(18))
+                .setChecked(false)
+                .setOnCheckedChanged(new MaterialAboutOnCheckedChangedAction() {
+                    @Override
+                    public boolean onCheckedChanged(MaterialAboutCheckableItem item, boolean isChecked) {
+                        Toast.makeText(c, "switch: " + isChecked, Toast.LENGTH_SHORT).show();
+                        return true;
+                    }
+                })
+                .build()
+        );
+
+        appCardBuilder.addItem(new MaterialAboutActionCheckBoxItem.Builder()
+                .text("Action Checkbox")
+                .subText("Sub Text unchecked")
+                .subTextChecked("Sub Text checked")
+                .icon(new IconicsDrawable(c)
+                        .icon(CommunityMaterial.Icon.cmd_checkbox_marked_outline)
+                        .sizeDp(18))
+                .setChecked(true)
+                .setOnClickAction(new MaterialAboutItemOnClickAction() {
+                    @Override
+                    public void onClick() {
+                        Toast.makeText(c, "action checkbox clicked", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .setOnLongClickAction(new MaterialAboutItemOnClickAction() {
+                    @Override
+                    public void onClick() {
+                        Toast.makeText(c, "action checkbox long clicked", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .setOnCheckedChanged(new MaterialAboutOnCheckedChangedAction() {
+                    @Override
+                    public boolean onCheckedChanged(MaterialAboutCheckableItem item, boolean isChecked) {
+                        Toast.makeText(c, "checked: " + isChecked, Toast.LENGTH_SHORT).show();
+                        return true;
+                    }
+                })
+                .build()
+        );
+
+        appCardBuilder.addItem(new MaterialAboutActionSwitchItem.Builder()
+                .text("Action Switch")
+                .subText("Sub Text unchecked")
+                .subTextChecked("Sub Text checked")
+                .icon(new IconicsDrawable(c)
+                        .icon(CommunityMaterial.Icon.cmd_toggle_switch)
+                        .sizeDp(18))
+                .setChecked(false)
+                .setOnClickAction(new MaterialAboutItemOnClickAction() {
+                    @Override
+                    public void onClick() {
+                        Toast.makeText(c, "action switch clicked", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .setOnLongClickAction(new MaterialAboutItemOnClickAction() {
+                    @Override
+                    public void onClick() {
+                        Toast.makeText(c, "action switch long clicked", Toast.LENGTH_SHORT).show();
+                    }
+                })
                 .setOnCheckedChanged(new MaterialAboutOnCheckedChangedAction() {
                     @Override
                     public boolean onCheckedChanged(MaterialAboutCheckableItem item, boolean isChecked) {

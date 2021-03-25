@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:id="@+id/mal_checkbox_action"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:padding="@dimen/mal_baseline_half">
+
+        <ImageView
+            android:id="@+id/mal_checkbox_image"
+            android:layout_width="@dimen/mal_action_item_image_width"
+            android:layout_height="@dimen/mal_action_action_item_image_height"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="@dimen/mal_baseline"
+            android:adjustViewBounds="false"
+            android:contentDescription="@null"
+            android:cropToPadding="false"
+            android:scaleType="centerInside"
+            android:tint="?colorOnSurface" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginHorizontal="@dimen/mal_baseline_half"
+            android:gravity="center_vertical"
+            android:minHeight="@dimen/mal_action_action_item_image_height"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/mal_checkbox_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                tools:text="Version" />
+
+            <TextView
+                android:id="@+id/mal_checkbox_subtext"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+                android:textColor="?android:attr/textColorSecondary"
+                android:visibility="gone"
+                tools:text="Current Version Of App"
+                tools:visibility="visible" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:layout_marginVertical="@dimen/mal_baseline_half"
+        android:background="@color/mal_divider_color" />
+
+    <com.google.android.material.checkbox.MaterialCheckBox
+        android:id="@+id/mal_checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="32dp"
+        android:layout_marginHorizontal="@dimen/mal_baseline" />
+</LinearLayout>

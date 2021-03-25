@@ -3,38 +3,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingTop="@dimen/mal_baseline_half"
-    android:paddingBottom="@dimen/mal_baseline_half"
-    android:paddingStart="8dp"
+    android:gravity="center_vertical"
     android:orientation="horizontal"
-    android:paddingLeft="8dp">
+    android:padding="@dimen/mal_baseline_half">
 
     <ImageView
         android:id="@+id/mal_switch_image"
         android:layout_width="@dimen/mal_action_item_image_width"
         android:layout_height="@dimen/mal_action_action_item_image_height"
         android:layout_gravity="center"
-        android:layout_marginEnd="@dimen/mal_baseline_half"
-        android:layout_marginLeft="@dimen/mal_baseline"
-        android:tint="?colorOnSurface"
-        android:layout_marginRight="@dimen/mal_baseline_half"
-        android:layout_marginStart="@dimen/mal_baseline"
+        android:layout_marginHorizontal="@dimen/mal_baseline"
         android:adjustViewBounds="false"
         android:contentDescription="@null"
         android:cropToPadding="false"
-        android:scaleType="centerInside" />
+        android:scaleType="centerInside"
+        android:tint="?colorOnSurface" />
 
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:minHeight="@dimen/mal_action_action_item_image_height"
         android:layout_gravity="center_vertical"
-        android:gravity="center_vertical"
-        android:layout_marginEnd="@dimen/mal_baseline"
-        android:layout_marginLeft="@dimen/mal_baseline"
-        android:layout_marginRight="@dimen/mal_baseline"
-        android:layout_marginStart="@dimen/mal_baseline"
+        android:layout_marginHorizontal="@dimen/mal_baseline_half"
         android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:minHeight="@dimen/mal_action_action_item_image_height"
         android:orientation="vertical">
 
         <TextView
@@ -49,18 +41,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+            android:textColor="?android:attr/textColorSecondary"
             android:visibility="gone"
-            tools:visibility="visible"
-            tools:text="Current Version Of App" />
+            tools:text="Current Version Of App"
+            tools:visibility="visible" />
     </LinearLayout>
 
-    <Switch
+    <com.google.android.material.switchmaterial.SwitchMaterial
         android:id="@+id/mal_switch"
         android:layout_width="wrap_content"
         android:layout_height="32dp"
-        android:layout_marginEnd="@dimen/mal_baseline_half"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="@dimen/mal_baseline_half" />
-
+        android:layout_marginHorizontal="@dimen/mal_baseline_half" />
 </LinearLayout>

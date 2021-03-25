@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
@@ -34,7 +35,7 @@ public abstract class MaterialAboutFragment extends Fragment {
     protected abstract MaterialAboutList getMaterialAboutList(Context activityContext);
 
 
-    private boolean shouldAnimate() {
+    protected boolean shouldAnimate() {
         return true;
     }
 
@@ -42,7 +43,7 @@ public abstract class MaterialAboutFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.mal_material_about_fragment, container, false);
+        View rootView = inflater.inflate(R.layout.mal_material_about_content, container, false);
 
         recyclerView = (RecyclerView) rootView.findViewById(R.id.mal_recyclerview);
         adapter = new MaterialAboutListAdapter(getViewTypeManager());
@@ -62,7 +63,8 @@ public abstract class MaterialAboutFragment extends Fragment {
         return rootView;
     }
 
-    private ViewTypeManager getViewTypeManager() {
+    @NonNull
+    protected ViewTypeManager getViewTypeManager() {
         return new DefaultViewTypeManager();
     }
 
@@ -70,7 +72,7 @@ public abstract class MaterialAboutFragment extends Fragment {
         return list;
     }
 
-    private void setMaterialAboutList(MaterialAboutList materialAboutList) {
+    protected void setMaterialAboutList(MaterialAboutList materialAboutList) {
         list = materialAboutList;
         adapter.setData(list.getCards());
     }
