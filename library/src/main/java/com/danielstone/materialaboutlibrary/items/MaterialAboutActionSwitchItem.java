@@ -2,6 +2,7 @@ package com.danielstone.materialaboutlibrary.items;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.util.TypedValue;
 import android.view.View;
 
@@ -38,6 +39,14 @@ public class MaterialAboutActionSwitchItem extends MaterialAboutSwitchItem {
     public static void setupItem(MaterialAboutActionSwitchItemViewHolder holder, MaterialAboutActionSwitchItem item, Context context) {
         MaterialAboutSwitchItem.setupItem(holder, item, context);
 
+        int pL = 0, pT = 0, pR = 0, pB = 0;
+        if (Build.VERSION.SDK_INT < 21) {
+            pL = holder.actionView.getPaddingLeft();
+            pT = holder.actionView.getPaddingTop();
+            pR = holder.actionView.getPaddingRight();
+            pB = holder.actionView.getPaddingBottom();
+        }
+
         if (item.getOnClickAction() != null || item.getOnLongClickAction() != null) {
             TypedValue outValue = new TypedValue();
             context.getTheme().resolveAttribute(R.attr.selectableItemBackground, outValue, true);
@@ -47,6 +56,10 @@ public class MaterialAboutActionSwitchItem extends MaterialAboutSwitchItem {
         }
         holder.setOnClickAction(item.getOnClickAction());
         holder.setOnLongClickAction(item.getOnLongClickAction());
+
+        if (Build.VERSION.SDK_INT < 21) {
+            holder.actionView.setPadding(pL, pT, pR, pB);
+        }
     }
 
     @Override
