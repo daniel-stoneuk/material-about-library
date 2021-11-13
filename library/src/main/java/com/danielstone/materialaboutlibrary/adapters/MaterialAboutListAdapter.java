@@ -1,19 +1,17 @@
 package com.danielstone.materialaboutlibrary.adapters;
 
 import android.content.Context;
-
-import androidx.core.content.ContextCompat;
-import androidx.core.content.res.ResourcesCompat;
-import androidx.recyclerview.widget.AsyncListDiffer;
-import androidx.recyclerview.widget.DiffUtil;
-import androidx.cardview.widget.CardView;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.AsyncListDiffer;
+import androidx.recyclerview.widget.DiffUtil;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.danielstone.materialaboutlibrary.R;
 import com.danielstone.materialaboutlibrary.model.MaterialAboutCard;
@@ -72,6 +70,12 @@ public class MaterialAboutListAdapter extends RecyclerView.Adapter<MaterialAbout
                 cardView.setCardBackgroundColor(cardColor);
             } else {
                 cardView.setCardBackgroundColor(cardView.getCardBackgroundColor().getDefaultColor());
+            }
+            int cornerRadius = card.getCardCornerRadius();
+            if (cornerRadius != 0) {
+                cardView.setRadius(TypedValue.applyDimension(
+                        TypedValue.COMPLEX_UNIT_DIP, cornerRadius, context.getResources().getDisplayMetrics()
+                ));
             }
         }
 
@@ -190,7 +194,8 @@ public class MaterialAboutListAdapter extends RecyclerView.Adapter<MaterialAbout
             result = oldItem.toString().equals(newItem.toString());
             if (oldItem.getItems().size() != newItem.getItems().size()) return false;
             for (int i = 0; i < oldItem.getItems().size(); i++) {
-                if (!oldItem.getItems().get(i).getDetailString().equals(newItem.getItems().get(i).getDetailString())) return false;
+                if (!oldItem.getItems().get(i).getDetailString().equals(newItem.getItems().get(i).getDetailString()))
+                    return false;
             }
             return result;
         }

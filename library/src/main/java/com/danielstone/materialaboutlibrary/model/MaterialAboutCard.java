@@ -21,6 +21,7 @@ public class MaterialAboutCard {
 
     private int titleColor = 0;
     private int cardColor = 0;
+    private int cardCornerRadius = 0;
     private boolean outline = true;
 
     private RecyclerView.Adapter customAdapter = null;
@@ -32,6 +33,7 @@ public class MaterialAboutCard {
         this.titleRes = builder.titleRes;
         this.titleColor = builder.titleColor;
         this.cardColor = builder.cardColor;
+        this.cardCornerRadius = builder.cardCornerRadius;
         this.items = builder.items;
         this.customAdapter = builder.customAdapter;
         this.outline = builder.outline;
@@ -63,6 +65,10 @@ public class MaterialAboutCard {
         return cardColor;
     }
 
+    public int getCardCornerRadius() {
+        return cardCornerRadius;
+    }
+
     public boolean isOutline() {
         return outline;
     }
@@ -81,6 +87,8 @@ public class MaterialAboutCard {
 
         @ColorInt
         private int cardColor = 0;
+
+        private int cardCornerRadius = 0;
 
         private boolean outline = true;
 
@@ -106,6 +114,11 @@ public class MaterialAboutCard {
 
         public Builder cardColor(@ColorInt int cardColor) {
             this.cardColor = cardColor;
+            return this;
+        }
+
+        public Builder cardCornerRadius(int cardCornerRadius) {
+            this.cardCornerRadius = cardCornerRadius;
             return this;
         }
 
@@ -151,6 +164,7 @@ public class MaterialAboutCard {
                 ", titleColor=" + titleColor +
                 ", customAdapter=" + customAdapter +
                 ", outline=" + outline +
+                ", cardCornerRadius=" + cardCornerRadius +
                 ", cardColor=" + cardColor + '}';
         return result;
     }
@@ -161,6 +175,7 @@ public class MaterialAboutCard {
         this.titleRes = card.getTitleRes();
         this.titleColor = card.getTitleColor();
         this.cardColor = card.getCardColor();
+        this.cardCornerRadius = card.getCardCornerRadius();
         this.items = new ArrayList<>();
         this.outline = card.isOutline();
         this.customAdapter = card.getCustomAdapter();
