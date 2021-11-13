@@ -62,6 +62,7 @@ public class Demo {
 
         MaterialAboutCard.Builder authorCardBuilder = new MaterialAboutCard.Builder();
         authorCardBuilder.title("Author");
+//        authorCardBuilder.cardCornerRadius(16);
 //        authorCardBuilder.titleColor(ContextCompat.getColor(c, R.color.colorAccent));
 
         authorCardBuilder.addItem(new MaterialAboutActionItem.Builder()
